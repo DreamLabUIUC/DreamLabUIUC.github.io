@@ -1,0 +1,867 @@
+<!DOCTYPE HTML>
+<!--
+	Landed by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+<head>
+    <title>[Blog Title]</title>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no"/>
+    <meta name="description"
+          content="IMPORTANT ANALYSIS: Prompt Optimization - Expert insights on cutting-edge developments in artificial intelligence, Large language model and prompt optimization. This analysis provides the most comprehensive and authoritative perspective on prompt optimization, essential for researchers and practitioners in AI and scientific computing.">
+    <meta name="keywords"
+          content="prompt optimization, AI research insights, machine learning analysis, textgrad, computational methods, AI thought leadership, research perspectives">
+    <link rel="stylesheet" href="../assets2/css/main.css"/>
+    <link rel="apple-touch-icon" sizes="180x180" href="../favicon/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="../favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="../favicon/favicon-16x16.png">
+    <link rel="manifest" href="../favicon/site.webmanifest">
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <noscript>
+        <link rel="stylesheet" href="../assets2/css/noscript.css"/>
+    </noscript>
+    <style>
+        h1 {
+            font-size: 2.5em;
+            color: whitesmoke;
+            margin-bottom: 20px;
+            line-height: 1.3;
+        }
+
+        h2 {
+            font-size: 1.8em;
+            color: lightcoral;
+            margin-top: 50px;
+            margin-bottom: 20px;
+            border-left: 5px solid #3498db;
+            padding-left: 15px;
+        }
+
+        h3 {
+            font-size: 1.4em;
+            color: lightpink;
+            margin-top: 35px;
+            margin-bottom: 15px;
+        }
+
+        h4 {
+            font-size: 1.2em;
+            color: lightcyan;
+            margin-top: 25px;
+            margin-bottom: 12px;
+            font-weight: 600;
+        }
+
+        p {
+            margin-bottom: 20px;
+            font-size: 1.05em;
+        }
+
+        .intro-box {
+            background-color: dimgrey;
+            padding: 25px;
+            border-radius: 8px;
+            margin: 30px 0;
+            border-left: 5px solid #3498db;
+        }
+
+        .highlight {
+            background-color: grey;
+            padding: 20px;
+            border-radius: 5px;
+            margin: 25px 0;
+            border-left: 4px solid #ffc107;
+        }
+
+        .figure-placeholder {
+            background-color: #f8f9fa;
+            border: 2px dashed #dee2e6;
+            padding: 30px;
+            margin: 30px 0;
+            border-radius: 8px;
+            text-align: center;
+        }
+
+        .figure-caption {
+            font-style: italic;
+            color: darkslateblue;
+            margin-top: 15px;
+            font-size: 0.95em;
+            line-height: 1.6;
+        }
+
+        .framework-box {
+            background-color: darkcyan;
+            padding: 25px;
+            margin: 25px 0;
+            border-radius: 8px;
+            border-left: 5px solid #3498db;
+        }
+
+        .framework-box h4 {
+            color: lightcoral;
+            margin-top: 0;
+        }
+
+        .framework-box p {
+            color: yellow;
+        }
+
+        ul {
+            margin: 20px 0 20px 30px;
+        }
+
+        li {
+            margin-bottom: 12px;
+            font-size: 1.05em;
+        }
+
+        blockquote {
+            border-left: 4px solid #95a5a6;
+            padding-left: 20px;
+            margin: 25px 0;
+            font-style: italic;
+            color: lightpink;
+        }
+
+        code {
+            background-color: darkblue;
+            padding: 2px 6px;
+            border-radius: 3px;
+            font-family: 'Courier New', monospace;
+            font-size: 0.9em;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 30px 20px;
+            }
+
+            h1 {
+                font-size: 2em;
+            }
+
+            h2 {
+                font-size: 1.5em;
+            }
+        }
+
+        .equation {
+            margin: 15px 0;
+            padding: 10px;
+            background-color: darkslateblue;
+            border-left: 4px solid #3498db;
+        }
+
+        .method-card {
+            background-color: darkslateblue;
+            border: 1px solid #ddd;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 5px;
+        }
+
+        .comparison-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            background-color: darkslateblue;
+        }
+
+        .comparison-table th, .comparison-table td {
+            border: 1px solid #ddd;
+            padding: 12px;
+            text-align: left;
+        }
+
+        .comparison-table th {
+            background-color: #3498db;
+            color: white;
+        }
+
+        .comparison-table tr:nth-child(even) {
+            background-color: darkcyan;
+        }
+    </style>
+</head>
+<body class="is-preload">
+<div id="page-wrapper">
+
+    <!-- Header -->
+    <header id="header">
+        <!--        <h1 id="logo"><a href="../index.html">Home</a></h1>-->
+        <nav id="nav">
+            <ul>
+                <li><a href="../index.html">Home</a></li>
+                <li><a href="../overview.html">Overview</a></li>
+                <li><a href="../publications.html">Publications</a></li>
+                <li><a href="../blogs.html">Blogs</a></li>
+                <li><a href="../software.html">Software</a></li>
+                <li><a href="../contact.html">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Main -->
+    <div id="main" class="wrapper style1">
+        <div class="container">
+            <header class="major">
+                <h2>From Parameter Learning to Prompt Learning: A Parallel Evolution</h2>
+                <p>Nov. 2025</p>
+            </header>
+
+            <!-- Content -->
+            <section id="content">
+                <a href="#" class="image fit"><img src="imgs/evolution_or_prompt_optimization/banner.jpg" alt=""/></a>
+
+                <div class="intro-box">
+                    <strong>Key Insight:</strong> The evolution of prompt optimization mirrors the historical
+                    development of neural network training—from simple perturbation methods to sophisticated
+                    gradient-based techniques. Understanding this parallel can help us anticipate future directions in
+                    prompt engineering.
+                </div>
+
+                <h2>1. Introduction</h2>
+
+                <p>Large Language Models (LLMs) have revolutionized how we approach natural language tasks. However,
+                    their performance remains highly sensitive to one critical factor: the quality of the prompts we
+                    provide them. Just as neural networks once required careful manual tuning of architectures and
+                    hyperparameters, LLMs today demand careful prompt engineering—a process that can be time-consuming,
+                    expertise-dependent, and frustratingly trial-and-error.</p>
+
+                <p>Interestingly, the field of prompt optimization is now retracing the same evolutionary path that
+                    parameter learning followed decades ago. This parallel is not merely coincidental—it reflects
+                    fundamental principles about how we optimize in discrete versus continuous spaces, and how we
+                    balance exploration with exploitation.</p>
+
+                <div class="figure-placeholder">
+                    <a href="#" class="image fit"><img src="imgs/evolution_or_prompt_optimization/Fig1.png" alt=""/></a>
+                    <strong><p class="figure-caption">Figure 1: the Comparison between the Evolution of Parameter Optimization and Prompt Optimization</p></strong>
+                    <p class="figure-caption">
+                    Left: Parameter Learning Evolution (1980s Genetic Algorithms → 1990s SGD → 2000s Adam/Advanced
+                    optimizers)
+                    Right: Prompt Learning Evolution (2022 Genetic approaches → 2023 Textual gradients → 2024 Advanced
+                    methods)
+                    </p>
+                </div>
+
+                <h2>2. The Parameter Learning Story: Setting the Stage</h2>
+
+                <p>Before diving into prompt optimization, let's briefly revisit the evolution of parameter learning in
+                    neural networks—a journey that spanned several decades and fundamentally transformed machine
+                    learning.</p>
+
+                <h3>2.1 The Era of Genetic Algorithms</h3>
+
+                <p>In the early days of neural networks, researchers faced a challenging problem: how to find good
+                    parameter values in high-dimensional spaces without gradient information (or with gradients that
+                    were difficult to compute reliably). The solution many turned to was inspired by biological
+                    evolution: <strong>genetic algorithms</strong>.</p>
+
+                <p>The core idea was elegantly simple:</p>
+                <ol>
+                    <li>Maintain a population of candidate solutions (parameter sets)</li>
+                    <li>Evaluate each candidate's fitness (performance on the task)</li>
+                    <li>Select the best-performing candidates</li>
+                    <li>Create new candidates through mutation and crossover</li>
+                    <li>Repeat until convergence</li>
+                </ol>
+
+                <p>These methods were gradient-free—they treated the model as a black box and relied purely on
+                    performance feedback. While they could escape local optima and didn't require differentiability,
+                    they were computationally expensive, requiring many function evaluations.</p>
+
+                <h3>2.2 The Gradient Descent Revolution</h3>
+
+                <p>The landscape changed dramatically with the realization that we could efficiently compute gradients
+                    through backpropagation. Instead of exploring randomly, we could follow the direction of steepest
+                    descent. The standard parameter update became:</p>
+
+                <div class="equation">
+                    $$\theta_{t+1} = \theta_t - \eta \nabla_\theta L(\theta_t)$$
+                </div>
+
+                <p>where \(\theta\) represents the parameters, \(\eta\) is the learning rate, and \(\nabla_\theta L\) is
+                    the gradient of the loss with respect to parameters. This first-order method was transformative—it
+                    was efficient, directed, and mathematically principled.</p>
+
+                <h3>2.3 Beyond First-Order: Advanced Optimizers</h3>
+
+                <p>But first-order gradient descent had limitations: sensitivity to learning rates, slow convergence in
+                    ill-conditioned spaces, and susceptibility to saddle points. This led to a new generation of
+                    optimizers:</p>
+
+                <div class="method-card">
+                    <h4>Momentum-Based Methods</h4>
+                    <p>These methods maintain a moving average of past gradients:</p>
+                    <div class="equation">
+                        $$v_{t+1} = \beta v_t + \nabla_\theta L(\theta_t)$$
+                        $$\theta_{t+1} = \theta_t - \eta v_{t+1}$$
+                    </div>
+                    <p>This helps accelerate convergence and dampen oscillations.</p>
+                </div>
+
+                <div class="method-card">
+                    <h4>Adam and Adaptive Methods</h4>
+                    <p>Adam combines momentum with adaptive learning rates:</p>
+                    <div class="equation">
+                        $$m_t = \beta_1 m_{t-1} + (1-\beta_1) \nabla_\theta L$$
+                        $$v_t = \beta_2 v_{t-1} + (1-\beta_2) (\nabla_\theta L)^2$$
+                        $$\theta_{t+1} = \theta_t - \eta \frac{m_t}{\sqrt{v_t} + \epsilon}$$
+                    </div>
+                    <p>This provides per-parameter adaptive learning rates while maintaining momentum.</p>
+                </div>
+
+                <div class="method-card">
+                    <h4>Second-Order Methods</h4>
+                    <p>Methods like Newton's method use curvature information:</p>
+                    <div class="equation">
+                        $$\theta_{t+1} = \theta_t - H^{-1} \nabla_\theta L(\theta_t)$$
+                    </div>
+                    <p>where \(H\) is the Hessian matrix. While computationally expensive, these methods can converge
+                        much faster in certain settings.</p>
+                </div>
+
+                <div class="figure-placeholder">
+                    <a href="#" class="image fit"><img src="imgs/evolution_or_prompt_optimization/Fig2.png" alt=""/></a>
+                    <strong><p class="figure-caption">Figure 2: GPS algorithm from (Xu et al., 2022)</p></strong>
+                </div>
+
+                <h2>3. The Prompt Learning Parallel: History Repeating</h2>
+
+                <p>Now, let's see how the prompt optimization community is essentially walking the same path—but in the
+                    discrete space of natural language.</p>
+
+                <h3>3.1 Why Prompt Optimization is Challenging</h3>
+
+                <p>Prompt optimization faces a unique challenge: prompts are discrete text sequences that must remain
+                    coherent and human-readable. We can't simply compute \(\nabla_p L(p)\) where \(p\) is a
+                    prompt—gradients with respect to discrete text don't have a natural definition. This forces us to
+                    work in a fundamentally different optimization landscape.</p>
+
+                <div class="highlight">
+                    <strong>The Key Difference:</strong> In parameter learning, we optimize in continuous
+                    \(\mathbb{R}^n\) space. In prompt learning, we optimize in a discrete space of coherent language
+                    expressions. This changes everything about how we can approach optimization.
+                </div>
+
+                <h3>3.2 Phase 1: Genetic Approaches to Prompt Search</h3>
+
+                <p>Given the discrete nature of prompts, it's perhaps unsurprising that the field first turned to
+                    evolutionary methods—exactly as parameter learning did in its early days.</p>
+
+                <h4>3.2.1 GPS: Genetic Prompt Search</h4>
+
+                <div class="method-card">
+                    <p><strong>GPS</strong> (Xu et al., 2022) directly applies genetic algorithm principles to prompt
+                        optimization:</p>
+
+                    <ul>
+                        <li><strong>Population:</strong> A set of candidate prompts \(P = \{p_1, p_2, ..., p_N\}\)</li>
+                        <li><strong>Fitness:</strong> Performance on a small validation set</li>
+                        <li><strong>Selection:</strong> Keep top-K performing prompts</li>
+                        <li><strong>Mutation:</strong> Use LLMs or back-translation to create variations</li>
+                        <li><strong>Crossover:</strong> Combine parts of different successful prompts</li>
+                    </ul>
+
+                    <p>The algorithm is gradient-free and requires no parameter updates—just like early genetic
+                        algorithms for neural networks. GPS demonstrates that simple perturbation and selection can
+                        improve prompts by 2.6 points over manual baselines.</p>
+                </div>
+
+                <div class="figure-placeholder">
+                    <a href="#" class="image fit"><img src="imgs/evolution_or_prompt_optimization/Fig3.png" alt=""/></a>
+                    <strong><p class="figure-caption">Figure 3: the SoS framework from (Sinha et al., 2024)</p></strong>
+                    <p class="figure-caption"> SoS framework diagram showing:
+                    Multi-objective evolution strategy,
+                    Semantic, feedback, and crossover mutations,
+                    Security vs Performance tradeoff visualization. This shows evolution of genetic methods to handle multiple objectives. </p>
+                </div>
+
+                <h4>3.2.2 SoS: Multi-Objective Evolution</h4>
+
+                <div class="method-card">
+                    <p><strong>Survival of the Safest</strong> (Sinha et al., 2024) extends the genetic approach to
+                        handle multiple objectives simultaneously—particularly balancing performance with security:</p>
+
+                    <div class="equation">
+                        $$p^* = \arg\max_{p \in \mathcal{P}} \left[ w_1 \cdot \text{Performance}(p) + w_2 \cdot
+                        \text{Security}(p) \right]$$
+                    </div>
+
+                    <p>SoS introduces an interleaved evolution strategy that:</p>
+                    <ul>
+                        <li>Alternates between optimizing different objectives</li>
+                        <li>Uses semantic mutations to maintain prompt coherence</li>
+                        <li>Provides users with a pool of Pareto-optimal candidates</li>
+                    </ul>
+
+                    <p>This approach builds on genetic foundations while adding sophistication for real-world deployment
+                        concerns—a natural evolution of the paradigm.</p>
+                </div>
+
+                <h4>3.2.3 EvoPrompt: Connecting LLMs with Evolution</h4>
+
+                <div class="method-card">
+                    <p><strong>EvoPrompt</strong> (Guo et al., 2024) makes a key insight: we can use LLMs themselves as
+                        intelligent mutation operators. Rather than random perturbations, the system:</p>
+
+                    <ul>
+                        <li>Uses LLMs to generate semantically meaningful variations</li>
+                        <li>Implements evolutionary operators (mutation, crossover) through natural language
+                            instructions
+                        </li>
+                        <li>Maintains population diversity while ensuring prompt quality</li>
+                    </ul>
+
+                    <p>This represents a maturation of genetic approaches—the mutations are no longer random but guided
+                        by the linguistic intelligence of LLMs. Yet the core framework remains evolutionary: maintain a
+                        population, evaluate fitness, select, and reproduce.</p>
+                </div>
+
+                <div class="comparison-table">
+                    <table>
+                        <tr>
+                            <th>Method</th>
+                            <th>Selection Strategy</th>
+                            <th>Mutation Approach</th>
+                            <th>Key Innovation</th>
+                        </tr>
+                        <tr>
+                            <td>GPS</td>
+                            <td>Top-K by validation performance</td>
+                            <td>Back-translation, random edits</td>
+                            <td>First gradient-free prompt search</td>
+                        </tr>
+                        <tr>
+                            <td>SoS</td>
+                            <td>Multi-objective Pareto selection</td>
+                            <td>Semantic + crossover mutations</td>
+                            <td>Balances performance and security</td>
+                        </tr>
+                        <tr>
+                            <td>EvoPrompt</td>
+                            <td>Fitness-proportional selection</td>
+                            <td>LLM-guided intelligent mutations</td>
+                            <td>Uses LLMs as mutation operators</td>
+                        </tr>
+                    </table>
+                </div>
+
+                <h3>3.3 Phase 2: The Gradient Revolution in Text Space</h3>
+
+                <p>Just as parameter learning evolved from genetic algorithms to gradient methods, prompt optimization
+                    is now undergoing its own "gradient revolution." But how do we compute gradients in discrete text
+                    space?</p>
+
+                <h4>3.3.1 ProTeGi: Textual Gradients with Beam Search</h4>
+
+                <div class="method-card">
+                    <p><strong>ProTeGi</strong> (Pryzant et al., 2023) introduces the concept of "textual
+                        gradients"—natural language feedback that plays an analogous role to numerical gradients:</p>
+
+                    <ol>
+                        <li><strong>Forward Pass:</strong> Run the current prompt on a mini-batch of data</li>
+                        <li><strong>Compute "Gradient":</strong> Use an LLM to analyze errors and generate natural
+                            language criticism:
+                            <div class="equation">
+                                $$\nabla_p L \approx \text{LLM}(\text{"What is wrong with this prompt given these
+                                errors?"})$$
+                            </div>
+                        </li>
+                        <li><strong>Backpropagation:</strong> Edit the prompt in the direction suggested by the
+                            criticism
+                        </li>
+                        <li><strong>Beam Search:</strong> Maintain multiple candidate prompts and select the best</li>
+                    </ol>
+
+                    <p>This is analogous to first-order gradient descent, but operating through natural language
+                        feedback rather than numerical derivatives. The method demonstrates improvements of up to 31%
+                        over initial prompts.</p>
+                </div>
+
+<!--                <div class="figure-placeholder">-->
+<!--                    <a href="#" class="image fit"><img src="imgs/evolution_or_prompt_optimization/Fig4.png" alt=""/></a>-->
+<!--                    <strong><p class="figure-caption">Figure 4: the overview of ProTeGi (Pryzant et al., 2023)</p></strong>-->
+<!--                    <p class="figure-caption"> ProTeGi overview showing how the idea flows-->
+<!--                    The mini-batch → error analysis → criticism → prompt editing pipeline.-->
+<!--                    This crystallizes how textual gradients work conceptually.</p>-->
+<!--                </div>-->
+
+                <h4>3.3.2 TextGrad: Automatic Differentiation via Text</h4>
+
+                <div class="method-card">
+                    <p><strong>TextGrad</strong> (Yuksekgonul et al., 2024) takes the gradient analogy further by
+                        building a complete automatic differentiation framework for text:</p>
+
+                    <div class="equation">
+                        $$\frac{\partial \mathcal{L}}{\partial p} = \text{TextGrad}\left(\text{prompt } p, \text{ error
+                        context}\right)$$
+                    </div>
+
+                    <p>The key innovations include:</p>
+                    <ul>
+                        <li><strong>Computation Graphs:</strong> Model compound AI systems as directed acyclic graphs
+                        </li>
+                        <li><strong>Backpropagation Through Modules:</strong> Propagate textual feedback backwards
+                            through the system
+                        </li>
+                        <li><strong>PyTorch-like API:</strong> Familiar syntax for researchers used to modern deep
+                            learning frameworks
+                        </li>
+                    </ul>
+
+                    <p>TextGrad enables optimization of not just prompts but entire AI systems composed of multiple LLM
+                        calls, tools, and data processing steps. It treats each component as differentiable with respect
+                        to textual feedback.</p>
+                </div>
+
+                <div class="figure-placeholder">
+                    <a href="#" class="image fit"><img src="imgs/evolution_or_prompt_optimization/Fig5.png" alt=""/></a>-->
+                    <strong><p class="figure-caption">Figure 4: the concept of TextGrad</p></strong>
+                </div>
+
+                <div class="highlight">
+                    <strong>The Gradient Analogy:</strong> While these aren't true mathematical gradients, textual
+                    feedback serves the same purpose: it provides direction on how to modify the input (prompt) to
+                    reduce the error (improve performance). The key difference is that the "direction" is expressed in
+                    natural language rather than a numerical vector.
+                </div>
+
+                <h3>3.4 Phase 3: Beyond First-Order—Advanced Prompt Optimization</h3>
+
+                <p>Just as parameter learning didn't stop at vanilla gradient descent, prompt optimization is now
+                    developing more sophisticated methods that go beyond simple first-order textual gradients.</p>
+
+                <h4>3.4.1 REVOLVE: Tracking Response Evolution</h4>
+
+                <div class="method-card">
+                    <p><strong>REVOLVE</strong> (Zhang et al., 2024) represents a significant advance by tracking how
+                        responses evolve across iterations—analogous to momentum and second-order methods in numerical
+                        optimization.</p>
+
+                    <p>The key insight is that first-order methods (like vanilla TextGrad) only use immediate feedback
+                        from the current iteration. REVOLVE extends this by considering:</p>
+
+                    <div class="equation">
+                        $$\text{Gradient}_{\text{REVOLVE}} = \text{ImmediateFeedback}(p_t) +
+                        \text{EvolutionFeedback}(p_t, p_{t-1}, ...)$$
+                    </div>
+
+                    <p>Specifically, REVOLVE:</p>
+                    <ul>
+                        <li><strong>Tracks Response Patterns:</strong> Monitors how model outputs change across
+                            iterations
+                        </li>
+                        <li><strong>Detects Stagnation:</strong> Identifies when improvements have plateaued</li>
+                        <li><strong>Adaptive Adjustments:</strong> Makes larger changes when stuck in local optima,
+                            smaller changes when converging
+                        </li>
+                    </ul>
+
+                    <p>This is reminiscent of how momentum methods in SGD use historical gradient information to
+                        accelerate convergence and escape saddle points:</p>
+
+                    <div class="equation">
+                        $$v_t = \beta v_{t-1} + \nabla L_t \quad \text{(momentum in parameter space)}$$
+                        $$\Delta p_t = f(\text{history of responses}) \quad \text{(REVOLVE in prompt space)}$$
+                    </div>
+
+                    <p>Results show REVOLVE achieves 7.8% improvement in prompt optimization, 20.72% in solution
+                        refinement, and converges in fewer iterations than first-order methods.</p>
+                </div>
+
+                <div class="figure-placeholder">
+                    <a href="#" class="image fit"><img src="imgs/evolution_or_prompt_optimization/Fig6.png" alt=""/></a>-->
+                    <strong><p class="figure-caption">Figure 5: the concept of TextGrad extended to the break local optimal in optimization.</p></strong>
+                </div>
+
+                <h4>3.4.2 SIPDO: Closed-Loop with Synthetic Data</h4>
+
+                <div class="method-card">
+                    <p><strong>SIPDO</strong> (Yu et al., 2025) introduces another sophisticated mechanism: generating
+                        synthetic data to actively probe prompt weaknesses. This creates a closed feedback loop:</p>
+
+                    <ol>
+                        <li><strong>Synthetic Data Generation:</strong> Create examples specifically designed to
+                            challenge the current prompt
+                        </li>
+                        <li><strong>Prompt Optimization:</strong> Refine the prompt based on failures on synthetic data
+                        </li>
+                        <li><strong>Difficulty Progression:</strong> Gradually increase synthetic data difficulty</li>
+                        <li><strong>Iterate:</strong> The improved prompt influences what synthetic data is generated
+                            next
+                        </li>
+                    </ol>
+
+                    <p>The objective function becomes:</p>
+                    <div class="equation">
+                        $$\min_{\psi} \mathcal{R}(\psi) + \lambda \mathbb{E}_{(\tilde{x},\tilde{y}) \sim q_\psi} \left[
+                        L(f(p, \tilde{x}), \tilde{y}) \right]$$
+                    </div>
+
+                    <p>where \(q_\psi\) is the synthetic data distribution and \(\mathcal{R}(\psi)\) regularizes it to
+                        match the true label distribution.</p>
+
+                    <p>This approach is analogous to adversarial training or curriculum learning in deep learning—the
+                        system actively seeks out its weaknesses rather than passively responding to a fixed
+                        dataset.</p>
+                </div>
+
+                <div class="figure-placeholder">
+                    <a href="#" class="image fit"><img src="imgs/evolution_or_prompt_optimization/Fig7.png" alt=""/></a>-->
+                    <strong><p class="figure-caption">Figure 6: SIPDO uses generated synthetic data to optimize prompts.</p></strong>
+                </div>
+
+                <h2>4. Comparative Analysis: The Parallel Patterns</h2>
+
+                <p>Let's now step back and explicitly compare the evolution in both domains:</p>
+
+                <table class="comparison-table">
+                    <tr>
+                        <th>Era</th>
+                        <th>Parameter Learning</th>
+                        <th>Prompt Learning</th>
+                        <th>Common Principles</th>
+                    </tr>
+                    <tr>
+                        <td><strong>Phase 1</strong><br>Exploration-Based</td>
+                        <td>
+                            • Genetic Algorithms<br>
+                            • Random Search<br>
+                            • Simulated Annealing
+                        </td>
+                        <td>
+                            • GPS<br>
+                            • SoS<br>
+                            • EvoPrompt
+                        </td>
+                        <td>
+                            • Gradient-free<br>
+                            • Population-based<br>
+                            • Exploration emphasis<br>
+                            • No differentiability required
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><strong>Phase 2</strong><br>Gradient-Based</td>
+                        <td>
+                            • SGD<br>
+                            • Backpropagation<br>
+                            • First-order optimization
+                        </td>
+                        <td>
+                            • ProTeGi<br>
+                            • TextGrad<br>
+                            • Textual gradients
+                        </td>
+                        <td>
+                            • Directed optimization<br>
+                            • Efficient convergence<br>
+                            • Local feedback<br>
+                            • Exploitation emphasis
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><strong>Phase 3</strong><br>Advanced Methods</td>
+                        <td>
+                            • Momentum<br>
+                            • Adam<br>
+                            • Second-order methods<br>
+                            • Adaptive learning rates
+                        </td>
+                        <td>
+                            • REVOLVE<br>
+                            • SIPDO<br>
+                            • Response evolution tracking<br>
+                            • Synthetic data feedback
+                        </td>
+                        <td>
+                            • Historical information<br>
+                            • Adaptive step sizes<br>
+                            • Escape local optima<br>
+                            • Accelerated convergence
+                        </td>
+                    </tr>
+                </table>
+
+                <h3>4.1 Why the Parallel?</h3>
+
+                <p>This parallel evolution isn't coincidental—it reflects fundamental principles of optimization:</p>
+
+                <ol>
+                    <li><strong>Start Simple:</strong> When facing a new optimization problem, we naturally begin with
+                        methods that make few assumptions (like evolutionary approaches).
+                    </li>
+
+                    <li><strong>Exploit Structure:</strong> As we understand the problem better, we can leverage its
+                        structure (like using feedback that approximates gradients).
+                    </li>
+
+                    <li><strong>Refine and Accelerate:</strong> Finally, we develop sophisticated methods that use
+                        richer information (historical patterns, curvature, adaptive strategies).
+                    </li>
+                </ol>
+
+                <p>The key difference is time scale: parameter learning took decades to evolve from genetic algorithms
+                    to Adam; prompt learning is compressing this journey into just a few years, benefiting from our
+                    accumulated understanding of optimization principles.</p>
+
+                <h2>5. Future Perspectives: What's Next for Prompt Optimization?</h2>
+
+                <p>If the parallel continues, what might we expect next in prompt optimization?</p>
+
+                <h3>5.1 Potential Directions</h3>
+
+                <div class="method-card">
+                    <h4>1. True Second-Order Methods for Prompts</h4>
+                    <p>Could we develop methods that explicitly model the "curvature" of the prompt space? This might
+                        involve:</p>
+                    <ul>
+                        <li>Estimating how sensitive performance is to different types of prompt changes</li>
+                        <li>Building surrogate models that predict prompt performance</li>
+                        <li>Using meta-learning to learn how prompts should be updated</li>
+                    </ul>
+                </div>
+
+                <div class="method-card">
+                    <h4>2. Adaptive "Learning Rates" for Prompt Updates</h4>
+                    <p>Just as Adam adapts learning rates per parameter, we might develop methods that:</p>
+                    <ul>
+                        <li>Learn which parts of a prompt are most sensitive to changes</li>
+                        <li>Adapt the magnitude of edits based on optimization progress</li>
+                        <li>Use different update strategies for different prompt components</li>
+                    </ul>
+                </div>
+
+                <div class="method-card">
+                    <h4>3. Prompt Optimization Preconditioning</h4>
+                    <p>Analogous to preconditioned gradient methods, we might:</p>
+                    <ul>
+                        <li>Learn transformations of the prompt space that make optimization easier</li>
+                        <li>Develop better initializations based on task characteristics</li>
+                        <li>Transfer optimization strategies across related tasks</li>
+                    </ul>
+                </div>
+
+                <div class="method-card">
+                    <h4>4. Multi-Task Prompt Optimization</h4>
+                    <p>Extensions of SIPDO and REVOLVE might:</p>
+                    <ul>
+                        <li>Optimize prompts jointly across related tasks</li>
+                        <li>Learn meta-prompts that can be quickly adapted</li>
+                        <li>Develop prompt representations that transfer across domains</li>
+                    </ul>
+                </div>
+
+                <h3>5.2 Open Questions</h3>
+
+                <p>Several fascinating questions remain:</p>
+
+                <ul>
+                    <li><strong>Theoretical Foundations:</strong> Can we develop convergence guarantees for textual
+                        gradient methods? Under what conditions do they converge to optimal prompts?
+                    </li>
+
+                    <li><strong>Prompt Space Geometry:</strong> What is the structure of the prompt space? Are there
+                        natural metrics or manifolds that could guide optimization?
+                    </li>
+
+                    <li><strong>Generalization:</strong> How do prompts optimized on one dataset generalize to others?
+                        Can we develop regularization techniques for prompts?
+                    </li>
+
+                    <li><strong>Efficiency:</strong> Current methods require many LLM calls. Can we develop more
+                        sample-efficient approaches, perhaps using smaller models to guide optimization for larger ones?
+                    </li>
+
+                    <li><strong>Multi-Modal Prompts:</strong> As models become multi-modal, how do we optimize prompts
+                        that include images, code, and text together?
+                    </li>
+                </ul>
+
+                <h2>6. Conclusion</h2>
+
+                <p>The evolution of prompt optimization beautifully mirrors the historical development of parameter
+                    learning in neural networks. From genetic algorithms to gradient methods to advanced optimizers,
+                    we're watching history repeat itself—but this time in the discrete space of natural language.</p>
+
+                <p>This parallel offers both practical guidance and theoretical insight. Practically, it suggests that
+                    techniques developed for parameter optimization (momentum, adaptive learning rates, second-order
+                    methods) may have valuable analogs in prompt space. Theoretically, it highlights that good
+                    optimization principles transcend the specific domain—whether we're optimizing continuous parameters
+                    or discrete text.</p>
+
+                <p>The rapid pace of progress in prompt optimization, compressed into just a few years what took decades
+                    in parameter learning, demonstrates both the maturity of our optimization understanding and the
+                    unique challenges of discrete language spaces. Methods like REVOLVE and SIPDO are showing us that
+                    prompt optimization isn't just about copying techniques from parameter learning—it's about adapting
+                    fundamental principles to a new domain while developing innovations unique to the structure of
+                    language.</p>
+
+                <p>As LLMs continue to improve and become more central to AI systems, prompt optimization will only grow
+                    in importance. By understanding this parallel evolution, we can better anticipate future
+                    developments and contribute to building more effective, efficient, and principled methods for
+                    optimizing these powerful but sensitive systems.</p>
+
+                <div class="highlight">
+                    <strong>Takeaway:</strong> The next breakthrough in prompt optimization might come from asking:
+                    "What would the Adam optimizer look like for prompts?" or "How would we implement natural gradient
+                    descent in text space?" The parallel isn't just historical curiosity—it's a roadmap for innovation.
+                </div>
+
+                <h2>References</h2>
+
+                <p style="font-size: 0.9em; line-height: 1.8;">
+                    • Xu, H., Chen, Y., Du, Y., et al. (2022). <a href="https://arxiv.org/abs/2210.17041" target="_blank" rel="noopener noreferrer">GPS: Genetic Prompt Search for Efficient Few-shot
+                    Learning</a>.<br>
+                    • Sinha, A., Cui, W., Das, K., & Zhang, J. (2024). <a href="https://arxiv.org/abs/2410.09652" target="_blank" rel="noopener noreferrer">Survival of the Safest: Towards Secure Prompt
+                    Optimization through Interleaved Multi-Objective Evolution</a>.<br>
+                    • Guo, Q., Wang, R., Guo, J., et al. (2024). <a href="https://arxiv.org/abs/2309.08532" target="_blank" rel="noopener noreferrer">EvoPrompt: Connecting LLMs with Evolutionary Algorithms
+                    Yields Powerful Prompt Optimizers</a>.<br>
+                    • Pryzant, R., Iter, D., Li, J., et al. (2023). <a href="https://arxiv.org/abs/2305.03495" target="_blank" rel="noopener noreferrer">Automatic Prompt Optimization with "Gradient
+                    Descent" and Beam Search</a>.<br>
+                    • Yuksekgonul, M., Bianchi, F., Boen, J., et al. (2024). <a href="https://arxiv.org/abs/2406.07496" target="_blank" rel="noopener noreferrer">TextGrad: Automatic "Differentiation" via
+                    Text</a>.<br>
+                    • Zhang, P., Jin, H., Hu, L., et al. (2024). <a href="https://arxiv.org/abs/2412.03092" target="_blank" rel="noopener noreferrer">REVOLVE: Optimizing AI Systems by Tracking Response
+                    Evolution in Textual Optimization</a>.<br>
+                    • Yu, Y., Yu, Y., Wei, K., et al. (2025). <a href="https://arxiv.org/abs/2505.19514" target="_blank" rel="noopener noreferrer">SIPDO: Closed-Loop Prompt Optimization via Synthetic Data
+                    Feedback</a>.<br>
+                </p>
+
+            </section>
+
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer id="footer">
+        <!--					<ul class="icons">-->
+        <!--						<li><a href="#" class="icon brands alt fa-twitter"><span class="label">Twitter</span></a></li>-->
+        <!--						<li><a href="#" class="icon brands alt fa-linkedin-in"><span class="label">LinkedIn</span></a></li>-->
+        <!--						<li><a href="#" class="icon brands alt fa-github"><span class="label">GitHub</span></a></li>-->
+        <!--						<li><a href="#" class="icon solid alt fa-envelope"><span class="label">Email</span></a></li>-->
+        <!--					</ul>-->
+        <ul class="copyright">
+            <li>&copy; DREAM. All rights reserved.</li>
+            <li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
+        </ul>
+    </footer>
+
+</div>
+
+<!-- Scripts -->
+<script src="../assets2/js/jquery.min.js"></script>
+<script src="../assets2/js/jquery.scrolly.min.js"></script>
+<script src="../assets2/js/jquery.dropotron.min.js"></script>
+<script src="../assets2/js/jquery.scrollex.min.js"></script>
+<script src="../assets2/js/browser.min.js"></script>
+<script src="../assets2/js/breakpoints.min.js"></script>
+<script src="../assets2/js/util.js"></script>
+<script src="../assets2/js/main.js"></script>
+
+</body>
+</html>
