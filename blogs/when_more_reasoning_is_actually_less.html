@@ -1,0 +1,596 @@
+<!DOCTYPE HTML>
+<!--
+	Landed by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+<head>
+    <title>When More Reasoning is Actually Less: The Science Behind Optimal Thinking in LLMs</title>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no"/>
+    <meta name="description"
+          content="IMPORTANT ANALYSIS: Most important resources on LLM reasoning - Expert insights on cutting-edge developments in artificial intelligence, machine learning, and computational biology. This analysis provides the most comprehensive and authoritative perspective on LLM reasoning, essential for researchers and practitioners in AI and scientific computing.">
+    <meta name="keywords"
+          content="LLM reasoning, AI research insights, machine learning analysis, [related technical terms], computational methods, AI thought leadership, research perspectives">
+    <link rel="stylesheet" href="../assets2/css/main.css"/>
+    <link rel="stylesheet" href="blog.css"/>
+    <link rel="apple-touch-icon" sizes="180x180" href="../favicon/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="../favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="../favicon/favicon-16x16.png">
+    <link rel="manifest" href="../favicon/site.webmanifest">
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <noscript>
+        <link rel="stylesheet" href="../assets2/css/noscript.css"/>
+    </noscript>
+    <style>
+        /* Only new CSS not in the original provided styles */
+        .equation {
+            margin: 15px 0;
+            padding: 10px;
+            background-color: rgba(255, 255, 255, 0.05);
+            border-left: 4px solid #e44c65;
+        }
+
+        .method-card {
+            background-color: rgba(23, 24, 32, 0.8);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body class="is-preload">
+<div id="page-wrapper">
+
+    <!-- Header -->
+    <header id="header">
+        <!--        <h1 id="logo"><a href="../index.html">Home</a></h1>-->
+        <nav id="nav">
+            <ul>
+                <li><a href="../index.html">Home</a></li>
+                <li><a href="../overview.html">Overview</a></li>
+                <li><a href="../publications.html">Publications</a></li>
+                <li><a href="../blogs.html">Blogs</a></li>
+                <li><a href="../software.html">Software</a></li>
+                <li><a href="../contact.html">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Main -->
+    <div id="main" class="wrapper style1">
+        <div class="container">
+            <header class="major">
+                <h2>When More Reasoning is Actually Less: The Science Behind Optimal Thinking in LLMs</h2>
+                <p>Dec. 2025</p>
+            </header>
+
+            <!-- Content -->
+            <div class="intro-box">
+                <p><em>"Everything should be made as simple as possible, but not simpler."</em> — Albert Einstein</p>
+                <p>In the race to build ever-more-capable AI systems, we've operated under a seductive assumption:
+                    <strong>more reasoning is better reasoning</strong>. Chain-of-thought prompting, multi-step
+                    reasoning, extended deliberation—all point toward a single direction: longer thought processes lead
+                    to better outcomes.</p>
+                <p>But what if this assumption is fundamentally wrong? What if there's an optimal amount of reasoning,
+                    and exceeding it actually <em>degrades</em> performance?</p>
+            </div>
+
+            <h2>The Emerging Evidence: A Paradigm Under Question</h2>
+
+            <p>Across multiple independent research efforts in 2025, a consistent pattern has emerged that challenges
+                our core beliefs about reasoning in Large Language Models. The evidence comes from different
+                angles—mathematical optimization, game-based reasoning, puzzle-solving, and creative problem-solving—yet
+                points to the same surprising conclusion.</p>
+
+            <h3>The Inverted U-Curve: When Peak Performance Lies in the Middle</h3>
+
+            <p>Wu et al. discovered something remarkable when studying chain-of-thought (CoT) reasoning on arithmetic
+                tasks: <strong>accuracy follows an inverted U-shaped curve</strong>. Performance initially improves as
+                reasoning steps increase, peaks at an optimal length, then <em>deteriorates</em> with additional
+                reasoning.</p>
+
+            <div class="figure-placeholder">
+                <a href="#" class="image fit"><img src="imgs/when_more_reasoning_is_actually_less/fig1.png" alt=""/></a>
+                <div class="figure-caption">
+                    Figure 1 (from Wu et al): The inverted U-shaped relationship between CoT length and accuracy across different task
+                    difficulties. As tasks become harder, the optimal CoT length shifts rightward, but the fundamental
+                    pattern persists—there exists a "sweet spot" for reasoning length.
+                </div>
+            </div>
+
+            <p>Even more intriguing, they observed a <strong>simplicity bias</strong>: as models become more capable,
+                they achieve optimal performance with <em>shorter</em> reasoning chains. During reinforcement learning
+                training, models naturally converge toward shorter, more efficient reasoning paths.</p>
+
+            <div class="figure-placeholder">
+                <a href="#" class="image fit"><img src="imgs/when_more_reasoning_is_actually_less/fig2.png" alt=""/></a>
+                <div class="figure-caption">
+                    Figure 2 (from Wu et al): Evolution of CoT lengths during RL training. As accuracy improves, average CoT length
+                    decreases—models learn to reason more efficiently, not more extensively.
+                </div>
+            </div>
+
+            <h3>The Thinking Trap: When Reasoning Becomes Self-Sabotage</h3>
+
+            <p>Ding et al. identified a phenomenon they call the <strong>"thinking trap"</strong>—reasoning deadlocks
+                caused by excessive self-reflection. In their analysis of thinking tokens (words like "wait," "however,"
+                "hmm"), they found that:</p>
+
+            <ul>
+                <li>Incorrect responses contain <strong>twice as many thinking tokens</strong> as correct responses</li>
+                <li>Suppressing thinking token generation maintains performance while dramatically reducing
+                    computational cost
+                </li>
+                <li>Models exhibit systematic over-confidence in thinking tokens, leading to cascading generation
+                    patterns
+                </li>
+            </ul>
+
+<!--            <div class="figure-placeholder">-->
+<!--                <strong>[INSERT: Figure 1 from Ding et al. (2506.23840v1)]</strong>-->
+<!--                <div class="figure-caption">-->
+<!--                    Figure: The thinking trap illustrated. A correct inference gets stuck in redundant verification-->
+<!--                    loops, failing to produce a final answer within token limits. Efficient reasoning reaches the-->
+<!--                    correct answer with minimal overhead.-->
+<!--                </div>-->
+<!--            </div>-->
+
+            <h3>The Complexity Collapse: When Reasoning Hits a Wall</h3>
+
+            <p>Shojaee et al. studied reasoning models through controlled puzzle environments and discovered a <strong>complete
+                accuracy collapse</strong> beyond certain complexity thresholds. Even frontier models like o3-mini and
+                DeepSeek-R1 exhibit this pattern.</p>
+
+            <div class="figure-placeholder">
+                <a href="#" class="image fit"><img src="imgs/when_more_reasoning_is_actually_less/fig3.png" alt=""/></a>
+                <div class="figure-caption">
+                    Figure 3 (from Shojaee et al): Three performance regimes emerge: (1) low complexity where standard models outperform
+                    reasoning models, (2) medium complexity where reasoning provides advantage, and (3) high complexity
+                    where both collapse. Counterintuitively, reasoning effort decreases as complexity increases beyond a
+                    threshold.
+                </div>
+            </div>
+
+            <p>Perhaps most surprisingly: reasoning models show a counterintuitive scaling limit. Their reasoning effort
+                <em>increases</em> with problem complexity up to a point, then <strong>declines</strong> despite having
+                adequate token budget. This suggests models recognize when problems exceed their reasoning capacity.</p>
+
+            <h3>The Creativity Ceiling: Beyond Mechanical Pattern Matching</h3>
+
+            <p>Sun et al. examined reasoning through the lens of mathematical creativity, evaluating three types of
+                generalization:</p>
+
+            <ul>
+                <li><strong>Exploratory</strong>: Applying known skills to more complex instances</li>
+                <li><strong>Compositional</strong>: Combining distinct reasoning skills</li>
+                <li><strong>Transformative</strong>: Adopting unconventional strategies</li>
+            </ul>
+
+            <div class="figure-placeholder">
+                <a href="#" class="image fit"><img src="imgs/when_more_reasoning_is_actually_less/fig4.png" alt=""/></a>
+                <div class="figure-caption">
+                    Figure 4 (from Sun et al): Training-test pairs demonstrating different generalization axes. Models excel at exploratory
+                    generalization but struggle with compositional tasks and show minimal improvement on transformative
+                    reasoning—revealing the limits of current reasoning approaches.
+                </div>
+            </div>
+
+            <p>Their results show that fine-tuning improves exploratory generalization but compositional generalization
+                remains limited, and transformative reasoning shows little to no improvement. Extended reasoning doesn't
+                bridge the gap to genuine mathematical creativity.</p>
+
+            <h3>The Optimal Balance: Neither Over- nor Under-Thinking</h3>
+
+            <p>Aggarwal et al. introduced OptimalThinkingBench to systematically study both overthinking and
+                underthinking. Their key insight: <strong>no current model optimally balances accuracy and
+                    efficiency</strong>.</p>
+
+            <div class="figure-placeholder">
+                <a href="#" class="image fit"><img src="imgs/when_more_reasoning_is_actually_less/fig5.png" alt=""/></a>
+                <div class="figure-caption">
+                    Figure 5 from Aggarwal et al: The overthinking-underthinking spectrum. Thinking models overthink simple queries without
+                    performance gains; non-thinking models underthink complex problems. Neither achieves optimal
+                    balance.
+                </div>
+            </div>
+
+            <p>Thinking models waste hundreds of tokens on trivial queries. Non-thinking models, even when much larger,
+                fall short of smaller thinking models on complex tasks. The solution isn't simply "more" or "less"
+                reasoning—it's <em>adaptive</em> reasoning calibrated to task complexity.</p>
+
+            <h2>Deep Dive: A Theoretical Framework for Understanding Reasoning Failures</h2>
+
+            <p>While the empirical evidence is compelling, Jin et al.'s work on inductive reasoning provides the
+                <strong>theoretical foundation</strong> that explains <em>why</em> more reasoning can hurt. Their
+                framework decomposes reasoning errors into three fundamental components, offering the first principled
+                understanding of reasoning degradation.</p>
+
+            <h3>The Three Failure Modes: A Formal Analysis</h3>
+
+            <p>Jin et al. studied reasoning on controlled game-based tasks (chess, Texas Hold'em, dice games, blackjack)
+                where models must infer hidden rules from gameplay transcripts. Surprisingly, they found that Large
+                Reasoning Models (LRMs) often <strong>underperform non-reasoning models</strong> on these inductive
+                tasks.</p>
+
+            <div class="figure-placeholder">
+                <a href="#" class="image fit"><img src="imgs/when_more_reasoning_is_actually_less/fig6.png" alt=""/></a>
+                <div class="figure-caption">
+                    Figure 6 (from Jin et al.): Game-based evaluation framework. Models observe gameplay under normal and special rules,
+                    then must induce the latent constraints. LLMs demonstrate inductive abilities, but reasoning often
+                    degrades rather than improves performance.
+                </div>
+            </div>
+
+            <p>To explain this counterintuitive result, they developed a theoretical model that formalizes
+                chain-of-thought reasoning as a sequence of operations: <em>posing</em> a sub-task, <em>solving</em> it,
+                and <em>summarizing</em> the final answer.</p>
+
+            <div class="framework-box">
+                <h4>Theoretical Framework: The Belief Update Model</h4>
+                <p>At each reasoning step \(k\), the model maintains a belief state \(m_k\) about the correct
+                    answer \(y^*\). The model receives evidence \(g_k\) based on its attempted sub-task
+                    resolution:</p>
+
+                <div class="equation">
+                    \[g_k = \alpha_k(y^* - m_{k-1}) + \varepsilon_k\]
+                </div>
+
+                <p>where:</p>
+                <ul>
+                    <li>\(\alpha_k \in [-1, 1]\) represents <strong>task alignment</strong>—how well the sub-task
+                        focuses on relevant structure
+                    </li>
+                    <li>\(\varepsilon_k \sim \mathcal{N}(0, \sigma^2)\) represents <strong>answer noise</strong>—stochastic
+                        variation in
+                        sub-task resolution
+                    </li>
+                </ul>
+
+                <p>The belief updates via:</p>
+                <div class="equation">
+                    \[m_k = m_{k-1} + \gamma_k g_k\]
+                </div>
+
+                <p>This leads to an error recursion:</p>
+                <div class="equation">
+                    \[e_k = (1 - \gamma_k \alpha_k) e_{k-1} - \gamma_k \varepsilon_k\]
+                </div>
+            </div>
+
+            <h4>Failure Mode 1: Incorrect Sub-Task Decomposition (Breakdown Error)</h4>
+
+            <p>When \(\alpha_k \approx 0\) (poor question alignment) or \(\alpha_k < 0\) (negative alignment), the
+                coefficient \((1 - \gamma_k \alpha_k)\) fails to reduce error—or even amplifies it. This corresponds to:
+            </p>
+
+            <ul>
+                <li>Fixating on irrelevant features</li>
+                <li>Proposing misleading sub-questions</li>
+                <li>Misdirecting attention away from core inductive structure</li>
+            </ul>
+
+            <p><strong>Example from empirical analysis:</strong> In Texas Hold'em evaluation, models achieved only
+                14-15% accuracy on special rules requiring structural pattern recognition. The reasoning traces revealed
+                systematic breakdown errors—models fixated on standard poker rankings rather than identifying novel rule
+                structures.</p>
+
+            <h4>Failure Mode 2: Incorrect Sub-Task Solving (Solving Error)</h4>
+
+            <p>Even with optimal question alignment (\(\alpha_k \approx 1\)), the noise term \(\varepsilon_k\)
+                introduces
+                stochastic deviations at each step. Their analysis identified three recurring subtypes:</p>
+
+            <div class="method-card">
+                <strong>Math Overuse (>47% of failures):</strong> Models inappropriately apply arithmetic operations to
+                symbolic inputs
+            </div>
+
+            <div class="method-card">
+                <strong>Overgeneralization (16-26% of failures):</strong> Rules inferred from few examples without
+                proper validation
+            </div>
+
+            <div class="method-card">
+                <strong>Hallucinated Rules (10-22% of failures):</strong> Fabricated constraints introduced without
+                support from observations
+            </div>
+
+            <p>Solving errors dominate across all models and tasks, accounting for over 80% of failures. This suggests
+                the primary limitation isn't decomposition strategy but reliable sub-task execution.</p>
+
+            <h4>Failure Mode 3: Incorrect Final Answer Summarization (Summary Error)</h4>
+
+            <p>The third error component arises from the halting decision—determining when to stop reasoning and commit
+                to a final answer. The expected error after N reasoning steps is:</p>
+
+            <div class="equation">
+                \[E(N) = b_0 \prod_{i=1}^N (1 - \gamma_i \bar{\alpha})^2 + \sigma^2 \sum_{i=1}^N \gamma_i^2
+                \prod_{j=i+1}^N (1 - \gamma_j \bar{\alpha})^2 + \Delta(N)\]
+            </div>
+
+            <p>This reveals a fundamental <strong>bias-variance trade-off</strong>:</p>
+
+            <ul>
+                <li>The first term (bias) <em>shrinks</em> with more steps: repeated evidence integration reduces
+                    initial error
+                </li>
+                <li>The second term (variance from answer noise) <em>grows</em> with more steps</li>
+                <li>The third term \(\Delta(N)\) accounts for variance from misalignment variability</li>
+            </ul>
+
+            <div class="highlight">
+                <h4>Key Theoretical Result: Existence of Optimal Reasoning Length</h4>
+                <p>Jin et al. prove that E(N) is strictly U-shaped: there exists a unique optimal number of reasoning
+                    steps N* that minimizes expected error. Reasoning that terminates at any N ≠ N* incurs additional
+                    error from either under-reasoning (high bias) or over-reasoning (high variance).</p>
+            </div>
+
+            <p>This formalizes the intuition that "overthinking" and "underthinking" are symmetric problems—both deviate
+                from an optimal point determined by the specific balance of bias reduction and variance
+                accumulation.</p>
+
+            <h3>Theoretical Guidance for Intervention Design</h3>
+
+            <p>The framework not only explains reasoning failures but provides formal guidance for mitigation:</p>
+
+            <div class="framework-box">
+                <h4>Controlling Sub-Task Decomposition (α_k)</h4>
+                <p>Any improvement in alignment strictly reduces error. The theory motivates interventions that
+                    eliminate unconstrained question posing—replacing free-form reasoning with structured decomposition
+                    templates.</p>
+            </div>
+
+            <div class="framework-box">
+                <h4>Controlling Sub-Task Solving (ε_k)</h4>
+                <p>The noise is scaled by the belief integration weight γ_k. Theory proves there exists an optimal γ*
+                    that balances information integration against noise amplification. This motivates anchoring model
+                    outputs to structurally valid reasoning traces to reduce effective variance.</p>
+            </div>
+
+            <div class="framework-box">
+                <h4>Controlling Summarization (N)</h4>
+                <p>The closed-form solution for N* provides theoretical guidance on setting reasoning length.
+                    Constraining outputs via fixed token budgets nudges reasoning toward near-optimal depths.</p>
+            </div>
+
+            <h3>Empirical Validation of the Framework</h3>
+
+            <p>Jin et al. validated their theoretical predictions through systematic error analysis of over 100 failed
+                reasoning traces across multiple models. Error annotation revealed:</p>
+
+            <ul>
+                <li>Breakdown errors correlate with structurally complex domains (e.g., 14% in Texas Hold'em vs. 4% in
+                    simpler games)
+                </li>
+                <li>Solving errors show consistent patterns across domains, with Math Overuse as the dominant failure
+                    mode
+                </li>
+                <li>Summary errors remain relatively rare (<8%), confirming that most failures occur during reasoning
+                    steps rather than halting decisions
+                </li>
+            </ul>
+
+            <h3>Structured Interventions: From Theory to Practice</h3>
+
+            <p>Based on the theoretical framework, Jin et al. proposed error-guided interventions targeting each failure
+                mode:</p>
+
+            <div class="method-card">
+                <p><strong>For Breakdown Errors:</strong> Structured decomposition templates that separate reasoning
+                    into explicit phases (identifying entities, inducing candidate rules, verification). This improves
+                    alignment by constraining outputs to task-relevant abstractions.</p>
+            </div>
+
+            <div class="method-card">
+                <p><strong>For Solving Errors:</strong> Worked examples that anchor model behavior to structurally
+                    relevant patterns, reducing variance by discouraging inappropriate generalizations (especially Math
+                    Overuse).</p>
+            </div>
+
+            <div class="method-card">
+                <p><strong>For Summary Errors:</strong> Strict token budgets (1000 tokens per instance) that limit
+                    excessive generation and encourage early commitment to accurate conclusions.</p>
+            </div>
+
+            <p>Combined interventions achieved consistent improvements, especially on special rules requiring inductive
+                reasoning. For example, on Chess special rules (SR1-SR3), accuracy increased by 20-40% when all three
+                interventions were applied.</p>
+
+            <div class="highlight">
+                <p><strong>The Theoretical Insight:</strong> Effective reasoning depends not only on taking more steps
+                    but ensuring those steps are well-structured. The framework formalizes this by showing that error
+                    propagates through three distinct mechanisms—decomposition quality, solving reliability, and optimal
+                    stopping—each requiring targeted interventions.</p>
+            </div>
+
+            <h2>Practical Implications: Toward Adaptive Reasoning Systems</h2>
+
+            <p>These findings converge on several actionable principles for building better reasoning systems:</p>
+
+            <h3>1. Reasoning Should Be Adaptive, Not Maximal</h3>
+
+            <p>The optimal amount of reasoning depends on:</p>
+            <ul>
+                <li><strong>Task complexity</strong>: Harder tasks require longer CoTs (Wu et al.)</li>
+                <li><strong>Model capability</strong>: Stronger models achieve optimal performance with shorter CoTs (Wu
+                    et al.)
+                </li>
+                <li><strong>Problem type</strong>: Inductive tasks may benefit less from extended reasoning than
+                    deductive tasks (Jin et al.)
+                </li>
+            </ul>
+
+            <p>Systems should dynamically allocate reasoning compute based on task characteristics, not default to
+                maximum deliberation.</p>
+
+            <h3>2. Quality Over Quantity: Structure Matters More Than Length</h3>
+
+            <p>Jin et al.'s theoretical framework proves that <strong>well-structured short reasoning can outperform
+                poorly-structured long reasoning</strong>. The three error modes highlight where to focus:</p>
+
+            <ul>
+                <li>Ensure sub-task decomposition aligns with problem structure</li>
+                <li>Improve sub-task solving reliability (the dominant failure mode)</li>
+                <li>Implement principled stopping criteria based on expected error</li>
+            </ul>
+
+            <h3>3. Training Data Should Match Model Capacity</h3>
+
+            <p>Wu et al. demonstrate that models of different sizes require CoT data tailored to their respective
+                optimal complexities. Current practices—using identical CoT datasets for all model sizes or distilling
+                from large to small models without adaptation—are provably suboptimal.</p>
+
+            <h3>4. Reinforcement Learning Naturally Discovers Efficiency</h3>
+
+            <p>Multiple studies (Wu et al., Shojaee et al.) show that RL training naturally converges toward shorter,
+                more efficient reasoning. This simplicity bias suggests:</p>
+
+            <ul>
+                <li>RL can implicitly calibrate reasoning length when optimizing for outcomes</li>
+                <li>Initial pre-training with mixed-length CoTs can be corrected through RL</li>
+                <li>The bias reflects genuine efficiency gains, not just reward hacking</li>
+            </ul>
+
+            <h3>5. Evaluation Must Track Both Accuracy and Efficiency</h3>
+
+            <p>Aggarwal et al.'s OptimalThinkingBench demonstrates the need for unified metrics that capture the
+                accuracy-efficiency trade-off. Single-dimensional evaluation (accuracy alone) incentivizes wasteful
+                reasoning.</p>
+
+            <h2>Open Questions and Future Directions</h2>
+
+            <p>This body of work opens exciting avenues for future research:</p>
+
+            <h3>Can We Build Truly Adaptive Reasoning Systems?</h3>
+
+            <p>Current approaches largely treat reasoning length as fixed or use crude heuristics. Can we develop
+                systems that:</p>
+            <ul>
+                <li>Estimate problem complexity from the query itself?</li>
+                <li>Dynamically allocate reasoning budget based on uncertainty?</li>
+                <li>Recognize when they've reached the optimal reasoning point?</li>
+            </ul>
+
+            <h3>How Do We Handle the Compositional and Transformative Gaps?</h3>
+
+            <p>Sun et al. show that current reasoning approaches fail to enable genuine creativity—particularly
+                compositional skill integration and transformative strategy discovery. Addressing this may require:</p>
+            <ul>
+                <li>Richer training curricula that explicitly teach skill composition</li>
+                <li>Meta-learning approaches that enable strategy discovery</li>
+                <li>Architectural innovations beyond current transformer-based reasoning</li>
+            </ul>
+
+            <h3>Can We Formalize the Accuracy-Efficiency Frontier?</h3>
+
+            <p>Is there a theoretical limit to how efficiently problems can be solved? Can we characterize the Pareto
+                frontier between accuracy and computational cost? Jin et al.'s framework provides a starting point, but
+                much remains unexplored.</p>
+
+            <h3>How Do Different Reasoning Tasks Differ in Optimal Length?</h3>
+
+            <p>Jin et al. show that inductive reasoning may benefit less from extended deliberation than other task
+                types. What are the task characteristics that determine whether "more reasoning" helps? Can we develop a
+                taxonomy of reasoning tasks based on their optimal length profiles?</p>
+
+            <h2>Conclusion: Rethinking Reasoning</h2>
+
+            <p>The collective evidence from these studies challenges the field to move beyond "bigger is better"
+                thinking about reasoning. The path forward isn't simply:</p>
+
+            <blockquote>
+                "Let's make models think longer and harder"
+            </blockquote>
+
+            <p>But rather:</p>
+
+            <blockquote>
+                "Let's make models think <strong>optimally</strong>—as simply as possible for the problem at hand, but
+                not simpler"
+            </blockquote>
+
+            <p>Jin et al.'s theoretical framework provides the formal foundation for understanding why this matters.
+                Their error decomposition—breakdown, solving, and summary errors—gives us a principled lens for
+                analyzing and improving reasoning systems.</p>
+
+            <p>The inverted U-curve isn't a bug; it's a fundamental property of reasoning systems operating under
+                bounded computation. Recognizing this opens the door to more efficient, more capable, and ultimately
+                more intelligent AI systems that know when to think deeply and when to think fast.</p>
+
+            <p>As we continue to push the frontiers of AI reasoning, let's remember Einstein's wisdom: everything should
+                be made as simple as possible, but not simpler. The same applies to machine reasoning—optimal, not
+                maximal.</p>
+
+            <div class="intro-box" style="margin-top: 50px;">
+                <h4>Key Takeaways for Practitioners</h4>
+                <ul>
+                    <li>Don't default to maximum reasoning—measure and optimize for the efficiency-accuracy trade-off
+                    </li>
+                    <li>Structure matters more than length—focus on improving sub-task decomposition and solving
+                        reliability
+                    </li>
+                    <li>Tailor training data to model capacity—one size doesn't fit all</li>
+                    <li>Use RL to discover efficient reasoning—the simplicity bias is your friend</li>
+                    <li>Evaluate holistically—track both overthinking and underthinking</li>
+                </ul>
+            </div>
+
+            <div style="margin-top: 50px; padding-top: 30px; border-top: 1px solid rgba(255,255,255,0.2); font-size: 0.9em; color: rgba(255,255,255,0.6);">
+                <p><strong>References:</strong></p>
+                <ul style="font-size: 0.95em;">
+                    <li>Wu et al. (2025). "When More is Less: Understanding Chain-of-Thought Length in LLMs."
+                        arXiv:2502.07266v3
+                    </li>
+                    <li>Jin et al. (2025). "Reasoning Can Hurt the Inductive Abilities of Large Language Models."
+                        arXiv:2505.24225v1
+                    </li>
+                    <li>Shojaee et al. (2025). "The Illusion of Thinking: Understanding the Strengths and Limitations of
+                        Reasoning Models via the Lens of Problem Complexity." arXiv:2506.06941v3
+                    </li>
+                    <li>Sun et al. (2025). "OMEGA: Can LLMs Reason Outside the Box in Math? Evaluating Exploratory,
+                        Compositional, and Transformative Generalization." arXiv:2506.18880v1
+                    </li>
+                    <li>Ding et al. (2025). "Do Thinking Tokens Help or Trap? Towards More Efficient Large Reasoning
+                        Model." arXiv:2506.23840v1
+                    </li>
+                    <li>Aggarwal et al. (2025). "OptimalThinkingBench: Evaluating Over and Underthinking in LLMs."
+                        arXiv:2508.13141v2
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<!-- Footer -->
+<footer id="footer">
+    <!--					<ul class="icons">-->
+    <!--						<li><a href="#" class="icon brands alt fa-twitter"><span class="label">Twitter</span></a></li>-->
+    <!--						<li><a href="#" class="icon brands alt fa-linkedin-in"><span class="label">LinkedIn</span></a></li>-->
+    <!--						<li><a href="#" class="icon brands alt fa-github"><span class="label">GitHub</span></a></li>-->
+    <!--						<li><a href="#" class="icon solid alt fa-envelope"><span class="label">Email</span></a></li>-->
+    <!--					</ul>-->
+    <ul class="copyright">
+        <li>&copy; DREAM. All rights reserved.</li>
+        <li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
+    </ul>
+</footer>
+
+</div>
+
+<!-- Scripts -->
+<script src="../assets2/js/jquery.min.js"></script>
+<script src="../assets2/js/jquery.scrolly.min.js"></script>
+<script src="../assets2/js/jquery.dropotron.min.js"></script>
+<script src="../assets2/js/jquery.scrollex.min.js"></script>
+<script src="../assets2/js/browser.min.js"></script>
+<script src="../assets2/js/breakpoints.min.js"></script>
+<script src="../assets2/js/util.js"></script>
+<script src="../assets2/js/main.js"></script>
+
+</body>
+</html>
