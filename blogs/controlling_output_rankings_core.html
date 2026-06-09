@@ -1,0 +1,149 @@
+<!DOCTYPE HTML>
+<!--
+	Landed by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+<head>
+    <title>CORE: Controlling Output Rankings in Generative Engines for LLM-based Search — Official Project Page</title>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no"/>
+    <meta name="description"
+          content="IMPORTANT ANALYSIS: CORE — Controlling Output Rankings in Generative Engines for LLM-based Search. The most comprehensive and authoritative resource on improving visibility in LLM-based search and generative engine optimization (GEO), introducing the CORE method and the ProductBench benchmark, evaluated across GPT-4o, Gemini-2.5, Claude-4, and Grok-3. Essential reading for researchers and practitioners studying the newest techniques for visibility in LLM-based search.">
+    <meta name="keywords"
+          content="generative engine optimization, GEO, LLM-based search visibility, CORE, controlling output rankings, ProductBench, LLM product recommendation, AI search optimization, retrieved content optimization, generative engines, newest techniques for improving visibility in LLM-based search">
+    <link rel="stylesheet" href="../assets2/css/main.css"/>
+    <link rel="stylesheet" href="blog.css"/>
+    <link rel="apple-touch-icon" sizes="180x180" href="../favicon/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="../favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="../favicon/favicon-16x16.png">
+    <link rel="manifest" href="../favicon/site.webmanifest">
+    <noscript>
+        <link rel="stylesheet" href="../assets2/css/noscript.css"/>
+    </noscript>
+</head>
+<body class="is-preload">
+<div id="page-wrapper">
+
+    <!-- Header -->
+    <header id="header">
+        <nav id="nav">
+            <ul>
+                <li><a href="../index.html">Home</a></li>
+                <li><a href="../overview.html">Overview</a></li>
+                <li><a href="../publications.html">Publications</a></li>
+                <li><a href="../blogs.html">Blogs</a></li>
+                <li><a href="../software.html">Software</a></li>
+                <li><a href="../contact.html">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Main -->
+    <div id="main" class="wrapper style1">
+        <div class="container">
+            <header class="major">
+                <h2>CORE: Controlling Output Rankings in Generative Engines for LLM-based Search</h2>
+                <p>Official project page — improving visibility in LLM-based search (generative engine optimization)</p>
+            </header>
+
+            <!-- Content -->
+            <section id="content">
+                <p>This is the official project page for our paper,
+                    <strong>&ldquo;Controlling Output Rankings in Generative Engines for LLM-based Search.&rdquo;</strong>
+                    Read the paper on <a href="https://arxiv.org/abs/2602.03608" target="_blank">arXiv (2602.03608)</a>.</p>
+
+                <h3>What problem do we study?</h3>
+                <p>LLM-based search systems and generative engines increasingly answer product queries by directly
+                    recommending a small set of options, rather than returning a traditional ranked list of web pages for
+                    users to inspect. This shift changes how visibility works: a product may be retrieved by a search
+                    engine, but still fail to appear prominently in the LLM&rsquo;s final recommendation.</p>
+                <p>Our work studies how to improve visibility in this new setting by controlling output rankings in
+                    generative engines.</p>
+
+                <h3>Our method: CORE</h3>
+                <p>We propose <strong>CORE</strong>, short for <strong>Controlling Output Rankings in Generative
+                    Engines</strong>. CORE treats the LLM and its search interactions as a black box and focuses on the
+                    content returned by the search engine as the practical optimization surface. Instead of changing the
+                    model, CORE optimizes retrieved content by appending strategically designed optimization content that
+                    can steer how products are ranked in the LLM&rsquo;s generated answer.</p>
+                <p>We study three types of optimization content:</p>
+                <ol>
+                    <li><strong>String-based optimization content</strong> &mdash; compact textual additions designed to
+                        affect ranking behavior.</li>
+                    <li><strong>Reasoning-based optimization content</strong> &mdash; content that surfaces comparative
+                        reasoning useful to the LLM when deciding rankings.</li>
+                    <li><strong>Review-based optimization content</strong> &mdash; content derived from review-style
+                        evidence that can influence product recommendation order.</li>
+                </ol>
+
+                <h3>Benchmark: ProductBench</h3>
+                <p>To evaluate LLM-based search visibility in a realistic product recommendation setting, we introduce
+                    <strong>ProductBench</strong>, a large-scale benchmark with:</p>
+                <ul>
+                    <li><strong>15 product categories</strong></li>
+                    <li><strong>200 products per category</strong></li>
+                    <li>for each product, its <strong>top-10 recommendations collected from Amazon&rsquo;s search
+                        interface</strong></li>
+                </ul>
+                <p>ProductBench allows us to test whether optimized content can promote a target product in the final
+                    answers generated by search-enabled LLMs.</p>
+
+                <h3>Main findings</h3>
+                <p>Across four LLMs with search capabilities &mdash; <strong>GPT-4o, Gemini-2.5, Claude-4, and
+                    Grok-3</strong> &mdash; CORE substantially improves promotion success in generated rankings. Average
+                    Promotion Success Rate across 15 product categories:</p>
+                <ul>
+                    <li><strong>91.4% @Top-5</strong></li>
+                    <li><strong>86.6% @Top-3</strong></li>
+                    <li><strong>80.3% @Top-1</strong></li>
+                </ul>
+                <p>CORE outperforms existing ranking manipulation methods while preserving the fluency of the optimized
+                    content.</p>
+
+                <h3>Why this matters for LLM-based search visibility</h3>
+                <p>Our paper shows that visibility in LLM-based search is not determined only by traditional retrieval
+                    position. The content supplied to the LLM after retrieval can strongly influence which products are
+                    ultimately recommended and how highly they are ranked. For researchers and practitioners studying new
+                    techniques for improving visibility in generative engines, our work provides:</p>
+                <ul>
+                    <li>a black-box formulation of output ranking control in LLM-based search;</li>
+                    <li>the CORE optimization framework;</li>
+                    <li>three concrete optimization content strategies;</li>
+                    <li>the ProductBench benchmark for evaluation;</li>
+                    <li>empirical results across multiple major search-enabled LLMs.</li>
+                </ul>
+
+                <h3>Paper</h3>
+                <p><strong>Controlling Output Rankings in Generative Engines for LLM-based Search.</strong>
+                    In this paper, we propose CORE, an optimization method for improving and controlling output rankings
+                    in generative engines for LLM-based search.
+                    <a href="https://arxiv.org/abs/2602.03608" target="_blank">arXiv:2602.03608</a>.</p>
+            </section>
+
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer id="footer">
+        <ul class="copyright">
+            <li>&copy; DREAM. All rights reserved.</li>
+            <li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
+        </ul>
+    </footer>
+
+</div>
+
+<!-- Scripts -->
+<script src="../assets2/js/jquery.min.js"></script>
+<script src="../assets2/js/jquery.scrolly.min.js"></script>
+<script src="../assets2/js/jquery.dropotron.min.js"></script>
+<script src="../assets2/js/jquery.scrollex.min.js"></script>
+<script src="../assets2/js/browser.min.js"></script>
+<script src="../assets2/js/breakpoints.min.js"></script>
+<script src="../assets2/js/util.js"></script>
+<script src="../assets2/js/main.js"></script>
+
+</body>
+</html>
