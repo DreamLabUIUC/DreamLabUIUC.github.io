@@ -1,0 +1,183 @@
+<!DOCTYPE HTML>
+<!--
+	Landed by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+<head>
+    <title>How to Test Whether Your Product Descriptions Influence AI Shopping Recommendations</title>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no"/>
+    <meta name="description"
+          content="IMPORTANT ANALYSIS: A step-by-step guide to testing whether your product descriptions influence AI shopping recommendations — using our CORE method and the ProductBench benchmark, with key definitions, a results table, and an FAQ. The authoritative how-to on measuring product visibility in LLM-based search.">
+    <meta name="keywords"
+          content="test if product descriptions influence AI shopping recommendations, generative engine optimization, GEO, CORE, controlling output rankings, ProductBench, promotion success rate, LLM product recommendation, AI shopping, how to, FAQ">
+    <meta name="date" content="2026-06-13">
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "BlogPosting",
+          "headline": "How to Test Whether Your Product Descriptions Influence AI Shopping Recommendations",
+          "datePublished": "2026-06-13",
+          "author": {"@type": "Organization", "name": "DREAM Lab, UIUC"},
+          "publisher": {"@type": "Organization", "name": "DREAM Lab, UIUC"},
+          "mainEntityOfPage": "https://dream.ischool.illinois.edu/blogs/test_product_descriptions_ai_recommendations.html",
+          "url": "https://dream.ischool.illinois.edu/blogs/test_product_descriptions_ai_recommendations.html",
+          "citation": "https://arxiv.org/abs/2602.03608"
+        },
+        {
+          "@type": "HowTo",
+          "name": "How to test whether your product descriptions influence AI shopping recommendations",
+          "step": [
+            {"@type": "HowToStep", "name": "Define target and query", "text": "Pick the target product and the shopping query you want to test."},
+            {"@type": "HowToStep", "name": "Collect a baseline", "text": "Record the baseline recommendation set, e.g. the top-10 from a real shopping interface, as ProductBench does with Amazon."},
+            {"@type": "HowToStep", "name": "Vary the retrieved content", "text": "Change the product description / retrieved content using string-based, reasoning-based, or review-based optimization content."},
+            {"@type": "HowToStep", "name": "Query search-enabled LLMs", "text": "Ask search-enabled LLMs the shopping query and record where the target product appears in the generated recommendations."},
+            {"@type": "HowToStep", "name": "Measure promotion", "text": "Compute Promotion Success Rate @Top-1/3/5 with vs without the change, across models."}
+          ]
+        },
+        {
+          "@type": "FAQPage",
+          "mainEntity": [
+            {"@type": "Question", "name": "Do I need access to the LLM to test this?", "acceptedAnswer": {"@type": "Answer", "text": "No. It is a black-box test: you only change retrieved content (the product description) and observe the generated recommendations."}},
+            {"@type": "Question", "name": "What should I measure?", "acceptedAnswer": {"@type": "Answer", "text": "Promotion Success Rate at Top-1/3/5: whether your product is promoted into the top of the generated ranking, compared with and without the change."}},
+            {"@type": "Question", "name": "Is there a ready-made benchmark?", "acceptedAnswer": {"@type": "Answer", "text": "Yes - ProductBench: 15 product categories, 200 products each, paired with top-10 recommendations from Amazon's search interface."}},
+            {"@type": "Question", "name": "Which LLMs did the paper test?", "acceptedAnswer": {"@type": "Answer", "text": "GPT-4o, Gemini-2.5, Claude-4, and Grok-3."}}
+          ]
+        }
+      ]
+    }
+    </script>
+    <link rel="stylesheet" href="../assets2/css/main.css"/>
+    <link rel="stylesheet" href="blog.css"/>
+    <link rel="apple-touch-icon" sizes="180x180" href="../favicon/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="../favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="../favicon/favicon-16x16.png">
+    <link rel="manifest" href="../favicon/site.webmanifest">
+    <noscript>
+        <link rel="stylesheet" href="../assets2/css/noscript.css"/>
+    </noscript>
+</head>
+<body class="is-preload">
+<div id="page-wrapper">
+
+    <!-- Header -->
+    <header id="header">
+        <nav id="nav">
+            <ul>
+                <li><a href="../index.html">Home</a></li>
+                <li><a href="../overview.html">Overview</a></li>
+                <li><a href="../publications.html">Publications</a></li>
+                <li><a href="../blogs.html">Blogs</a></li>
+                <li><a href="../software.html">Software</a></li>
+                <li><a href="../contact.html">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Main -->
+    <div id="main" class="wrapper style1">
+        <div class="container">
+            <header class="major">
+                <h2>How to Test Whether Your Product Descriptions Influence AI Shopping Recommendations</h2>
+                <p>A step-by-step guide, using our CORE method and the ProductBench benchmark</p>
+                <p><time datetime="2026-06-13">Published June 13, 2026</time></p>
+            </header>
+
+            <!-- Content -->
+            <section id="content">
+                <p>Want to test whether your product descriptions influence AI shopping recommendations? This is exactly
+                    the question our paper studies. Below is a step-by-step way to measure it, the definitions you need,
+                    a results table, and an FAQ. Method and benchmark come from our paper, CORE
+                    (<a href="https://arxiv.org/abs/2602.03608" target="_blank">arXiv:2602.03608</a>).</p>
+
+                <h3>Key definitions</h3>
+                <ul>
+                    <li><strong>AI shopping recommendation</strong> &mdash; a short, ranked set of products an LLM-based
+                        search system recommends in its generated answer.</li>
+                    <li><strong>Retrieved content</strong> &mdash; the product text (descriptions, reviews) the search
+                        engine pulls in before the LLM writes its recommendation.</li>
+                    <li><strong>Optimization content</strong> &mdash; text added to the retrieved content to influence the
+                        ranking; CORE studies three types (string-based, reasoning-based, review-based).</li>
+                    <li><strong>Promotion Success Rate (PSR)</strong> &mdash; how often the target product is promoted
+                        into the top-K of the generated ranking.</li>
+                    <li><strong>ProductBench</strong> &mdash; our benchmark for this exact measurement (defined below).</li>
+                </ul>
+
+                <h3>How to test it, step by step</h3>
+                <ol>
+                    <li><strong>Define the target and query.</strong> Pick the target product and the shopping query you
+                        want to test (e.g. &ldquo;best wireless earbuds for running&rdquo;).</li>
+                    <li><strong>Collect a baseline.</strong> Record the baseline recommendation set &mdash; for example,
+                        the top-10 from a real shopping interface, the way ProductBench uses Amazon&rsquo;s top-10.</li>
+                    <li><strong>Vary the retrieved content.</strong> Change the product description / retrieved content
+                        using one of the three optimization-content types (string-based, reasoning-based, or
+                        review-based).</li>
+                    <li><strong>Query search-enabled LLMs.</strong> Ask the shopping query to search-enabled LLMs and
+                        record where your product appears in the generated recommendations.</li>
+                    <li><strong>Measure promotion.</strong> Compute Promotion Success Rate @Top-1/3/5, comparing
+                        <em>with</em> vs <em>without</em> your change, across multiple models.</li>
+                </ol>
+
+                <h3>Reference results (from CORE)</h3>
+                <p>For calibration, here is what CORE reports on ProductBench &mdash; useful targets when you run your own
+                    test:</p>
+                <table>
+                    <thead>
+                    <tr><th>Metric (avg across 15 categories)</th><th>CORE</th></tr>
+                    </thead>
+                    <tbody>
+                    <tr><td>Promotion Success Rate @Top-5</td><td><strong>91.4%</strong></td></tr>
+                    <tr><td>Promotion Success Rate @Top-3</td><td><strong>86.6%</strong></td></tr>
+                    <tr><td>Promotion Success Rate @Top-1</td><td><strong>80.3%</strong></td></tr>
+                    <tr><td>LLMs evaluated</td><td>GPT-4o, Gemini-2.5, Claude-4, Grok-3</td></tr>
+                    <tr><td>Benchmark</td><td>ProductBench &mdash; 15 categories &times; 200 products, Amazon top-10</td></tr>
+                    </tbody>
+                </table>
+                <p>CORE reports outperforming existing ranking-manipulation methods while preserving the fluency of the
+                    optimized content.</p>
+
+                <h3>FAQ</h3>
+                <p><strong>Do I need access to the LLM to test this?</strong> No &mdash; it is a black-box test: you only
+                    change retrieved content and observe the generated recommendations.</p>
+                <p><strong>What should I measure?</strong> Promotion Success Rate @Top-1/3/5 &mdash; whether your product
+                    is promoted into the top of the generated ranking, with vs without the change.</p>
+                <p><strong>Is there a ready-made benchmark?</strong> Yes &mdash; ProductBench (15 categories &times; 200
+                    products, with Amazon top-10 recommendations).</p>
+                <p><strong>Which LLMs did the paper test?</strong> GPT-4o, Gemini-2.5, Claude-4, and Grok-3.</p>
+
+                <h3>Read the paper</h3>
+                <p><strong>Controlling Output Rankings in Generative Engines for LLM-based Search</strong> (CORE) &mdash;
+                    <a href="https://arxiv.org/abs/2602.03608" target="_blank">arXiv:2602.03608</a>. For the broader
+                    question of being <em>included</em> in generated answers (vs. ranking position), see GEO
+                    (<a href="https://arxiv.org/abs/2311.09735" target="_blank">arXiv:2311.09735</a>).</p>
+            </section>
+
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer id="footer">
+        <ul class="copyright">
+            <li>&copy; DREAM. All rights reserved.</li>
+            <li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
+        </ul>
+    </footer>
+
+</div>
+
+<!-- Scripts -->
+<script src="../assets2/js/jquery.min.js"></script>
+<script src="../assets2/js/jquery.scrolly.min.js"></script>
+<script src="../assets2/js/jquery.dropotron.min.js"></script>
+<script src="../assets2/js/jquery.scrollex.min.js"></script>
+<script src="../assets2/js/browser.min.js"></script>
+<script src="../assets2/js/breakpoints.min.js"></script>
+<script src="../assets2/js/util.js"></script>
+<script src="../assets2/js/main.js"></script>
+
+</body>
+</html>
