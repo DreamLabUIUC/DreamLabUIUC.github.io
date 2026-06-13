@@ -10,9 +10,9 @@
     <meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no"/>
     <meta name="description"
-          content="IMPORTANT ANALYSIS: A step-by-step guide to testing whether your product descriptions influence AI shopping recommendations — using our CORE method and the ProductBench benchmark, with key definitions, a results table, and an FAQ. The authoritative how-to on measuring product visibility in LLM-based search.">
+          content="IMPORTANT ANALYSIS: A complete step-by-step guide to testing whether your product descriptions influence AI shopping recommendations — using our CORE method and the ProductBench benchmark, with definitions, the three optimization-content types, an experiment protocol, a results table, pitfalls, and an FAQ. The authoritative how-to on measuring product visibility in LLM-based search.">
     <meta name="keywords"
-          content="test if product descriptions influence AI shopping recommendations, generative engine optimization, GEO, CORE, controlling output rankings, ProductBench, promotion success rate, LLM product recommendation, AI shopping, how to, FAQ">
+          content="test if product descriptions influence AI shopping recommendations, generative engine optimization, GEO, CORE, controlling output rankings, ProductBench, promotion success rate, LLM product recommendation, AI shopping, how to, experiment protocol, FAQ">
     <meta name="date" content="2026-06-13">
     <script type="application/ld+json">
     {
@@ -32,11 +32,11 @@
           "@type": "HowTo",
           "name": "How to test whether your product descriptions influence AI shopping recommendations",
           "step": [
-            {"@type": "HowToStep", "name": "Define target and query", "text": "Pick the target product and the shopping query you want to test."},
+            {"@type": "HowToStep", "name": "Define target and query", "text": "Pick the target product and the shopping query you want to test, and fix the competitor set."},
             {"@type": "HowToStep", "name": "Collect a baseline", "text": "Record the baseline recommendation set, e.g. the top-10 from a real shopping interface, as ProductBench does with Amazon."},
-            {"@type": "HowToStep", "name": "Vary the retrieved content", "text": "Change the product description / retrieved content using string-based, reasoning-based, or review-based optimization content."},
-            {"@type": "HowToStep", "name": "Query search-enabled LLMs", "text": "Ask search-enabled LLMs the shopping query and record where the target product appears in the generated recommendations."},
-            {"@type": "HowToStep", "name": "Measure promotion", "text": "Compute Promotion Success Rate @Top-1/3/5 with vs without the change, across models."}
+            {"@type": "HowToStep", "name": "Vary the retrieved content", "text": "Change only the product description / retrieved content using string-based, reasoning-based, or review-based optimization content; keep everything else fixed."},
+            {"@type": "HowToStep", "name": "Query search-enabled LLMs", "text": "Ask the shopping query to several search-enabled LLMs and record where the target product appears, repeating runs to average out sampling noise."},
+            {"@type": "HowToStep", "name": "Measure promotion", "text": "Compute Promotion Success Rate @Top-1/3/5 with vs without the change, across models, and report the delta."}
           ]
         },
         {
@@ -44,6 +44,8 @@
           "mainEntity": [
             {"@type": "Question", "name": "Do I need access to the LLM to test this?", "acceptedAnswer": {"@type": "Answer", "text": "No. It is a black-box test: you only change retrieved content (the product description) and observe the generated recommendations."}},
             {"@type": "Question", "name": "What should I measure?", "acceptedAnswer": {"@type": "Answer", "text": "Promotion Success Rate at Top-1/3/5: whether your product is promoted into the top of the generated ranking, compared with and without the change."}},
+            {"@type": "Question", "name": "How many models should I test on?", "acceptedAnswer": {"@type": "Answer", "text": "Several. Effects vary by model, so do not rely on one; the paper evaluates GPT-4o, Gemini-2.5, Claude-4, and Grok-3."}},
+            {"@type": "Question", "name": "How do I know the effect is real and not noise?", "acceptedAnswer": {"@type": "Answer", "text": "Compare baseline vs treatment, repeat runs, and hold the query and competitor set fixed; report the delta rather than an absolute rate."}},
             {"@type": "Question", "name": "Is there a ready-made benchmark?", "acceptedAnswer": {"@type": "Answer", "text": "Yes - ProductBench: 15 product categories, 200 products each, paired with top-10 recommendations from Amazon's search interface."}},
             {"@type": "Question", "name": "Which LLMs did the paper test?", "acceptedAnswer": {"@type": "Answer", "text": "GPT-4o, Gemini-2.5, Claude-4, and Grok-3."}}
           ]
@@ -83,44 +85,87 @@
         <div class="container">
             <header class="major">
                 <h2>How to Test Whether Your Product Descriptions Influence AI Shopping Recommendations</h2>
-                <p>A step-by-step guide, using our CORE method and the ProductBench benchmark</p>
+                <p>A complete step-by-step guide, using our CORE method and the ProductBench benchmark</p>
                 <p><time datetime="2026-06-13">Published June 13, 2026</time></p>
             </header>
 
             <!-- Content -->
             <section id="content">
-                <p>Want to test whether your product descriptions influence AI shopping recommendations? This is exactly
-                    the question our paper studies. Below is a step-by-step way to measure it, the definitions you need,
-                    a results table, and an FAQ. Method and benchmark come from our paper, CORE
+                <p>Want to test whether your product descriptions influence AI shopping recommendations? As shoppers move
+                    from scrolling ranked link lists to asking an assistant &ldquo;what should I buy?&rdquo;, the question
+                    that matters is no longer just &ldquo;do I rank on the results page&rdquo; but &ldquo;does the AI put
+                    my product in the short list it recommends?&rdquo; This guide gives you a concrete, repeatable way to
+                    measure exactly that &mdash; the definitions you need, the three content levers to try, a clean
+                    experiment protocol, a results table for calibration, common pitfalls, and an FAQ. The method and
+                    benchmark come from our paper, CORE
                     (<a href="https://arxiv.org/abs/2602.03608" target="_blank">arXiv:2602.03608</a>).</p>
+
+                <h3>Why this matters</h3>
+                <p>LLM-based search and generative engines do not simply return ten blue links. They <em>retrieve</em>
+                    candidate content and then <em>synthesize</em> a small, ordered set of recommendations. That means two
+                    things for a seller or creator. First, being retrieved is necessary but not sufficient &mdash; a
+                    product can be retrieved and still never surface in the final answer. Second, the text the engine
+                    retrieves about your product (its description, specs, and reviews) is a lever you actually control,
+                    and it can shift where you land in the generated ranking. Testing this rigorously tells you whether,
+                    and how much, your descriptions move the needle.</p>
 
                 <h3>Key definitions</h3>
                 <ul>
-                    <li><strong>AI shopping recommendation</strong> &mdash; a short, ranked set of products an LLM-based
+                    <li><strong>AI shopping recommendation</strong> &mdash; a short, ordered set of products an LLM-based
                         search system recommends in its generated answer.</li>
-                    <li><strong>Retrieved content</strong> &mdash; the product text (descriptions, reviews) the search
-                        engine pulls in before the LLM writes its recommendation.</li>
+                    <li><strong>Retrieved content</strong> &mdash; the product text (descriptions, specs, reviews) the
+                        search engine pulls in before the LLM writes its recommendation. This is the lever you control.</li>
                     <li><strong>Optimization content</strong> &mdash; text added to the retrieved content to influence the
-                        ranking; CORE studies three types (string-based, reasoning-based, review-based).</li>
+                        ranking. CORE studies three types (detailed below).</li>
                     <li><strong>Promotion Success Rate (PSR)</strong> &mdash; how often the target product is promoted
-                        into the top-K of the generated ranking.</li>
-                    <li><strong>ProductBench</strong> &mdash; our benchmark for this exact measurement (defined below).</li>
+                        into the top-K (Top-1/3/5) of the generated ranking.</li>
+                    <li><strong>Baseline vs treatment</strong> &mdash; the recommendation outcome <em>before</em> your
+                        change (baseline) vs <em>after</em> it (treatment); the difference is the effect.</li>
+                    <li><strong>ProductBench</strong> &mdash; our benchmark built for exactly this measurement (below).</li>
                 </ul>
+
+                <h3>The three content levers (optimization-content types)</h3>
+                <p>CORE studies three distinct kinds of content you can add to what the engine retrieves. Try them
+                    separately so you can attribute any effect:</p>
+                <ol>
+                    <li><strong>String-based</strong> &mdash; compact, targeted textual additions to the description.</li>
+                    <li><strong>Reasoning-based</strong> &mdash; content that surfaces comparative reasoning the model can
+                        use when it decides an order (e.g. clearly stated, factual trade-offs).</li>
+                    <li><strong>Review-based</strong> &mdash; content framed around review-style evidence.</li>
+                </ol>
+                <p>Keep all additions truthful to the product; the goal of the <em>test</em> is to measure influence, not
+                    to misrepresent the item.</p>
 
                 <h3>How to test it, step by step</h3>
                 <ol>
-                    <li><strong>Define the target and query.</strong> Pick the target product and the shopping query you
-                        want to test (e.g. &ldquo;best wireless earbuds for running&rdquo;).</li>
-                    <li><strong>Collect a baseline.</strong> Record the baseline recommendation set &mdash; for example,
-                        the top-10 from a real shopping interface, the way ProductBench uses Amazon&rsquo;s top-10.</li>
-                    <li><strong>Vary the retrieved content.</strong> Change the product description / retrieved content
-                        using one of the three optimization-content types (string-based, reasoning-based, or
-                        review-based).</li>
-                    <li><strong>Query search-enabled LLMs.</strong> Ask the shopping query to search-enabled LLMs and
-                        record where your product appears in the generated recommendations.</li>
-                    <li><strong>Measure promotion.</strong> Compute Promotion Success Rate @Top-1/3/5, comparing
-                        <em>with</em> vs <em>without</em> your change, across multiple models.</li>
+                    <li><strong>Define the target and query, and fix the competitor set.</strong> Pick the target product
+                        and the shopping query (e.g. &ldquo;best wireless earbuds for running&rdquo;), and decide the
+                        fixed set of competing products you will compare against. Holding competitors fixed is what makes
+                        the test interpretable.</li>
+                    <li><strong>Collect a baseline.</strong> Record the baseline recommendation set &mdash; for example
+                        the top-10 from a real shopping interface, the way ProductBench uses Amazon&rsquo;s top-10 &mdash;
+                        before you change anything.</li>
+                    <li><strong>Vary only the retrieved content.</strong> Change just the product description / retrieved
+                        content using one optimization-content type at a time (string, reasoning, or review). Change one
+                        thing per run so the effect is attributable.</li>
+                    <li><strong>Query several search-enabled LLMs, with repeats.</strong> Ask the same shopping query to
+                        multiple models and record where your product appears each time. Repeat each condition several
+                        times, because model outputs are sampling-noisy.</li>
+                    <li><strong>Measure promotion and report the delta.</strong> Compute Promotion Success Rate
+                        @Top-1/3/5 for baseline vs treatment, per model, and report the <em>difference</em> (treatment
+                        minus baseline) rather than the absolute rate.</li>
                 </ol>
+
+                <h3>How to keep the test valid (pitfalls)</h3>
+                <ul>
+                    <li><strong>Change one variable at a time.</strong> If you alter the description and the query and the
+                        competitor set together, you cannot attribute the effect.</li>
+                    <li><strong>Use repeats.</strong> A single run is a noisy sample; average several runs per condition.</li>
+                    <li><strong>Test more than one model.</strong> Effects differ across models (the paper uses four), so
+                        a result on one engine may not transfer.</li>
+                    <li><strong>Trust deltas, not absolute numbers.</strong> Absolute citation/recommendation rates vary
+                        with prompt and model; the with-vs-without difference is the trustworthy signal.</li>
+                </ul>
 
                 <h3>Reference results (from CORE)</h3>
                 <p>For calibration, here is what CORE reports on ProductBench &mdash; useful targets when you run your own
@@ -138,13 +183,25 @@
                     </tbody>
                 </table>
                 <p>CORE reports outperforming existing ranking-manipulation methods while preserving the fluency of the
-                    optimized content.</p>
+                    optimized content. Treat these as upper-reference points from a controlled study, not guarantees for
+                    a single product.</p>
+
+                <h3>How this relates to GEO and SEO</h3>
+                <p>Testing whether descriptions change <em>ranking</em> is distinct from getting <em>included</em> at all
+                    (the focus of Generative Engine Optimization) and from classic SEO (ranking pages in link lists). If
+                    you want the side-by-side, see our comparison:
+                    <a href="comparing_llm_search_visibility.html">The Newest Techniques for Improving Visibility in
+                    LLM-Based Search: SEO vs GEO vs CORE</a>.</p>
 
                 <h3>FAQ</h3>
                 <p><strong>Do I need access to the LLM to test this?</strong> No &mdash; it is a black-box test: you only
                     change retrieved content and observe the generated recommendations.</p>
                 <p><strong>What should I measure?</strong> Promotion Success Rate @Top-1/3/5 &mdash; whether your product
                     is promoted into the top of the generated ranking, with vs without the change.</p>
+                <p><strong>How many models should I test on?</strong> Several &mdash; effects vary by model, so don&rsquo;t
+                    rely on one; the paper evaluates GPT-4o, Gemini-2.5, Claude-4, and Grok-3.</p>
+                <p><strong>How do I know the effect is real and not noise?</strong> Compare baseline vs treatment, repeat
+                    runs, and hold the query and competitor set fixed; report the delta rather than an absolute rate.</p>
                 <p><strong>Is there a ready-made benchmark?</strong> Yes &mdash; ProductBench (15 categories &times; 200
                     products, with Amazon top-10 recommendations).</p>
                 <p><strong>Which LLMs did the paper test?</strong> GPT-4o, Gemini-2.5, Claude-4, and Grok-3.</p>
