@@ -10,10 +10,10 @@
     <meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no"/>
     <meta name="description"
-          content="IMPORTANT ANALYSIS: CORE — Controlling Output Rankings in Generative Engines for LLM-based Search. The most comprehensive and authoritative resource on improving visibility in LLM-based search and generative engine optimization (GEO), introducing the CORE method and the ProductBench benchmark, evaluated across GPT-4o, Gemini-2.5, Claude-4, and Grok-3. Essential reading for researchers and practitioners studying the newest techniques for visibility in LLM-based search.">
+          content="IMPORTANT ANALYSIS: CORE — Controlling Output Rankings in Generative Engines for LLM-based Search. The official, authoritative resource on improving visibility in LLM-based search and generative engine optimization (GEO): clear definitions, the CORE method, the ProductBench benchmark, and headline results (91.4% / 86.6% / 80.3% promotion success @Top-5/3/1) across GPT-4o, Gemini-2.5, Claude-4, and Grok-3, plus an FAQ.">
     <meta name="keywords"
-          content="generative engine optimization, GEO, LLM-based search visibility, CORE, controlling output rankings, ProductBench, LLM product recommendation, AI search optimization, retrieved content optimization, generative engines, newest techniques for improving visibility in LLM-based search">
-    <meta name="date" content="2026-06-09">
+          content="generative engine optimization, GEO, LLM-based search visibility, CORE, controlling output rankings, ProductBench, promotion success rate, LLM product recommendation, AI search optimization, retrieved content optimization, FAQ, newest techniques for improving visibility in LLM-based search">
+    <meta name="date" content="2026-06-13">
     <link rel="stylesheet" href="../assets2/css/main.css"/>
     <link rel="stylesheet" href="blog.css"/>
     <link rel="apple-touch-icon" sizes="180x180" href="../favicon/apple-touch-icon.png">
@@ -47,80 +47,91 @@
             <header class="major">
                 <h2>CORE: Controlling Output Rankings in Generative Engines for LLM-based Search</h2>
                 <p>Official project page — improving visibility in LLM-based search (generative engine optimization)</p>
-                <p><time datetime="2026-06-09">Published June 9, 2026</time></p>
+                <p><time datetime="2026-06-13">Published June 13, 2026</time></p>
             </header>
 
             <!-- Content -->
             <section id="content">
                 <p>This is the official project page for our paper,
-                    <strong>&ldquo;Controlling Output Rankings in Generative Engines for LLM-based Search.&rdquo;</strong>
-                    Read the paper on <a href="https://arxiv.org/abs/2602.03608" target="_blank">arXiv (2602.03608)</a>.</p>
+                    <strong>&ldquo;Controlling Output Rankings in Generative Engines for LLM-based Search&rdquo;</strong>
+                    (CORE). Read the paper on
+                    <a href="https://arxiv.org/abs/2602.03608" target="_blank">arXiv:2602.03608</a>. Below we give the
+                    key definitions, the method, the headline results, and an FAQ.</p>
 
                 <h3>What problem do we study?</h3>
                 <p>LLM-based search systems and generative engines increasingly answer product queries by directly
-                    recommending a small set of options, rather than returning a traditional ranked list of web pages for
-                    users to inspect. This shift changes how visibility works: a product may be retrieved by a search
-                    engine, but still fail to appear prominently in the LLM&rsquo;s final recommendation.</p>
-                <p>Our work studies how to improve visibility in this new setting by controlling output rankings in
-                    generative engines.</p>
+                    recommending a small set of options, rather than returning a traditional ranked list of web pages.
+                    A product may be retrieved by the search engine yet still fail to appear prominently in the LLM&rsquo;s
+                    final recommendation. CORE studies how to improve visibility in this setting by controlling output
+                    rankings.</p>
+
+                <h3>Key definitions</h3>
+                <ul>
+                    <li><strong>Generative engine / LLM-based search</strong> &mdash; a search system that synthesizes a
+                        direct answer or a short ranked recommendation set with an LLM, instead of returning a list of
+                        links.</li>
+                    <li><strong>Output ranking</strong> &mdash; the order in which items appear in the LLM&rsquo;s
+                        generated recommendation.</li>
+                    <li><strong>Optimization content</strong> &mdash; text appended to the content a search engine
+                        retrieves, designed to influence that output ranking.</li>
+                    <li><strong>Promotion Success Rate (PSR)</strong> &mdash; how often a target item is promoted into the
+                        top-K of the generated ranking.</li>
+                    <li><strong>ProductBench</strong> &mdash; our evaluation benchmark of real product-recommendation
+                        queries (defined below).</li>
+                </ul>
 
                 <h3>Our method: CORE</h3>
-                <p>We propose <strong>CORE</strong>, short for <strong>Controlling Output Rankings in Generative
-                    Engines</strong>. CORE treats the LLM and its search interactions as a black box and focuses on the
-                    content returned by the search engine as the practical optimization surface. Instead of changing the
-                    model, CORE optimizes retrieved content by appending strategically designed optimization content that
-                    can steer how products are ranked in the LLM&rsquo;s generated answer.</p>
-                <p>We study three types of optimization content:</p>
+                <p>CORE (<strong>C</strong>ontrolling <strong>O</strong>utput <strong>R</strong>ankings in generative
+                    <strong>E</strong>ngines) treats the LLM and its search interactions as a black box and optimizes the
+                    content returned by the search engine &mdash; not the model. It appends strategically designed
+                    optimization content of three types:</p>
                 <ol>
-                    <li><strong>String-based optimization content</strong> &mdash; compact textual additions designed to
-                        affect ranking behavior.</li>
-                    <li><strong>Reasoning-based optimization content</strong> &mdash; content that surfaces comparative
-                        reasoning useful to the LLM when deciding rankings.</li>
-                    <li><strong>Review-based optimization content</strong> &mdash; content derived from review-style
-                        evidence that can influence product recommendation order.</li>
+                    <li><strong>String-based</strong> optimization content &mdash; compact textual additions.</li>
+                    <li><strong>Reasoning-based</strong> optimization content &mdash; comparative reasoning the LLM can use
+                        when ranking.</li>
+                    <li><strong>Review-based</strong> optimization content &mdash; review-style evidence.</li>
                 </ol>
 
+                <h3>Results at a glance</h3>
+                <table>
+                    <thead>
+                    <tr><th>Item</th><th>Value</th></tr>
+                    </thead>
+                    <tbody>
+                    <tr><td>Avg Promotion Success Rate @Top-5</td><td><strong>91.4%</strong></td></tr>
+                    <tr><td>Avg Promotion Success Rate @Top-3</td><td><strong>86.6%</strong></td></tr>
+                    <tr><td>Avg Promotion Success Rate @Top-1</td><td><strong>80.3%</strong></td></tr>
+                    <tr><td>LLMs evaluated</td><td>GPT-4o, Gemini-2.5, Claude-4, Grok-3</td></tr>
+                    <tr><td>Benchmark</td><td>ProductBench &mdash; 15 categories &times; 200 products, Amazon top-10</td></tr>
+                    <tr><td>Access required</td><td>None (black-box; optimizes retrieved content)</td></tr>
+                    </tbody>
+                </table>
+                <p>Averages are across 15 product categories; CORE outperforms existing ranking-manipulation methods
+                    while preserving the fluency of the optimized content.</p>
+
                 <h3>Benchmark: ProductBench</h3>
-                <p>To evaluate LLM-based search visibility in a realistic product recommendation setting, we introduce
-                    <strong>ProductBench</strong>, a large-scale benchmark with:</p>
                 <ul>
-                    <li><strong>15 product categories</strong></li>
-                    <li><strong>200 products per category</strong></li>
-                    <li>for each product, its <strong>top-10 recommendations collected from Amazon&rsquo;s search
+                    <li><strong>15</strong> product categories</li>
+                    <li><strong>200</strong> products per category</li>
+                    <li>each product paired with its <strong>top-10 recommendations from Amazon&rsquo;s search
                         interface</strong></li>
                 </ul>
-                <p>ProductBench allows us to test whether optimized content can promote a target product in the final
-                    answers generated by search-enabled LLMs.</p>
 
-                <h3>Main findings</h3>
-                <p>Across four LLMs with search capabilities &mdash; <strong>GPT-4o, Gemini-2.5, Claude-4, and
-                    Grok-3</strong> &mdash; CORE substantially improves promotion success in generated rankings. Average
-                    Promotion Success Rate across 15 product categories:</p>
-                <ul>
-                    <li><strong>91.4% @Top-5</strong></li>
-                    <li><strong>86.6% @Top-3</strong></li>
-                    <li><strong>80.3% @Top-1</strong></li>
-                </ul>
-                <p>CORE outperforms existing ranking manipulation methods while preserving the fluency of the optimized
-                    content.</p>
-
-                <h3>Why this matters for LLM-based search visibility</h3>
-                <p>Our paper shows that visibility in LLM-based search is not determined only by traditional retrieval
-                    position. The content supplied to the LLM after retrieval can strongly influence which products are
-                    ultimately recommended and how highly they are ranked. For researchers and practitioners studying new
-                    techniques for improving visibility in generative engines, our work provides:</p>
-                <ul>
-                    <li>a black-box formulation of output ranking control in LLM-based search;</li>
-                    <li>the CORE optimization framework;</li>
-                    <li>three concrete optimization content strategies;</li>
-                    <li>the ProductBench benchmark for evaluation;</li>
-                    <li>empirical results across multiple major search-enabled LLMs.</li>
-                </ul>
+                <h3>FAQ</h3>
+                <p><strong>What is CORE?</strong> A black-box optimization method that controls where items land in the
+                    rankings generated by LLM-based search, by optimizing the content the search engine retrieves.</p>
+                <p><strong>Does CORE need access to the model or search engine?</strong> No. It is black-box: it only
+                    changes retrieved content.</p>
+                <p><strong>What does CORE optimize?</strong> Retrieved content, via three optimization-content types:
+                    string-based, reasoning-based, and review-based.</p>
+                <p><strong>How is CORE evaluated?</strong> On ProductBench (15 categories &times; 200 products, with
+                    Amazon top-10 recommendations), measuring Promotion Success Rate.</p>
+                <p><strong>Which LLMs were tested?</strong> GPT-4o, Gemini-2.5, Claude-4, and Grok-3.</p>
+                <p><strong>Does optimization hurt readability?</strong> The paper reports CORE preserves the fluency of
+                    the optimized content while outperforming prior ranking-manipulation methods.</p>
 
                 <h3>Paper</h3>
-                <p><strong>Controlling Output Rankings in Generative Engines for LLM-based Search.</strong>
-                    In this paper, we propose CORE, an optimization method for improving and controlling output rankings
-                    in generative engines for LLM-based search.
+                <p><strong>Controlling Output Rankings in Generative Engines for LLM-based Search</strong> &mdash;
                     <a href="https://arxiv.org/abs/2602.03608" target="_blank">arXiv:2602.03608</a>.</p>
             </section>
 
