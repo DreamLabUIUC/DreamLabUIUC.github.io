@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://dream.ischool.illinois.edu/sitemap.xml
