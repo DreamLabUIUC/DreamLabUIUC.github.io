@@ -1,0 +1,174 @@
+---
+import { frontier } from '../data/results.js';
+
+const W = 760, H = 540;
+const ml = 54, mr = 18, mt = 20, mb = 48;
+const pw = W - ml - mr, ph = H - mt - mb;
+const X = (sec) => ml + ((sec - 40) / 60) * pw;
+const Y = (fid) => mt + ((100 - fid) / 60) * ph;
+const ticks = [40, 50, 60, 70, 80, 90, 100];
+
+const pts = frontier.map((d) => ({ ...d, x: X(d.sec), y: Y(d.fid) }));
+const labeled = pts.filter((d) => d.anchor);
+---
+
+<section class="section-rule" id="frontier">
+  <div class="wrap">
+    <p class="kicker">Results</p>
+    <h2>Security gains often cost fidelity</h2>
+    <p class="prose section-intro">
+      Across 1,168 examples and 48 configurations, improving one metric does not
+      reliably improve the other. The most faithful model stops fewer than half of
+      attacks. The most secure defenses drop roughly one-quarter to one-half of the
+      content they should keep. No evaluated configuration dominates both metrics.
+    </p>
+
+    <figure class="plate chart-plate reveal">
+      <div class="chart" id="frontier-chart">
+        <svg viewBox={`0 0 ${W} ${H}`} xmlns="http://www.w3.org/2000/svg" font-family="IBM Plex Mono, monospace" role="img" aria-labelledby="frontier-title frontier-desc">
+          <title id="frontier-title">Security and fidelity for 48 evaluated configurations</title>
+          <desc id="frontier-desc">Evaluated models and defenses spread along an empirical frontier between security and fidelity.</desc>
+          <!-- grid -->
+          {ticks.map((t) => (
+            <>
+              <line x1={X(t)} y1={mt} x2={X(t)} y2={mt + ph} stroke="var(--rule-soft)" />
+              <line x1={ml} y1={Y(t)} x2={ml + pw} y2={Y(t)} stroke="var(--rule-soft)" />
+              <text x={X(t)} y={mt + ph + 20} font-size="11" fill="var(--ink-faint)" text-anchor="middle">{t}</text>
+              <text x={ml - 10} y={Y(t) + 4} font-size="11" fill="var(--ink-faint)" text-anchor="end">{t}</text>
+            </>
+          ))}
+          <text x={ml + pw / 2} y={H - 8} font-size="12" fill="var(--ink-soft)" text-anchor="middle" letter-spacing="1">SECURITY % (DIDN'T EXECUTE) →</text>
+          <text transform={`rotate(-90 16 ${mt + ph / 2})`} x="16" y={mt + ph / 2} font-size="12" fill="var(--ink-soft)" text-anchor="middle" letter-spacing="1">FIDELITY % (DIDN'T DROP CONTENT) →</text>
+
+          <!-- annotations for anchor points -->
+          {labeled.map((d) => (
+            <text
+              x={d.anchor === 'w' ? d.x - 11 : d.anchor === 'e' ? d.x + 11 : d.x}
+              y={d.anchor === 's' ? d.y + 22 : d.y + 4}
+              font-size="11.5"
+              font-family="IBM Plex Sans, sans-serif"
+              fill="var(--ink)"
+              text-anchor={d.anchor === 'w' ? 'end' : d.anchor === 'e' ? 'start' : 'middle'}
+            >{d.label}</text>
+          ))}
+
+          <!-- points -->
+          {pts.map((d) => d.kind === 'defense' ? (
+            <path
+              d={`M ${d.x} ${d.y - 7} L ${d.x + 7} ${d.y} L ${d.x} ${d.y + 7} L ${d.x - 7} ${d.y} Z`}
+              fill="var(--security)" stroke="var(--card)" stroke-width="1.5"
+              class="pt" tabindex="0" role="img"
+              aria-label={`${d.label}, ${d.sec}% security and ${d.fid}% fidelity`}
+              data-tip={`${d.label} | ${d.sec}% security | ${d.fid}% fidelity`}
+            ><title>{d.label}, {d.sec}% security and {d.fid}% fidelity</title></path>
+          ) : (
+            <circle
+              cx={d.x} cy={d.y} r="6.5"
+              fill={d.kind === 'closed' ? 'var(--ink)' : 'var(--card)'}
+              stroke="var(--ink)" stroke-width="1.8"
+              class="pt" tabindex="0" role="img"
+              aria-label={`${d.label}, ${d.sec}% security and ${d.fid}% fidelity`}
+              data-tip={`${d.label} | ${d.sec}% security | ${d.fid}% fidelity`}
+            ><title>{d.label}, {d.sec}% security and {d.fid}% fidelity</title></circle>
+          ))}
+        </svg>
+        <div class="tip" role="status" aria-live="polite" hidden></div>
+      </div>
+
+      <div class="legend">
+        <span><i class="sw closed"></i> closed model</span>
+        <span><i class="sw open"></i> open-weights model</span>
+        <span><i class="sw def"></i> + published defense</span>
+        <span class="hint">Inspect a point for exact values</span>
+      </div>
+
+      <figcaption>
+        Core benchmark with greedy or default decoding. Open-weight models sit at
+        both ends of the frontier. Undefended Llama&nbsp;3.3&nbsp;70B has the highest
+        fidelity at 96.5%, with 47.8% security. SecAlign reaches 99.3% security on
+        two Llama models, with 71.0-73.9% fidelity. Defensive Tokens reaches about
+        98% security by suppressing more than half of benign content.
+      </figcaption>
+      <aside class="agentic-note">
+        <strong>The same pattern appears in agents.</strong> Across 252 tool-use
+        scenarios, security ranges from 94-100% while fidelity ranges from 32-73%.
+      </aside>
+    </figure>
+  </div>
+</section>
+
+<style>
+  .section-intro { margin-bottom: 2.5rem; }
+  .chart { position: relative; }
+  .chart svg { width: 100%; height: auto; }
+  .pt { cursor: pointer; transition: transform 120ms ease; transform-box: fill-box; transform-origin: center; }
+  .pt:hover { transform: scale(1.45); }
+  .pt:focus { transform: scale(1.45); }
+
+  .tip {
+    position: absolute;
+    pointer-events: none;
+    background: var(--ink);
+    color: var(--paper);
+    font-family: var(--font-mono);
+    font-size: var(--type-data);
+    padding: 0.3rem 0.55rem;
+    border-radius: 3px;
+    white-space: nowrap;
+    transform: translate(-50%, -130%);
+    z-index: 2;
+  }
+
+  .legend {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.25rem;
+    margin-top: 0.75rem;
+    font-family: var(--font-body);
+    font-size: var(--type-caption);
+    color: var(--ink-soft);
+    align-items: center;
+  }
+  .legend span { display: inline-flex; align-items: center; gap: 0.4rem; }
+  .legend .hint { margin-left: auto; color: var(--ink-faint); }
+  .sw { width: 11px; height: 11px; display: inline-block; }
+  .sw.closed { border-radius: 50%; background: var(--ink); }
+  .sw.open { border-radius: 50%; border: 2px solid var(--ink); background: var(--card); }
+  .sw.def { background: var(--security); transform: rotate(45deg); }
+  .agentic-note {
+    margin-top: 1.25rem;
+    padding-top: 1rem;
+    border-top: 1px solid var(--rule);
+    color: var(--ink-soft);
+    font-size: var(--type-small);
+  }
+  .agentic-note strong { color: var(--ink); }
+
+  @media (max-width: 42rem) {
+    .chart { overflow-x: auto; }
+    .chart svg { min-width: 42rem; }
+    .legend .hint { width: 100%; margin-left: 0; }
+  }
+</style>
+
+<script>
+  const chart = document.getElementById('frontier-chart');
+  if (chart) {
+    const tip = chart.querySelector('.tip');
+    chart.querySelectorAll('.pt').forEach((pt) => {
+      const show = () => {
+        tip.textContent = pt.dataset.tip;
+        const c = chart.getBoundingClientRect();
+        const p = pt.getBoundingClientRect();
+        tip.style.left = `${p.left + p.width / 2 - c.left}px`;
+        tip.style.top = `${p.top - c.top}px`;
+        tip.hidden = false;
+      };
+      const hide = () => { tip.hidden = true; };
+      pt.addEventListener('pointerenter', show);
+      pt.addEventListener('focus', show);
+      pt.addEventListener('pointerleave', hide);
+      pt.addEventListener('blur', hide);
+    });
+  }
+</script>

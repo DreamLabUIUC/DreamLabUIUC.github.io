@@ -1,0 +1,122 @@
+---
+const repo = 'https://github.com/mhermon/sec-fid';
+const paper = 'https://arxiv.org/abs/2606.30783';
+
+const bibtex = `@inproceedings{hermon2026securityfidelity,
+  title     = {Security--Fidelity Tradeoffs: The Hidden Cost
+               of Prompt Injection Defense},
+  author    = {Hermon, Mitchell and Gupta, Rahul and Ruan, Weitong
+               and Sabir, Ekraam and Wang, Haohan},
+  booktitle = {Proceedings of the 43rd International Conference
+               on Machine Learning (ICML)},
+  year      = {2026},
+  url       = {https://arxiv.org/abs/2606.30783},
+}`;
+---
+
+<footer class="section-rule" id="cite">
+  <div class="wrap">
+    <div class="cite-grid">
+      <div>
+        <div class="cite-head">
+          <h3>Cite</h3>
+          <button class="copy-cite" type="button" data-copy-cite>Copy BibTeX</button>
+        </div>
+        <pre class="bib"><code>{bibtex}</code></pre>
+      </div>
+      <div class="colophon">
+        <h3>Project</h3>
+        <p>
+          SecFid was developed at the University of Illinois Urbana-Champaign and
+          Amazon, with support from the NAIRR Pilot and the Amazon-Illinois Center
+          on AI (AICE).
+        </p>
+        <p>
+          Read the <a href={paper}>full paper (ICML 2026)</a>. The data and
+          evaluator are in the <a href={repo}>public SecFid repository</a>. Send
+          questions to
+          <a href="mailto:mhermon2@illinois.edu" class="mono">mhermon2@illinois.edu</a>.
+        </p>
+        <p class="sign-off">
+          <span class="tag proc">processed</span> ≻
+          <span class="tag ign">ignored</span> ≻
+          <span class="tag exec">executed</span>
+        </p>
+      </div>
+    </div>
+    <p class="fineprint">SecFid | Security-Fidelity Tradeoffs | 2026</p>
+  </div>
+</footer>
+
+<style>
+  footer { padding-block: clamp(3rem, 6vw, 4.5rem) 2rem; background: var(--paper-deep); }
+  .cite-grid {
+    display: grid;
+    gap: clamp(1.5rem, 4vw, 4rem);
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 22rem), 1fr));
+  }
+  .cite-head {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1rem;
+  }
+  .cite-head h3 { margin: 0; }
+  .copy-cite {
+    border: 1px solid var(--rule);
+    border-radius: 999px;
+    background: transparent;
+    color: var(--ink-soft);
+    font-family: var(--font-body);
+    font-size: var(--type-caption);
+    font-weight: 500;
+    padding: 0.35rem 0.7rem;
+    cursor: pointer;
+  }
+  .copy-cite:hover { color: var(--ink); border-color: var(--ink); }
+  .bib {
+    font-family: var(--font-mono);
+    font-size: var(--type-data);
+    line-height: 1.65;
+    background: var(--card);
+    border: 1px solid var(--rule);
+    border-radius: 4px;
+    padding: 1.1rem 1.3rem;
+    overflow-x: auto;
+    max-width: 100%;
+    margin-top: 0.75rem;
+  }
+  .colophon p {
+    font-size: var(--type-small);
+    color: var(--ink-soft);
+    max-width: 46ch;
+    margin-top: 0.75rem;
+  }
+  .sign-off { letter-spacing: 0.05em; }
+  .fineprint {
+    margin-top: 3rem;
+    padding-top: 1rem;
+    border-top: 1px solid var(--rule);
+    font-family: var(--font-mono);
+    font-size: var(--type-label);
+    letter-spacing: var(--tracking-label);
+    text-transform: uppercase;
+    color: var(--ink-faint);
+  }
+</style>
+
+<script>
+  const copyButton = document.querySelector('[data-copy-cite]');
+  const citation = document.querySelector('.bib code');
+  if (copyButton && citation) {
+    copyButton.addEventListener('click', async () => {
+      copyButton.textContent = 'Copied';
+      try {
+        await navigator.clipboard.writeText(citation.textContent);
+      } catch {
+        copyButton.textContent = 'Copy unavailable';
+      }
+      window.setTimeout(() => { copyButton.textContent = 'Copy BibTeX'; }, 2400);
+    });
+  }
+</script>
