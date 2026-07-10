@@ -1,0 +1,437 @@
+<!DOCTYPE HTML>
+<!--
+    Landed by HTML5 UP
+    html5up.net | @ajlkn
+    Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+<head>
+    <title>Agent Primitives: Reusable Latent Building Blocks for Multi-Agent Systems</title>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no"/>
+    <meta name="description"
+          content="Official project page for Agent Primitives, reusable latent building blocks for LLM-based multi-agent systems. The project introduces Review, Voting and Selection, and Planning and Execution primitives with KV-cache communication and an Organizer for composing primitive-based MAS.">
+    <meta name="keywords"
+          content="agent primitives, multi-agent systems, LLM agents, KV cache communication, latent multi-agent systems, review primitive, voting and selection primitive, planning and execution primitive, organizer agent, ICML 2026">
+    <meta name="date" content="2026-07-10">
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "BreadcrumbList",
+          "itemListElement": [
+            {"@type": "ListItem", "position": 1, "name": "DREAM", "item": "https://dream.ischool.illinois.edu/"},
+            {"@type": "ListItem", "position": 2, "name": "Blogs", "item": "https://dream.ischool.illinois.edu/blogs.html"},
+            {"@type": "ListItem", "position": 3, "name": "Agent Primitives", "item": "https://dream.ischool.illinois.edu/blogs/agent_primitives.html"}
+          ]
+        },
+        {
+          "@type": "ScholarlyArticle",
+          "headline": "Agent Primitives: Reusable Latent Building Blocks for Multi-Agent Systems",
+          "author": [
+            {"@type": "Person", "name": "Haibo Jin"},
+            {"@type": "Person", "name": "Peng Kuang"},
+            {"@type": "Person", "name": "Ye Yu"},
+            {"@type": "Person", "name": "Xiaopeng Yuan"},
+            {"@type": "Person", "name": "Haohan Wang"}
+          ],
+          "publisher": {"@type": "Organization", "name": "DREAM Lab, UIUC"},
+          "mainEntityOfPage": "https://dream.ischool.illinois.edu/blogs/agent_primitives.html",
+          "url": "https://dream.ischool.illinois.edu/blogs/agent_primitives.html",
+          "isPartOf": "Proceedings of the 43rd International Conference on Machine Learning"
+        }
+      ]
+    }
+    </script>
+    <link rel="stylesheet" href="../assets2/css/main.css"/>
+    <link rel="stylesheet" href="blog.css"/>
+    <link rel="apple-touch-icon" sizes="180x180" href="../favicon/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="../favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="../favicon/favicon-16x16.png">
+    <link rel="manifest" href="../favicon/site.webmanifest">
+    <noscript>
+        <link rel="stylesheet" href="../assets2/css/noscript.css"/>
+    </noscript>
+    <style>
+        .project-actions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.8em;
+            justify-content: center;
+            list-style: none;
+            margin: 2em 0 0 0;
+            padding-left: 0;
+        }
+
+        .project-actions li {
+            margin: 0;
+        }
+
+        .meta-grid {
+            display: grid;
+            grid-template-columns: minmax(0, 1.2fr) minmax(280px, 0.8fr);
+            gap: 2em;
+            align-items: start;
+            margin: 2em 0;
+        }
+
+        .poster-panel {
+            background: rgba(23, 24, 32, 0.7);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            border-left: 5px solid #e44c65;
+            border-radius: 8px;
+            padding: 1em;
+        }
+
+        .poster-panel img {
+            background: #ffffff;
+            border-radius: 4px;
+            display: block;
+            width: 100%;
+        }
+
+        .metric-grid {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 1em;
+            margin: 1.5em 0;
+        }
+
+        .metric-card {
+            background-color: rgba(23, 24, 32, 0.8);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            border-top: 4px solid #e44c65;
+            border-radius: 5px;
+            padding: 1em;
+            text-align: center;
+        }
+
+        .metric-card strong {
+            color: #ffffff;
+            display: block;
+            font-size: 1.55em;
+            margin-bottom: 0.25em;
+        }
+
+        .metric-card span {
+            color: rgba(255, 255, 255, 0.75);
+            font-size: 0.9em;
+        }
+
+        .paper-figure img {
+            background: #ffffff;
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            border-radius: 8px;
+            display: block;
+            margin: 1.5em 0 0.75em 0;
+            width: 100%;
+        }
+
+        .caption {
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 0.95em;
+            font-style: italic;
+            text-align: center;
+        }
+
+        .table-wrap {
+            overflow-x: auto;
+            margin: 1.5em 0 2em 0;
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            border-radius: 6px;
+            background-color: rgba(23, 24, 32, 0.6);
+        }
+
+        .results-table {
+            border-collapse: collapse;
+            font-size: 0.78em;
+            min-width: 980px;
+            width: 100%;
+        }
+
+        .results-table th,
+        .results-table td {
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            padding: 0.55em 0.65em;
+            text-align: center;
+            vertical-align: middle;
+        }
+
+        .results-table th {
+            background-color: #e44c65;
+            color: #ffffff;
+            font-weight: 600;
+        }
+
+        .results-table td {
+            color: rgba(255, 255, 255, 0.82);
+        }
+
+        .results-table tr:nth-child(even) td {
+            background-color: rgba(255, 255, 255, 0.035);
+        }
+
+        .results-table .model-cell {
+            color: #ffffff;
+            font-weight: 600;
+            min-width: 9em;
+        }
+
+        .results-table .best td,
+        .results-table .best strong {
+            color: #ffffff;
+        }
+
+        .resource-grid {
+            display: grid;
+            gap: 1em;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            margin: 1.5em 0;
+        }
+
+        .resource-card {
+            background-color: rgba(23, 24, 32, 0.8);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            border-left: 4px solid #e44c65;
+            border-radius: 5px;
+            padding: 1em;
+        }
+
+        .resource-card h4 {
+            color: #e44c65;
+            margin-top: 0;
+        }
+
+        .resource-card p {
+            font-size: 0.95em;
+            margin-bottom: 1em;
+        }
+
+        @media (max-width: 980px) {
+            .meta-grid,
+            .metric-grid,
+            .resource-grid {
+                grid-template-columns: 1fr;
+            }
+
+        }
+    </style>
+</head>
+<body class="is-preload">
+<div id="page-wrapper">
+
+    <!-- Header -->
+    <header id="header">
+        <nav id="nav">
+            <ul>
+                <li><a href="../index.html">Home</a></li>
+                <li><a href="../overview.html">Overview</a></li>
+                <li><a href="../publications.html">Publications</a></li>
+                <li><a href="../blogs.html">Blogs</a></li>
+                <li><a href="../software.html">Software</a></li>
+                <li><a href="../contact.html">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Main -->
+    <div id="main" class="wrapper style1">
+        <div class="container">
+            <header class="major">
+                <h2>Agent Primitives: Reusable Latent Building Blocks for Multi-Agent Systems</h2>
+                <p>ICML 2026</p>
+                <ul class="project-actions">
+                    <li><a href="imgs/agent_primitives/ICML_Agent_Primitives_camera.pdf" target="_blank" class="button">Paper PDF</a></li>
+                    <li><a href="https://github.com/haibojin001/agent-primitives" target="_blank" class="button">Code</a></li>
+                    <li><a href="#citation" class="button">Citation</a></li>
+                </ul>
+            </header>
+
+            <section id="content">
+                <div class="meta-grid">
+                    <div>
+                        <h3>Authors</h3>
+                        <p>Haibo Jin, Peng Kuang, Ye Yu, Xiaopeng Yuan, and <strong>Haohan Wang</strong>.</p>
+                        <p>School of Information Sciences and Siebel School of Computing and Data Science,
+                            University of Illinois Urbana-Champaign.</p>
+
+                        <h3>Venue</h3>
+                        <p>Proceedings of the 43rd International Conference on Machine Learning (ICML 2026).</p>
+                    </div>
+                    <div class="poster-panel">
+                        <a href="imgs/agent_primitives/poster.pdf" target="_blank">
+                            <img src="imgs/agent_primitives/poster.png" alt="Agent Primitives poster preview"/>
+                        </a>
+                        <p class="caption">Poster preview for Agent Primitives.</p>
+                    </div>
+                </div>
+
+                <h3>Abstract</h3>
+                <p>While existing multi-agent systems (MAS) can handle complex problems by enabling collaboration among
+                    multiple agents, they are often highly task-specific, relying on manually crafted agent roles and
+                    interaction prompts. This increases architectural complexity and limits reusability across tasks.</p>
+                <p>We propose <strong>Agent Primitives</strong>, a set of reusable latent building blocks for LLM-based
+                    MAS. Inspired by neural network design, where complex models are built from reusable components, we
+                    observe that many existing MAS architectures can be decomposed into a small number of recurring
+                    internal computation patterns. We instantiate three primitives: <strong>Review</strong>,
+                    <strong>Voting and Selection</strong>, and <strong>Planning and Execution</strong>. Each primitive
+                    communicates via key-value (KV) cache to mitigate information degradation across multi-stage
+                    interactions.</p>
+
+                <h3>Motivation</h3>
+                <p>LLM-based multi-agent systems have emerged as a promising approach for tackling complex real-world
+                    problems. However, many systems are designed as task-specific architectures, with specialized roles
+                    and interaction prompts built from scratch. As the task becomes more complex, the system design also
+                    becomes more complex.</p>
+                <p>Agent Primitives aim to make multi-agent computation reusable. Rather than designing every agent
+                    system as a new workflow, we extract recurring computation patterns and use them as modular latent
+                    building blocks.</p>
+
+                <h3>Primitive types</h3>
+                <ul>
+                    <li><strong>Review Primitive</strong> &mdash; a Solver generates an initial answer, a Critic reviews
+                        it, and the Solver refines the answer.</li>
+                    <li><strong>Voting and Selection Primitive</strong> &mdash; multiple candidate agents produce
+                        alternatives, and a selection stage chooses or synthesizes the final answer.</li>
+                    <li><strong>Planning and Execution Primitive</strong> &mdash; a Planner decomposes a task, and an
+                        Executor carries out the planned steps.</li>
+                </ul>
+
+                <h3>Framework overview</h3>
+                <p>The Organizer agent automatically selects and composes primitives for each query, guided by a
+                    lightweight knowledge pool of previously successful configurations. This forms a primitive-based
+                    MAS whose internal agents communicate through latent KV-cache states rather than only decoded text.</p>
+                <div class="paper-figure">
+                    <a href="imgs/agent_primitives/Primitives0203.pdf" target="_blank">
+                        <img src="imgs/agent_primitives/overview.png" alt="Overview of Agent Primitives framework"/>
+                    </a>
+                    <p class="caption">Overview of Agent Primitives and the Organizer-based composition process.</p>
+                </div>
+
+                <h3>Results at a glance</h3>
+                <div class="metric-grid">
+                    <div class="metric-card">
+                        <strong>+12.0&ndash;16.5%</strong>
+                        <span>average accuracy improvement over single-agent baselines</span>
+                    </div>
+                    <div class="metric-card">
+                        <strong>~3&times;</strong>
+                        <span>lower token usage and latency compared with text-based MAS</span>
+                    </div>
+                    <div class="metric-card">
+                        <strong>1.3&times;&ndash;2.6&times;</strong>
+                        <span>overhead relative to single-agent inference</span>
+                    </div>
+                </div>
+
+                <p>Experiments evaluate math problem solving, code generation, and question answering across Qwen3-8B,
+                    DeepSeek-R1-Distill-Qwen-32B, and DeepSeek-R1-Distill-Llama-70B. Primitive-based MAS improve
+                    average accuracy while reducing the cost of multi-agent communication compared with text-based
+                    MAS.</p>
+
+                <div class="table-wrap">
+                    <table class="results-table">
+                        <thead>
+                        <tr>
+                            <th>Models</th>
+                            <th>Methods</th>
+                            <th>AIME25</th>
+                            <th>AIME24</th>
+                            <th>MATH</th>
+                            <th>GSM8K</th>
+                            <th>HumanEval+</th>
+                            <th>MBPP+</th>
+                            <th>MedQA</th>
+                            <th>GPQA</th>
+                            <th>Avg.</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr><td rowspan="7" class="model-cell">Qwen3-8B</td><td>Single</td><td>46.7%</td><td>50.0%</td><td>60.8%</td><td>81.1%</td><td>74.4%</td><td>64.8%</td><td>53.0%</td><td>39.9%</td><td>58.8%</td></tr>
+                        <tr><td>TextMAS</td><td>53.3%</td><td>53.3%</td><td>61.4%</td><td>92.3%</td><td>80.5%</td><td>69.5%</td><td>75.0%</td><td>43.4%</td><td>66.1% (+7.3 pp)</td></tr>
+                        <tr><td>LatentMAS</td><td>53.3%</td><td>56.7%</td><td>62.6%</td><td>93.8%</td><td>80.5%</td><td>74.6%</td><td>75.3%</td><td>45.5%</td><td>67.8% (+8.9 pp)</td></tr>
+                        <tr><td>Review</td><td>60.0%</td><td>63.3%</td><td>61.0%</td><td>93.2%</td><td>78.6%</td><td>70.6%</td><td>64.2%</td><td>48.9%</td><td>67.5% (+8.6 pp)</td></tr>
+                        <tr><td>Voting</td><td>66.7%</td><td>70.0%</td><td>61.4%</td><td>91.8%</td><td>81.0%</td><td>74.3%</td><td>70.3%</td><td>55.0%</td><td>71.3% (+12.5 pp)</td></tr>
+                        <tr><td>Planning</td><td>66.7%</td><td>63.3%</td><td>60.8%</td><td>93.2%</td><td>78.6%</td><td>75.9%</td><td>67.0%</td><td>51.0%</td><td>69.6% (+10.7 pp)</td></tr>
+                        <tr class="best"><td><strong>Primitives-based MAS</strong></td><td><strong>73.3%</strong></td><td><strong>76.7%</strong></td><td><strong>63.7%</strong></td><td><strong>94.2%</strong></td><td><strong>82.3%</strong></td><td><strong>75.9%</strong></td><td><strong>76.7%</strong></td><td><strong>59.6%</strong></td><td><strong>75.3% (+16.5 pp)</strong></td></tr>
+
+                        <tr><td rowspan="7" class="model-cell">DeepSeek-R1-Distill-Qwen-32B</td><td>Single</td><td>53.3%</td><td>73.3%</td><td>63.4%</td><td>93.8%</td><td>80.5%</td><td>73.8%</td><td>68.0%</td><td>62.1%</td><td>71.0%</td></tr>
+                        <tr><td>TextMAS</td><td>53.3%</td><td>73.3%</td><td>68.0%</td><td>93.8%</td><td>82.3%</td><td>74.6%</td><td>79.6%</td><td>62.6%</td><td>73.4% (+2.4 pp)</td></tr>
+                        <tr><td>LatentMAS</td><td>56.7%</td><td>73.3%</td><td>78.2%</td><td>95.2%</td><td>83.5%</td><td>75.7%</td><td>81.2%</td><td>63.6%</td><td>75.9% (+4.9 pp)</td></tr>
+                        <tr><td>Review</td><td>53.3%</td><td>70.0%</td><td>71.3%</td><td>94.6%</td><td>81.1%</td><td>73.8%</td><td>73.0%</td><td>62.1%</td><td>72.4% (+1.4 pp)</td></tr>
+                        <tr><td>Voting</td><td>56.7%</td><td>70.0%</td><td>74.7%</td><td>95.0%</td><td>86.6%</td><td>74.6%</td><td>79.3%</td><td>63.1%</td><td>75.0% (+4.0 pp)</td></tr>
+                        <tr><td>Planning</td><td>53.3%</td><td>66.7%</td><td>74.6%</td><td>93.8%</td><td>85.3%</td><td>74.3%</td><td>75.0%</td><td>62.6%</td><td>73.2% (+2.2 pp)</td></tr>
+                        <tr class="best"><td><strong>Primitives-based MAS</strong></td><td><strong>63.3%</strong></td><td><strong>73.3%</strong></td><td><strong>79.8%</strong></td><td><strong>95.0%</strong></td><td><strong>86.6%</strong></td><td><strong>75.7%</strong></td><td><strong>82.7%</strong></td><td><strong>64.6%</strong></td><td><strong>77.6% (+6.6 pp)</strong></td></tr>
+
+                        <tr><td rowspan="7" class="model-cell">DeepSeek-R1-Distill-Llama-70B</td><td>Single</td><td>50.0%</td><td>70.0%</td><td>69.6%</td><td>92.4%</td><td>82.3%</td><td>66.4%</td><td>64.5%</td><td>65.2%</td><td>70.1%</td></tr>
+                        <tr><td>TextMAS</td><td>53.3%</td><td>70.0%</td><td>72.8%</td><td>93.2%</td><td>82.3%</td><td>68.8%</td><td>77.8%</td><td>65.7%</td><td>73.0% (+2.9 pp)</td></tr>
+                        <tr><td>LatentMAS</td><td>40.0%</td><td>43.3%</td><td>78.6%</td><td>78.6%</td><td>73.2%</td><td>55.6%</td><td>68.6%</td><td>41.9%</td><td>60.0% (-10.1 pp)</td></tr>
+                        <tr><td>Review</td><td>50.0%</td><td>70.0%</td><td>75.9%</td><td>91.8%</td><td>82.3%</td><td>67.2%</td><td>72.9%</td><td>65.2%</td><td>71.9% (+1.9 pp)</td></tr>
+                        <tr><td>Voting</td><td>56.7%</td><td>73.3%</td><td>77.2%</td><td>93.8%</td><td>82.9%</td><td>68.8%</td><td>77.8%</td><td>65.7%</td><td>74.5% (+4.5 pp)</td></tr>
+                        <tr><td>Planning</td><td>50.0%</td><td>63.3%</td><td>75.6%</td><td>92.4%</td><td>82.3%</td><td>66.7%</td><td>74.0%</td><td>65.2%</td><td>71.2% (+1.1 pp)</td></tr>
+                        <tr class="best"><td><strong>Primitives-based MAS</strong></td><td><strong>56.7%</strong></td><td><strong>76.7%</strong></td><td><strong>79.3%</strong></td><td><strong>93.8%</strong></td><td><strong>85.3%</strong></td><td><strong>70.6%</strong></td><td><strong>81.9%</strong></td><td><strong>66.7%</strong></td><td><strong>76.4% (+6.3 pp)</strong></td></tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <p class="caption">Accuracy (%) comparison on math problem solving, code generation, and Q&amp;A tasks.
+                    Avg. reports average accuracy and improvement over the single-agent baseline in percentage points.</p>
+
+                <h3>Paper</h3>
+                <p><strong>Agent Primitives: Reusable Latent Building Blocks for Multi-Agent Systems</strong> &mdash;
+                    <a href="imgs/agent_primitives/ICML_Agent_Primitives_camera.pdf" target="_blank">PDF</a>.</p>
+
+                <h3>Get involved</h3>
+                <div class="resource-grid">
+                    <div class="resource-card">
+                        <h4>DREAM Lab</h4>
+                        <p>Learn more about the lab's work on reliable and efficient AI systems.</p>
+                        <a href="../overview.html" class="button small">Visit Lab</a>
+                    </div>
+                    <div class="resource-card">
+                        <h4>Code</h4>
+                        <p>Explore the implementation and primitive-based MAS examples.</p>
+                        <a href="https://github.com/haibojin001/agent-primitives" target="_blank" class="button small">GitHub</a>
+                    </div>
+                    <div class="resource-card">
+                        <h4>Contact</h4>
+                        <p>Reach out for research discussion, collaboration, or student opportunities.</p>
+                        <a href="../contact.html" class="button small">Contact</a>
+                    </div>
+                </div>
+
+                <h3 id="citation">BibTeX citation</h3>
+                <pre><code>@inproceedings{jin2026agentprimitives,
+  title={Agent Primitives: Reusable Latent Building Blocks for Multi-Agent Systems},
+  author={Jin, Haibo and Kuang, Peng and Yu, Ye and Yuan, Xiaopeng and Wang, Haohan},
+  booktitle={Proceedings of the 43rd International Conference on Machine Learning},
+  year={2026}
+}</code></pre>
+            </section>
+
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer id="footer">
+        <ul class="copyright">
+            <li>&copy; DREAM. All rights reserved.</li>
+            <li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
+        </ul>
+    </footer>
+
+</div>
+
+<!-- Scripts -->
+<script src="../assets2/js/jquery.min.js"></script>
+<script src="../assets2/js/jquery.scrolly.min.js"></script>
+<script src="../assets2/js/jquery.dropotron.min.js"></script>
+<script src="../assets2/js/jquery.scrollex.min.js"></script>
+<script src="../assets2/js/browser.min.js"></script>
+<script src="../assets2/js/breakpoints.min.js"></script>
+<script src="../assets2/js/util.js"></script>
+<script src="../assets2/js/main.js"></script>
+
+</body>
+</html>
