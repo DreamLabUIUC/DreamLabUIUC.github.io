@@ -1,6 +1,2 @@
 .idea/*
-
-project-sites/secfid/node_modules/
-project-sites/secfid/dist/
-project-sites/secfid/.astro/
-project-sites/secfid/.npm-cache/
+.claude/
