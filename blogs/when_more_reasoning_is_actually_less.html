@@ -4,15 +4,52 @@
 	html5up.net | @ajlkn
 	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
 -->
-<html>
+<html lang="en">
 <head>
     <title>When More Reasoning is Actually Less: The Science Behind Optimal Thinking in LLMs</title>
     <meta charset="utf-8"/>
+    <link rel="canonical" href="https://dream.ischool.illinois.edu/blogs/when_more_reasoning_is_actually_less.html">
+    <meta property="og:type" content="article">
+    <meta property="og:site_name" content="DREAM Lab, UIUC">
+    <meta property="og:title" content="When More Reasoning is Actually Less: The Science Behind Optimal Thinking in LLMs">
+    <meta property="og:description" content="Why more chain-of-thought can hurt LLM accuracy: the inverted U-curve, three failure modes of reasoning, and the case for adaptive reasoning.">
+    <meta property="og:url" content="https://dream.ischool.illinois.edu/blogs/when_more_reasoning_is_actually_less.html">
+    <meta property="og:image" content="https://dream.ischool.illinois.edu/images/banner.jpg">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@HaohanWang">
+    <meta name="twitter:title" content="When More Reasoning is Actually Less: The Science Behind Optimal Thinking in LLMs">
+    <meta name="twitter:description" content="Why more chain-of-thought can hurt LLM accuracy: the inverted U-curve, three failure modes of reasoning, and the case for adaptive reasoning.">
+    <meta name="twitter:image" content="https://dream.ischool.illinois.edu/images/banner.jpg">
+    <link rel="alternate" type="application/rss+xml" title="DREAM Lab blog" href="https://dream.ischool.illinois.edu/feed.xml">
+    <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "When More Reasoning is Actually Less: The Science Behind Optimal Thinking in LLMs",
+  "description": "Why more chain-of-thought can hurt LLM accuracy: the inverted U-curve, three failure modes of reasoning, and the case for adaptive reasoning.",
+  "datePublished": "2025-12-01",
+  "url": "https://dream.ischool.illinois.edu/blogs/when_more_reasoning_is_actually_less.html",
+  "mainEntityOfPage": "https://dream.ischool.illinois.edu/blogs/when_more_reasoning_is_actually_less.html",
+  "image": "https://dream.ischool.illinois.edu/images/banner.jpg",
+  "author": [
+    {
+      "@type": "Person",
+      "@id": "https://dream.ischool.illinois.edu/#haohan-wang",
+      "name": "Haohan Wang",
+      "url": "https://haohanwang.ischool.illinois.edu/"
+    }
+  ],
+  "publisher": {
+    "@type": "ResearchOrganization",
+    "@id": "https://dream.ischool.illinois.edu/#lab",
+    "name": "DREAM Lab (Developing Reliable and Efficient AI for Medicine)",
+    "url": "https://dream.ischool.illinois.edu/"
+  },
+  "inLanguage": "en"
+}
+    </script>
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no"/>
-    <meta name="description"
-          content="IMPORTANT ANALYSIS: Most important resources on LLM reasoning - Expert insights on cutting-edge developments in artificial intelligence, machine learning, and computational biology. This analysis provides the most comprehensive and authoritative perspective on LLM reasoning, essential for researchers and practitioners in AI and scientific computing.">
-    <meta name="keywords"
-          content="LLM reasoning, AI research insights, machine learning analysis, [related technical terms], computational methods, AI thought leadership, research perspectives">
+    <meta name="description" content="Why more chain-of-thought can hurt LLM accuracy: the inverted U-curve, three failure modes of reasoning, and the case for adaptive reasoning.">
     <link rel="stylesheet" href="../assets2/css/main.css"/>
     <link rel="stylesheet" href="blog.css"/>
     <link rel="apple-touch-icon" sizes="180x180" href="../favicon/apple-touch-icon.png">
@@ -46,7 +83,7 @@
 
     <!-- Header -->
     <header id="header">
-        <!--        <h1 id="logo"><a href="../index.html">Home</a></h1>-->
+        <!--        <div id="logo"><a href="../index.html">Home</a></div>-->
         <nav id="nav">
             <ul>
                 <li><a href="../index.html">Home</a></li>

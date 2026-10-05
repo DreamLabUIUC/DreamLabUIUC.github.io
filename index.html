@@ -4,20 +4,110 @@
 	html5up.net | @ajlkn
 	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
 -->
-<html>
+<html lang="en">
 <head>
 	<script>
         if (location.host === "dreamlabuiuc.github.io") {
-            location.replace("http://dream.ischool.illinois.edu/");
+            location.replace("https://dream.ischool.illinois.edu/" + location.pathname.slice(1) + location.search + location.hash);
         }
     </script>
-    <title>Dream Lab iSchool UIUC</title>
+    <title>DREAM Lab at UIUC iSchool | Reliable AI for Medicine, Agentic AI, LLM Security</title>
     <meta charset="utf-8"/>
+    <link rel="canonical" href="https://dream.ischool.illinois.edu/">
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="DREAM Lab, UIUC">
+    <meta property="og:title" content="DREAM Lab at UIUC iSchool | Reliable AI for Medicine, Agentic AI, LLM Security">
+    <meta property="og:description" content="DREAM Lab at the UIUC School of Information Sciences, led by Haohan Wang: agentic AI, trustworthy and secure machine learning, and AI for computational biology.">
+    <meta property="og:url" content="https://dream.ischool.illinois.edu/">
+    <meta property="og:image" content="https://dream.ischool.illinois.edu/images/banner.jpg">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@HaohanWang">
+    <meta name="twitter:title" content="DREAM Lab at UIUC iSchool | Reliable AI for Medicine, Agentic AI, LLM Security">
+    <meta name="twitter:description" content="DREAM Lab at the UIUC School of Information Sciences, led by Haohan Wang: agentic AI, trustworthy and secure machine learning, and AI for computational biology.">
+    <meta name="twitter:image" content="https://dream.ischool.illinois.edu/images/banner.jpg">
+    <link rel="alternate" type="application/rss+xml" title="DREAM Lab blog" href="https://dream.ischool.illinois.edu/feed.xml">
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no"/>
-    <meta name="description"
-          content="DREAM Lab at the iSchool, University of Illinois Urbana-Champaign. We develop AI methods for computational biology and healthcare, including agentic AI architectures and trustworthy, secure machine learning, with applications to the genetic basis of human complex traits such as Alzheimer's disease and cancer.">
-    <meta name="keywords"
-          content="agentic AI scientific discovery, autonomous AI genomics, computational biology AI, trustworthy machine learning, AI disease discovery, UIUC AI research, transformative AI systems, moonshot AI projects, transparent multi-agent systems, AI regulatory networks">
+    <meta name="description" content="DREAM Lab at the UIUC School of Information Sciences, led by Haohan Wang: agentic AI, trustworthy and secure machine learning, and AI for computational biology.">
+    <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "ResearchOrganization",
+      "@id": "https://dream.ischool.illinois.edu/#lab",
+      "name": "DREAM Lab",
+      "alternateName": "Developing Reliable and Efficient AI for Medicine",
+      "url": "https://dream.ischool.illinois.edu/",
+      "logo": "https://dream.ischool.illinois.edu/favicon/android-chrome-512x512.png",
+      "description": "Research lab at the School of Information Sciences, University of Illinois Urbana-Champaign, developing agentic AI, trustworthy and secure machine learning, and AI methods for computational biology.",
+      "parentOrganization": {
+        "@type": "CollegeOrUniversity",
+        "name": "University of Illinois Urbana-Champaign",
+        "department": {
+          "@type": "Organization",
+          "name": "School of Information Sciences",
+          "url": "https://ischool.illinois.edu/"
+        }
+      },
+      "founder": {
+        "@id": "https://dream.ischool.illinois.edu/#haohan-wang"
+      },
+      "knowsAbout": [
+        "agentic AI",
+        "multi-agent LLM systems",
+        "prompt injection",
+        "LLM security",
+        "generative engine optimization",
+        "LLM reasoning",
+        "trustworthy machine learning",
+        "domain generalization",
+        "computational biology",
+        "genomics",
+        "Alzheimer's disease"
+      ],
+      "sameAs": [
+        "https://github.com/DreamLabUIUC",
+        "https://ischool.illinois.edu/research/labs"
+      ]
+    },
+    {
+      "@type": "Person",
+      "@id": "https://dream.ischool.illinois.edu/#haohan-wang",
+      "name": "Haohan Wang",
+      "jobTitle": "Assistant Professor",
+      "worksFor": {
+        "@id": "https://dream.ischool.illinois.edu/#lab"
+      },
+      "affiliation": {
+        "@type": "CollegeOrUniversity",
+        "name": "University of Illinois Urbana-Champaign"
+      },
+      "alumniOf": {
+        "@type": "CollegeOrUniversity",
+        "name": "Carnegie Mellon University"
+      },
+      "url": "https://haohanwang.ischool.illinois.edu/",
+      "sameAs": [
+        "https://ischool.illinois.edu/people/haohan-wang",
+        "https://scholar.google.com/citations?user=nZxJGeUAAAAJ",
+        "https://x.com/HaohanWang",
+        "https://www.linkedin.com/in/haohanwang/",
+        "https://experts.illinois.edu/en/persons/haohan-wang/"
+      ]
+    },
+    {
+      "@type": "WebSite",
+      "@id": "https://dream.ischool.illinois.edu/#site",
+      "url": "https://dream.ischool.illinois.edu/",
+      "name": "DREAM Lab, UIUC",
+      "publisher": {
+        "@id": "https://dream.ischool.illinois.edu/#lab"
+      },
+      "inLanguage": "en"
+    }
+  ]
+}
+    </script>
     <link rel="stylesheet" href="assets/css/main.css"/>
     <noscript>
         <link rel="stylesheet" href="assets/css/noscript.css"/>
@@ -38,7 +128,7 @@
         <div class="logo">
             <!-- <span class="icon fa-gem"></span> -->
             <span><img style='padding-top: 25%;height: 75%; width: 75%; object-fit: contain' src="images/uiuclogo.png"
-                       alt=""/></span>
+                       alt="University of Illinois logo"/></span>
         </div>
         <div class="content">
             <div class="inner">
@@ -46,6 +136,8 @@
                 <h4><span style="color: #f15735">D</span>eveloping <span style="color: #f15735">R</span>eliable and
                     <span style="color: #f15735">E</span>fficient <span style="color: #f15735">A</span>I for <span
                             style="color: #f15735">M</span>edicine</h4>
+                <p style="margin-top:1em">We are a research lab at the School of Information Sciences, University of Illinois Urbana-Champaign, led by <a href="https://haohanwang.ischool.illinois.edu/">Prof. Haohan Wang</a>. We build agentic AI and trustworthy, secure machine learning, and apply them to computational biology.</p>
+                <p style="font-size:0.8em">Latest: <a href="blogs/agent_primitives.html">Agent Primitives (ICML 2026)</a> &middot; <a href="secfid/">SecFid: the hidden cost of prompt injection defense (ICML 2026 Spotlight)</a> &middot; <a href="blogs/controlling_output_rankings_core.html">CORE: rankings in LLM-based search</a></p>
             </div>
         </div>
         <nav>

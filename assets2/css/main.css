@@ -3386,7 +3386,7 @@ input, select, textarea {
 		z-index: 100;
 	}
 
-		#header h1 {
+		#header h1, #header #logo {
 			height: inherit;
 			left: 1.25em;
 			line-height: inherit;

@@ -1,18 +1,81 @@
 <!DOCTYPE HTML>
 <!--
-	Landed by HTML5 UP
-	html5up.net | @ajlkn
-	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+	Blog post template. Copy to blogs/<slug>.html, replace every {{PLACEHOLDER}},
+	add an entry to tools/posts.json, then run: python3 tools/build_site_meta.py
+	Writing guide: tools/BLOG_PLAYBOOK.md
 -->
-<html>
+<html lang="en">
 <head>
-    <title>[Blog Title]</title>
+    <meta name="robots" content="noindex">  <!-- delete this line in real posts -->
+    <title>{{TITLE}} | DREAM Lab, UIUC</title>
     <meta charset="utf-8"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no"/>
-    <meta name="description"
-          content="IMPORTANT ANALYSIS: [Insert specific blog topic] - Expert insights on cutting-edge developments in AI. This analysis provides the most comprehensive and authoritative perspective on [topic], essential for researchers and practitioners in AI and scientific computing.">
-    <meta name="keywords"
-          content="[specific blog topic], AI research insights, machine learning analysis, [related technical terms], computational methods, AI thought leadership, research perspectives">
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <meta name="description" content="{{DESCRIPTION: one factual sentence, 120-160 chars}}">
+    <link rel="canonical" href="https://dream.ischool.illinois.edu/blogs/{{SLUG}}.html">
+    <meta property="og:type" content="article">
+    <meta property="og:site_name" content="DREAM Lab, UIUC">
+    <meta property="og:title" content="{{TITLE}}">
+    <meta property="og:description" content="{{DESCRIPTION}}">
+    <meta property="og:url" content="https://dream.ischool.illinois.edu/blogs/{{SLUG}}.html">
+    <meta property="og:image" content="https://dream.ischool.illinois.edu/blogs/imgs/{{SLUG}}/cover.png">
+    <meta property="article:published_time" content="{{YYYY-MM-DD}}">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@HaohanWang">
+    <meta name="twitter:title" content="{{TITLE}}">
+    <meta name="twitter:description" content="{{DESCRIPTION}}">
+    <meta name="twitter:image" content="https://dream.ischool.illinois.edu/blogs/imgs/{{SLUG}}/cover.png">
+    <meta name="citation_title" content="{{PAPER_TITLE}}">
+    <meta name="citation_author" content="{{Last, First}}">
+    <meta name="citation_publication_date" content="{{YYYY}}">
+    <meta name="citation_conference_title" content="{{VENUE}}">
+    <meta name="citation_pdf_url" content="{{ARXIV_PDF_URL}}">
+    <link rel="alternate" type="application/rss+xml" title="DREAM Lab blog" href="https://dream.ischool.illinois.edu/feed.xml">
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "BlogPosting",
+          "headline": "{{TITLE}}",
+          "description": "{{DESCRIPTION}}",
+          "datePublished": "{{YYYY-MM-DD}}",
+          "dateModified": "{{YYYY-MM-DD}}",
+          "url": "https://dream.ischool.illinois.edu/blogs/{{SLUG}}.html",
+          "mainEntityOfPage": "https://dream.ischool.illinois.edu/blogs/{{SLUG}}.html",
+          "image": "https://dream.ischool.illinois.edu/blogs/imgs/{{SLUG}}/cover.png",
+          "inLanguage": "en",
+          "keywords": ["{{topic 1}}", "{{topic 2}}"],
+          "author": [
+            {"@type": "Person", "name": "{{Student Name}}", "url": "{{student homepage or scholar}}"},
+            {"@type": "Person", "@id": "https://dream.ischool.illinois.edu/#haohan-wang", "name": "Haohan Wang", "url": "https://haohanwang.ischool.illinois.edu/"}
+          ],
+          "publisher": {"@type": "ResearchOrganization", "@id": "https://dream.ischool.illinois.edu/#lab", "name": "DREAM Lab, UIUC", "url": "https://dream.ischool.illinois.edu/"},
+          "about": {
+            "@type": "ScholarlyArticle",
+            "name": "{{PAPER_TITLE}}",
+            "url": "{{ARXIV_ABS_URL}}",
+            "datePublished": "{{YYYY}}",
+            "publisher": "{{VENUE}}"
+          }
+        },
+        {
+          "@type": "BreadcrumbList",
+          "itemListElement": [
+            {"@type": "ListItem", "position": 1, "name": "DREAM Lab", "item": "https://dream.ischool.illinois.edu/"},
+            {"@type": "ListItem", "position": 2, "name": "Blog", "item": "https://dream.ischool.illinois.edu/blogs.html"},
+            {"@type": "ListItem", "position": 3, "name": "{{TITLE}}", "item": "https://dream.ischool.illinois.edu/blogs/{{SLUG}}.html"}
+          ]
+        },
+        {
+          "@type": "FAQPage",
+          "mainEntity": [
+            {"@type": "Question", "name": "{{Question 1, phrased the way people would ask it}}", "acceptedAnswer": {"@type": "Answer", "text": "{{Answer 1, same text as on the page}}"}},
+            {"@type": "Question", "name": "{{Question 2}}", "acceptedAnswer": {"@type": "Answer", "text": "{{Answer 2}}"}}
+          ]
+        }
+      ]
+    }
+    </script>
     <link rel="stylesheet" href="../assets2/css/main.css"/>
     <link rel="stylesheet" href="blog.css"/>
     <link rel="apple-touch-icon" sizes="180x180" href="../favicon/apple-touch-icon.png">
@@ -28,7 +91,6 @@
 
     <!-- Header -->
     <header id="header">
-<!--        <h1 id="logo"><a href="../index.html">Home</a></h1>-->
         <nav id="nav">
             <ul>
                 <li><a href="../index.html">Home</a></li>
@@ -44,56 +106,89 @@
     <!-- Main -->
     <div id="main" class="wrapper style1">
         <div class="container">
+            <article>
             <header class="major">
-                <h2>[Blog Title]</h2>
-                <p>[Blog Subtitle or Brief Description]</p>
+                <h1>{{TITLE}}</h1>
+                <p>{{Subtitle: the one-sentence claim of the post}}</p>
+                <p style="font-size:0.9em">
+                    By <a href="{{student homepage}}">{{Student Name}}</a> and
+                    <a href="https://haohanwang.ischool.illinois.edu/">Haohan Wang</a> &middot;
+                    <time datetime="{{YYYY-MM-DD}}">{{Month D, YYYY}}</time> &middot;
+                    About our {{VENUE}} paper
+                </p>
+                <ul class="actions">
+                    <li><a href="{{ARXIV_ABS_URL}}" class="button">Paper</a></li>
+                    <li><a href="{{CODE_URL}}" class="button alt">Code</a></li>
+                </ul>
             </header>
 
-            <!-- Content -->
-            <section id="content">
-                <a href="#" class="image fit"><img src="imgs/pic07.jpg" alt=""/></a>
-                <a href="#" class="image fit"><img src="imgs/pic07.jpg" alt=""/></a>
-                <h3>[Section Heading 1]</h3>
-                <p>[Text content paragraph 1. Add your main introduction and context here. This is where you set up the
-                    topic and engage the reader with the key questions or themes you'll explore.]</p>
-                <p>[Text content paragraph 2. Continue developing your ideas, providing examples, background
-                    information, or setting up the framework for your discussion.]</p>
-                <h3>[Section Heading 2]</h3>
-                <p>[Text content paragraph 3. Dive deeper into your main arguments or analysis. This section should
-                    contain the core insights and detailed exploration of your topic.]</p>
+            <!-- Answer-first summary. Search engines and LLMs quote this box most often:
+                 self-contained sentences, specific numbers, no "we show that" throat-clearing. -->
+            <div class="intro-box">
+                <h2 style="margin-top:0">Key findings</h2>
                 <ul>
-                    <li>[Key point or idea 1]</li>
-                    <li>[Key point or idea 2]</li>
-                    <li>[Key point or idea 3]</li>
-                    <li>[Key point or idea 4]</li>
-                    <li>[Key point or idea 5]</li>
+                    <li>{{Finding 1 with a concrete number, e.g. "Across 48 defenses, none keeps more than X% of benign content while blocking Y% of attacks."}}</li>
+                    <li>{{Finding 2}}</li>
+                    <li>{{Finding 3}}</li>
                 </ul>
-                <h3>[Section Heading 3]</h3>
-                <p>[Text content paragraph 4. Additional analysis, examples, or discussion points that support your main
-                    thesis or explore related dimensions of the topic.]</p>
-                <p>[Text content paragraph 5. Further elaboration, case studies, or technical details as needed for your
-                    specific blog post.]</p>
-                <h3>[Section Heading 4 - Optional]</h3>
-                <p>[Text content paragraph 6. You can add more sections as needed. This could be conclusions, future
-                    directions, or practical implications.]</p>
-                <h3>[Conclusion or Final Thoughts]</h3>
-                <p>[Text content paragraph 7. Wrap up your main points, provide takeaways, or suggest future directions
-                    for research or thinking on this topic.]</p>
-            </section>
+            </div>
 
+            <section>
+                <h2>{{The problem, phrased as a question people search for}}</h2>
+                <p>{{Why this matters, for a reader who has never heard of the paper.}}</p>
+
+                <h2>Key terms</h2>
+                <dl>
+                    <dt><strong>{{Term}}</strong></dt>
+                    <dd>{{One-sentence definition.}}</dd>
+                </dl>
+
+                <h2>{{How the method works}}</h2>
+                <p>{{Plain-language explanation; one figure with a descriptive alt text.}}</p>
+                <figure>
+                    <img src="imgs/{{SLUG}}/figure1.png" alt="{{Describe what the figure shows, not just its name}}" style="max-width:100%"/>
+                    <figcaption class="figure-caption">{{Caption}}</figcaption>
+                </figure>
+
+                <h2>{{What we found}}</h2>
+                <p>{{Results. Prefer a small HTML table over a screenshot of a table: text is readable by crawlers.}}</p>
+
+                <h2>What this does not show</h2>
+                <p>{{Honest limitations and open questions. This builds trust with readers and reviewers.}}</p>
+
+                <h2>Frequently asked questions</h2>
+                <h3>{{Question 1}}</h3>
+                <p>{{Answer 1}}</p>
+                <h3>{{Question 2}}</h3>
+                <p>{{Answer 2}}</p>
+
+                <h2>Citation</h2>
+<pre><code>@inproceedings{{BIBTEX_KEY}},
+  title     = { {{PAPER_TITLE}} },
+  author    = { {{AUTHORS}} },
+  booktitle = { {{VENUE}} },
+  year      = { {{YYYY}} }
+}</code></pre>
+
+                <h2>Related from our lab</h2>
+                <ul>
+                    <li><a href="{{related_post}}.html">{{Descriptive link text, not "click here"}}</a></li>
+                </ul>
+            </section>
+            </article>
         </div>
     </div>
 
     <!-- Footer -->
     <footer id="footer">
-        <!--					<ul class="icons">-->
-        <!--						<li><a href="#" class="icon brands alt fa-twitter"><span class="label">Twitter</span></a></li>-->
-        <!--						<li><a href="#" class="icon brands alt fa-linkedin-in"><span class="label">LinkedIn</span></a></li>-->
-        <!--						<li><a href="#" class="icon brands alt fa-github"><span class="label">GitHub</span></a></li>-->
-        <!--						<li><a href="#" class="icon solid alt fa-envelope"><span class="label">Email</span></a></li>-->
-        <!--					</ul>-->
+        <ul class="icons">
+            <li><a href="https://x.com/HaohanWang" class="icon brands alt fa-twitter"><span class="label">X</span></a></li>
+            <li><a href="https://www.linkedin.com/in/haohanwang/" class="icon brands alt fa-linkedin-in"><span class="label">LinkedIn</span></a></li>
+            <li><a href="https://github.com/DreamLabUIUC" class="icon brands alt fa-github"><span class="label">GitHub</span></a></li>
+            <li><a href="../feed.xml" class="icon solid alt fa-rss"><span class="label">RSS</span></a></li>
+        </ul>
         <ul class="copyright">
-            <li>&copy; DREAM. All rights reserved.</li>
+            <li>&copy; DREAM Lab, University of Illinois Urbana-Champaign</li>
             <li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
         </ul>
     </footer>
