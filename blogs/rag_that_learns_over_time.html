@@ -1,0 +1,393 @@
+<!DOCTYPE HTML>
+<!--
+	Writing guide: tools/BLOG_PLAYBOOK.md
+-->
+<html lang="en">
+<head>
+    <title>RAG That Learns Over Time: Source Learning for LLM Agents | DREAM Lab, UIUC</title>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <meta name="description" content="SourceLearn builds RAG that learns over time: a persistent source model beat Hybrid RAG by up to 22.6 points, best in 13 of 15 settings.">
+    <link rel="canonical" href="https://dream.ischool.illinois.edu/blogs/rag_that_learns_over_time.html">
+    <meta property="og:type" content="article">
+    <meta property="og:site_name" content="DREAM Lab, UIUC">
+    <meta property="og:title" content="RAG That Learns Over Time: Source Learning for LLM Agents">
+    <meta property="og:description" content="SourceLearn builds RAG that learns over time: a persistent source model beat Hybrid RAG by up to 22.6 points, best in 13 of 15 settings.">
+    <meta property="og:url" content="https://dream.ischool.illinois.edu/blogs/rag_that_learns_over_time.html">
+    <meta property="og:image" content="https://dream.ischool.illinois.edu/blogs/imgs/rag_that_learns_over_time/cover.png">
+    <meta property="article:published_time" content="2026-10-05">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@HaohanWang">
+    <meta name="twitter:title" content="RAG That Learns Over Time: Source Learning for LLM Agents">
+    <meta name="twitter:description" content="SourceLearn builds RAG that learns over time: a persistent source model beat Hybrid RAG by up to 22.6 points, best in 13 of 15 settings.">
+    <meta name="twitter:image" content="https://dream.ischool.illinois.edu/blogs/imgs/rag_that_learns_over_time/cover.png">
+    <meta name="citation_title" content="From Knowledge Access to Source Learning: Developing Source-Specific Competence">
+    <meta name="citation_author" content="Fu, Lucheng">
+    <meta name="citation_author" content="Xia, Kejing">
+    <meta name="citation_author" content="Wang, Yiyang">
+    <meta name="citation_author" content="Jin, Yiqiao">
+    <meta name="citation_author" content="He, Jinjin">
+    <meta name="citation_author" content="Yang, Xiyuan">
+    <meta name="citation_author" content="Liu, Haoxin">
+    <meta name="citation_author" content="Yu, Ye">
+    <meta name="citation_author" content="Jin, Haibo">
+    <meta name="citation_author" content="Xiao, Yijia">
+    <meta name="citation_author" content="Lee, Wenke">
+    <meta name="citation_author" content="Prakash, B. Aditya">
+    <meta name="citation_author" content="Wang, Haohan">
+    <meta name="citation_publication_date" content="2026/10/01">
+    <meta name="citation_journal_title" content="arXiv">
+    <meta name="citation_arxiv_id" content="2610.02150">
+    <meta name="citation_pdf_url" content="https://arxiv.org/pdf/2610.02150">
+    <link rel="alternate" type="application/rss+xml" title="DREAM Lab blog" href="https://dream.ischool.illinois.edu/feed.xml">
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "BlogPosting",
+          "headline": "RAG That Learns Over Time: Source Learning for LLM Agents",
+          "description": "SourceLearn builds RAG that learns over time: a persistent source model beat Hybrid RAG by up to 22.6 points, best in 13 of 15 settings.",
+          "datePublished": "2026-10-05",
+          "dateModified": "2026-10-05",
+          "url": "https://dream.ischool.illinois.edu/blogs/rag_that_learns_over_time.html",
+          "mainEntityOfPage": "https://dream.ischool.illinois.edu/blogs/rag_that_learns_over_time.html",
+          "image": "https://dream.ischool.illinois.edu/blogs/imgs/rag_that_learns_over_time/cover.png",
+          "inLanguage": "en",
+          "keywords": ["retrieval-augmented generation", "agent memory", "source learning", "LLM agents", "SourceLearn"],
+          "author": [
+            {"@type": "Person", "name": "Lucheng Fu", "url": "https://github.com/luchengfu6", "affiliation": {"@type": "CollegeOrUniversity", "name": "Georgia Institute of Technology"}},
+            {"@type": "Person", "@id": "https://dream.ischool.illinois.edu/#haohan-wang", "name": "Haohan Wang", "url": "https://haohanwang.ischool.illinois.edu/", "affiliation": {"@type": "CollegeOrUniversity", "name": "University of Illinois Urbana-Champaign"}}
+          ],
+          "publisher": {"@type": "ResearchOrganization", "@id": "https://dream.ischool.illinois.edu/#lab", "name": "DREAM Lab, UIUC", "url": "https://dream.ischool.illinois.edu/"},
+          "about": {
+            "@type": "ScholarlyArticle",
+            "name": "From Knowledge Access to Source Learning: Developing Source-Specific Competence",
+            "url": "https://arxiv.org/abs/2610.02150",
+            "datePublished": "2026-10-01",
+            "publisher": "arXiv",
+            "author": [
+              {"@type": "Person", "name": "Lucheng Fu"}, {"@type": "Person", "name": "Kejing Xia"},
+              {"@type": "Person", "name": "Yiyang Wang"}, {"@type": "Person", "name": "Yiqiao Jin"},
+              {"@type": "Person", "name": "Jinjin He"}, {"@type": "Person", "name": "Xiyuan Yang"},
+              {"@type": "Person", "name": "Haoxin Liu"}, {"@type": "Person", "name": "Ye Yu"},
+              {"@type": "Person", "name": "Haibo Jin"}, {"@type": "Person", "name": "Yijia Xiao"},
+              {"@type": "Person", "name": "Wenke Lee"}, {"@type": "Person", "name": "B. Aditya Prakash"},
+              {"@type": "Person", "name": "Haohan Wang"}
+            ]
+          }
+        },
+        {
+          "@type": "BreadcrumbList",
+          "itemListElement": [
+            {"@type": "ListItem", "position": 1, "name": "DREAM Lab", "item": "https://dream.ischool.illinois.edu/"},
+            {"@type": "ListItem", "position": 2, "name": "Blog", "item": "https://dream.ischool.illinois.edu/blogs.html"},
+            {"@type": "ListItem", "position": 3, "name": "RAG That Learns Over Time: Source Learning for LLM Agents", "item": "https://dream.ischool.illinois.edu/blogs/rag_that_learns_over_time.html"}
+          ]
+        },
+        {
+          "@type": "FAQPage",
+          "mainEntity": [
+            {"@type": "Question", "name": "What is the difference between RAG and agent memory?", "acceptedAnswer": {"@type": "Answer", "text": "RAG retrieves passages from a source at query time, while agent memory stores what an agent took away from past interactions. Neither one explicitly builds an improving understanding of the source itself; source learning, as defined in the SourceLearn paper (arXiv 2610.02150), targets that third object: a persistent model of how one source is structured, interpreted, and applied."}},
+            {"@type": "Question", "name": "Why doesn't RAG get better with repeated use of the same documents?", "acceptedAnswer": {"@type": "Answer", "text": "Standard RAG treats every query as a fresh access event: it retrieves chunks, answers, and keeps nothing about how those chunks fit together. The SourceLearn paper argues that this forces the model to reconstruct the same interpretation again and again, and that repeated use is an unused learning opportunity."}},
+            {"@type": "Question", "name": "Is a learned source model just a summary of the documents?", "acceptedAnswer": {"@type": "Answer", "text": "According to the paper's analysis, no. During learning the share of source-model units with explicit applicability conditions rose from roughly 30% to 65-82%, and coverage of the facts future test questions needed rose from 23.2% to 40.0%, so learning reorganized what was represented rather than only compressing more text."}},
+            {"@type": "Question", "name": "What happens when retrieval misses the right document?", "acceptedAnswer": {"@type": "Answer", "text": "On MultiDoc2Dial with GPT-5.6-Luna, removing the gold document from retrieval lowered Hybrid RAG by about 25 points but SourceLearn by only about 8. With no retrieved evidence at all, the learned source model alone performed comparably to Hybrid RAG with eight retrieved elements."}}
+          ]
+        }
+      ]
+    }
+    </script>
+    <link rel="stylesheet" href="../assets2/css/main.css"/>
+    <link rel="stylesheet" href="blog.css"/>
+    <link rel="apple-touch-icon" sizes="180x180" href="../favicon/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="../favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="../favicon/favicon-16x16.png">
+    <link rel="manifest" href="../favicon/site.webmanifest">
+    <noscript>
+        <link rel="stylesheet" href="../assets2/css/noscript.css"/>
+    </noscript>
+</head>
+<body class="is-preload">
+<div id="page-wrapper">
+
+    <!-- Header -->
+    <header id="header">
+        <nav id="nav">
+            <ul>
+                <li><a href="../index.html">Home</a></li>
+                <li><a href="../overview.html">Overview</a></li>
+                <li><a href="../publications.html">Publications</a></li>
+                <li><a href="../blogs.html">Blogs</a></li>
+                <li><a href="../software.html">Software</a></li>
+                <li><a href="../contact.html">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Main -->
+    <div id="main" class="wrapper style1">
+        <div class="container">
+            <article>
+            <header class="major">
+                <h1>RAG That Learns Over Time: Source Learning for LLM Agents</h1>
+                <p>When an agent uses the same documents again and again, it can build a lasting understanding of them, and that understanding beats retrieval alone.</p>
+                <p style="font-size:0.9em">
+                    By <a href="https://github.com/luchengfu6">Lucheng Fu</a> and
+                    <a href="https://haohanwang.ischool.illinois.edu/">Haohan Wang</a> &middot;
+                    <time datetime="2026-10-05">October 5, 2026</time> &middot;
+                    About our 2026 arXiv preprint (arXiv:2610.02150)
+                </p>
+                <ul class="actions">
+                    <li><a href="https://arxiv.org/abs/2610.02150" class="button">Paper</a></li>
+                    <li><a href="https://github.com/luchengfu6/SourceLearn" class="button alt">Code</a></li>
+                    <li><a href="https://sourcelearn.github.io/" class="button alt">Project site</a></li>
+                </ul>
+            </header>
+
+            <p>Most retrieval-augmented generation (RAG) systems are just as good on their hundredth question about a
+                document collection as on their first. They retrieve passages, answer, and forget how those passages fit
+                together. Can we build <strong>RAG that learns over time</strong> instead? Our answer is yes. In
+                <em>From Knowledge Access to Source Learning: Developing Source-Specific Competence</em> (Fu et al.,
+                arXiv 2026), researchers at Georgia Tech, the University of Illinois Urbana-Champaign, and UCLA
+                introduce <strong>SourceLearn</strong>. It keeps a persistent, revisable &ldquo;source model&rdquo; of
+                one source and refines it through self-study and task feedback. Across five benchmarks and three LLM
+                backends it was best in 13 of 15 settings, up to 22.6 points above Hybrid RAG.</p>
+
+            <!-- Answer-first summary. -->
+            <div class="intro-box">
+                <h2 style="margin-top:0">Key findings</h2>
+                <ul>
+                    <li>In the 2026 SourceLearn paper (arXiv 2610.02150), a learned persistent source model added to
+                        Hybrid RAG gave the best result in 13 of 15 benchmark&ndash;backend settings, with a peak gain
+                        of 22.6 points over Hybrid RAG (APIBench, GPT-5.6-Luna).</li>
+                    <li>With GPT-5.6-Luna, SourceLearn improved over Hybrid RAG by 14.3 points on average across
+                        MultiDoc2Dial, NarrativeQA, SWE-QA, APIBench, and AppWorld; the averages were +4.9 with
+                        gpt-oss-120b and +13.4 with DeepSeek-V4.1-Flash.</li>
+                    <li>When the gold document was removed from retrieval on MultiDoc2Dial, Hybrid RAG lost about 25
+                        points while SourceLearn lost about 8, according to the SourceLearn paper.</li>
+                    <li>SourceLearn's source model is not just a summary: its coverage of facts that later test
+                        questions needed rose from 23.2% to 40.0% during learning, and answer accuracy rose from 67.5%
+                        when none of those facts were covered to 86.6% when all were.</li>
+                </ul>
+            </div>
+
+            <section>
+                <h2>Why doesn't RAG get better with repeated use of the same documents?</h2>
+                <p>Picture an agent that answers questions about one company's API documentation all day. Each query
+                    triggers a fresh search: find the closest chunks, paste them into the prompt, answer. If question
+                    40 needs the same subtle rule about call prerequisites as question 3, the model has to rediscover
+                    that rule from raw text again. Nothing it worked out on question 3 carries over.</p>
+                <p>Two families of methods partly address this. <em>Structured source representations</em> such as
+                    RAPTOR (hierarchical summaries) and HippoRAG 2 (graph-based associative retrieval) organize the
+                    source once, up front. <em>Agent memory</em> methods such as Agent Workflow Memory (AWM) store
+                    lessons from past tasks. The SourceLearn paper argues that both miss the same thing. One kind
+                    builds the representation once and never revises it. The other keeps what the agent learned from
+                    tasks rather than what it learned about the source. Repeated access to a source does not by itself
+                    produce understanding of it.</p>
+
+                <h2>What is the difference between RAG, agent memory, and source learning?</h2>
+                <table class="comparison-table">
+                    <tr><th>Approach</th><th>What it keeps between tasks</th><th>Where persistent facts come from</th></tr>
+                    <tr><td>RAG (e.g., Hybrid RAG)</td><td>An index of the source; nothing learned</td><td>The source, retrieved per query</td></tr>
+                    <tr><td>Static source structure (RAPTOR, HippoRAG 2)</td><td>A summary tree or graph built once</td><td>The source, processed once</td></tr>
+                    <tr><td>Agent memory (AWM)</td><td>Workflows or insights induced from past tasks</td><td>Task experience</td></tr>
+                    <tr><td>Source learning (SourceLearn)</td><td>A source model that is revised over time</td><td>Always re-read from the source; tasks only decide <em>what</em> to revisit</td></tr>
+                </table>
+                <p>That last column is the design rule that sets SourceLearn apart. Task feedback can flag a gap, but
+                    the fix is written by rereading the authoritative source, never by storing a task's answer.</p>
+
+                <h2>Key terms</h2>
+                <dl>
+                    <dt><strong>Source</strong></dt>
+                    <dd>An identifiable body of external knowledge an agent consults repeatedly, such as a document
+                        collection, a code repository, or API documentation.</dd>
+                    <dt><strong>Source learning</strong></dt>
+                    <dd>Developing reusable, source-specific competence through repeated study and use of one
+                        persistent source, rather than re-accessing it from scratch for each task.</dd>
+                    <dt><strong>Source-specific competence</strong></dt>
+                    <dd>Reusable understanding of how a source's knowledge is structured, interpreted, and applied,
+                        including relations, governing conditions, procedures, and exceptions.</dd>
+                    <dt><strong>Source model</strong></dt>
+                    <dd>An explicit, persistent, revisable text representation of that competence, organized around
+                        entities, that is given to the model alongside normally retrieved evidence.</dd>
+                    <dt><strong>Grounded reconstruction</strong></dt>
+                    <dd>SourceLearn's update rule: an edit is committed only if it is supported by evidence from the
+                        source and keeps previously supported meaning.</dd>
+                </dl>
+
+                <h2>How does SourceLearn build RAG that learns over time?</h2>
+                <p>SourceLearn runs in three stages. The persistent source model it produces is used next to ordinary
+                    retrieval, not in place of it.</p>
+                <figure>
+                    <img src="imgs/rag_that_learns_over_time/figure_method.png" alt="Diagram of the SourceLearn pipeline. An authoritative source (documents, a code repository, or API docs) feeds three stages: initial construction builds a provisional model M0, self-directed learning inspects, studies, and consolidates it into MS, and task-guided learning uses guidance tasks to repair gaps and learn a representation policy, giving MT. At task time the solver receives Hybrid RAG evidence plus up to 24k tokens of the learned source model." style="max-width:100%"/>
+                    <figcaption class="figure-caption">How SourceLearn builds RAG that learns over time. Guidance tasks only decide what to revisit; every persistent update is rewritten from the source itself.</figcaption>
+                </figure>
+                <ol>
+                    <li><strong>Initial construction.</strong> An LLM reads the source entity by entity, using native
+                        structure such as code modules or document sections, and writes a provisional model of major
+                        entities, relations, procedures, and conditions. Low-level details stay in the source.</li>
+                    <li><strong>Self-Directed Source Learning.</strong> The system rereads each part of the source next
+                        to its current representation and asks what the representation still fails to explain. A
+                        planner then picks a small set of study actions. <em>Deepen</em> investigates an unresolved
+                        aspect of one entity; <em>Connect</em> studies a dependency between two entities. Observations
+                        pile up and are written to the model once, through grounded reconstruction. The paper calls
+                        this pattern &ldquo;read-many, write-once.&rdquo;</li>
+                    <li><strong>Task-Guided Source Learning.</strong> A set of guidance tasks (30% of each source's
+                        tasks, disjoint from the test tasks) shows what matters in practice. When a guidance task fails
+                        because required knowledge is missing from the model, that region of the source is reread and
+                        repaired (<em>failure-guided local refinement</em>). Across tasks, recurring lessons such as
+                        &ldquo;keep this distinction explicit&rdquo; are combined into a representation policy, and
+                        the whole model is recalibrated under it (<em>cross-task representation learning</em>).</li>
+                </ol>
+                <p>At test time, the solver receives the same Hybrid RAG evidence as the baseline plus up to 24k tokens
+                    of task-relevant source-model content.</p>
+
+                <h2>Does a learned source model beat RAG, RAPTOR, HippoRAG 2, and agent memory?</h2>
+                <p>The evaluation spans five benchmarks: MultiDoc2Dial (government-agency documents),
+                    NarrativeQA (full books and movie scripts), SWE-QA (questions about Python repositories such as
+                    pytest and flask), APIBench (TorchHub, HuggingFace, and TensorFlow Hub documentation), and AppWorld
+                    (an interactive agent environment documented by 457 API specifications). All methods share the
+                    same backend, embedding model, and answer prompt. The table shows GPT-5.6-Luna results from the
+                    paper's Table 1 (accuracy %, or task goal completion for AppWorld).</p>
+                <figure>
+                    <img src="imgs/rag_that_learns_over_time/figure_results.png" alt="Grouped bar chart with GPT-5.6-Luna. SourceLearn beats Hybrid RAG on all five benchmarks: MultiDoc2Dial 77.6 vs 64.9 (+12.7), NarrativeQA 80.2 vs 66.0 (+14.2), SWE-QA 69.5 vs 56.9 (+12.6), APIBench 70.4 vs 47.8 (+22.6), AppWorld 81.5 vs 72.0 (+9.5)." style="max-width:100%"/>
+                    <figcaption class="figure-caption">SourceLearn vs Hybrid RAG with GPT-5.6-Luna (data: Table 1 of arXiv:2610.02150). Labels show the gain in points; the full comparison is in the table below.</figcaption>
+                </figure>
+                <table class="comparison-table">
+                    <tr><th>Method</th><th>MultiDoc2Dial</th><th>NarrativeQA</th><th>SWE-QA</th><th>APIBench</th><th>AppWorld</th></tr>
+                    <tr><td>Hybrid RAG</td><td>64.9</td><td>66.0</td><td>56.9</td><td>47.8</td><td>72.0</td></tr>
+                    <tr><td>RAPTOR</td><td>71.2</td><td>68.1</td><td>50.8</td><td>61.9</td><td>75.6</td></tr>
+                    <tr><td>HippoRAG 2</td><td>66.3</td><td>66.6</td><td>62.7</td><td>55.2</td><td>77.4</td></tr>
+                    <tr><td>AWM (agent memory)</td><td>65.1</td><td>62.1</td><td>56.7</td><td>62.8</td><td>66.7</td></tr>
+                    <tr><td><strong>SourceLearn</strong></td><td><strong>77.6</strong></td><td><strong>80.2</strong></td><td><strong>69.5</strong></td><td><strong>70.4</strong></td><td><strong>81.5</strong></td></tr>
+                </table>
+                <p>The baselines are uneven. RAPTOR helps on documents but falls 6.1 points below Hybrid RAG on code,
+                    and AWM helps on APIBench but hurts on AppWorld. SourceLearn improved on all five with this
+                    backend. Over all three backends it was best in 13 of 15 settings and second-best in one more.
+                    The two exceptions were both with gpt-oss-120b: SWE-QA, where HippoRAG 2 scored 56.7 against
+                    SourceLearn's 53.4, and AppWorld, where SourceLearn (27.4) fell 3.0 points below Hybrid RAG
+                    (30.4).</p>
+                <p>Ablations with GPT-5.6-Luna show both learning stages are needed. Dropping either Self-Directed or
+                    Task-Guided Source Learning lowered accuracy on all three QA benchmarks, and the initial model was
+                    the weakest.</p>
+
+                <h2>Is the improvement just from giving the model more context?</h2>
+                <p>This is the obvious objection, and the paper tests it directly. Each retrieval baseline was given
+                    the same per-question context budget as SourceLearn (16.5k to 23.4k evidence tokens, depending on
+                    the source). SourceLearn remained best on three of four sources and second on Sphinx, where
+                    HippoRAG 2 scored 73.5 against SourceLearn's 72.5. Extra context explains part of the gain, but
+                    not all of it.</p>
+                <p>The representation analysis shows <em>what</em> changes during learning. The source model moved away
+                    from isolated facts toward rules and procedures. Units stating explicit applicability conditions
+                    rose from about 30% of the initial model to 65&ndash;82% of the final one, depending on the source.</p>
+
+                <h2>What happens when retrieval misses the right document?</h2>
+                <p>This may be the most practical result. On MultiDoc2Dial, whose questions are labeled with the gold
+                    document, the authors removed that document from retrieval. Hybrid RAG fell by about 25 points;
+                    SourceLearn fell by about 8. With zero retrieved passages, the source model alone performed
+                    comparably to Hybrid RAG with all eight retrieved elements. Learning also carried over to new
+                    material. On parts of a source that no guidance task had touched, the gain over Hybrid RAG was
+                    12.1 points, close to the 14.9-point gain on regions that guidance tasks had touched.</p>
+
+                <h2>What this does not show</h2>
+                <ul>
+                    <li><strong>Stable sources only.</strong> The paper studies persistent, authoritative, relatively
+                        stable sources. It does not test sources that change, contradict themselves, or contain noise.
+                        The authors list that as future work.</li>
+                    <li><strong>The source model is not a substitute for the source.</strong> In a grounding audit of
+                        120 sampled units per model, direct contradictions stayed at or below 1%. But after task-guided
+                        learning, 13.3% of audited units on a MultiDoc2Dial source were unsupported by their cited
+                        evidence, and many more were only partially supported. That is why SourceLearn always keeps the
+                        original source retrievable.</li>
+                    <li><strong>Not a uniform win.</strong> With gpt-oss-120b, gains were smaller (+4.9 on average)
+                        and SourceLearn trailed Hybrid RAG on AppWorld.</li>
+                    <li><strong>More study is not automatically better.</strong> Running four self-study cycles instead
+                        of one kept growing the model but did not consistently improve accuracy.</li>
+                    <li><strong>Evaluation choices.</strong> QA answers were judged by an LLM (GPT-5.6-Luna), and the
+                        ablation used two sources per QA benchmark. The work is a preprint and has not yet been peer
+                        reviewed. This post does not compare the compute cost of building the source model with the
+                        cost of plain RAG; see the paper for implementation details.</li>
+                </ul>
+
+                <h2>Frequently asked questions</h2>
+                <h3>What is the difference between RAG and agent memory?</h3>
+                <p>RAG retrieves passages from a source at query time, while agent memory stores what an agent took
+                    away from past interactions. Neither one explicitly builds an improving understanding of the source
+                    itself; source learning, as defined in the SourceLearn paper (arXiv 2610.02150), targets that third
+                    object: a persistent model of how one source is structured, interpreted, and applied.</p>
+                <h3>Why doesn't RAG get better with repeated use of the same documents?</h3>
+                <p>Standard RAG treats every query as a fresh access event: it retrieves chunks, answers, and keeps
+                    nothing about how those chunks fit together. The SourceLearn paper argues that this forces the
+                    model to reconstruct the same interpretation again and again, and that repeated use is an unused
+                    learning opportunity.</p>
+                <h3>Is a learned source model just a summary of the documents?</h3>
+                <p>According to the paper's analysis, no. During learning the share of source-model units with
+                    explicit applicability conditions rose from roughly 30% to 65-82%, and coverage of the facts future
+                    test questions needed rose from 23.2% to 40.0%, so learning reorganized what was represented rather
+                    than only compressing more text.</p>
+                <h3>What happens when retrieval misses the right document?</h3>
+                <p>On MultiDoc2Dial with GPT-5.6-Luna, removing the gold document from retrieval lowered Hybrid RAG by
+                    about 25 points but SourceLearn by only about 8. With no retrieved evidence at all, the learned
+                    source model alone performed comparably to Hybrid RAG with eight retrieved elements.</p>
+
+                <h2>Citation</h2>
+<pre><code>@article{fu2026sourcelearn,
+  title   = {From Knowledge Access to Source Learning: Developing Source-Specific Competence},
+  author  = {Fu, Lucheng and Xia, Kejing and Wang, Yiyang and Jin, Yiqiao and He, Jinjin and
+             Yang, Xiyuan and Liu, Haoxin and Yu, Ye and Jin, Haibo and Xiao, Yijia and
+             Lee, Wenke and Prakash, B. Aditya and Wang, Haohan},
+  journal = {arXiv preprint arXiv:2610.02150},
+  year    = {2026}
+}</code></pre>
+
+                <h2>Related from our lab</h2>
+                <ul>
+                    <li><a href="agent_primitives.html">Agent Primitives: reusable latent building blocks for LLM multi-agent systems</a></li>
+                    <li><a href="core_explained.html">How retrieved content shapes rankings in LLM-based search (CORE explained)</a></li>
+                    <li><a href="evolution_of_prompt_optimization.html">From parameter learning to prompt learning: the evolution of prompt optimization</a></li>
+                    <li><a href="when_more_reasoning_is_actually_less.html">When more chain-of-thought reasoning hurts LLM accuracy</a></li>
+                    <li><a href="../publications.html">Full list of DREAM Lab publications</a></li>
+                </ul>
+
+                <div style="margin-top: 50px; padding-top: 30px; border-top: 1px solid rgba(255,255,255,0.2); font-size: 0.9em; color: rgba(255,255,255,0.6);">
+                    <p><strong>Paper:</strong> Lucheng Fu, Kejing Xia, Yiyang Wang, Yiqiao Jin, Jinjin He, Xiyuan Yang,
+                        Haoxin Liu, Ye Yu, Haibo Jin, Yijia Xiao, Wenke Lee, B. Aditya Prakash, Haohan Wang.
+                        &ldquo;<a href="https://arxiv.org/abs/2610.02150">From Knowledge Access to Source Learning:
+                        Developing Source-Specific Competence</a>.&rdquo; arXiv:2610.02150, 2026. Georgia Institute of
+                        Technology, University of Illinois Urbana-Champaign, and University of California, Los Angeles.</p>
+                    <p><strong>Code:</strong> <a href="https://github.com/luchengfu6/SourceLearn">github.com/luchengfu6/SourceLearn</a>
+                        &middot; <strong>Project site:</strong> <a href="https://sourcelearn.github.io/">sourcelearn.github.io</a></p>
+                </div>
+            </section>
+            </article>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer id="footer">
+        <ul class="icons">
+            <li><a href="https://x.com/HaohanWang" class="icon brands alt fa-twitter"><span class="label">X</span></a></li>
+            <li><a href="https://www.linkedin.com/in/haohanwang/" class="icon brands alt fa-linkedin-in"><span class="label">LinkedIn</span></a></li>
+            <li><a href="https://github.com/DreamLabUIUC" class="icon brands alt fa-github"><span class="label">GitHub</span></a></li>
+            <li><a href="../feed.xml" class="icon solid alt fa-rss"><span class="label">RSS</span></a></li>
+        </ul>
+        <ul class="copyright">
+            <li>&copy; DREAM Lab, University of Illinois Urbana-Champaign</li>
+            <li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
+        </ul>
+    </footer>
+
+</div>
+
+<!-- Scripts -->
+<script src="../assets2/js/jquery.min.js"></script>
+<script src="../assets2/js/jquery.scrolly.min.js"></script>
+<script src="../assets2/js/jquery.dropotron.min.js"></script>
+<script src="../assets2/js/jquery.scrollex.min.js"></script>
+<script src="../assets2/js/browser.min.js"></script>
+<script src="../assets2/js/breakpoints.min.js"></script>
+<script src="../assets2/js/util.js"></script>
+<script src="../assets2/js/main.js"></script>
+
+</body>
+</html>

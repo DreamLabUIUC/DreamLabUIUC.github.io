@@ -37,6 +37,17 @@
       "year": 2024,
       "status": "skipped",
       "reason": "2024 work; author decided not to post"
+    },
+    {
+      "title": "From Knowledge Access to Source Learning: Developing Source-Specific Competence",
+      "arxiv": "2610.02150",
+      "year": 2026,
+      "status": "published",
+      "slug": "rag_that_learns_over_time",
+      "draft_date": "2026-10-05",
+      "kind": "new",
+      "primary_query": "can RAG learn over time from repeated use of the same documents",
+      "publish_date": "2026-10-05"
     }
   ]
 }

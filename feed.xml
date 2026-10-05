@@ -6,7 +6,15 @@
   <atom:link href="https://dream.ischool.illinois.edu/feed.xml" rel="self" type="application/rss+xml"/>
   <description>Plain-language explainers of research from the DREAM Lab at the University of Illinois Urbana-Champaign.</description>
   <language>en</language>
-  <lastBuildDate>Fri, 10 Jul 2026 12:00:00 +0000</lastBuildDate>
+  <lastBuildDate>Mon, 05 Oct 2026 12:00:00 +0000</lastBuildDate>
+  <item>
+    <title>RAG That Learns Over Time: Source Learning for LLM Agents</title>
+    <link>https://dream.ischool.illinois.edu/blogs/rag_that_learns_over_time.html</link>
+    <guid>https://dream.ischool.illinois.edu/blogs/rag_that_learns_over_time.html</guid>
+    <pubDate>Mon, 05 Oct 2026 12:00:00 +0000</pubDate>
+    <category>Agentic AI</category>
+    <description>SourceLearn builds RAG that learns over time: a persistent source model beat Hybrid RAG by up to 22.6 points, best in 13 of 15 settings.</description>
+  </item>
   <item>
     <title>Agent Primitives: Reusable Latent Building Blocks for Multi-Agent Systems</title>
     <link>https://dream.ischool.illinois.edu/blogs/agent_primitives.html</link>
