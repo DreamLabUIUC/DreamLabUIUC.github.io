@@ -1,5 +1,7 @@
 {
   "_doc": "One entry per Google Scholar work that has been handled. status: published | drafted | covered (discussed in an existing post) | skipped. Match works by arXiv id when present, else by normalized title.",
+  "phase": 1,
+  "_phase_doc": "1 = clearing the 2026 backlog (Mon+Wed new, Fri early). Set to 2 permanently the first time no unhandled 2026+ work remains; never set back to 1 (Wed newest, Mon+Fri early).",
   "entries": [
     {
       "title": "Security--Fidelity Tradeoffs: The Hidden Cost of Prompt Injection Defense",

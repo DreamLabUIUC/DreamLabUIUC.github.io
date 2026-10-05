@@ -6,7 +6,8 @@ A scheduled Claude task (`dream-lab-blog-drafts`, Mon/Wed/Fri 8:00) picks papers
 drafts for review; it never publishes. `tools/post_ledger.json` records which works are handled.
 
 - **Phase 1 (until every 2026 work is handled):** Mon + Wed = newest work, blog + X/LinkedIn copy; Fri = early work (2022 or before, most cited first), blog only.
-- **Phase 2:** Wed = newest remaining work, blog + social; Mon + Fri = early works, blog only.
+- **Phase 2 (permanent once reached; recorded as `"phase": 2` in the ledger):** Wed = the latest work on Scholar that has no post yet, blog + social; Mon + Fri = early works, blog only.
+- Every draft starts from a chosen search query (primary + secondary), checked with a web search, and must pass the SEO/GEO checklist in the task prompt.
 - Every draft is checked by an author before it goes live. Google's spam policy on "scaled content abuse"
   targets many pages made mainly to rank, however they are produced.
 
