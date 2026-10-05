@@ -1,5 +1,7 @@
 # Blog content queue
 
+> Superseded for scheduling by the Google Scholar-driven task (see BLOG_PLAYBOOK.md, Cadence). Keep as a list of ideas, e.g. for synthesis posts.
+
 Work top to bottom. When a post ships, move its row to "Published" and add it to `tools/posts.json`.
 Slots: **Mon** = recent paper explainer, **Wed** = classic paper revisited, **Fri** = synthesis / how-to that links several papers.
 
@@ -8,7 +10,7 @@ Slots: **Mon** = recent paper explainer, **Wed** = classic paper revisited, **Fr
 | # | Paper | Venue | Search angle (what people actually type) | Links to |
 |---|-------|-------|-------------------------------------------|----------|
 | 1 | ~~Reasoning can hurt the inductive abilities of LLMs~~ | NeurIPS 2025 | Already covered by `when_more_reasoning_is_actually_less.html`. Don't write a second post (it would compete with the first); instead add the arXiv link 2505.24225 and a citation block to that post. | |
-| 2 | **DRAFTED 2026-09-28** (`blogs/llm_agents_gene_expression_analysis_genotex.html`, social in `tools/drafts/`) GenoTEX: an LLM agent benchmark for automated gene expression analysis ([2406.15341](https://arxiv.org/abs/2406.15341)) | MLCB 2025 | "LLM agents for bioinformatics", "benchmark for AI gene expression analysis" | PSB 2026 paper, software.html (GenePrep) |
+| 2 | (skipped by author) GenoTEX: an LLM agent benchmark for automated gene expression analysis ([2406.15341](https://arxiv.org/abs/2406.15341)) | MLCB 2025 | "LLM agents for bioinformatics", "benchmark for AI gene expression analysis" | PSB 2026 paper, software.html (GenePrep) |
 | 3 | Discovery of disease relationships via transcriptomic signatures, powered by agentic AI ([2508.04742](https://arxiv.org/abs/2508.04742)) | PSB 2026 | "agentic AI disease discovery", "AI finds links between diseases" | GenoTEX post |
 | 4 | Vulnerability of content moderation guardrails via ... ([2505.18556](https://arxiv.org/abs/2505.18556)) | EMNLP Findings 2025 | "how LLM guardrails fail", "content moderation bypass research" | SecFid, cipher-character paper |
 | 5 | Revolve: optimizing AI systems by tracking response evolution ([2412.03092](https://arxiv.org/abs/2412.03092)) | ICML 2025 | "TextGrad alternative", "textual gradient optimization" | evolution_of_prompt_optimization |

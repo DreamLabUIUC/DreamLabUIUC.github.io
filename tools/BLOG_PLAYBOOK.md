@@ -2,18 +2,19 @@
 
 ## Cadence
 
-- **Blog: 3 posts a week** (Mon recent paper, Wed classic revisited, Fri synthesis). See `content_queue.md`.
-  Daily is possible later, but only if every post is reviewed by a paper author. Google's spam policy on
-  "scaled content abuse" targets many pages made mainly to rank, however they are produced. A few thin
-  posts can pull down how the whole domain is treated.
-- **Social: daily.** One post a day on X and/or LinkedIn is where the daily rhythm pays off: launch a blog post
-  (Mon/Wed/Fri), then on the other days post one figure, one result, or one "from the archive" item that links back.
+A scheduled Claude task (`dream-lab-blog-drafts`, Mon/Wed/Fri 8:00) picks papers from Google Scholar and writes
+drafts for review; it never publishes. `tools/post_ledger.json` records which works are handled.
+
+- **Phase 1 (until every 2026 work is handled):** Mon + Wed = newest work, blog + X/LinkedIn copy; Fri = early work (2022 or before, most cited first), blog only.
+- **Phase 2:** Wed = newest remaining work, blog + social; Mon + Fri = early works, blog only.
+- Every draft is checked by an author before it goes live. Google's spam policy on "scaled content abuse"
+  targets many pages made mainly to rank, however they are produced.
 
 ## Publishing a post (about 15 minutes after the draft exists)
 
 1. `cp blogs/blog_template.html blogs/<slug>.html`. Use a slug that describes the idea, e.g. `reasoning_hurts_llm_induction`, not the paper acronym alone.
 2. Fill every `{{...}}`, delete the `noindex` line, and put the cover image at `blogs/imgs/<slug>/cover.png` (1200x630).
-3. Add an entry to `tools/posts.json` and a card at the top of `blogs.html`.
+3. Add an entry to `tools/posts.json` and a card at the top of `blogs.html`; set the post's status to "published" in `tools/post_ledger.json`.
 4. On `publications.html`, add `[<a href="blogs/<slug>.html">blog</a>]` to the paper's entry.
 5. `python3 tools/build_site_meta.py` (updates sitemap.xml, feed.xml, llms.txt).
 6. Commit and push, then in Google Search Console run URL Inspection → Request indexing on the new URL.

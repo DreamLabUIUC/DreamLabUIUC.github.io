@@ -1,0 +1,40 @@
+{
+  "_doc": "One entry per Google Scholar work that has been handled. status: published | drafted | covered (discussed in an existing post) | skipped. Match works by arXiv id when present, else by normalized title.",
+  "entries": [
+    {
+      "title": "Security--Fidelity Tradeoffs: The Hidden Cost of Prompt Injection Defense",
+      "arxiv": "2606.30783",
+      "year": 2026,
+      "status": "published",
+      "slug": "security_fidelity_tradeoff"
+    },
+    {
+      "title": "Controlling output rankings in generative engines for llm-based search",
+      "arxiv": "2602.03608",
+      "year": 2026,
+      "status": "published",
+      "slug": "controlling_output_rankings_core"
+    },
+    {
+      "title": "Agent primitives: Reusable latent building blocks for multi-agent systems",
+      "arxiv": "2602.03695",
+      "year": 2026,
+      "status": "published",
+      "slug": "agent_primitives"
+    },
+    {
+      "title": "Evaluating the inductive abilities of large language models: Why chain-of-thought reasoning sometimes hurts more than helps",
+      "arxiv": "2505.24225",
+      "year": 2026,
+      "status": "covered",
+      "slug": "when_more_reasoning_is_actually_less"
+    },
+    {
+      "title": "GenoTEX: an LLM Agent benchmark for automated gene expression data analysis",
+      "arxiv": "2406.15341",
+      "year": 2024,
+      "status": "skipped",
+      "reason": "2024 work; author decided not to post"
+    }
+  ]
+}
