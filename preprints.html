@@ -1,0 +1,592 @@
+<!DOCTYPE HTML>
+<!--
+	Landed by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html lang="en">
+<head>
+    <title>Preprints - DREAM</title>
+    <meta charset="utf-8"/>
+    <link rel="canonical" href="https://dream.ischool.illinois.edu/preprints.html">
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="DREAM Lab, UIUC">
+    <meta property="og:title" content="Preprints - DREAM">
+    <meta property="og:description" content="Preprints from the DREAM Lab at UIUC (PI Haohan Wang) on arXiv and bioRxiv: agentic AI, LLM security, LLM reasoning, and computational biology.">
+    <meta property="og:url" content="https://dream.ischool.illinois.edu/preprints.html">
+    <meta property="og:image" content="https://dream.ischool.illinois.edu/images/banner.jpg">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@HaohanWang">
+    <meta name="twitter:title" content="Preprints - DREAM">
+    <meta name="twitter:description" content="Preprints from the DREAM Lab at UIUC (PI Haohan Wang) on arXiv and bioRxiv: agentic AI, LLM security, LLM reasoning, and computational biology.">
+    <meta name="twitter:image" content="https://dream.ischool.illinois.edu/images/banner.jpg">
+    <link rel="alternate" type="application/rss+xml" title="DREAM Lab blog" href="https://dream.ischool.illinois.edu/feed.xml">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no"/>
+    <meta name="description" content="Preprints from the DREAM Lab at UIUC (PI Haohan Wang) on arXiv and bioRxiv: agentic AI, LLM security, LLM reasoning, and computational biology.">
+    <link rel="stylesheet" href="assets2/css/main.css"/>
+    <link rel="apple-touch-icon" sizes="180x180" href="/favicon/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon/favicon-16x16.png">
+    <link rel="manifest" href="/favicon/site.webmanifest">
+    <noscript>
+        <link rel="stylesheet" href="assets2/css/noscript.css"/>
+    </noscript>
+
+    <script language="javascript" type="text/javascript">
+        var state = 'none';
+
+        function showhide(layer_ref) {
+            if (state == 'block') {
+                state = 'none';
+            } else {
+                state = 'block';
+            }
+            if (document.all) {
+                eval("document.all." + layer_ref + ".style.display = state");
+            }
+            if (document.layers) {
+                document.layers[layer_ref].display = state;
+            }
+            if (document.getElementById && !document.all) {
+                hza = document.getElementById(layer_ref);
+                hza.style.display = state;
+            }
+        }
+
+        function show(layer_ref) {
+            state = 'block';
+            if (document.all) {
+                eval("document.all." + layer_ref + ".style.display = state");
+            }
+            if (document.layers) {
+                document.layers[layer_ref].display = state;
+            }
+            if (document.getElementById && !document.all) {
+                hza = document.getElementById(layer_ref);
+                hza.style.display = state;
+            }
+        }
+
+        function hide(layer_ref) {
+            state = 'none';
+            if (document.all) {
+                eval("document.all." + layer_ref + ".style.display = state");
+            }
+            if (document.layers) {
+                document.layers[layer_ref].display = state;
+            }
+            if (document.getElementById && !document.all) {
+                hza = document.getElementById(layer_ref);
+                hza.style.display = state;
+            }
+        }
+
+        function sDiv(pass) {
+            var divs = document.getElementsByTagName('div');
+            for (i = 0; i < divs.length; i++) {
+                if (divs[i].id.match('tag')) {
+                    if (divs[i].id.match(pass)) {
+                        show(divs[i].id);
+                    }
+                    if (!divs[i].id.match(pass)) {
+                        hide(divs[i].id);
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="is-preload">
+<div id="page-wrapper">
+
+    <!-- Header -->
+    <header id="header">
+        <div id="logo"><a href="index.html">Home</a></div>
+        <nav id="nav">
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="overview.html">Overview</a></li>
+                <li><a href="publications.html">Publications</a></li>
+                <li><a href="blogs.html">Blogs</a></li>
+                <li><a href="software.html">Software</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Main -->
+    <div id="main" class="wrapper style1">
+        <div class="container">
+            <header class="major">
+                <h2>Preprints</h2>
+                <p>Recent work on arXiv and bioRxiv, not yet peer reviewed</p>
+            </header>
+
+            <!-- Filter Options -->
+            <section>
+                <h3>Year:</h3>
+                <p>
+                    [<a href="#2026">2026</a>]
+                    [<a href="#2025">2025</a>]
+                    [<a href="#2024">2024</a>]
+                    [<a href="#2023">2023</a>]
+                    [<a href="#2022">2022</a>]
+                    [<a href="#2020">2020</a>]
+                    [<a href="#2018">2018</a>]
+                    [<a href="#2017">2017</a>]
+                    [<a href="#2015">2015</a>]
+                </p>
+                <h3>Topic:</h3>
+                <p>
+                    [<a href="javascript:sDiv('tag');">All</a>]
+                    [<a href="javascript:sDiv('tagCB');">Computational Biology</a>]
+                    [<a href="javascript:sDiv('tagML');">ML & DL</a>]
+                </p>
+            </section>
+
+            <p style="text-align:center">Work by the DREAM Lab that has not (yet) appeared in a peer-reviewed venue. Published papers are on the <a href="publications.html">Publications</a> page.</p>
+
+            <section id="2026">
+                <h3 style="text-align: center;">---2026---</h3>
+                <ul style="text-align: left; list-style-type: none; padding-left: 0;">
+                    <div id="tagML_FuL-2610.02150">
+                        <li style="margin-bottom: 1em;">
+                            Fu L, Xia K, Wang Y, Jin Y, He J, Yang X, Liu H, Yu Y, Jin H, Xiao Y, et al., <b>Wang H</b>.
+                            <span style="font-weight: bold;"><a href="https://arxiv.org/abs/2610.02150" target="_blank">From Knowledge Access to Source Learning: Developing Source-Specific Competence</a></span>,
+                            arXiv preprint arXiv:2610.02150, 2026. [<a href="blogs/rag_that_learns_over_time.html">blog</a>]
+                        </li>
+                    </div>
+
+                    <div id="tagML_KuangP-2609.38912">
+                        <li style="margin-bottom: 1em;">
+                            Kuang P, Jin H, Wu D, Deng F, Yuan X, Wang J, <b>Wang H</b>.
+                            <span style="font-weight: bold;"><a href="https://arxiv.org/abs/2609.38912" target="_blank">Composing Task-specific Agent Harnesses at Test Time with Reusable Primitives</a></span>,
+                            arXiv preprint arXiv:2609.38912, 2026.
+                        </li>
+                    </div>
+
+                    <div id="tagML_WangJ-2609.33326">
+                        <li style="margin-bottom: 1em;">
+                            Wang J, Jin H, Yuan X, Kuang P, <b>Wang H</b>.
+                            <span style="font-weight: bold;"><a href="https://arxiv.org/abs/2609.33326" target="_blank">ANTMAN: Adaptive Need Tracking for Multi-Agent Navigation in Large Information Spaces</a></span>,
+                            arXiv preprint arXiv:2609.33326, 2026.
+                        </li>
+                    </div>
+
+                    <div id="tagML_JinH-2609.01736">
+                        <li style="margin-bottom: 1em;">
+                            Jin H, Wang S, Yu X, Luo H, <b>Wang H</b>.
+                            <span style="font-weight: bold;"><a href="https://arxiv.org/abs/2609.01736" target="_blank">Harness Engineering in LLM Tool Use via Agent-Native Reusable Tool Primitives</a></span>,
+                            arXiv preprint arXiv:2609.01736, 2026.
+                        </li>
+                    </div>
+
+                    <div id="tagML_tagCB_GuanR-2608.28990">
+                        <li style="margin-bottom: 1em;">
+                            Guan R, Wu D, Xie Q, Li Y, <b>Wang H</b>.
+                            <span style="font-weight: bold;"><a href="https://arxiv.org/abs/2608.28990" target="_blank">Agentic AI uncovers conserved cross-tissue protein co-abundance programs inaccessible to single-dataset analysis</a></span>,
+                            arXiv preprint arXiv:2608.28990, 2026.
+                        </li>
+                    </div>
+
+                    <div id="tagML_LuY-2608.16196">
+                        <li style="margin-bottom: 1em;">
+                            Lu Y, Yuan X, <b>Wang H</b>.
+                            <span style="font-weight: bold;"><a href="https://arxiv.org/abs/2608.16196" target="_blank">Beyond Asking: A Pipeline for Personalized Game Generation that Reads Players from Behavior</a></span>,
+                            arXiv preprint arXiv:2608.16196, 2026.
+                        </li>
+                    </div>
+
+                    <div id="tagML_YuY-2608.09790">
+                        <li style="margin-bottom: 1em;">
+                            Yu Y, Chang K, Yu Y, Wang Y, Luo H, <b>Wang H</b>.
+                            <span style="font-weight: bold;"><a href="https://arxiv.org/abs/2608.09790" target="_blank">CARD: Controlled Agentic Reddit Discussions for Credit Card Simulation</a></span>,
+                            arXiv preprint arXiv:2608.09790, 2026.
+                        </li>
+                    </div>
+
+                    <div id="tagML_ZuoY-2608.07743">
+                        <li style="margin-bottom: 1em;">
+                            Zuo Y, Fu Z, Nie Z, Zhu Z, <b>Wang H</b>.
+                            <span style="font-weight: bold;"><a href="https://arxiv.org/abs/2608.07743" target="_blank">QuantumMind: Constraint-Grounded Agentic Reasoning for Speedup Analysis in Quantum Computing</a></span>,
+                            arXiv preprint arXiv:2608.07743, 2026.
+                        </li>
+                    </div>
+
+                    <div id="tagML_ZhangP-2607.20438">
+                        <li style="margin-bottom: 1em;">
+                            Zhang P, Jin H, Kang L, <b>Wang H</b>.
+                            <span style="font-weight: bold;"><a href="https://arxiv.org/abs/2607.20438" target="_blank">Preference Tuning as Spectral Update Reorganization</a></span>,
+                            arXiv preprint arXiv:2607.20438, 2026.
+                        </li>
+                    </div>
+
+                    <div id="tagML_YuY-2606.14715">
+                        <li style="margin-bottom: 1em;">
+                            Yu Y, Yu Y, Luo H, <b>Wang H</b>.
+                            <span style="font-weight: bold;"><a href="https://arxiv.org/abs/2606.14715" target="_blank">MiroBench: Benchmarking Realism in Agentic Simulation of Real-world Discussions</a></span>,
+                            arXiv preprint arXiv:2606.14715, 2026.
+                        </li>
+                    </div>
+
+                    <div id="tagML_YuanX-2606.06906">
+                        <li style="margin-bottom: 1em;">
+                            Yuan X, Wang Z, Wang S, Yang Z, <b>Wang H</b>, Dong Y.
+                            <span style="font-weight: bold;"><a href="https://arxiv.org/abs/2606.06906" target="_blank">EASE-TTT: Evidence-Aligned Selective Test-Time Training for Long-Context Question Answering</a></span>,
+                            arXiv preprint arXiv:2606.06906, 2026.
+                        </li>
+                    </div>
+
+                    <div id="tagML_YuanX-2606.06252">
+                        <li style="margin-bottom: 1em;">
+                            Yuan X, Jin H, Yu Y, Kuang P, Yu L, Dong Y, <b>Wang H</b>.
+                            <span style="font-weight: bold;"><a href="https://arxiv.org/abs/2606.06252" target="_blank">Closing the Loop on Latent Reasoning via Test-Time Reconstruction</a></span>,
+                            arXiv preprint arXiv:2606.06252, 2026.
+                        </li>
+                    </div>
+
+                    <div id="tagML_YuX-2605.21948">
+                        <li style="margin-bottom: 1em;">
+                            Yu X, Jin H, Zeng H, <b>Wang H</b>.
+                            <span style="font-weight: bold;"><a href="https://arxiv.org/abs/2605.21948" target="_blank">SCI-Defense: Defending Manipulation Attacks from Generative Engine Optimization</a></span>,
+                            arXiv preprint arXiv:2605.21948, 2026.
+                        </li>
+                    </div>
+
+                    <div id="tagML_FuL-2605.21318">
+                        <li style="margin-bottom: 1em;">
+                            Fu L, Yu Y, Wang Y, Jin Y, Jin H, Prakash BA, <b>Wang H</b>.
+                            <span style="font-weight: bold;"><a href="https://arxiv.org/abs/2605.21318" target="_blank">TextReg: Mitigating Prompt Distributional Overfitting via Regularized Text-Space Optimization</a></span>,
+                            arXiv preprint arXiv:2605.21318, 2026.
+                        </li>
+                    </div>
+
+                    <div id="tagML_YuY-2605.09315">
+                        <li style="margin-bottom: 1em;">
+                            Yu Y, Yuan X, Jin H, Liu H, Yu Y, <b>Wang H</b>.
+                            <span style="font-weight: bold;"><a href="https://arxiv.org/abs/2605.09315" target="_blank">Do Self-Evolving Agents Forget? Capability Degradation and Preservation in Lifelong LLM Agent Adaptation</a></span>,
+                            arXiv preprint arXiv:2605.09315, 2026.
+                        </li>
+                    </div>
+
+                    <div id="tagML_YuY-2604.21794">
+                        <li style="margin-bottom: 1em;">
+                            Yu Y, Liu H, Jin H, Yuan X, Kuang P, <b>Wang H</b>.
+                            <span style="font-weight: bold;"><a href="https://arxiv.org/abs/2604.21794" target="_blank">Learning to Communicate: Toward End-to-End Optimization of Multi-Agent Language Systems</a></span>,
+                            arXiv preprint arXiv:2604.21794, 2026.
+                        </li>
+                    </div>
+
+                    <div id="tagML_WangY-2604.16217">
+                        <li style="margin-bottom: 1em;">
+                            Wang Y, Kuang P, Han X, Xu K, <b>Wang H</b>.
+                            <span style="font-weight: bold;"><a href="https://arxiv.org/abs/2604.16217" target="_blank">Beyond Surface Statistics: Robust Conformal Prediction for LLMs via Internal Representations</a></span>,
+                            arXiv preprint arXiv:2604.16217, 2026.
+                        </li>
+                    </div>
+
+                    <div id="tagML_JinH-2602.03608">
+                        <li style="margin-bottom: 1em;">
+                            Jin H, Chen R, Zhang P, Luo Y, Zeng H, Luo M, <b>Wang H</b>.
+                            <span style="font-weight: bold;"><a href="https://arxiv.org/abs/2602.03608" target="_blank">Controlling Output Rankings in Generative Engines for LLM-based Search</a></span>,
+                            arXiv preprint arXiv:2602.03608, 2026. [<a href="blogs/controlling_output_rankings_core.html">project</a>] [<a href="blogs/core_explained.html">blog</a>] [<a href="https://haohanwang.ischool.illinois.edu/research/llm-search-visibility.html" target="_blank">research</a>]
+                        </li>
+                    </div>
+
+                    <div id="tagCB_JiangY-2026">
+                        <li style="margin-bottom: 1em;">
+                            Jiang Y, Li Y, Xie Q, Li Y, <b>Wang H</b>.
+                            <span style="font-weight: bold;"><a href="https://doi.org/10.1101/2026.07.28.738702" target="_blank">Joint modeling of multi-timepoint spatial observations for time-resolved spatial-unit-specific gene regulatory network inference</a></span>,
+                            bioRxiv preprint, 2026.
+                        </li>
+                    </div>
+                </ul>
+            </section>
+
+            <section id="2025">
+                <h3 style="text-align: center;">---2025---</h3>
+                <ul style="text-align: left; list-style-type: none; padding-left: 0;">
+                    <div id="tagML_ChenK-2511.19829">
+                        <li style="margin-bottom: 1em;">
+                            Chen K, Wang Y, Almosapeeh H, <b>Wang H</b>.
+                            <span style="font-weight: bold;"><a href="https://arxiv.org/abs/2511.19829" target="_blank">Knowing How to Edit: Reliable Evaluation Signals for Diagnosing and Optimizing Prompts at Query Level</a></span>,
+                            arXiv preprint arXiv:2511.19829, 2025.
+                        </li>
+                    </div>
+
+                    <div id="tagML_YuY-2511.06292">
+                        <li style="margin-bottom: 1em;">
+                            Yu Y, Chang K, Yu Y, Wei K, Luo H, <b>Wang H</b>.
+                            <span style="font-weight: bold;"><a href="https://arxiv.org/abs/2511.06292" target="_blank">Synthetic Data-Driven Prompt Tuning for Financial QA over Tables and Documents</a></span>,
+                            arXiv preprint arXiv:2511.06292, 2025.
+                        </li>
+                    </div>
+
+                    <div id="tagML_JinH-2508.20325">
+                        <li style="margin-bottom: 1em;">
+                            Jin H, Chen R, Zhang P, Zhou A, Cheng Z, <b>Wang H</b>.
+                            <span style="font-weight: bold;"><a href="https://arxiv.org/abs/2508.20325" target="_blank">GUARD: Guideline Upholding Test through Adaptive Role-play and Jailbreak Diagnostics for LLMs</a></span>,
+                            arXiv preprint arXiv:2508.20325, 2025.
+                        </li>
+                    </div>
+
+                    <div id="tagML_ZhangP-2507.07735">
+                        <li style="margin-bottom: 1em;">
+                            Zhang P, Jin H, Kang L, <b>Wang H</b>.
+                            <span style="font-weight: bold;"><a href="https://arxiv.org/abs/2507.07735" target="_blank">GuardVal: Dynamic Large Language Model Jailbreak Evaluation for Comprehensive Safety Testing</a></span>,
+                            arXiv preprint arXiv:2507.07735, 2025.
+                        </li>
+                    </div>
+
+                    <div id="tagML_YadavA-2506.12274">
+                        <li style="margin-bottom: 1em;">
+                            Yadav A, Jin H, Luo M, Zhuang J, <b>Wang H</b>.
+                            <span style="font-weight: bold;"><a href="https://arxiv.org/abs/2506.12274" target="_blank">InfoFlood: Jailbreaking Large Language Models with Information Overload</a></span>,
+                            arXiv preprint arXiv:2506.12274, 2025. [<a href="https://haohanwang.ischool.illinois.edu/research/llm-security.html" target="_blank">research</a>]
+                        </li>
+                    </div>
+
+                    <div id="tagML_YuanX-2506.12012">
+                        <li style="margin-bottom: 1em;">
+                            Yuan X, Zhang X, Xu K, Xu Y, Yu L, Wang J, Dong Y, <b>Wang H</b>.
+                            <span style="font-weight: bold;"><a href="https://arxiv.org/abs/2506.12012" target="_blank">Tracing LLM Reasoning Processes with Strategic Games: A Framework for Planning, Revision, and Resource-Constrained Decision Making</a></span>,
+                            arXiv preprint arXiv:2506.12012, 2025.
+                        </li>
+                    </div>
+
+                    <div id="tagML_JinH-2505.24232">
+                        <li style="margin-bottom: 1em;">
+                            Jin H, Zhang P, Wang P, Luo M, <b>Wang H</b>.
+                            <span style="font-weight: bold;"><a href="https://arxiv.org/abs/2505.24232" target="_blank">From Hallucinations to Jailbreaks: Rethinking the Vulnerability of Large Foundation Models</a></span>,
+                            arXiv preprint arXiv:2505.24232, 2025.
+                        </li>
+                    </div>
+
+                    <div id="tagML_JiY-2504.09764">
+                        <li style="margin-bottom: 1em;">
+                            Ji Y, <b>Wang H</b>.
+                            <span style="font-weight: bold;"><a href="https://arxiv.org/abs/2504.09764" target="_blank">Socratic Chart: Cooperating Multiple Agents for Robust SVG Chart Understanding</a></span>,
+                            arXiv preprint arXiv:2504.09764, 2025. [<a href="https://haohanwang.ischool.illinois.edu/blog/vision-should-be-structural.html" target="_blank">essay</a>]
+                        </li>
+                    </div>
+
+                    <div id="tagML_ZhangY-2504.07461">
+                        <li style="margin-bottom: 1em;">
+                            Zhang Y, Li Y, Zhao T, Zhu K, <b>Wang H</b>, Vasconcelos N.
+                            <span style="font-weight: bold;"><a href="https://arxiv.org/abs/2504.07461" target="_blank">Achilles Heel of Distributed Multi-Agent Systems</a></span>,
+                            arXiv preprint arXiv:2504.07461, 2025.
+                        </li>
+                    </div>
+
+                    <div id="tagML_LiuB-2504.01990">
+                        <li style="margin-bottom: 1em;">
+                            Liu B, Li X, Zhang J, Wang J, He T, Hong S, Liu H, Zhang S, Song K, Zhu K, et al., <b>Wang H</b>.
+                            <span style="font-weight: bold;"><a href="https://arxiv.org/abs/2504.01990" target="_blank">Advances and Challenges in Foundation Agents: From Brain-Inspired Intelligence to Evolutionary, Collaborative, and Safe Systems</a></span>,
+                            arXiv preprint arXiv:2504.01990, 2025.
+                        </li>
+                    </div>
+
+                    <div id="tagML_XueE-2502.18530">
+                        <li style="margin-bottom: 1em;">
+                            Xue E, Chen K, Huang Z, Ji Y, <b>Wang H</b>.
+                            <span style="font-weight: bold;"><a href="https://arxiv.org/abs/2502.18530" target="_blank">IMPROVE: Iterative Model Pipeline Refinement and Optimization Leveraging LLM Experts</a></span>,
+                            arXiv preprint arXiv:2502.18530, 2025.
+                        </li>
+                    </div>
+                </ul>
+            </section>
+
+            <section id="2024">
+                <h3 style="text-align: center;">---2024---</h3>
+                <ul style="text-align: left; list-style-type: none; padding-left: 0;">
+                    <div id="tagML_WangP-2410.08665">
+                        <li style="margin-bottom: 1em;">
+                            Wang P, <b>Wang H</b>.
+                            <span style="font-weight: bold;"><a href="https://arxiv.org/abs/2410.08665" target="_blank">DistDD: Distributed Data Distillation Aggregation through Gradient Matching</a></span>,
+                            arXiv preprint arXiv:2410.08665, 2024.
+                        </li>
+                    </div>
+
+                    <div id="tagML_tagCB_ChenK-2409.07584">
+                        <li style="margin-bottom: 1em;">
+                            Chen K, Wang Y, Zhou Y, <b>Wang H</b>.
+                            <span style="font-weight: bold;"><a href="https://arxiv.org/abs/2409.07584" target="_blank">DS-ViT: Dual-Stream Vision Transformer for Cross-Task Distillation in Alzheimer&#x27;s Early Diagnosis</a></span>,
+                            arXiv preprint arXiv:2409.07584, 2024.
+                        </li>
+                    </div>
+
+                    <div id="tagCB_ZhangY-2407.08546">
+                        <li style="margin-bottom: 1em;">
+                            Zhang Y, Zhang X, Wu W, <b>Wang H</b>.
+                            <span style="font-weight: bold;"><a href="https://arxiv.org/abs/2407.08546" target="_blank">Quantitative Evaluation of the Saliency Map for Alzheimer&#x27;s Disease Classifier with Anatomical Segmentation</a></span>,
+                            arXiv preprint arXiv:2407.08546, 2024.
+                        </li>
+                    </div>
+
+                    <div id="tagML_JinH-2407.01599">
+                        <li style="margin-bottom: 1em;">
+                            Jin H, Hu L, Li X, Zhang P, Chen C, Zhuang J, <b>Wang H</b>.
+                            <span style="font-weight: bold;"><a href="https://arxiv.org/abs/2407.01599" target="_blank">JailbreakZoo: Survey, Landscapes, and Horizons in Jailbreaking Large Language and Vision-Language Models</a></span>,
+                            arXiv preprint arXiv:2407.01599, 2024. [<a href="https://haohanwang.ischool.illinois.edu/research/llm-security.html" target="_blank">research</a>]
+                        </li>
+                    </div>
+
+                    <div id="tagCB_WangY-2406.04105">
+                        <li style="margin-bottom: 1em;">
+                            Wang Y, Li W, Pearce T, <b>Wang H</b>.
+                            <span style="font-weight: bold;"><a href="https://arxiv.org/abs/2406.04105" target="_blank">From Tissue Plane to Organ World: A Benchmark Dataset for Multimodal Biomedical Image Registration using Deep Co-Attention Networks</a></span>,
+                            arXiv preprint arXiv:2406.04105, 2024.
+                        </li>
+                    </div>
+
+                    <div id="tagML_LiY-2403.05523">
+                        <li style="margin-bottom: 1em;">
+                            Li Y, Ren S, Deng W, Xu Y, Gao Y, Ngai E, <b>Wang H</b>.
+                            <span style="font-weight: bold;"><a href="https://arxiv.org/abs/2403.05523" target="_blank">Beyond Finite Data: Towards Data-free Out-of-distribution Generalization via Extrapolation</a></span>,
+                            arXiv preprint arXiv:2403.05523, 2024.
+                        </li>
+                    </div>
+                </ul>
+            </section>
+
+            <section id="2023">
+                <h3 style="text-align: center;">---2023---</h3>
+                <ul style="text-align: left; list-style-type: none; padding-left: 0;">
+                    <div id="tagML_ZhangT-2311.15543">
+                        <li style="margin-bottom: 1em;">
+                            Zhang T, Liu H, Zhang P, Cheng Y, <b>Wang H</b>.
+                            <span style="font-weight: bold;"><a href="https://arxiv.org/abs/2311.15543" target="_blank">Beyond Pixels: Exploring Human-Readable SVG Generation for Simple Images with Vision Language Models</a></span>,
+                            arXiv preprint arXiv:2311.15543, 2023. [<a href="https://haohanwang.ischool.illinois.edu/blog/vision-should-be-structural.html" target="_blank">essay</a>]
+                        </li>
+                    </div>
+
+                    <div id="tagML_LiuH-2307.16851">
+                        <li style="margin-bottom: 1em;">
+                            Liu H, Chaudhary M, <b>Wang H</b>.
+                            <span style="font-weight: bold;"><a href="https://arxiv.org/abs/2307.16851" target="_blank">Towards Trustworthy and Aligned Machine Learning: A Data-centric Survey with Causality Perspectives</a></span>,
+                            arXiv preprint arXiv:2307.16851, 2023. [<a href="blogs/thousand_ideas_trustworthy_ML.html">blog</a>] [<a href="https://haohanwang.ischool.illinois.edu/blog/unified-trustworthy-ai.html" target="_blank">essay</a>]
+                        </li>
+                    </div>
+
+                    <div id="tagCB_ChenZ-2023">
+                        <li style="margin-bottom: 1em;">
+                            Chen Z, <b>Wang H</b>.
+                            <span style="font-weight: bold;"><a href="https://doi.org/10.1101/2023.09.12.557499" target="_blank">Heteroscedastic Personalized Regression Unveils Genetic Basis of Alzheimer’s Disease Stratified by Cognitive Level</a></span>,
+                            bioRxiv preprint, 2023.
+                        </li>
+                    </div>
+                </ul>
+            </section>
+
+            <section id="2022">
+                <h3 style="text-align: center;">---2022---</h3>
+                <ul style="text-align: left; list-style-type: none; padding-left: 0;">
+                    <div id="tagML_LuuM-2212.04875">
+                        <li style="margin-bottom: 1em;">
+                            Luu M, Huang Z, Xing EP, Lee YJ, <b>Wang H</b>.
+                            <span style="font-weight: bold;"><a href="https://arxiv.org/abs/2212.04875" target="_blank">Expeditious Saliency-guided Mix-up through Random Gradient Thresholding</a></span>,
+                            arXiv preprint arXiv:2212.04875, 2022.
+                        </li>
+                    </div>
+
+                    <div id="tagML_ZhongY-2207.08943">
+                        <li style="margin-bottom: 1em;">
+                            Zhong Y, <b>Wang H</b>, Xing EP.
+                            <span style="font-weight: bold;"><a href="https://arxiv.org/abs/2207.08943" target="_blank">MRCLens: an MRC Dataset Bias Detection Toolkit</a></span>,
+                            arXiv preprint arXiv:2207.08943, 2022.
+                        </li>
+                    </div>
+
+                    <div id="tagML_ChenC-2206.09114">
+                        <li style="margin-bottom: 1em;">
+                            Chen C, Jiang Q, Wang C, Chen N, <b>Wang H</b>, Li X, Raj B.
+                            <span style="font-weight: bold;"><a href="https://arxiv.org/abs/2206.09114" target="_blank">Bear the Query in Mind: Visual Grounding with Query-conditioned Convolution</a></span>,
+                            arXiv preprint arXiv:2206.09114, 2022.
+                        </li>
+                    </div>
+                </ul>
+            </section>
+
+            <section id="2020">
+                <h3 style="text-align: center;">---2020---</h3>
+                <ul style="text-align: left; list-style-type: none; padding-left: 0;">
+                    <div id="tagML_WangH-2010.09997">
+                        <li style="margin-bottom: 1em;">
+                            <b>Wang H</b>, Zhang P, Xing EP.
+                            <span style="font-weight: bold;"><a href="https://arxiv.org/abs/2010.09997" target="_blank">Word Shape Matters: Robust Machine Translation with Visual Embedding</a></span>,
+                            arXiv preprint arXiv:2010.09997, 2020.
+                        </li>
+                    </div>
+                </ul>
+            </section>
+
+            <section id="2018">
+                <h3 style="text-align: center;">---2018---</h3>
+                <ul style="text-align: left; list-style-type: none; padding-left: 0;">
+                    <div id="tagML_tagCB_YueT-1802.00810">
+                        <li style="margin-bottom: 1em;">
+                            Yue T, Wang Y, Zhang L, Gu C, Xue H, Wang W, Lyu Q, Dun Y.
+                            <span style="font-weight: bold;"><a href="https://arxiv.org/abs/1802.00810" target="_blank">Deep Learning for Genomics: A Concise Overview</a></span>,
+                            arXiv preprint arXiv:1802.00810, 2018.
+                        </li>
+                    </div>
+                </ul>
+            </section>
+
+            <section id="2017">
+                <h3 style="text-align: center;">---2017---</h3>
+                <ul style="text-align: left; list-style-type: none; padding-left: 0;">
+                    <div id="tagML_WangH-1702.07800">
+                        <li style="margin-bottom: 1em;">
+                            <b>Wang H</b>, Raj B.
+                            <span style="font-weight: bold;"><a href="https://arxiv.org/abs/1702.07800" target="_blank">On the Origin of Deep Learning</a></span>,
+                            arXiv preprint arXiv:1702.07800, 2017.
+                        </li>
+                    </div>
+                </ul>
+            </section>
+
+            <section id="2015">
+                <h3 style="text-align: center;">---2015---</h3>
+                <ul style="text-align: left; list-style-type: none; padding-left: 0;">
+                    <div id="tagCB_WangH-1509.05742">
+                        <li style="margin-bottom: 1em;">
+                            <b>Wang H</b>, Ganapathiraju MK.
+                            <span style="font-weight: bold;"><a href="https://arxiv.org/abs/1509.05742" target="_blank">Evaluation of Protein-protein Interaction Predictors with Noisy Partially Labeled Data Sets</a></span>,
+                            arXiv preprint arXiv:1509.05742, 2015.
+                        </li>
+                    </div>
+                </ul>
+            </section>
+
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer id="footer">
+        <!--					<ul class="icons">-->
+        <!--						<li><a href="#" class="icon brands alt fa-twitter"><span class="label">Twitter</span></a></li>-->
+        <!--						<li><a href="#" class="icon brands alt fa-linkedin-in"><span class="label">LinkedIn</span></a></li>-->
+        <!--						<li><a href="#" class="icon brands alt fa-github"><span class="label">GitHub</span></a></li>-->
+        <!--						<li><a href="#" class="icon solid alt fa-envelope"><span class="label">Email</span></a></li>-->
+        <!--					</ul>-->
+        <ul class="copyright">
+            <li>&copy; DREAM. All rights reserved.</li>
+            <li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
+        </ul>
+    </footer>
+
+</div>
+
+<!-- Scripts -->
+<script src="assets2/js/jquery.min.js"></script>
+<script src="assets2/js/jquery.scrolly.min.js"></script>
+<script src="assets2/js/jquery.dropotron.min.js"></script>
+<script src="assets2/js/jquery.scrollex.min.js"></script>
+<script src="assets2/js/browser.min.js"></script>
+<script src="assets2/js/breakpoints.min.js"></script>
+<script src="assets2/js/util.js"></script>
+<script src="assets2/js/main.js"></script>
+
+</body>
+</html>

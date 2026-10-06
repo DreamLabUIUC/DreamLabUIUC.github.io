@@ -9,7 +9,7 @@ BASE = "https://dream.ischool.illinois.edu/"
 ROOT = pathlib.Path(__file__).resolve().parent.parent
 posts = sorted(json.loads((ROOT / "tools/posts.json").read_text()), key=lambda p: p["date"], reverse=True)
 
-STATIC = [("", "1.0"), ("overview.html", "0.9"), ("publications.html", "0.9"), ("blogs.html", "0.9"),
+STATIC = [("", "1.0"), ("overview.html", "0.9"), ("publications.html", "0.9"), ("preprints.html", "0.8"), ("blogs.html", "0.9"),
           ("secfid/", "0.8"), ("software.html", "0.7"), ("contact.html", "0.5")]
 
 
@@ -61,7 +61,8 @@ post_lines = "\n".join(f"- [{p['title']}]({BASE}{p['path']}) ({p['date']}): {p['
 
 ## Lab
 - [Research overview]({BASE}overview.html): research directions and projects
-- [Publications]({BASE}publications.html): full publication list, 2016 to present, with paper and code links
+- [Publications]({BASE}publications.html): peer-reviewed publications, 2013 to present, with paper and code links
+- [Preprints]({BASE}preprints.html): arXiv and bioRxiv preprints not yet peer reviewed
 - [Software]({BASE}software.html): open-source tools
 - [Contact]({BASE}contact.html): contact and information for prospective students
 - [Haohan Wang]({BASE.replace('dream.', 'haohanwang.')}): PI homepage
