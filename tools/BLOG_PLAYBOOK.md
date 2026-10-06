@@ -16,7 +16,7 @@ drafts for review; it never publishes. `tools/post_ledger.json` records which wo
 1. `cp blogs/blog_template.html blogs/<slug>.html`. Use a slug that describes the idea, e.g. `reasoning_hurts_llm_induction`, not the paper acronym alone.
 2. Fill every `{{...}}`, delete the `noindex` line, and put the cover image at `blogs/imgs/<slug>/cover.png` (1200x630).
 3. Add an entry to `tools/posts.json` and a card at the top of `blogs.html`; set the post's status to "published" in `tools/post_ledger.json`.
-4. On `publications.html`, add `[<a href="blogs/<slug>.html">blog</a>]` to the paper's entry.
+4. Add `[<a href="blogs/<slug>.html">blog</a>]` to the paper's entry: on `publications.html` if it is peer-reviewed, on `preprints.html` if it is only on arXiv/bioRxiv (add the entry there if missing). `publications.html` mirrors https://haohanwang.ischool.illinois.edu/publications.html (published work only); where Haohan Wang's personal site has a research overview or essay on the paper, link it too (`[research]`, `[essay]`).
 5. `python3 tools/build_site_meta.py` (updates sitemap.xml, feed.xml, llms.txt).
 6. Commit and push, then in Google Search Console run URL Inspection → Request indexing on the new URL.
 7. Post on X and LinkedIn (templates below), and add the blog link to the arXiv comments / GitHub README of the paper.
