@@ -4,7 +4,8 @@
 
 ## Lab
 - [Research overview](https://dream.ischool.illinois.edu/overview.html): research directions and projects
-- [Publications](https://dream.ischool.illinois.edu/publications.html): full publication list, 2016 to present, with paper and code links
+- [Publications](https://dream.ischool.illinois.edu/publications.html): peer-reviewed publications, 2013 to present, with paper and code links
+- [Preprints](https://dream.ischool.illinois.edu/preprints.html): arXiv and bioRxiv preprints not yet peer reviewed
 - [Software](https://dream.ischool.illinois.edu/software.html): open-source tools
 - [Contact](https://dream.ischool.illinois.edu/contact.html): contact and information for prospective students
 - [Haohan Wang](https://haohanwang.ischool.illinois.edu/): PI homepage
