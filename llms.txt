@@ -14,6 +14,7 @@
 - [SecFid](https://dream.ischool.illinois.edu/secfid/): benchmark for security and fidelity of prompt injection defenses (ICML 2026 Spotlight)
 
 ## Blog posts
+- [Can Aligned LLMs Jailbreak Themselves? Inside the SLIP Attack](https://dream.ischool.illinois.edu/blogs/aligned_llms_jailbreak_themselves.html) (2026-10-07): Yes. In our COLM 2026 paper, aligned LLMs jailbreak themselves via SLIP: 94.7% average attack success on AdvBench across 11 models, with about 7.9 queries.
 - [RAG That Learns Over Time: Source Learning for LLM Agents](https://dream.ischool.illinois.edu/blogs/rag_that_learns_over_time.html) (2026-10-05): SourceLearn builds RAG that learns over time: a persistent source model beat Hybrid RAG by up to 22.6 points, best in 13 of 15 settings.
 - [Agent Primitives: Reusable Latent Building Blocks for Multi-Agent Systems](https://dream.ischool.illinois.edu/blogs/agent_primitives.html) (2026-07-10): Agent Primitives (ICML 2026): reusable latent building blocks for LLM multi-agent systems, composed by an Organizer and connected via KV-cache communication.
 - [The Hidden Cost of Prompt Injection Defense](https://dream.ischool.illinois.edu/blogs/security_fidelity_tradeoff.html) (2026-07-09): Prompt injection defenses are scored on attack success, which hides lost content. SecFid (ICML 2026 Spotlight) measures both security and fidelity.

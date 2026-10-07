@@ -6,7 +6,15 @@
   <atom:link href="https://dream.ischool.illinois.edu/feed.xml" rel="self" type="application/rss+xml"/>
   <description>Plain-language explainers of research from the DREAM Lab at the University of Illinois Urbana-Champaign.</description>
   <language>en</language>
-  <lastBuildDate>Mon, 05 Oct 2026 12:00:00 +0000</lastBuildDate>
+  <lastBuildDate>Wed, 07 Oct 2026 12:00:00 +0000</lastBuildDate>
+  <item>
+    <title>Can Aligned LLMs Jailbreak Themselves? Inside the SLIP Attack</title>
+    <link>https://dream.ischool.illinois.edu/blogs/aligned_llms_jailbreak_themselves.html</link>
+    <guid>https://dream.ischool.illinois.edu/blogs/aligned_llms_jailbreak_themselves.html</guid>
+    <pubDate>Wed, 07 Oct 2026 12:00:00 +0000</pubDate>
+    <category>LLM security</category>
+    <description>Yes. In our COLM 2026 paper, aligned LLMs jailbreak themselves via SLIP: 94.7% average attack success on AdvBench across 11 models, with about 7.9 queries.</description>
+  </item>
   <item>
     <title>RAG That Learns Over Time: Source Learning for LLM Agents</title>
     <link>https://dream.ischool.illinois.edu/blogs/rag_that_learns_over_time.html</link>

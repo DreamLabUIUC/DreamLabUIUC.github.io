@@ -48,6 +48,18 @@
       "kind": "new",
       "primary_query": "can RAG learn over time from repeated use of the same documents",
       "publish_date": "2026-10-05"
+    },
+    {
+      "title": "Break Me If You Can: Self-Jailbreaking of Aligned LLMs via Lexical Insertion Prompting",
+      "arxiv": "2601.02670",
+      "year": 2026,
+      "status": "published",
+      "slug": "aligned_llms_jailbreak_themselves",
+      "draft_date": "2026-10-07",
+      "kind": "new",
+      "primary_query": "can aligned LLMs jailbreak themselves",
+      "published": true,
+      "publish_date": "2026-10-07"
     }
   ]
 }

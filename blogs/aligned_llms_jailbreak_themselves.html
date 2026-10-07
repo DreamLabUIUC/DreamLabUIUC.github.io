@@ -1,0 +1,414 @@
+<!DOCTYPE HTML>
+<!--
+	Writing guide: tools/BLOG_PLAYBOOK.md
+-->
+<html lang="en">
+<head>
+    <title>Can Aligned LLMs Jailbreak Themselves? Inside the SLIP Attack | DREAM Lab, UIUC</title>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <meta name="description" content="Yes. In our COLM 2026 paper, aligned LLMs jailbreak themselves via SLIP: 94.7% average attack success on AdvBench across 11 models, with about 7.9 queries.">
+    <link rel="canonical" href="https://dream.ischool.illinois.edu/blogs/aligned_llms_jailbreak_themselves.html">
+    <meta property="og:type" content="article">
+    <meta property="og:site_name" content="DREAM Lab, UIUC">
+    <meta property="og:title" content="Can Aligned LLMs Jailbreak Themselves? Inside the SLIP Attack">
+    <meta property="og:description" content="Yes. In our COLM 2026 paper, aligned LLMs jailbreak themselves via SLIP: 94.7% average attack success on AdvBench across 11 models, with about 7.9 queries.">
+    <meta property="og:url" content="https://dream.ischool.illinois.edu/blogs/aligned_llms_jailbreak_themselves.html">
+    <meta property="og:image" content="https://dream.ischool.illinois.edu/blogs/imgs/aligned_llms_jailbreak_themselves/cover.png">
+    <meta property="article:published_time" content="2026-10-07">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@HaohanWang">
+    <meta name="twitter:title" content="Can Aligned LLMs Jailbreak Themselves? Inside the SLIP Attack">
+    <meta name="twitter:description" content="Yes. In our COLM 2026 paper, aligned LLMs jailbreak themselves via SLIP: 94.7% average attack success on AdvBench across 11 models, with about 7.9 queries.">
+    <meta name="twitter:image" content="https://dream.ischool.illinois.edu/blogs/imgs/aligned_llms_jailbreak_themselves/cover.png">
+    <meta name="citation_title" content="Break Me If You Can: Self-Jailbreaking of Aligned LLMs via Lexical Insertion Prompting">
+    <meta name="citation_author" content="Kulshreshtha, Devang">
+    <meta name="citation_author" content="Su, Hang">
+    <meta name="citation_author" content="Jin, Haibo">
+    <meta name="citation_author" content="Hegde, Chinmay">
+    <meta name="citation_author" content="Wang, Haohan">
+    <meta name="citation_publication_date" content="2026">
+    <meta name="citation_conference_title" content="Conference on Language Modeling (COLM 2026)">
+    <meta name="citation_arxiv_id" content="2601.02670">
+    <meta name="citation_pdf_url" content="https://arxiv.org/pdf/2601.02670">
+    <link rel="alternate" type="application/rss+xml" title="DREAM Lab blog" href="https://dream.ischool.illinois.edu/feed.xml">
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "BlogPosting",
+          "headline": "Can Aligned LLMs Jailbreak Themselves? Inside the SLIP Attack",
+          "description": "Yes. In our COLM 2026 paper, aligned LLMs jailbreak themselves via SLIP: 94.7% average attack success on AdvBench across 11 models, with about 7.9 queries.",
+          "datePublished": "2026-10-07",
+          "dateModified": "2026-10-07",
+          "url": "https://dream.ischool.illinois.edu/blogs/aligned_llms_jailbreak_themselves.html",
+          "mainEntityOfPage": "https://dream.ischool.illinois.edu/blogs/aligned_llms_jailbreak_themselves.html",
+          "image": "https://dream.ischool.illinois.edu/blogs/imgs/aligned_llms_jailbreak_themselves/cover.png",
+          "inLanguage": "en",
+          "keywords": ["self-jailbreaking", "LLM jailbreak", "multi-turn jailbreak", "red teaming", "LLM safety", "jailbreak defense", "SLIP", "Semantic Drift Monitor"],
+          "author": [
+            {"@type": "Person", "name": "Devang Kulshreshtha"},
+            {"@type": "Person", "name": "Hang Su"},
+            {"@type": "Person", "@id": "https://dream.ischool.illinois.edu/#haohan-wang", "name": "Haohan Wang", "url": "https://haohanwang.ischool.illinois.edu/", "affiliation": {"@type": "CollegeOrUniversity", "name": "University of Illinois Urbana-Champaign"}}
+          ],
+          "publisher": {"@type": "ResearchOrganization", "@id": "https://dream.ischool.illinois.edu/#lab", "name": "DREAM Lab, UIUC", "url": "https://dream.ischool.illinois.edu/"},
+          "about": {
+            "@type": "ScholarlyArticle",
+            "name": "Break Me If You Can: Self-Jailbreaking of Aligned LLMs via Lexical Insertion Prompting",
+            "url": "https://arxiv.org/abs/2601.02670",
+            "sameAs": "https://openreview.net/forum?id=y4PNft5oX1",
+            "datePublished": "2026",
+            "publisher": "Conference on Language Modeling (COLM 2026)",
+            "author": [
+              {"@type": "Person", "name": "Devang Kulshreshtha"}, {"@type": "Person", "name": "Hang Su"},
+              {"@type": "Person", "name": "Haibo Jin"}, {"@type": "Person", "name": "Chinmay Hegde"},
+              {"@type": "Person", "name": "Haohan Wang"}
+            ]
+          }
+        },
+        {
+          "@type": "BreadcrumbList",
+          "itemListElement": [
+            {"@type": "ListItem", "position": 1, "name": "DREAM Lab", "item": "https://dream.ischool.illinois.edu/"},
+            {"@type": "ListItem", "position": 2, "name": "Blog", "item": "https://dream.ischool.illinois.edu/blogs.html"},
+            {"@type": "ListItem", "position": 3, "name": "Can Aligned LLMs Jailbreak Themselves? Inside the SLIP Attack", "item": "https://dream.ischool.illinois.edu/blogs/aligned_llms_jailbreak_themselves.html"}
+          ]
+        },
+        {
+          "@type": "FAQPage",
+          "mainEntity": [
+            {"@type": "Question", "name": "Can an aligned LLM jailbreak itself without a separate attacker model?", "acceptedAnswer": {"@type": "Answer", "text": "Yes, according to Break Me If You Can (COLM 2026). Its SLIP attack uses only the target model's own outputs to build a multi-turn path to harmful content, and reached 94.7% average attack success on AdvBench and 94.4% on HarmBench across 11 LLMs, without a separately provisioned attacker LLM."}},
+            {"@type": "Question", "name": "Why do multi-turn jailbreaks get past per-turn safety filters?", "acceptedAnswer": {"@type": "Answer", "text": "Because no single turn contains the harmful request. In SLIP, intermediate turns only ask the model to expand an earlier numbered example or add a few words, so filters that judge one turn at a time see benign text; the paper argues such filters cannot detect the trajectory even in principle."}},
+            {"@type": "Question", "name": "How many queries does a black-box jailbreak need?", "acceptedAnswer": {"@type": "Answer", "text": "It depends on the method and the model. In the COLM 2026 SLIP paper, SLIP averaged about 7.9 calls per successful jailbreak on AdvBench, compared with 9.5 for X-Teaming, 26.4 for TAP, and 35.3 for PAIR; these counts exclude judge calls, which raise SLIP's estimated total to roughly 41-104 API calls."}},
+            {"@type": "Question", "name": "How can multi-turn jailbreaks be detected?", "acceptedAnswer": {"@type": "Answer", "text": "One approach is to monitor the whole session rather than each turn. The paper's Semantic Drift Monitor tracks how close each turn moves toward known harmful content in embedding space and detected 76% of SLIP attacks on GPT-5.1 at a 5% false-positive rate, though an adaptive attack with benign cooldown turns raised attack success under the monitor from 26% to 43%."}}
+          ]
+        }
+      ]
+    }
+    </script>
+    <link rel="stylesheet" href="../assets2/css/main.css"/>
+    <link rel="stylesheet" href="blog.css"/>
+    <link rel="apple-touch-icon" sizes="180x180" href="../favicon/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="../favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="../favicon/favicon-16x16.png">
+    <link rel="manifest" href="../favicon/site.webmanifest">
+    <noscript>
+        <link rel="stylesheet" href="../assets2/css/noscript.css"/>
+    </noscript>
+</head>
+<body class="is-preload">
+<div id="page-wrapper">
+
+    <!-- Header -->
+    <header id="header">
+        <nav id="nav">
+            <ul>
+                <li><a href="../index.html">Home</a></li>
+                <li><a href="../overview.html">Overview</a></li>
+                <li><a href="../publications.html">Publications</a></li>
+                <li><a href="../blogs.html">Blogs</a></li>
+                <li><a href="../software.html">Software</a></li>
+                <li><a href="../contact.html">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Main -->
+    <div id="main" class="wrapper style1">
+        <div class="container">
+            <article>
+            <header class="major">
+                <h1>Can Aligned LLMs Jailbreak Themselves? Inside the SLIP Attack</h1>
+                <p>A safety-aligned model can supply every step of its own jailbreak, and defenses that check one turn at a time do not see it coming.</p>
+                <p style="font-size:0.9em">
+                    By Devang Kulshreshtha, Hang Su, and
+                    <a href="https://haohanwang.ischool.illinois.edu/">Haohan Wang</a> &middot;
+                    <time datetime="2026-10-07">October 7, 2026</time> &middot;
+                    About our COLM 2026 paper
+                </p>
+                <ul class="actions">
+                    <li><a href="https://arxiv.org/abs/2601.02670" class="button">Paper</a></li>
+                    <li><a href="https://openreview.net/forum?id=y4PNft5oX1" class="button alt">OpenReview &amp; code</a></li>
+                </ul>
+            </header>
+
+            <p>Check out our COLM 2026 paper, <em>Break Me If You Can: Self-Jailbreaking of Aligned LLMs via
+                Lexical Insertion Prompting</em>, led by Devang Kulshreshtha and Hang Su with co-authors at the
+                University of Illinois Urbana-Champaign and New York University. It asks whether automated jailbreaks
+                really need a second &ldquo;attacker&rdquo; LLM to write adversarial prompts for the target model.
+                Our answer is no: aligned LLMs can <strong>jailbreak themselves</strong>. The paper introduces
+                <strong>SLIP</strong>, a black-box attack that uses only the target model&rsquo;s own outputs to walk
+                a multi-turn conversation toward a harmful goal. Across 11 LLMs it reached 94.7% average attack
+                success on AdvBench with about 7.9 queries per success.</p>
+
+            <!-- Answer-first summary. -->
+            <div class="intro-box">
+                <h2 style="margin-top:0">Key findings</h2>
+                <ul>
+                    <li>In <em>Break Me If You Can</em> (COLM 2026), the self-jailbreaking attack SLIP reached an
+                        average attack success rate of 94.7% on AdvBench and 94.4% on HarmBench across 11 LLMs,
+                        including GPT-5.1, Claude-Sonnet-4.5, Gemini-2.5-Pro, and DeepSeek-V3, with no separate
+                        attacker LLM.</li>
+                    <li>SLIP needed about 7.9 calls per successful AdvBench jailbreak on average, compared with 9.5
+                        for X-Teaming, 26.4 for TAP, and 35.3 for PAIR (counts exclude judge calls), according to the
+                        COLM 2026 SLIP paper.</li>
+                    <li>Four turn-level defenses (ICD, PromptGuard v2, Goal Prioritization, LlamaGuard-3) left SLIP
+                        with 56.8% to 82.6% average attack success on AdvBench, because each SLIP turn looks benign
+                        on its own.</li>
+                    <li>The paper's session-level Semantic Drift Monitor detected 76% of SLIP attacks on GPT-5.1 at a
+                        5% false-positive rate, but an adaptive variant with benign &ldquo;cooldown&rdquo; turns raised
+                        attack success under the monitor from 26% to 43%.</li>
+                </ul>
+            </div>
+
+            <section>
+                <h2>Does alignment remove harmful knowledge from LLMs?</h2>
+                <p>Safety alignment teaches a model to refuse direct harmful requests. The SLIP paper starts from a
+                    simple observation: refusing is not the same as not knowing. Ask an aligned model to help build a
+                    dataset for training a safety classifier, a request that sounds responsible, and it will often
+                    write example harmful prompts together with harmful completions. The authors conclude that
+                    &ldquo;alignment suppresses its expression, not its existence.&rdquo;</p>
+                <p>That matters for red teaming. Earlier multi-turn jailbreaks, such as Crescendo, ActorBreaker, and
+                    X-Teaming, steer a conversation gradually, but they rely on an external attacker LLM to write each
+                    step. If the target model already has the knowledge and is willing to produce it under a benign
+                    framing, the attacker model is unnecessary. The target can provide the raw material for its own
+                    compromise. The paper calls this threat model <em>self-jailbreaking</em>.</p>
+
+                <h2>Key terms</h2>
+                <dl>
+                    <dt><strong>Jailbreak</strong></dt>
+                    <dd>An input or conversation that makes a safety-aligned LLM produce content its alignment is
+                        meant to prevent.</dd>
+                    <dt><strong>Self-jailbreaking</strong></dt>
+                    <dd>A threat model in which the target model&rsquo;s own knowledge and outputs guide the attack,
+                        with no separately provisioned attacker LLM writing adversarial prompts.</dd>
+                    <dt><strong>SLIP (Self-Jailbreaking via Lexical Insertion Prompting)</strong></dt>
+                    <dd>A black-box algorithm that runs a breadth-first search over multi-turn dialogues, adding
+                        missing words from the attack goal into the model&rsquo;s own examples until one becomes a
+                        successful jailbreak.</dd>
+                    <dt><strong>Anchor words</strong></dt>
+                    <dd>Content words in the attack goal (nouns, verbs, adjectives, adverbs) that have no close match
+                        in the current candidate prompt, ranked so that rare, goal-specific words come first.</dd>
+                    <dt><strong>Attack success rate (ASR)</strong></dt>
+                    <dd>The share of attack goals for which the model&rsquo;s response is judged to give specific,
+                        actionable harmful information.</dd>
+                    <dt><strong>Semantic Drift Monitor (SDM)</strong></dt>
+                    <dd>The paper's proposed session-level defense, which flags a conversation when its turns move
+                        too close to, or too quickly toward, known harmful content in embedding space.</dd>
+                </dl>
+
+                <h2>How does a self-jailbreak work?</h2>
+                <p>SLIP treats jailbreaking as a search for the shortest conversation that ends in a successful
+                    harmful completion. All of the content the attack builds on is generated by the target
+                    model; the algorithm only decides what to ask next, using short fixed templates.</p>
+                <figure>
+                    <img src="imgs/aligned_llms_jailbreak_themselves/figure_method.png" alt="Diagram of the SLIP self-jailbreaking algorithm in four steps. 1, seed pool: the target model is asked for a mix of benign and harmful prompt-completion pairs framed as safety-training data, without mentioning the attack goal. 2, rank: pairs are ranked by embedding similarity to the goal and the top three are kept. 3, expand by index: the model is asked to elaborate pair number i, so harmful text is never restated, and a judge checks the result. 4, insert anchor words: missing goal words are added in new pairs. Steps 2 to 4 repeat as a breadth-first search for up to three rounds, averaging about 7.9 queries." style="max-width:100%"/>
+                    <figcaption class="figure-caption">SLIP in four steps, simplified from Section 3 of the paper. No separate attacker LLM writes any of the content.</figcaption>
+                </figure>
+                <ol>
+                    <li><strong>Seed pool.</strong> The model is asked, under a safety-dataset framing, for a mix of
+                        benign and harmful prompt&ndash;completion pairs. The specific attack goal is never mentioned.
+                        The pool is built once per model and reused for every attack goal on that model.</li>
+                    <li><strong>Rank.</strong> Each pair is scored by sentence-embedding similarity to the attack
+                        goal, and the top <em>k</em> (3 by default) are kept.</li>
+                    <li><strong>Expand by index.</strong> The model is asked to elaborate on a pair by its number
+                        (&ldquo;pair #4&rdquo;) rather than by quoting it. The harmful text is never restated, so each
+                        message looks harmless on its own. An ensemble judge checks whether the expanded completion
+                        satisfies the goal.</li>
+                    <li><strong>Insert anchor words.</strong> If no candidate succeeds, SLIP finds goal words that the
+                        candidate is missing and asks the model for new pairs similar to that numbered pair that
+                        include them. Each request creates a new branch of the dialogue tree.</li>
+                </ol>
+                <p>Steps 2&ndash;4 repeat as a breadth-first search, up to a depth of three rounds. Breadth-first
+                    order finds short paths first. On Claude-Sonnet-4.5 it averaged 7.9 queries, against 10.6 for
+                    depth-first search, which sometimes stayed too long on a failing branch. In the paper's analysis,
+                    each round moves the conversation steadily closer to the attack goal in embedding space, but no
+                    single message ever states the full goal.</p>
+
+                <h2>Which LLMs can jailbreak themselves, and how often?</h2>
+                <p>The authors evaluated 11 models treated as black boxes: GPT-5.1, GPT-4o, Claude-Sonnet-4.5,
+                    Claude-Opus-4.5, Gemini-2.5-Pro, Gemini-2.5-Flash-Lite, DeepSeek-V3, Llama-3.3-70B-Instruct,
+                    Llama-3.1-8B-Instruct, Mistral-7B-Instruct, and Mistral-7B. Attack goals came from AdvBench (520
+                    prompts) and HarmBench (200 prompts). Success was decided by majority vote of three LLM judges using
+                    the HarmBench classifier prompt, and each experiment was repeated five times. The table shows
+                    selected rows from the paper's Table 1 next to the strongest baseline, X-Teaming.</p>
+                <table class="comparison-table">
+                    <tr><th>Target model</th><th>SLIP, AdvBench</th><th>X-Teaming, AdvBench</th><th>SLIP, HarmBench</th><th>X-Teaming, HarmBench</th></tr>
+                    <tr><td>GPT-5.1</td><td><strong>98.6</strong></td><td>96.9</td><td><strong>99.3</strong></td><td>95.1</td></tr>
+                    <tr><td>GPT-4o</td><td><strong>100</strong></td><td>96.2</td><td><strong>98.7</strong></td><td>94.3</td></tr>
+                    <tr><td>Claude-Sonnet-4.5</td><td>94.8</td><td><strong>95.1</strong></td><td>86.3</td><td><strong>89.1</strong></td></tr>
+                    <tr><td>Claude-Opus-4.5</td><td><strong>61.4</strong></td><td>57.3</td><td><strong>68.7</strong></td><td>61.0</td></tr>
+                    <tr><td>Gemini-2.5-Pro</td><td><strong>100</strong></td><td>95.7</td><td><strong>100</strong></td><td>93.8</td></tr>
+                    <tr><td>DeepSeek-V3</td><td>98.9</td><td><strong>99.0</strong></td><td><strong>99.7</strong></td><td>98.1</td></tr>
+                    <tr><td>Llama-3.3-70B-Instruct</td><td><strong>97.4</strong></td><td>87.2</td><td><strong>96.9</strong></td><td>84.9</td></tr>
+                    <tr><td><strong>Average over all 11 models</strong></td><td><strong>94.7</strong></td><td>91.7</td><td><strong>94.4</strong></td><td>90.3</td></tr>
+                </table>
+                <p>Attack success rate in %. The paper also compares PAIR, TAP, AutoDAN, ActorBreaker, and Crescendo.
+                    The strongest single-turn method, TAP, averaged 65.0% on AdvBench, nearly 30 points below SLIP.</p>
+                <p>SLIP does not win everywhere. X-Teaming was slightly ahead on Claude-Sonnet-4.5 on both benchmarks,
+                    and Claude-Opus-4.5 was the hardest target overall, with no method above 69%. To check the automated judge, two
+                    annotators reviewed 120 judge-flagged successes from GPT-5.1 and Llama-3.1-8B-Instruct. They
+                    confirmed 94.2% as genuinely harmful, 3.1% as borderline, and 2.7% as false positives (Cohen&rsquo;s
+                    &kappa; = 0.87).</p>
+
+                <h2>How many queries does a black-box jailbreak need?</h2>
+                <figure>
+                    <img src="imgs/aligned_llms_jailbreak_themselves/cover.png" alt="Horizontal bar chart of average attack success on AdvBench across 11 LLMs, with average queries per success. PAIR 47.0% with 35.3 queries, TAP 65.0% with 26.4, Crescendo 79.6% with 8.8, ActorBreaker 81.8% with 11.7, X-Teaming 91.7% with 9.5, and SLIP 94.7% with 7.9." style="max-width:100%"/>
+                    <figcaption class="figure-caption">Average AdvBench attack success and queries per success (data: Tables 1 and 5 of arXiv:2601.02670). Query counts for other methods include their attacker-LLM calls; no count includes judge calls.</figcaption>
+                </figure>
+                <p>Query count matters for both sides: cheaper attacks are easier to run at scale, and query budgets
+                    are a common rate-limiting defense. SLIP averaged 7.9 calls per success on AdvBench, counting
+                    target-model calls and the small formatting-repair calls used to fix malformed JSON. The most
+                    query-efficient multi-turn baseline, X-Teaming, used 9.5. Single-turn search methods that rely on
+                    an attacker LLM, TAP and PAIR, used 26.4 and 35.3.</p>
+                <p>The cost varies by model. On Gemini-2.5-Pro SLIP needed 3.8 queries on average, but on
+                    Claude-Opus-4.5 it needed 22.6, more than X-Teaming's 12.2 on that model.</p>
+
+                <h2>Why do multi-turn jailbreaks get past per-turn safety filters?</h2>
+                <p>The paper tested four existing defenses: In-Context Defense (ICD, refusal examples added to each
+                    query), PromptGuard v2 (a classifier that blocks jailbreak-like prompts), Goal Prioritization
+                    (system instructions that rank safety above helpfulness), and LlamaGuard-3 (a safety classifier
+                    applied at every turn).</p>
+                <figure>
+                    <img src="imgs/aligned_llms_jailbreak_themselves/figure_defenses.png" alt="Grouped bar chart of average AdvBench attack success under defenses for X-Teaming and SLIP. No defense: 91.7 vs 94.7. ICD: 74.3 vs 82.6. PromptGuard v2: 68.4 vs 78.1. LlamaGuard-3: 62.1 vs 68.8. Goal Prioritization: 65.8 vs 56.8. Every defense lowers success, but none brings SLIP below 56.8%." style="max-width:100%"/>
+                    <figcaption class="figure-caption">Average AdvBench attack success under four turn-level defenses (data: Table 2 of arXiv:2601.02670).</figcaption>
+                </figure>
+                <table class="comparison-table">
+                    <tr><th>Method</th><th>No defense</th><th>ICD</th><th>PromptGuard v2</th><th>Goal Prioritization</th><th>LlamaGuard-3</th></tr>
+                    <tr><td>PAIR</td><td>47.0</td><td>27.3</td><td>18.6</td><td>28.4</td><td>13.2</td></tr>
+                    <tr><td>TAP</td><td>65.0</td><td>44.8</td><td>38.6</td><td>41.2</td><td>28.7</td></tr>
+                    <tr><td>ActorBreaker</td><td>81.8</td><td>64.2</td><td>56.7</td><td>62.3</td><td>51.4</td></tr>
+                    <tr><td>X-Teaming</td><td>91.7</td><td>74.3</td><td>68.4</td><td>65.8</td><td>62.1</td></tr>
+                    <tr><td><strong>SLIP</strong></td><td>94.7</td><td>82.6</td><td>78.1</td><td>56.8</td><td>68.8</td></tr>
+                </table>
+                <p>Average AdvBench attack success in % under each defense; lower means a stronger defense.
+                    PromptGuard v2 cut single-turn attacks the most because their prompts show the harmful intent all
+                    at once. SLIP lost the least under PromptGuard v2 (16.6 points) because its intermediate turns
+                    (&ldquo;expand on pair #4&rdquo;) are classified as benign. The authors' explanation is
+                    structural. Every one of these defenses judges one turn at a time with no memory of the
+                    conversation, and each SLIP turn is harmless on its own. Such defenses cannot see the malicious
+                    trajectory, however accurate they are per turn.</p>
+                <p>Which defense works best depends on the model. Goal Prioritization cut SLIP to 17.6% on GPT-5.1 and
+                    11.1% on Claude-Sonnet-4.5. It had much less effect on GPT-4o and the Mistral models (above 85%),
+                    where LlamaGuard-3 was the stronger barrier. The paper suggests matching the defense to how
+                    closely a model follows system-level instructions.</p>
+
+                <h2>How can multi-turn jailbreaks be detected?</h2>
+                <p>Blocking the literal phrase &ldquo;pair #N&rdquo; catches default SLIP almost perfectly, but a
+                    paraphrase such as &ldquo;elaborate on the fourth example&rdquo; gets around it. The paper instead
+                    targets something the attack cannot avoid. To succeed, the conversation must move closer to the
+                    harmful goal. The <strong>Semantic Drift Monitor</strong> embeds each turn and compares it with an
+                    average embedding of known harmful prompts. It flags a session if the peak similarity, the running
+                    average, or a single jump crosses a threshold. The thresholds are calibrated on benign multi-turn
+                    chats (ShareGPT and LMSYS-Chat-1M) to keep false positives at or below 5%.</p>
+                <p>On GPT-5.1 with AdvBench goals, SDM detected 76% of SLIP attacks at a 5% false-positive rate. The
+                    authors then attacked their own defense. An adaptive SLIP inserts unrelated &ldquo;cooldown&rdquo;
+                    exchanges (weather, cooking, travel) between steps, which keeps the average and the jumps low.
+                    That raised attack success under SDM from 26% to 43%, at roughly twice the queries (about
+                    14&ndash;18). Peak similarity still has to rise for the attack to succeed, so the monitor is not
+                    fully bypassed. The authors' conclusion is that robust defense will need to track intent across
+                    a whole session, not just inspect each message.</p>
+
+                <h2>What this does not show</h2>
+                <ul>
+                    <li><strong>&ldquo;No attacker LLM&rdquo; has a specific meaning.</strong> SLIP still uses a
+                        sentence encoder, word vectors, a small model (gpt-4o-mini) that repairs malformed JSON
+                        without changing content, and an ensemble of LLM judges. What it does not use is a separate
+                        model that writes adversarial prompts, as PAIR, TAP, and Crescendo do.</li>
+                    <li><strong>Headline query counts exclude the judge.</strong> The 7.9-query figure counts target
+                        and repair calls. The paper's fully loaded estimate, including the three-judge ensemble, is
+                        about 104 API calls per success on average, or about 41 with a single judge. Baseline counts
+                        also exclude their judges.</li>
+                    <li><strong>English text only.</strong> SLIP was not tested in other languages or on multimodal
+                        models, and anchor-word insertion may work less well in morphologically rich languages.</li>
+                    <li><strong>Automated judging.</strong> Human review covered 120 judge-flagged successes from two
+                        models. The authors note that larger-scale annotation would strengthen the borderline cases.</li>
+                    <li><strong>The defense is a first step.</strong> SDM relies on a frozen sentence encoder as a
+                        proxy for what the model is doing, and the adaptive attack partly evades it. The authors
+                        expect a stronger fix to require training models on multi-turn adversarial examples.</li>
+                    <li><strong>Model snapshots.</strong> Results reflect the model versions available when the
+                        experiments were run. The authors report that they disclosed the attack to OpenAI, Anthropic,
+                        Google DeepMind, Meta, Mistral AI, and DeepSeek, so current deployments may behave differently.</li>
+                </ul>
+
+                <h2>Frequently asked questions</h2>
+                <h3>Can an aligned LLM jailbreak itself without a separate attacker model?</h3>
+                <p>Yes, according to Break Me If You Can (COLM 2026). Its SLIP attack uses only the target model's own
+                    outputs to build a multi-turn path to harmful content, and reached 94.7% average attack success on
+                    AdvBench and 94.4% on HarmBench across 11 LLMs, without a separately provisioned attacker LLM.</p>
+                <h3>Why do multi-turn jailbreaks get past per-turn safety filters?</h3>
+                <p>Because no single turn contains the harmful request. In SLIP, intermediate turns only ask the model
+                    to expand an earlier numbered example or add a few words, so filters that judge one turn at a time
+                    see benign text; the paper argues such filters cannot detect the trajectory even in principle.</p>
+                <h3>How many queries does a black-box jailbreak need?</h3>
+                <p>It depends on the method and the model. In the COLM 2026 SLIP paper, SLIP averaged about 7.9 calls
+                    per successful jailbreak on AdvBench, compared with 9.5 for X-Teaming, 26.4 for TAP, and 35.3 for
+                    PAIR; these counts exclude judge calls, which raise SLIP's estimated total to roughly 41-104 API
+                    calls.</p>
+                <h3>How can multi-turn jailbreaks be detected?</h3>
+                <p>One approach is to monitor the whole session rather than each turn. The paper's Semantic Drift
+                    Monitor tracks how close each turn moves toward known harmful content in embedding space and
+                    detected 76% of SLIP attacks on GPT-5.1 at a 5% false-positive rate, though an adaptive attack with
+                    benign cooldown turns raised attack success under the monitor from 26% to 43%.</p>
+
+                <h2>Citation</h2>
+<pre><code>@inproceedings{kulshreshtha2026breakme,
+  title     = {Break Me If You Can: Self-Jailbreaking of Aligned LLMs via Lexical Insertion Prompting},
+  author    = {Kulshreshtha, Devang and Su, Hang and Jin, Haibo and Hegde, Chinmay and Wang, Haohan},
+  booktitle = {Conference on Language Modeling (COLM)},
+  year      = {2026}
+}</code></pre>
+
+                <h2>Related from our lab</h2>
+                <ul>
+                    <li><a href="security_fidelity_tradeoff.html">The hidden cost of prompt injection defense: measuring security and fidelity together (SecFid)</a></li>
+                    <li><a href="thousand_ideas_trustworthy_ML.html">Three frameworks for trustworthy machine learning research, including adversarial robustness</a></li>
+                    <li><a href="when_more_reasoning_is_actually_less.html">When more chain-of-thought reasoning hurts LLM accuracy</a></li>
+                    <li><a href="https://haohanwang.ischool.illinois.edu/research/llm-security.html">LLM security research overview by Haohan Wang, covering jailbreaks and prompt injection</a></li>
+                    <li><a href="../publications.html">Full list of DREAM Lab publications</a></li>
+                </ul>
+
+                <div style="margin-top: 50px; padding-top: 30px; border-top: 1px solid rgba(255,255,255,0.2); font-size: 0.9em; color: rgba(255,255,255,0.6);">
+                    <p><strong>Paper:</strong> Devang Kulshreshtha, Hang Su, Haibo Jin, Chinmay Hegde, Haohan Wang.
+                        &ldquo;<a href="https://arxiv.org/abs/2601.02670">Break Me If You Can: Self-Jailbreaking of
+                        Aligned LLMs via Lexical Insertion Prompting</a>.&rdquo; Conference on Language Modeling (COLM),
+                        2026. arXiv:2601.02670. University of Illinois Urbana-Champaign and New York University; the
+                        work of the first two authors is independent of their employment at Amazon.</p>
+                    <p><strong>OpenReview:</strong> <a href="https://openreview.net/forum?id=y4PNft5oX1">openreview.net/forum?id=y4PNft5oX1</a>
+                        (the paper states that its code, including the SLIP implementation and the Semantic Drift
+                        Monitor, is provided as supplementary material).</p>
+                </div>
+            </section>
+            </article>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer id="footer">
+        <ul class="icons">
+            <li><a href="https://x.com/HaohanWang" class="icon brands alt fa-twitter"><span class="label">X</span></a></li>
+            <li><a href="https://www.linkedin.com/in/haohanwang/" class="icon brands alt fa-linkedin-in"><span class="label">LinkedIn</span></a></li>
+            <li><a href="https://github.com/DreamLabUIUC" class="icon brands alt fa-github"><span class="label">GitHub</span></a></li>
+            <li><a href="../feed.xml" class="icon solid alt fa-rss"><span class="label">RSS</span></a></li>
+        </ul>
+        <ul class="copyright">
+            <li>&copy; DREAM Lab, University of Illinois Urbana-Champaign</li>
+            <li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
+        </ul>
+    </footer>
+
+</div>
+
+<!-- Scripts -->
+<script src="../assets2/js/jquery.min.js"></script>
+<script src="../assets2/js/jquery.scrolly.min.js"></script>
+<script src="../assets2/js/jquery.dropotron.min.js"></script>
+<script src="../assets2/js/jquery.scrollex.min.js"></script>
+<script src="../assets2/js/browser.min.js"></script>
+<script src="../assets2/js/breakpoints.min.js"></script>
+<script src="../assets2/js/util.js"></script>
+<script src="../assets2/js/main.js"></script>
+
+</body>
+</html>
