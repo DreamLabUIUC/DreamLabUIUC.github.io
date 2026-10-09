@@ -1,0 +1,395 @@
+<!DOCTYPE HTML>
+<html lang="en">
+<head>
+    <title>Vision Transformer Robustness: The Inputs a ViT Cannot See | DREAM Lab, UIUC</title>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <meta name="description" content="Vision transformer robustness: ViT-S/32 cannot see 2,688 of 3,072 input dimensions per patch, and nullspace fine-tuning lifts ViT-S's average from 26.5 to 34.5.">
+    <link rel="canonical" href="https://dream.ischool.illinois.edu/blogs/vision_transformer_robustness_nullspace.html">
+    <meta property="og:type" content="article">
+    <meta property="og:site_name" content="DREAM Lab, UIUC">
+    <meta property="og:title" content="Vision Transformer Robustness: The Inputs a ViT Cannot See">
+    <meta property="og:description" content="Vision transformer robustness: ViT-S/32 cannot see 2,688 of 3,072 input dimensions per patch, and nullspace fine-tuning lifts ViT-S's average from 26.5 to 34.5.">
+    <meta property="og:url" content="https://dream.ischool.illinois.edu/blogs/vision_transformer_robustness_nullspace.html">
+    <meta property="og:image" content="https://dream.ischool.illinois.edu/blogs/imgs/vision_transformer_robustness_nullspace/cover.png">
+    <meta property="article:published_time" content="2026-10-09">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@HaohanWang">
+    <meta name="twitter:title" content="Vision Transformer Robustness: The Inputs a ViT Cannot See">
+    <meta name="twitter:description" content="Vision transformer robustness: ViT-S/32 cannot see 2,688 of 3,072 input dimensions per patch, and nullspace fine-tuning lifts ViT-S's average from 26.5 to 34.5.">
+    <meta name="twitter:image" content="https://dream.ischool.illinois.edu/blogs/imgs/vision_transformer_robustness_nullspace/cover.png">
+    <meta name="citation_title" content="Approximate Nullspace Augmented Finetuning for Robust Vision Transformers">
+    <meta name="citation_author" content="Liu, Haoyang">
+    <meta name="citation_author" content="Singh, Aditya">
+    <meta name="citation_author" content="Li, Yijiang">
+    <meta name="citation_author" content="Wang, Haohan">
+    <meta name="citation_publication_date" content="2025">
+    <meta name="citation_conference_title" content="Conference on Parsimony and Learning (CPAL 2025)">
+    <meta name="citation_publisher" content="PMLR">
+    <meta name="citation_arxiv_id" content="2403.10476">
+    <meta name="citation_pdf_url" content="https://arxiv.org/pdf/2403.10476">
+    <link rel="alternate" type="application/rss+xml" title="DREAM Lab blog" href="https://dream.ischool.illinois.edu/feed.xml">
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "BlogPosting",
+          "headline": "Vision Transformer Robustness: The Inputs a ViT Cannot See",
+          "description": "Vision transformer robustness: ViT-S/32 cannot see 2,688 of 3,072 input dimensions per patch, and nullspace fine-tuning lifts ViT-S's average from 26.5 to 34.5.",
+          "datePublished": "2026-10-09",
+          "dateModified": "2026-10-09",
+          "url": "https://dream.ischool.illinois.edu/blogs/vision_transformer_robustness_nullspace.html",
+          "mainEntityOfPage": "https://dream.ischool.illinois.edu/blogs/vision_transformer_robustness_nullspace.html",
+          "image": "https://dream.ischool.illinois.edu/blogs/imgs/vision_transformer_robustness_nullspace/cover.png",
+          "inLanguage": "en",
+          "keywords": ["vision transformer robustness", "ViT", "nullspace", "adversarial robustness", "distribution shift", "data augmentation"],
+          "author": [
+            {"@type": "Person", "name": "Haoyang Liu", "url": "https://liu-hy.github.io/"},
+            {"@type": "Person", "@id": "https://dream.ischool.illinois.edu/#haohan-wang", "name": "Haohan Wang", "url": "https://haohanwang.ischool.illinois.edu/"}
+          ],
+          "publisher": {"@type": "ResearchOrganization", "@id": "https://dream.ischool.illinois.edu/#lab", "name": "DREAM Lab, UIUC", "url": "https://dream.ischool.illinois.edu/"},
+          "about": {
+            "@type": "ScholarlyArticle",
+            "name": "Approximate Nullspace Augmented Finetuning for Robust Vision Transformers",
+            "url": "https://arxiv.org/abs/2403.10476",
+            "sameAs": "https://proceedings.mlr.press/v280/liu25a.html",
+            "author": [
+              {"@type": "Person", "name": "Haoyang Liu"},
+              {"@type": "Person", "name": "Aditya Singh"},
+              {"@type": "Person", "name": "Yijiang Li"},
+              {"@type": "Person", "name": "Haohan Wang"}
+            ],
+            "datePublished": "2025",
+            "publisher": "Conference on Parsimony and Learning (CPAL 2025), PMLR"
+          }
+        },
+        {
+          "@type": "BreadcrumbList",
+          "itemListElement": [
+            {"@type": "ListItem", "position": 1, "name": "DREAM Lab", "item": "https://dream.ischool.illinois.edu/"},
+            {"@type": "ListItem", "position": 2, "name": "Blog", "item": "https://dream.ischool.illinois.edu/blogs.html"},
+            {"@type": "ListItem", "position": 3, "name": "Vision Transformer Robustness: The Inputs a ViT Cannot See", "item": "https://dream.ischool.illinois.edu/blogs/vision_transformer_robustness_nullspace.html"}
+          ]
+        },
+        {
+          "@type": "FAQPage",
+          "mainEntity": [
+            {"@type": "Question", "name": "Are vision transformers robust?", "acceptedAnswer": {"@type": "Answer", "text": "Only partly. In the CPAL 2025 paper by Liu, Singh, Li and Wang, an off-the-shelf ViT-S scored 0.68% accuracy under the PatchFool attack and 14.26% on ImageNet-Sketch, against 74.19% on clean ImageNet-1k. At the same time, many ViTs are exactly invariant to a large set of input changes, those in the nullspace of their patch embedding layer."}},
+            {"@type": "Question", "name": "Do vision transformers have a nullspace?", "acceptedAnswer": {"@type": "Answer", "text": "Yes, whenever a patch has more pixel values than the embedding has dimensions, because the patch embedding layer is linear. For example, ViT-S/32 maps 3,072 values per patch to 384 dimensions, so 2,688 input directions per patch never change the output. For ViT-B/16 the nullspace has only 2 dimensions, and for ViT-L/16 and ViT-B/8 it is empty."}},
+            {"@type": "Question", "name": "How can you improve vision transformer robustness with fine-tuning?", "acceptedAnswer": {"@type": "Answer", "text": "One option is nullspace noise augmented fine-tuning: repeatedly search for a noise vector that barely changes the model's output, then fine-tune the model on inputs with that noise added. In the CPAL 2025 paper this raised ViT-S's average score over clean, adversarial and distribution-shift tests from 26.54 to 34.45, using about 10% of ImageNet-1k training data."}},
+            {"@type": "Question", "name": "Is nullspace fine-tuning better than adversarial training for ViTs?", "acceptedAnswer": {"@type": "Answer", "text": "Not for adversarial attacks, but yes for natural distribution shifts in the paper's tests. PGD adversarial training (Madry, TRADES) gave higher FGSM accuracy on ViT-S (39.37% and 38.85% vs 25.95%), while nullspace fine-tuning kept higher clean accuracy (77.47%) and did better on ImageNet-C, ImageNet-V2, ImageNet-R and Stylized-ImageNet."}}
+          ]
+        }
+      ]
+    }
+    </script>
+    <link rel="stylesheet" href="../assets2/css/main.css"/>
+    <link rel="stylesheet" href="blog.css"/>
+    <link rel="apple-touch-icon" sizes="180x180" href="../favicon/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="../favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="../favicon/favicon-16x16.png">
+    <link rel="manifest" href="../favicon/site.webmanifest">
+    <noscript>
+        <link rel="stylesheet" href="../assets2/css/noscript.css"/>
+    </noscript>
+</head>
+<body class="is-preload">
+<div id="page-wrapper">
+
+    <!-- Header -->
+    <header id="header">
+        <nav id="nav">
+            <ul>
+                <li><a href="../index.html">Home</a></li>
+                <li><a href="../overview.html">Overview</a></li>
+                <li><a href="../publications.html">Publications</a></li>
+                <li><a href="../blogs.html">Blogs</a></li>
+                <li><a href="../software.html">Software</a></li>
+                <li><a href="../contact.html">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Main -->
+    <div id="main" class="wrapper style1">
+        <div class="container">
+            <article>
+            <header class="major">
+                <h1>Vision Transformer Robustness: The Inputs a ViT Cannot See</h1>
+                <p>Many vision transformers are exactly blind to most directions of change in each image patch. We turned that blind spot into a way to make them more robust.</p>
+                <p style="font-size:0.9em">
+                    By <a href="https://liu-hy.github.io/">Haoyang Liu</a> and
+                    <a href="https://haohanwang.ischool.illinois.edu/">Haohan Wang</a> &middot;
+                    <time datetime="2026-10-09">October 9, 2026</time> &middot;
+                    About our CPAL 2025 paper (oral)
+                </p>
+                <ul class="actions">
+                    <li><a href="https://arxiv.org/abs/2403.10476" class="button">Paper</a></li>
+                    <li><a href="https://github.com/Liu-Hy/ns-vit" class="button alt">Code</a></li>
+                    <li><a href="https://liu-hy.github.io/NS-ViT/" class="button alt">Project page</a></li>
+                </ul>
+            </header>
+
+            <p>Vision transformers (ViTs) have been the default backbone in computer vision for about five years, yet
+                <strong>vision transformer robustness</strong> is still unsettled: the same model can be accurate on
+                clean images and fail badly on sketches or under adversarial attack. Our paper <em>Approximate
+                Nullspace Augmented Finetuning for Robust Vision Transformers</em>, by Haoyang Liu, Aditya Singh,
+                Yijiang Li and Haohan Wang (University of Illinois Urbana-Champaign, Sorted Technologies, UC San Diego),
+                an oral at the Conference on Parsimony and Learning (CPAL 2025), looks at this from an unusual angle.
+                Instead of asking which input changes break a ViT, it asks which changes a ViT cannot see at all. The
+                answer is surprisingly many, and that blind spot turns out to be a useful handle for making ViTs more
+                robust.</p>
+
+            <!-- Answer-first summary. -->
+            <div class="intro-box">
+                <h2 style="margin-top:0">Key findings</h2>
+                <ul>
+                    <li>Because a ViT's patch embedding layer is linear, any patch with more pixel values than embedding
+                        dimensions has a nullspace: in the CPAL 2025 paper by Liu, Singh, Li and Wang, ViT-S/32 cannot
+                        see 2,688 of the 3,072 input dimensions of each 32&times;32 patch, and adding noise from that
+                        space never changes its output.</li>
+                    <li>The nullspace is uneven across standard ViTs: 2,304 of 3,072 dimensions per patch for ViT-B/32
+                        and 576 of 768 for ViT-Ti/16, but only 2 of 768 for ViT-B/16 and none for ViT-L/16 or ViT-B/8,
+                        according to Table 1 of the CPAL 2025 nullspace paper.</li>
+                    <li>Fine-tuning ViT-S with synthesized &ldquo;approximate nullspace&rdquo; noise raised its average
+                        score over clean, four adversarial and six distribution-shift tests from 26.54 to 34.45,
+                        including ImageNet-Sketch accuracy from 14.26% to 25.67% and PatchFool accuracy from 0.68% to
+                        19.10% (CPAL 2025, Table 2).</li>
+                    <li>The fine-tuning used about 10% of the ImageNet-1k training data, and on ViT-S nullspace noise
+                        beat random noise of the same strength on seven of eight robustness tests, for example 25.67% vs
+                        14.77% on ImageNet-Sketch; random noise was slightly better only on ImageNet-C.</li>
+                </ul>
+            </div>
+
+            <section>
+                <h2>Are vision transformers robust?</h2>
+                <p>Only partly, and it depends on the kind of change. Earlier studies, such as
+                    <a href="https://arxiv.org/abs/2111.10659">Gu et al. (2021)</a>, found ViTs tolerate some natural
+                    corruptions better than convolutional networks, while attacks such as
+                    <a href="https://arxiv.org/abs/2203.08392">Patch-Fool</a> (Fu et al., ICLR 2022) showed they are not reliably robust to adversarial perturbations. The baseline numbers in our
+                    paper make the gap concrete. An off-the-shelf ViT-S reached 74.19% on clean ImageNet-1k, but 14.26%
+                    on ImageNet-Sketch, 12.15% on Stylized-ImageNet, and 0.68% under the PatchFool attack.</p>
+                <p>The usual fixes work from the outside. Adversarial training finds worst-case perturbations and
+                    trains on them, which tends to cost clean accuracy. Data augmentation (flips, MixUp, CutMix, AugMix)
+                    uses transformations that people choose by hand, and on its own does little against adversarial
+                    attacks. The paper asks a different question: is robustness a property of the model itself, and
+                    can we find perturbations the model is already invariant to and enlarge that set?</p>
+
+                <h2>Key terms</h2>
+                <dl>
+                    <dt><strong>Nullspace</strong></dt>
+                    <dd>For a linear map, the set of input vectors it sends to zero; adding any of them to an input
+                        leaves the output unchanged.</dd>
+                    <dt><strong>Patch embedding layer</strong></dt>
+                    <dd>The first layer of a ViT, a linear projection that turns each non-overlapping image patch of
+                        3&times;r&times;r pixel values into one token of d dimensions.</dd>
+                    <dt><strong>Rank-nullity theorem</strong></dt>
+                    <dd>The linear algebra fact that guarantees a non-trivial nullspace whenever a linear map's input
+                        dimension (here 3r&sup2;) exceeds its output dimension (here d).</dd>
+                    <dt><strong>Approximate (&epsilon;-approximate) nullspace</strong></dt>
+                    <dd>For the nonlinear transformer encoder, the set of additive noise vectors that change the model's
+                        output probabilities by at most a small amount &epsilon; on average over the data.</dd>
+                    <dt><strong>Nullspace noise augmented fine-tuning (NS)</strong></dt>
+                    <dd>The paper's method: fine-tune a pretrained ViT on inputs with synthesized approximate nullspace
+                        noise added, so the set of noise the model tolerates grows.</dd>
+                    <dt><strong>Distribution shift</strong></dt>
+                    <dd>A difference between training and test data, here measured with ImageNet-A, -C, -V2, -R,
+                        ImageNet-Sketch and Stylized-ImageNet.</dd>
+                </dl>
+
+                <h2>Do vision transformers have a nullspace?</h2>
+                <p>Many do, for a simple reason. A ViT first cuts the image into non-overlapping r&times;r patches and
+                    projects each one, with 3r&sup2; pixel values, to a d-dimensional embedding using a linear layer. By
+                    the rank-nullity theorem, if 3r&sup2; is larger than d, some directions in pixel space map to zero.
+                    Add any combination of them to an image and the patch embeddings are identical, so every later
+                    layer, and the final prediction, is identical too. This is exact, not approximate.</p>
+                <figure>
+                    <img src="imgs/vision_transformer_robustness_nullspace/cover.png" alt="Bar chart titled How much of each image patch can a ViT not see. Nullspace dimensions of the patch embedding layer out of input dimensions per patch: ViT-S/32 2,688 of 3,072 (87.5%), ViT-B/32 2,304 of 3,072 (75%), ViT-L/32 2,048 of 3,072 (66.7%), ViT-Ti/16 576 of 768 (75%), ViT-S/16 384 of 768 (50%), ViT-B/16 2 of 768 (0.3%), ViT-L/16 0 of 768, ViT-B/8 0 of 192." style="max-width:100%"/>
+                    <figcaption class="figure-caption">Nullspace size of the patch embedding layer for pre-trained ViTs (data: Table 1 of arXiv:2403.10476). Any perturbation in the red part has no effect on the model's output.</figcaption>
+                </figure>
+                <table class="comparison-table">
+                    <tr><th>Model</th><th>Patch size</th><th>Input values per patch</th><th>Embedding dim.</th><th>Nullspace dim.</th></tr>
+                    <tr><td>ViT-Tiny</td><td>16&times;16</td><td>768</td><td>192</td><td>576</td></tr>
+                    <tr><td>ViT-Small</td><td>32&times;32</td><td>3,072</td><td>384</td><td>2,688</td></tr>
+                    <tr><td>ViT-Small</td><td>16&times;16</td><td>768</td><td>384</td><td>384</td></tr>
+                    <tr><td>ViT-Base</td><td>32&times;32</td><td>3,072</td><td>768</td><td>2,304</td></tr>
+                    <tr><td>ViT-Base</td><td>16&times;16</td><td>768</td><td>768</td><td>2</td></tr>
+                    <tr><td>ViT-Base</td><td>8&times;8</td><td>192</td><td>768</td><td>0</td></tr>
+                    <tr><td>ViT-Large</td><td>32&times;32</td><td>3,072</td><td>1,024</td><td>2,048</td></tr>
+                    <tr><td>ViT-Large</td><td>16&times;16</td><td>768</td><td>1,024</td><td>0</td></tr>
+                </table>
+                <p>Patch size, embedding and nullspace dimensions are from the paper's Table 1; input values per patch
+                    are 3&times;r&times;r for RGB images. The paper shows two side effects of this blind spot in its
+                    appendix. A visible logo can be stamped onto an image using only nullspace directions, and the
+                    model's prediction does not change (the paper reports a 100% prediction match and a 10<sup>-4</sup>
+                    confidence difference in its example). And an image can be pushed to look like a different image
+                    to a person while the model, and even its saliency maps, still respond as if it were the
+                    original.</p>
+                <p>The paper then goes past the first layer. Self-attention is nonlinear, so a true nullspace is not
+                    defined for the encoder. The authors prove sufficient conditions on the query, key and value
+                    matrices under which a non-zero perturbation leaves every attention head unchanged, and then
+                    search numerically for noise vectors that barely change the output. On ImageNette (a 10-class
+                    ImageNet subset), such learned noise left predictions almost unchanged, while the same noise with
+                    its elements randomly shuffled degraded predictions significantly. The model is tolerant to some
+                    directions and not to others.</p>
+
+                <h2>How can you improve vision transformer robustness with fine-tuning?</h2>
+                <p>If tolerance to approximate nullspace noise is tied to robustness, enlarging that tolerance should
+                    help. That is the method:</p>
+                <ol>
+                    <li><strong>Find a noise vector the model barely notices.</strong> Start from large random noise
+                        added to the patch embeddings (the encoder's input) and shrink it by gradient descent until the
+                        model's output probabilities change by less than &epsilon; = 0.03 on average. The result sits
+                        near the edge of the model's approximate nullspace.</li>
+                    <li><strong>Fine-tune on that noise.</strong> Train the model for 40 steps on both clean inputs and
+                        inputs with the noise added, with the usual cross-entropy loss.</li>
+                    <li><strong>Repeat.</strong> The paper runs 20 rounds. As fine-tuning proceeds, the noise found in
+                        step 1 gets larger while still staying within &epsilon;, which the authors read as the
+                        approximate nullspace growing, and robustness scores rise with it.</li>
+                </ol>
+                <p>No new architecture and no hand-picked augmentations are needed. The whole run used about 10% of the
+                    ImageNet-1k training data. Most of the compute goes into finding the noise, and one run cost
+                    roughly as much as 8 epochs of standard ImageNet-1k training.</p>
+
+                <h2>How much does nullspace fine-tuning help ViT robustness?</h2>
+                <figure>
+                    <img src="imgs/vision_transformer_robustness_nullspace/figure_results.png" alt="Paired bar chart comparing ViT-S with ViT-S after nullspace fine-tuning across 12 measures. Clean 74.19 to 77.47; PatchFool 0.68 to 19.10; CW 4.63 to 9.37; FGSM 13.79 to 25.95; DamageNet 29.82 to 32.43; ImageNet-A 16.35 to 20.77; ImageNet-C shown as 100 minus mCE 28.87 to 44.02; ImageNet-V2 62.51 to 66.50; ImageNet-R 34.67 to 41.61; ImageNet-Sketch 14.26 to 25.67; Stylized-ImageNet 12.15 to 16.02; average 26.54 to 34.45." style="max-width:100%"/>
+                    <figcaption class="figure-caption">ViT-S before and after nullspace fine-tuning (data: Table 2 of arXiv:2403.10476). Every measure improves.</figcaption>
+                </figure>
+                <p>The table shows selected rows of the paper's Table 2. Accuracy in %, except ImageNet-C, which is mean
+                    corruption error (mCE, lower is better). The average is over all 11 settings, using 100&minus;mCE for
+                    ImageNet-C.</p>
+                <table class="comparison-table">
+                    <tr><th>Model</th><th>Clean</th><th>PatchFool</th><th>FGSM</th><th>ImageNet-A</th><th>ImageNet-C &darr;</th><th>ImageNet-R</th><th>ImageNet-Sketch</th><th>Average</th></tr>
+                    <tr><td>ViT-S</td><td>74.19</td><td>0.68</td><td>13.79</td><td>16.35</td><td>71.13</td><td>34.67</td><td>14.26</td><td>26.54</td></tr>
+                    <tr><td>ViT-S + NS</td><td><strong>77.47</strong></td><td><strong>19.10</strong></td><td><strong>25.95</strong></td><td><strong>20.77</strong></td><td><strong>55.98</strong></td><td><strong>41.61</strong></td><td><strong>25.67</strong></td><td><strong>34.45</strong></td></tr>
+                    <tr><td>ViT-B</td><td>77.68</td><td>15.92</td><td>25.65</td><td>23.88</td><td>62.16</td><td>41.63</td><td>16.31</td><td>34.01</td></tr>
+                    <tr><td>ViT-B + NS</td><td><strong>81.42</strong></td><td><strong>23.52</strong></td><td><strong>36.50</strong></td><td><strong>24.55</strong></td><td><strong>47.82</strong></td><td><strong>44.85</strong></td><td><strong>26.35</strong></td><td><strong>39.39</strong></td></tr>
+                    <tr><td>ViT-B + DAT</td><td>81.47</td><td>22.64</td><td>48.80</td><td>23.83</td><td>45.95</td><td>48.68</td><td>36.94</td><td>43.41</td></tr>
+                    <tr><td>ViT-B + DAT + NS</td><td>81.33</td><td>24.14</td><td>48.98</td><td>24.22</td><td>45.91</td><td>48.48</td><td>37.25</td><td>43.61</td></tr>
+                </table>
+                <p>Three things stand out. First, nullspace fine-tuning improved clean accuracy as well as robustness,
+                    by 3.3 points on ViT-S and 3.7 on ViT-B, whereas adversarial training usually trades clean accuracy
+                    away. Second, the gains are largest where the base model is weakest: ImageNet-Sketch accuracy for
+                    ViT-S rose from 14.26% to 25.67%, and PatchFool accuracy from near zero to 19.10%. Third, on top of
+                    Discrete Adversarial Training (DAT), which the paper describes as the strongest ImageNet-C model on
+                    the EasyRobust benchmark, the gain was small: the average moved from 43.41 to 43.61. Among the
+                    published ViT-B baselines the paper lists (MixUp, RandAugment, AugMix, SAM, PR, RobustViT), ViT-B
+                    + NS had the highest clean accuracy and ImageNet-R score, but it was not ahead everywhere:
+                    RobustViT-B scored higher on ImageNet-Sketch (35.80% vs 26.35%), and RandAugment, AugMix and SAM all
+                    reported lower ImageNet-C error (41.6 to 43.6 mCE vs 47.82).</p>
+
+                <h2>Is nullspace fine-tuning better than adversarial training?</h2>
+                <p>It depends on what you need. On ViT-S, the paper compares against two PGD adversarial training
+                    methods, Madry and TRADES:</p>
+                <table class="comparison-table">
+                    <tr><th>Method (ViT-S)</th><th>Clean</th><th>FGSM</th><th>DamageNet</th><th>ImageNet-C &darr;</th><th>ImageNet-V2</th><th>ImageNet-R</th><th>ImageNet-Sketch</th><th>Stylized</th></tr>
+                    <tr><td>Madry</td><td>70.53</td><td><strong>39.37</strong></td><td><strong>49.91</strong></td><td>81.74</td><td>58.88</td><td>39.04</td><td>21.36</td><td>10.76</td></tr>
+                    <tr><td>TRADES</td><td>74.02</td><td>38.85</td><td>36.28</td><td>73.11</td><td>63.37</td><td>40.86</td><td><strong>26.43</strong></td><td>13.22</td></tr>
+                    <tr><td>Nullspace fine-tuning</td><td><strong>77.47</strong></td><td>25.95</td><td>32.43</td><td><strong>55.98</strong></td><td><strong>66.50</strong></td><td><strong>41.61</strong></td><td>25.67</td><td><strong>16.02</strong></td></tr>
+                </table>
+                <p>Accuracy in %, ImageNet-C as mCE (lower is better), from Table 3 of the paper. Adversarial training
+                    wins on the adversarial tests it was designed for. Nullspace fine-tuning keeps the highest clean
+                    accuracy and wins on most natural distribution shifts. A further ablation (Table 4) supports the
+                    idea that the direction of the noise matters, not just its size: random noise of the same
+                    &epsilon; strength did worse on seven of the eight robustness tests at every &epsilon; tried (0.01,
+                    0.03, 0.1), often by a wide margin (ImageNet-Sketch: 25.67% vs 14.77% at &epsilon; = 0.03). The
+                    exception was ImageNet-C, where random noise gave a slightly lower error (54.68 vs 55.98 mCE at
+                    &epsilon; = 0.03).</p>
+
+                <h2>What this does not show</h2>
+                <ul>
+                    <li><strong>The exact nullspace is mostly a large-patch story.</strong> The common ViT-B/16 has a
+                        nullspace of only 2 dimensions, and ViT-L/16 and ViT-B/8 have none. The fine-tuning method relies
+                        on the approximate, encoder-level nullspace instead, which is found numerically and has no
+                        guarantee.</li>
+                    <li><strong>The theory gives sufficient conditions only.</strong> The proposition about attention
+                        heads requires specific conditions on the query, key and value matrices; the paper does not
+                        verify them on trained models, citing prior evidence that they can hold approximately.</li>
+                    <li><strong>Moderate adversarial evaluation.</strong> FGSM was run at &epsilon; = 1/255, and the
+                        attacks tested do not include stronger standard suites such as AutoAttack. PGD adversarial
+                        training remains clearly better on adversarial tests.</li>
+                    <li><strong>Small gains on an already robust model.</strong> On top of DAT, the average improved by
+                        only 0.2 points. On ViT-B, standard augmentations such as AugMix reported lower ImageNet-C error
+                        than nullspace fine-tuning.</li>
+                    <li><strong>Limited scope.</strong> Results are for ViT-S and ViT-B image classifiers on ImageNet-1k.
+                        The paper does not test larger models, other ViT variants, vision-language models, or tasks
+                        beyond classification. Several baseline numbers are copied from other papers, whose training
+                        setups differ.</li>
+                    <li><strong>Watermarking and look-alike images are demonstrations.</strong> They are shown on
+                        examples in the appendix, not evaluated systematically.</li>
+                </ul>
+
+                <h2>Frequently asked questions</h2>
+                <h3>Are vision transformers robust?</h3>
+                <p>Only partly. In the CPAL 2025 paper by Liu, Singh, Li and Wang, an off-the-shelf ViT-S scored 0.68%
+                    accuracy under the PatchFool attack and 14.26% on ImageNet-Sketch, against 74.19% on clean
+                    ImageNet-1k. At the same time, many ViTs are exactly invariant to a large set of input changes, those
+                    in the nullspace of their patch embedding layer.</p>
+                <h3>Do vision transformers have a nullspace?</h3>
+                <p>Yes, whenever a patch has more pixel values than the embedding has dimensions, because the patch
+                    embedding layer is linear. For example, ViT-S/32 maps 3,072 values per patch to 384 dimensions, so
+                    2,688 input directions per patch never change the output. For ViT-B/16 the nullspace has only 2
+                    dimensions, and for ViT-L/16 and ViT-B/8 it is empty.</p>
+                <h3>How can you improve vision transformer robustness with fine-tuning?</h3>
+                <p>One option is nullspace noise augmented fine-tuning: repeatedly search for a noise vector that barely
+                    changes the model's output, then fine-tune the model on inputs with that noise added. In the CPAL
+                    2025 paper this raised ViT-S's average score over clean, adversarial and distribution-shift tests
+                    from 26.54 to 34.45, using about 10% of ImageNet-1k training data.</p>
+                <h3>Is nullspace fine-tuning better than adversarial training for ViTs?</h3>
+                <p>Not for adversarial attacks, but yes for natural distribution shifts in the paper's tests. PGD
+                    adversarial training (Madry, TRADES) gave higher FGSM accuracy on ViT-S (39.37% and 38.85% vs
+                    25.95%), while nullspace fine-tuning kept higher clean accuracy (77.47%) and did better on
+                    ImageNet-C, ImageNet-V2, ImageNet-R and Stylized-ImageNet.</p>
+
+                <h2>Citation</h2>
+<pre><code>@inproceedings{liu2025approximate,
+  title     = {Approximate Nullspace Augmented Finetuning for Robust Vision Transformers},
+  author    = {Liu, Haoyang and Singh, Aditya and Li, Yijiang and Wang, Haohan},
+  booktitle = {Conference on Parsimony and Learning (CPAL)},
+  series    = {Proceedings of Machine Learning Research},
+  volume    = {280},
+  year      = {2025}
+}</code></pre>
+
+                <h2>Related from our lab</h2>
+                <ul>
+                    <li><a href="../publications.html#tagML_Liu-CPAL25">The CPAL 2025 nullspace fine-tuning paper in our publication list</a></li>
+                    <li><a href="../publications.html#tagML_Wang-nips19">Learning Robust Global Representations by Penalizing Local Predictive Power (NeurIPS 2019), which introduced the ImageNet-Sketch benchmark used here</a></li>
+                    <li><a href="thousand_ideas_trustworthy_ML.html">Three frameworks behind most trustworthy ML methods, including data augmentation for robustness</a></li>
+                    <li><a href="https://haohanwang.ischool.illinois.edu/blog/unified-trustworthy-ai.html">A unified view of trustworthy AI, an essay by Haohan Wang</a></li>
+                </ul>
+            </section>
+            </article>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer id="footer">
+        <ul class="icons">
+            <li><a href="https://x.com/HaohanWang" class="icon brands alt fa-twitter"><span class="label">X</span></a></li>
+            <li><a href="https://www.linkedin.com/in/haohanwang/" class="icon brands alt fa-linkedin-in"><span class="label">LinkedIn</span></a></li>
+            <li><a href="https://github.com/DreamLabUIUC" class="icon brands alt fa-github"><span class="label">GitHub</span></a></li>
+            <li><a href="../feed.xml" class="icon solid alt fa-rss"><span class="label">RSS</span></a></li>
+        </ul>
+        <ul class="copyright">
+            <li>&copy; DREAM Lab, University of Illinois Urbana-Champaign</li>
+            <li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
+        </ul>
+    </footer>
+
+</div>
+
+<!-- Scripts -->
+<script src="../assets2/js/jquery.min.js"></script>
+<script src="../assets2/js/jquery.scrolly.min.js"></script>
+<script src="../assets2/js/jquery.dropotron.min.js"></script>
+<script src="../assets2/js/jquery.scrollex.min.js"></script>
+<script src="../assets2/js/browser.min.js"></script>
+<script src="../assets2/js/breakpoints.min.js"></script>
+<script src="../assets2/js/util.js"></script>
+<script src="../assets2/js/main.js"></script>
+
+</body>
+</html>

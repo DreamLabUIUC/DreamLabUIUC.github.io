@@ -60,6 +60,29 @@
       "primary_query": "can aligned LLMs jailbreak themselves",
       "published": true,
       "publish_date": "2026-10-07"
+    },
+    {
+      "title": "Learning Robust Global Representations by Penalizing Local Predictive Power",
+      "arxiv": "1905.13549",
+      "year": 2019,
+      "status": "skipped",
+      "draft_date": "2026-10-09",
+      "kind": "early",
+      "primary_query": "what is ImageNet-Sketch",
+      "published": true,
+      "reason": "ImageNet-Sketch is already well established and ranks #1; author decided not to post (2026-10-09)"
+    },
+    {
+      "title": "Approximate Nullspace Augmented Finetuning for Robust Vision Transformers",
+      "arxiv": "2403.10476",
+      "year": 2025,
+      "status": "published",
+      "slug": "vision_transformer_robustness_nullspace",
+      "draft_date": "2026-10-09",
+      "kind": "early",
+      "primary_query": "vision transformer robustness",
+      "published": true,
+      "publish_date": "2026-10-09"
     }
   ]
 }

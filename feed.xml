@@ -6,7 +6,15 @@
   <atom:link href="https://dream.ischool.illinois.edu/feed.xml" rel="self" type="application/rss+xml"/>
   <description>Plain-language explainers of research from the DREAM Lab at the University of Illinois Urbana-Champaign.</description>
   <language>en</language>
-  <lastBuildDate>Wed, 07 Oct 2026 12:00:00 +0000</lastBuildDate>
+  <lastBuildDate>Fri, 09 Oct 2026 12:00:00 +0000</lastBuildDate>
+  <item>
+    <title>Vision Transformer Robustness: The Inputs a ViT Cannot See</title>
+    <link>https://dream.ischool.illinois.edu/blogs/vision_transformer_robustness_nullspace.html</link>
+    <guid>https://dream.ischool.illinois.edu/blogs/vision_transformer_robustness_nullspace.html</guid>
+    <pubDate>Fri, 09 Oct 2026 12:00:00 +0000</pubDate>
+    <category>Robust ML</category>
+    <description>Vision transformer robustness: ViT-S/32 cannot see 2,688 of 3,072 input dimensions per patch, and nullspace fine-tuning lifts ViT-S's average from 26.5 to 34.5.</description>
+  </item>
   <item>
     <title>Can Aligned LLMs Jailbreak Themselves? Inside the SLIP Attack</title>
     <link>https://dream.ischool.illinois.edu/blogs/aligned_llms_jailbreak_themselves.html</link>
