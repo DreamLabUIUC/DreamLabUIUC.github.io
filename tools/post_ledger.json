@@ -83,6 +83,18 @@
       "primary_query": "vision transformer robustness",
       "published": true,
       "publish_date": "2026-10-09"
+    },
+    {
+      "title": "Objects Without Morphisms: What LLMs for Mathematics Do Not Represent",
+      "arxiv": "2610.03551",
+      "year": 2026,
+      "status": "published",
+      "slug": "ai_math_just_search_hidden_hypotheses",
+      "draft_date": "2026-10-12",
+      "kind": "new",
+      "primary_query": "is AI math just search",
+      "published": false,
+      "publish_date": "2026-10-12"
     }
   ]
 }

@@ -1,0 +1,501 @@
+<!DOCTYPE HTML>
+<!--
+	Writing guide: tools/BLOG_PLAYBOOK.md
+-->
+<html lang="en">
+<head>
+    <title>Is AI Math Just Search? What LLMs Miss Between Math Fields | DREAM Lab, UIUC</title>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <meta name="description" content="Is AI math just search? When 7 LLMs restated theorems in a more general field, 60.6% of rewrites silently widened the claim, an error no checker sees.">
+    <link rel="canonical" href="https://dream.ischool.illinois.edu/blogs/ai_math_just_search_hidden_hypotheses.html">
+    <meta property="og:type" content="article">
+    <meta property="og:site_name" content="DREAM Lab, UIUC">
+    <meta property="og:title" content="Is AI Math Just Search? What LLMs Miss Between Math Fields">
+    <meta property="og:description" content="Is AI math just search? When 7 LLMs restated theorems in a more general field, 60.6% of rewrites silently widened the claim, an error no checker sees.">
+    <meta property="og:url" content="https://dream.ischool.illinois.edu/blogs/ai_math_just_search_hidden_hypotheses.html">
+    <meta property="og:image" content="https://dream.ischool.illinois.edu/blogs/imgs/ai_math_just_search_hidden_hypotheses/cover.png">
+    <meta property="article:published_time" content="2026-10-12">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@HaohanWang">
+    <meta name="twitter:title" content="Is AI Math Just Search? What LLMs Miss Between Math Fields">
+    <meta name="twitter:description" content="Is AI math just search? When 7 LLMs restated theorems in a more general field, 60.6% of rewrites silently widened the claim, an error no checker sees.">
+    <meta name="twitter:image" content="https://dream.ischool.illinois.edu/blogs/imgs/ai_math_just_search_hidden_hypotheses/cover.png">
+    <meta name="citation_title" content="Objects Without Morphisms: What LLMs for Mathematics Do Not Represent">
+    <meta name="citation_author" content="Wang, Yanli">
+    <meta name="citation_author" content="Wang, Suijin">
+    <meta name="citation_author" content="Yuan, Xiaopeng">
+    <meta name="citation_author" content="Wang, Haohan">
+    <meta name="citation_publication_date" content="2026/10/02">
+    <meta name="citation_journal_title" content="arXiv">
+    <meta name="citation_arxiv_id" content="2610.03551">
+    <meta name="citation_pdf_url" content="https://arxiv.org/pdf/2610.03551">
+    <link rel="alternate" type="application/rss+xml" title="DREAM Lab blog" href="https://dream.ischool.illinois.edu/feed.xml">
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "BlogPosting",
+          "headline": "Is AI Math Just Search? What LLMs Miss Between Math Fields",
+          "description": "Is AI math just search? When 7 LLMs restated theorems in a more general field, 60.6% of rewrites silently widened the claim, an error no checker sees.",
+          "datePublished": "2026-10-12",
+          "dateModified": "2026-10-12",
+          "url": "https://dream.ischool.illinois.edu/blogs/ai_math_just_search_hidden_hypotheses.html",
+          "mainEntityOfPage": "https://dream.ischool.illinois.edu/blogs/ai_math_just_search_hidden_hypotheses.html",
+          "image": "https://dream.ischool.illinois.edu/blogs/imgs/ai_math_just_search_hidden_hypotheses/cover.png",
+          "inLanguage": "en",
+          "keywords": ["AI for mathematics", "LLM mathematical reasoning", "search and verification", "test-time compute", "autoformalization", "mathematical abstraction", "hidden hypotheses", "OpenAI math results", "evaluation of LLMs"],
+          "author": [
+            {"@type": "Person", "name": "Yanli Wang", "affiliation": {"@type": "CollegeOrUniversity", "name": "Imperial College London"}},
+            {"@type": "Person", "@id": "https://dream.ischool.illinois.edu/#haohan-wang", "name": "Haohan Wang", "url": "https://haohanwang.ischool.illinois.edu/", "affiliation": {"@type": "CollegeOrUniversity", "name": "University of Illinois Urbana-Champaign"}}
+          ],
+          "publisher": {"@type": "ResearchOrganization", "@id": "https://dream.ischool.illinois.edu/#lab", "name": "DREAM Lab, UIUC", "url": "https://dream.ischool.illinois.edu/"},
+          "about": {
+            "@type": "ScholarlyArticle",
+            "name": "Objects Without Morphisms: What LLMs for Mathematics Do Not Represent",
+            "url": "https://arxiv.org/abs/2610.03551",
+            "datePublished": "2026-10-02",
+            "publisher": "arXiv",
+            "author": [
+              {"@type": "Person", "name": "Yanli Wang"}, {"@type": "Person", "name": "Suijin Wang"},
+              {"@type": "Person", "name": "Xiaopeng Yuan"}, {"@type": "Person", "name": "Haohan Wang"}
+            ]
+          }
+        },
+        {
+          "@type": "BreadcrumbList",
+          "itemListElement": [
+            {"@type": "ListItem", "position": 1, "name": "DREAM Lab", "item": "https://dream.ischool.illinois.edu/"},
+            {"@type": "ListItem", "position": 2, "name": "Blog", "item": "https://dream.ischool.illinois.edu/blogs.html"},
+            {"@type": "ListItem", "position": 3, "name": "Is AI Math Just Search? What LLMs Miss Between Math Fields", "item": "https://dream.ischool.illinois.edu/blogs/ai_math_just_search_hidden_hypotheses.html"}
+          ]
+        },
+        {
+          "@type": "FAQPage",
+          "mainEntity": [
+            {"@type": "Question", "name": "Is AI math just search?", "acceptedAnswer": {"@type": "Answer", "text": "Not only, but much of the measured progress comes from search around the model: many candidate solutions are sampled and only those an external checker accepts are kept. That improves the answer that survives without showing what the model represents. Objects Without Morphisms (arXiv 2026) tested a task with no checker, restating theorems between fields, and found that seven LLMs widened the statement's scope in 60.6% of rewrites toward the more general field."}},
+            {"@type": "Question", "name": "Can LLMs translate theorems between areas of mathematics?", "acceptedAnswer": {"@type": "Answer", "text": "They translate the vocabulary well but often lose the hypotheses that the vocabulary carried. In Objects Without Morphisms, rewrites kept the content on the shared domain in 95.6-100% of cases toward the general field, yet 60.6% asserted the result of a wider class of objects, and none narrowed it."}},
+            {"@type": "Question", "name": "Do OpenAI's October 2026 math results show that AI understands mathematics?", "acceptedAnswer": {"@type": "Answer", "text": "The question is still open. OpenAI released 722 manuscripts from an unreleased model on October 6, 2026, but it has not released the model, its prompts, or how many attempts failed, so outsiders cannot yet separate insight from search. Our study did not test that model and says nothing about whether those proofs are correct."}},
+            {"@type": "Question", "name": "Why don't proof checkers catch these errors?", "acceptedAnswer": {"@type": "Answer", "text": "Because the widened statement is often still true, just about different objects. In Objects Without Morphisms, scope was kept in half of the rewrites where losing the hypothesis made the statement false, but in at most one in eight where the widened statement stayed true of other objects, which is exactly the error that provers, type-checkers and answer-scored benchmarks accept."}}
+          ]
+        }
+      ]
+    }
+    </script>
+    <link rel="stylesheet" href="../assets2/css/main.css"/>
+    <link rel="stylesheet" href="blog.css"/>
+    <link rel="apple-touch-icon" sizes="180x180" href="../favicon/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="../favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="../favicon/favicon-16x16.png">
+    <link rel="manifest" href="../favicon/site.webmanifest">
+    <noscript>
+        <link rel="stylesheet" href="../assets2/css/noscript.css"/>
+    </noscript>
+</head>
+<body class="is-preload">
+<div id="page-wrapper">
+
+    <!-- Header -->
+    <header id="header">
+        <nav id="nav">
+            <ul>
+                <li><a href="../index.html">Home</a></li>
+                <li><a href="../overview.html">Overview</a></li>
+                <li><a href="../publications.html">Publications</a></li>
+                <li><a href="../blogs.html">Blogs</a></li>
+                <li><a href="../software.html">Software</a></li>
+                <li><a href="../contact.html">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Main -->
+    <div id="main" class="wrapper style1">
+        <div class="container">
+            <article>
+            <header class="major">
+                <h1>Is AI Math Just Search? What LLMs Miss Between Math Fields</h1>
+                <p>Search plus a checker can certify a proof. It cannot tell whether a model keeps track of what a theorem assumes, and our study finds that models often do not.</p>
+                <p style="font-size:0.9em">
+                    By Yanli Wang and
+                    <a href="https://haohanwang.ischool.illinois.edu/">Haohan Wang</a> &middot;
+                    <time datetime="2026-10-12">October 12, 2026</time> &middot;
+                    About our 2026 arXiv preprint (arXiv:2610.03551)
+                </p>
+                <ul class="actions">
+                    <li><a href="https://arxiv.org/abs/2610.03551" class="button">Paper</a></li>
+                    <li><a href="https://arxiv.org/pdf/2610.03551" class="button alt">PDF</a></li>
+                </ul>
+            </header>
+
+            <p>On October 6, 2026, OpenAI released hundreds of research-level mathematics manuscripts written by
+                an unreleased model, and the old question came back with new force: is AI math just search, or
+                does the model understand the mathematics? Our new paper, <em>Objects Without Morphisms: What
+                LLMs for Mathematics Do Not Represent</em>, by Yanli Wang (Imperial College London), Suijin Wang
+                (Tsinghua University), Xiaopeng Yuan and Haohan Wang (University of Illinois Urbana-Champaign),
+                tests one part of mathematics that search plus a verifier does not cover: restating a theorem in
+                a neighbouring field. Across seven LLMs, rewrites toward the more general field widened the
+                theorem's scope in 60.6% of cases and narrowed it in none.</p>
+
+            <!-- Answer-first summary. -->
+            <div class="intro-box">
+                <h2 style="margin-top:0">Key findings</h2>
+                <ul>
+                    <li>In <em>Objects Without Morphisms</em> (arXiv 2026), seven LLMs from four families restated
+                        theorems from a concrete field in a more general one (for example, vector spaces to
+                        modules); 60.6% of the rewrites asserted the result of a wider class of objects than the
+                        source, and 0% narrowed it.</li>
+                    <li>In the opposite direction, from the general field to the concrete one, the same models
+                        narrowed scope in 28.3% of rewrites and widened it in 0.3%, the signature of a
+                        quantity that is not computed at all rather than of random imprecision, according to the
+                        2026 study by Wang, Wang, Yuan and Wang.</li>
+                    <li>Scale did not remove the error: the most capable model tested, Claude Opus 5, widened scope
+                        least (46.7%) and Claude Sonnet 5 most (73.3%), with no significant difference across the
+                        seven models (p = 0.097); the effect replicated on 45 held-out benchmark items and on 25
+                        pairs of statements written by mathematicians on ProofWiki.</li>
+                    <li>Telling Claude Opus 5 to state every hypothesis it needs raised the rate of writing out the
+                        hidden hypothesis from 8 of 37 rewrites (21.6%) to 89.2%, but the model also kept
+                        hypotheses where they should be dropped, so the instruction did not make it track when a
+                        hypothesis is required.</li>
+                </ul>
+            </div>
+
+            <section>
+                <h2>What did OpenAI's October 2026 math release show?</h2>
+                <p>On October 6, 2026, OpenAI published the <a href="https://github.com/openai/math">openai/math</a>
+                    repository: 722 manuscripts in 372 result families, produced by an unreleased internal model.
+                    According to the <a href="https://github.com/openai/math/blob/main/README.md">repository
+                    README</a>, the model was posed about 4,000 problems over the course of the evaluation, each
+                    published result used on average about three hours of ChatGPT Pro thinking compute, some
+                    outputs build on earlier results produced by the models, and the catalogue was assembled by
+                    "requiring an appropriate level of significance." At release, the
+                    <a href="https://github.com/openai/math/blob/main/lean/formalization.yaml">formalization
+                    catalogue</a> listed 162 papers whose main result is formalized in the Lean proof assistant; the
+                    README warns that some unformalized results could have issues. A day later OpenAI
+                    <a href="https://github.com/openai/math/blob/main/history.md">withdrew three manuscripts</a>
+                    after a sign error, revised 14 others, and now reports 719 manuscripts with about 42% of
+                    top-line results formalized.</p>
+                <p>How the results were produced matters for the &ldquo;insight or search&rdquo; question. An OpenAI
+                    spokesperson told <a href="https://www.scientificamerican.com/article/openai-unleashes-hundreds-more-math-results-upon-a-field-already-in-shock/">Scientific
+                    American</a> that almost every result came from a single prompt to a single agent, and that
+                    some results might have taken multiple attempts. The same article contrasts this with OpenAI's
+                    earlier Navier&ndash;Stokes result, which it describes as the work of a 10,000-agent swarm
+                    costing millions of dollars in compute. OpenAI has not published its prompts
+                    (<a href="https://the-decoder.com/openai-dumps-372-ai-generated-math-proofs-on-github-telling-the-academic-world-to-keep-up/">The
+                    Decoder</a>) or how many attempts failed; <a href="https://fortune.com/2026/10/07/openai-math-controversy-solutions-370-outstanding-challenges-published-criticisms-celebration/">Fortune</a>
+                    reports that an independent mathematics advisory group had recommended disclosing how many
+                    comparable problems a model tried and failed, and that OpenAI followed some of its
+                    recommendations but not all.</p>
+                <p>Reactions are split. MIT mathematician Andrew Sutherland told Scientific American that claims about
+                    one-shotting problems with a single agent should be treated as unverified until the model can be
+                    tested: &ldquo;We should ask for receipts.&rdquo; Daniel Litt of the University of Toronto told
+                    <a href="https://fortune.com/2026/10/07/openai-math-controversy-solutions-370-outstanding-challenges-published-criticisms-celebration/">Fortune</a>
+                    he thinks the release is good for mathematics, while warning about effects on support for
+                    human mathematicians. Terence Tao (UCLA), quoted in the same article, said such mass publication
+                    marks the end of what he calls &ldquo;Math 1.0&rdquo; and called for a field that would decenter
+                    raw problem-solving. A month earlier, a <a href="https://mathandai.org/">declaration on mathematics
+                    and AI</a> first signed by 25 Fields Medalists (<a href="https://mathstodon.xyz/@tao/117253629967855195">announced
+                    by Tao</a>) objected to results announced in a rush without proper write-ups, to unresolved
+                    questions of credit, and to the risk of losing human understanding of the field.</p>
+                <p>None of this settles whether the model understands what it proves. Without success rates,
+                    attempts per problem, prompts, or the model itself, outsiders cannot separate insight from
+                    search. Our paper does not try to. It asks a narrower question that can be measured today.</p>
+
+                <h2>Is AI math just search?</h2>
+                <p>The paper starts from an observation about how progress in AI mathematics is usually built. Its
+                    abstract puts it this way: LLMs reached expert-level performance on competition mathematics
+                    largely through the volume of search placed around them. Many candidate solutions are sampled,
+                    and only those an external criterion accepts are kept: a trained verifier, a process reward
+                    model, agreement among samples, or a proof kernel such as Lean's. That procedure improves the
+                    outcome that survives. It does not change, or reveal, what the model represents.</p>
+                <p>This is not a criticism of search. Search under verification is how much real progress has been
+                    made, and Brown and colleagues showed in <a href="https://arxiv.org/abs/2407.21787"><em>Large
+                    Language Monkeys</em></a> (Brown, Juravsky, Ehrlich, Clark, Le, R&eacute;, Mirhoseini, 2024)
+                    that the share of problems solved by at least one sample grows steadily with the number of
+                    samples, and that this translates directly into better results where answers can be checked
+                    automatically. The same paper notes the flip side: without an automatic verifier, common ways of
+                    choosing among samples plateau. So the informative test of what a model represents is a task
+                    where no checker exists. Our paper picks one that mathematicians do all the time.</p>
+
+                <h2>Key terms</h2>
+                <dl>
+                    <dt><strong>Framing</strong></dt>
+                    <dd>The &ldquo;dialect&rdquo; of a subfield in which a statement is written, such as vector
+                        spaces, module theory, probability or measure theory.</dd>
+                    <dt><strong>Standing hypothesis (pin)</strong></dt>
+                    <dd>A condition that a framing's vocabulary carries without stating it; for example,
+                        &ldquo;vector space&rdquo; already means the scalars form a field.</dd>
+                    <dt><strong>Abstracting and specialising</strong></dt>
+                    <dd>Translating a statement from the concrete framing to the more general one (abstracting) or
+                        back (specialising); abstracting requires writing the pin out, specialising lets it be
+                        absorbed into the vocabulary again.</dd>
+                    <dt><strong>Scope (domain of quantification)</strong></dt>
+                    <dd>The class of objects a statement is asserted about; a rewrite that widens scope says the
+                        same thing about more objects than the source did.</dd>
+                    <dt><strong>Silent relocation</strong></dt>
+                    <dd>The paper's name for a rewrite that keeps the content but moves it to a different class of
+                        objects without saying so, which no current verifier detects.</dd>
+                    <dt><strong>Theory morphism</strong></dt>
+                    <dd>A translation between two mathematical theories that carries axioms to theorems, not just
+                        symbols to symbols; the title's &ldquo;morphisms&rdquo; refers to this missing structure.</dd>
+                </dl>
+
+                <h2>Can LLMs translate theorems between areas of mathematics?</h2>
+                <p>A great deal of mathematics consists of moving results between theories: a result about vector
+                    spaces is restated for modules, a probability statement is recast in measure theory, a fact
+                    about sets is stated for a general category. Each move is valid only if the hypotheses that
+                    limit the result's scope come along. The trouble is that the source usually does not state
+                    them. They are built into its vocabulary.</p>
+                <figure>
+                    <img src="imgs/ai_math_just_search_hidden_hypotheses/figure_pin.png" alt="Three cards showing a hidden hypothesis. Source in vector-space language: every vector space admits a basis, which is true because the field hypothesis is hidden in the noun. Bare-prompt model rewrite in module language: every module admits a basis, which is fluent but false, since Z/2Z is a Z-module with no basis. Faithful rewrite: every module over a field admits a basis, with the field hypothesis written out." style="max-width:100%"/>
+                    <figcaption class="figure-caption">The pin in one example, adapted from Figure 1 and Appendix E.2 of arXiv:2610.03551. Asked with an explicit instruction, the same model wrote the field hypothesis, the axiom of choice and more, so it knows the mathematics; it does not deploy it unprompted.</figcaption>
+                </figure>
+                <p>The study measures exactly this. Its main items come from MELD, a released benchmark of 270
+                    statement pairs that state one result in two subfield framings (Ye et al., 2026). Before looking
+                    at any statement, the authors registered a rule that selected 90 items, 45 of them on
+                    &ldquo;vertical&rdquo; pairs where one framing generalises the other (vector spaces and
+                    modules, probability and measure theory, set theory and category theory), and set aside the
+                    other 45 vertical items as a held-out replication set. Because MELD was generated by a language
+                    model and then edited, they also built a second set of 25 pairs written by mathematicians,
+                    taken from ProofWiki (normed vector spaces and metric spaces, real and complex, vector spaces
+                    and modules).</p>
+                <p>Seven models were tested with no system prompt at temperature 1: Claude Opus 5, Claude Sonnet 5,
+                    Claude Haiku 4.5, GPT-5.6 Sol, GPT-5.6 Luna, DeepSeek V4 Pro and GLM-5.3. Each rewrite was coded
+                    in separate blind queues for truth, for content (does each statement entail the other on the
+                    shared domain?) and for scope (is the rewrite about the same, a wider, or a narrower class of
+                    objects?). These codes are never averaged into one score. A second, judge-free measure checks
+                    with frozen text patterns whether the rewrite states the pin. The authors validated the scope
+                    code with a planted-positive control (28 of 28 rewrites with the hypothesis deliberately removed
+                    were detected, and 0 of 28 unmodified ones were flagged), a judge from a second model family
+                    (&kappa; = 1.000 on 180 candidates) and a blind expert reading (&kappa; = 0.900 on 60).</p>
+
+                <h2>How often do LLMs lose a hidden hypothesis?</h2>
+                <p>Most of the time when abstracting, and almost never in the other direction. Pooled over the seven
+                    models on the 45 held-out items:</p>
+                <table class="comparison-table">
+                    <tr><th>Direction</th><th>Same scope</th><th>Wider</th><th>Narrower</th><th>Incomparable</th></tr>
+                    <tr><td>Abstracting (concrete &rarr; general)</td><td>36.5</td><td><strong>60.6</strong></td><td>0.0</td><td>2.9</td></tr>
+                    <tr><td>Specialising (general &rarr; concrete)</td><td>70.7</td><td>0.3</td><td><strong>28.3</strong></td><td>0.6</td></tr>
+                </table>
+                <p>Share of rewrites in %, from Table 2 of the paper (315 rewrites, 314 codings). On the abstracting
+                    side, content on the shared domain was preserved in 95.6&ndash;100% of rewrites, so the widening is
+                    not a side effect of sloppy rewriting. Counting only scope changes, there were 191 widenings and
+                    0 narrowings when abstracting, and 89 narrowings and 1 widening when specialising.</p>
+                <p>The shape of that table is the main result. Imprecision about generality would scatter errors in
+                    both directions. Here each direction produces one kind of error and essentially never the other.
+                    The output simply inherits the level of generality implied by the input's vocabulary: going up,
+                    it inherits a restriction it should have written out; going down, it keeps a generality it
+                    should have absorbed. In the paper's words, the models have an object-level dictionary between
+                    framings without the constraint that would carry hypotheses to hypotheses: objects without
+                    morphisms.</p>
+                <figure>
+                    <img src="imgs/ai_math_just_search_hidden_hypotheses/figure_models.png" alt="Horizontal bar chart of the share of abstracting rewrites that widen scope, by model, on 45 held-out items: Claude Opus 5 46.7%, Claude Haiku 4.5 53.3%, GPT-5.6 Luna 53.3%, DeepSeek V4 Pro 62.2%, GLM-5.3 66.7%, GPT-5.6 Sol 68.9%, Claude Sonnet 5 73.3%. When specialising, widening is 0.0% for every model except GLM-5.3 at 2.2%." style="max-width:100%"/>
+                    <figcaption class="figure-caption">Widening by model and direction (data: Table 3 of arXiv:2610.03551). The differences across models are not statistically significant.</figcaption>
+                </figure>
+                <p>Every model shows the asymmetry, and it does not track capability: Claude Opus 5 widened least and
+                    Claude Sonnet 5 most. The models also agree on <em>which</em> items lose the hypothesis (mean
+                    item-level correlation +0.503 across all 21 model pairs), which suggests the outcome is driven by
+                    the item and its target framing rather than by any one model's reasoning. On the 25
+                    mathematician-written ProofWiki pairs the effect was stronger: 93.3% of abstracting rewrites
+                    widened, 0.0% of specialising ones did, and the hypothesis was carried across in only 3 of 72
+                    rewrites (4.2%).</p>
+
+                <h2>Why don't proof checkers catch silent scope errors?</h2>
+                <p>Because many widened statements are still true. Restricted to the original objects, the rewrite
+                    says exactly what the source said, so a prover, a type-checker or an equivalence-scored
+                    benchmark has nothing to reject. The paper shows the failure concentrates where no checker
+                    would notice it. For Claude Opus 5 on the 45 registered vertical items:</p>
+                <table class="comparison-table">
+                    <tr><th>Dropping the hidden hypothesis makes the statement&hellip;</th><th>Scope kept</th></tr>
+                    <tr><td>false</td><td>6 / 12 (50.0%)</td></tr>
+                    <tr><td>ill-formed</td><td>1 / 4 (25.0%)</td></tr>
+                    <tr><td>true, but of other objects</td><td>1 / 8 (12.5%)</td></tr>
+                    <tr><td>unchanged (hypothesis has no effect)</td><td>0 / 21 (0.0%)</td></tr>
+                </table>
+                <p>From Table 4 of the paper (Fisher p = 0.0024 for false versus the rest). What survives translation
+                    is the part a truth checker would catch. A minimal pair in the appendix makes the point: the same
+                    three-noun substitution turned &ldquo;every subspace has a complement&rdquo; into a false
+                    statement about modules, and &ldquo;an idempotent splits the space&rdquo; into a true one. The
+                    model did the same thing both times; only the mathematics decided the outcome.</p>
+
+                <h2>Does telling the model to state every hypothesis help?</h2>
+                <p>Only partly. The authors gave Claude Opus 5 a bare prompt and four variants that each add one
+                    sentence. Under the bare prompt it wrote out the needed hypothesis in 8 of the 37 rewrites that
+                    required it (21.6%, a lower bound because the pattern measure has a recall of 0.52). Adding
+                    &ldquo;state every hypothesis needed&rdquo; raised that to 33 of 37 (89.2%), but it also raised how
+                    often the model kept the hypothesis when specialising, where it should be dropped. Outputs grew
+                    about three to four times longer, including on pairs that have no hypothesis to state. A sentence
+                    saying style would not be judged cut promotion to 0 of 37. No condition put the hypothesis under
+                    directional control: instruction changed how much the model wrote, not when it judged a
+                    hypothesis to be needed.</p>
+
+                <h2>Is mathematics more than problem solving?</h2>
+                <p>The study is a measurement, but it touches an old debate among mathematicians. Several sources
+                    support, and one complicates, the view that solving posed problems is only part of the subject.</p>
+                <ul>
+                    <li><strong>Understanding, not answers.</strong> In <a href="https://arxiv.org/abs/math/9404236">&ldquo;On
+                        proof and progress in mathematics&rdquo;</a> (Bulletin of the AMS, 1994), William Thurston argued
+                        that mathematicians advance human understanding, and that progress is not measured in theorems
+                        proved. Using the example of someone who prints a table of the first 10,000 primes, he wrote
+                        that &ldquo;what they want is understanding.&rdquo; He also stressed unifying definitions,
+                        names like &ldquo;group&rdquo; or &ldquo;manifold&rdquo;, as a form of progress in their
+                        own right.</li>
+                    <li><strong>Two cultures, both needed.</strong> Timothy Gowers, in <a href="https://www.dpmms.cam.ac.uk/~wtg10/2cultures.pdf">&ldquo;The
+                        two cultures of mathematics&rdquo;</a> (2000), distinguished mathematicians whose central aim
+                        is solving problems from those more concerned with &ldquo;building and understanding
+                        theories.&rdquo; His essay complicates any simple story: he defends problem-solving areas
+                        such as combinatorics, where understanding lives in general principles rather than grand
+                        theories, and argues that mathematics needs both.</li>
+                    <li><strong>Abstraction boundaries.</strong> Johan Commelin and Adam Topaz, in <a href="https://arxiv.org/abs/2309.14870">&ldquo;Abstraction
+                        boundaries and spec driven development in pure mathematics&rdquo;</a> (2023, for a special
+                        volume of the Bulletin of the AMS), describe how mathematicians tame complexity by working
+                        behind well-chosen interfaces, and how a theorem prover makes these boundaries explicit. Our
+                        paper studies what happens when a model crosses such a boundary.</li>
+                    <li><strong>Mathematicians reacting to the news.</strong> The <a href="https://mathandai.org/">September
+                        2026 declaration</a> by Fields Medalists, and Tao's call (in <a href="https://fortune.com/2026/10/07/openai-math-controversy-solutions-370-outstanding-challenges-published-criticisms-celebration/">Fortune</a>)
+                        for a &ldquo;Math 2.0&rdquo; that decenters raw problem-solving, both frame human
+                        understanding, not the count of solved problems, as the point of the field.</li>
+                </ul>
+                <p>Our results fit the first three sources in a specific way. Knowing at what level of generality a
+                    result holds, and carrying its hypotheses across when moving it to another theory, is part of the
+                    &ldquo;theory&rdquo; side of mathematics, and it is the part that neither the solved-problem
+                    count nor a proof checker records. Haohan Wang develops this argument for a general audience in
+                    the essay <a href="https://haohanwang.ischool.illinois.edu/blog/math-is-not-just-problem-solving.html">&ldquo;Math
+                    Is Not Just Problem Solving&rdquo;</a>.</p>
+
+                <h2>How does this compare with other work on AI math reasoning?</h2>
+                <ul>
+                    <li><strong>Search and verification.</strong> <a href="https://arxiv.org/abs/2407.21787"><em>Large
+                        Language Monkeys</em></a> (Brown et al., 2024) shows how far repeated sampling goes when answers
+                        can be checked, from 15.9% to 56% of SWE-bench Lite issues with 250 samples for one model. Our
+                        paper agrees that this works where a checker exists, and studies a task where one does not.</li>
+                    <li><strong>Fragility under irrelevant changes.</strong> <a href="https://arxiv.org/abs/2410.05229"><em>GSM-Symbolic</em></a>
+                        (Mirzadeh, Alizadeh, Shahrokhi, Tuzel, Bengio and Farajtabar, Apple; ICLR 2025) found that model
+                        accuracy on grade-school problems drops when only the numbers change, and by up to 65% when a
+                        seemingly relevant but unneeded clause is added. Both papers point to surface-driven behaviour;
+                        theirs measures answer accuracy, ours measures scope at research-level abstraction.</li>
+                    <li><strong>Equivalence across subfields.</strong> <a href="https://arxiv.org/abs/2606.23959">&ldquo;Does My
+                        Embedding Reflect That A = B?&rdquo;</a> (Ye, &hellip;, Alper, Ilin and Kvinge, 2026) introduced
+                        MELD, the benchmark our study builds on, and showed that embedding models group statements by
+                        terminology rather than by the underlying mathematics. Our findings are the generative
+                        counterpart: models translate the terminology and leave the hypotheses behind.</li>
+                    <li><strong>Faithful autoformalization.</strong> <a href="https://arxiv.org/abs/2606.16541">&ldquo;The
+                        Faithfulness Gap&rdquo;</a> (Mohammad and Sheikh, 2026) shows that a formal Lean statement can
+                        typecheck and be provable yet encode a different theorem, and releases driftbench, 2,183
+                        natural-language/Lean pairs with labelled drift, including hypothesis omission and conclusion
+                        generalisation. Their method certifies faithfulness once a formal target exists; our study looks
+                        at the informal prose that comes before formalization, where the hidden hypothesis has not yet
+                        become an explicit argument.</li>
+                </ul>
+
+                <h2>What this does not show</h2>
+                <ul>
+                    <li><strong>Nothing about OpenAI's model or proofs.</strong> We did not evaluate OpenAI's unreleased
+                        model, and the paper says nothing about whether the openai/math manuscripts are correct, how they
+                        were produced, or how much search they involved. The news is the motivating question, not the
+                        object of study.</li>
+                    <li><strong>General-purpose models only.</strong> All seven models are general-purpose. Mathematics-
+                        specialised models trained against verifiable rewards, or dedicated autoformalizers, may behave
+                        differently.</li>
+                    <li><strong>Few framing pairs.</strong> The effective clusters are six framing pairs, and the three
+                        ProofWiki pairs have only 7, 15 and 3 items.</li>
+                    <li><strong>Measurement limits.</strong> Promotion rates from the pattern measure are lower bounds
+                        (recall 0.52 against an expert reading); the absorption side is sensitive to the pattern choice;
+                        and the annotation of what each hypothesis is worth was annotator-dependent (two independent
+                        annotations disagreed on a third of items and were adjudicated).</li>
+                    <li><strong>Four failed predictions.</strong> The paper reports them: for example, one prompt
+                        condition that removed promotion on one model left it unchanged on another, and the corpus
+                        cannot separate two competing explanations of when the hypothesis is written.</li>
+                    <li><strong>Humans skip hypotheses too.</strong> Mathematicians often leave standing hypotheses
+                        implicit on purpose. The paper's base rate from 27,461 ProofWiki statements is used to bound
+                        claims, not to say humans always write them out.</li>
+                </ul>
+
+                <h2>Frequently asked questions</h2>
+                <h3>Is AI math just search?</h3>
+                <p>Not only, but much of the measured progress comes from search around the model: many candidate
+                    solutions are sampled and only those an external checker accepts are kept. That improves the
+                    answer that survives without showing what the model represents. Objects Without Morphisms (arXiv
+                    2026) tested a task with no checker, restating theorems between fields, and found that seven LLMs
+                    widened the statement's scope in 60.6% of rewrites toward the more general field.</p>
+                <h3>Can LLMs translate theorems between areas of mathematics?</h3>
+                <p>They translate the vocabulary well but often lose the hypotheses that the vocabulary carried. In
+                    Objects Without Morphisms, rewrites kept the content on the shared domain in 95.6-100% of cases
+                    toward the general field, yet 60.6% asserted the result of a wider class of objects, and none
+                    narrowed it.</p>
+                <h3>Do OpenAI's October 2026 math results show that AI understands mathematics?</h3>
+                <p>The question is still open. OpenAI released 722 manuscripts from an unreleased model on October 6,
+                    2026, but it has not released the model, its prompts, or how many attempts failed, so outsiders
+                    cannot yet separate insight from search. Our study did not test that model and says nothing about
+                    whether those proofs are correct.</p>
+                <h3>Why don't proof checkers catch these errors?</h3>
+                <p>Because the widened statement is often still true, just about different objects. In Objects
+                    Without Morphisms, scope was kept in half of the rewrites where losing the hypothesis made the
+                    statement false, but in at most one in eight where the widened statement stayed true of other
+                    objects, which is exactly the error that provers, type-checkers and answer-scored benchmarks
+                    accept.</p>
+
+                <h2>Citation</h2>
+<pre><code>@article{wang2026objects,
+  title   = {Objects Without Morphisms: What LLMs for Mathematics Do Not Represent},
+  author  = {Wang, Yanli and Wang, Suijin and Yuan, Xiaopeng and Wang, Haohan},
+  journal = {arXiv preprint arXiv:2610.03551},
+  year    = {2026}
+}</code></pre>
+
+                <h2>Related from our lab</h2>
+                <ul>
+                    <li><a href="when_more_reasoning_is_actually_less.html">When more chain-of-thought reasoning hurts LLM accuracy on inductive tasks</a></li>
+                    <li><a href="security_fidelity_tradeoff.html">Another case of a single metric hiding a failure: the hidden cost of prompt injection defenses</a></li>
+                    <li><a href="thousand_ideas_trustworthy_ML.html">Three frameworks for trustworthy machine learning research</a></li>
+                    <li><a href="https://haohanwang.ischool.illinois.edu/blog/math-is-not-just-problem-solving.html">&ldquo;Math Is Not Just Problem Solving&rdquo;, an essay by Haohan Wang on this study and OpenAI's math release</a></li>
+                    <li><a href="https://haohanwang.ischool.illinois.edu/blog/sounding-like-they-know.html">&ldquo;Sounding Like You Know&rdquo;, an essay by Haohan Wang on fluent but unchecked answers</a></li>
+                    <li><a href="../preprints.html">DREAM Lab preprints</a></li>
+                </ul>
+
+                <div style="margin-top: 50px; padding-top: 30px; border-top: 1px solid rgba(255,255,255,0.2); font-size: 0.9em; color: rgba(255,255,255,0.6);">
+                    <p><strong>Paper:</strong> Yanli Wang, Suijin Wang, Xiaopeng Yuan, Haohan Wang.
+                        &ldquo;<a href="https://arxiv.org/abs/2610.03551">Objects Without Morphisms: What LLMs for
+                        Mathematics Do Not Represent</a>.&rdquo; arXiv:2610.03551, October 2026. Imperial College London,
+                        Tsinghua University, and the University of Illinois Urbana-Champaign.</p>
+                    <p><strong>News sources:</strong> <a href="https://github.com/openai/math">openai/math repository</a>
+                        (README, formalization catalogue and history, accessed October 12, 2026);
+                        <a href="https://www.scientificamerican.com/article/openai-unleashes-hundreds-more-math-results-upon-a-field-already-in-shock/">Scientific American, October 6, 2026</a>;
+                        <a href="https://fortune.com/2026/10/07/openai-math-controversy-solutions-370-outstanding-challenges-published-criticisms-celebration/">Fortune, October 7, 2026</a>;
+                        <a href="https://the-decoder.com/openai-dumps-372-ai-generated-math-proofs-on-github-telling-the-academic-world-to-keep-up/">The Decoder, October 7, 2026</a>;
+                        <a href="https://mathandai.org/">&ldquo;A Severe Misalignment of AI in Mathematics&rdquo; (September 11, 2026)</a>.</p>
+                </div>
+            </section>
+            </article>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer id="footer">
+        <ul class="icons">
+            <li><a href="https://x.com/HaohanWang" class="icon brands alt fa-twitter"><span class="label">X</span></a></li>
+            <li><a href="https://www.linkedin.com/in/haohanwang/" class="icon brands alt fa-linkedin-in"><span class="label">LinkedIn</span></a></li>
+            <li><a href="https://github.com/DreamLabUIUC" class="icon brands alt fa-github"><span class="label">GitHub</span></a></li>
+            <li><a href="../feed.xml" class="icon solid alt fa-rss"><span class="label">RSS</span></a></li>
+        </ul>
+        <ul class="copyright">
+            <li>&copy; DREAM Lab, University of Illinois Urbana-Champaign</li>
+            <li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
+        </ul>
+    </footer>
+
+</div>
+
+<!-- Scripts -->
+<script src="../assets2/js/jquery.min.js"></script>
+<script src="../assets2/js/jquery.scrolly.min.js"></script>
+<script src="../assets2/js/jquery.dropotron.min.js"></script>
+<script src="../assets2/js/jquery.scrollex.min.js"></script>
+<script src="../assets2/js/browser.min.js"></script>
+<script src="../assets2/js/breakpoints.min.js"></script>
+<script src="../assets2/js/util.js"></script>
+<script src="../assets2/js/main.js"></script>
+
+</body>
+</html>
