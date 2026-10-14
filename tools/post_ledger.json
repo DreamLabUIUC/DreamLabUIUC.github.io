@@ -95,6 +95,30 @@
       "primary_query": "is AI math just search",
       "published": false,
       "publish_date": "2026-10-12"
+    },
+    {
+      "title": "Let the Library Speak: Self-Advertised Method Selection for Formal Proving",
+      "arxiv": "2610.09401",
+      "year": 2026,
+      "status": "drafted",
+      "slug": "ai_theorem_prover_proof_method_selection",
+      "draft_date": "2026-10-14",
+      "kind": "new",
+      "primary_query": "how do AI theorem provers choose a proof method",
+      "published": false,
+      "note": "2026-10-14: author chose not to post this standalone today; plan to merge into a themed post (reusable primitives or formal proving). Keep draft files until then."
+    },
+    {
+      "title": "Do Self-Evolving Agents Forget? Capability Degradation and Preservation in Lifelong LLM Agent Adaptation",
+      "arxiv": "2605.09315",
+      "year": 2026,
+      "status": "published",
+      "slug": "recursive_self_improvement_agents_forget",
+      "draft_date": "2026-10-14",
+      "kind": "new",
+      "primary_query": "does recursive self-improvement make AI agents forget",
+      "published": false,
+      "note": "Requested by the author on 2026-10-14 in place of the scheduled pick; framed around recursive self-improvement (RSI)."
     }
   ]
 }

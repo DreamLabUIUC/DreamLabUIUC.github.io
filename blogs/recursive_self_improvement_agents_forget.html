@@ -1,0 +1,427 @@
+<!DOCTYPE HTML>
+<!--
+	Writing guide: tools/BLOG_PLAYBOOK.md
+-->
+<html lang="en">
+<head>
+    <title>Does Recursive Self-Improvement Make AI Agents Forget? | DREAM Lab, UIUC</title>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <meta name="description" content="Does recursive self-improvement make AI agents forget? Often, yes. Preserving old capabilities lifted retained task success from 41.8% to 52.8% in one test.">
+    <link rel="canonical" href="https://dream.ischool.illinois.edu/blogs/recursive_self_improvement_agents_forget.html">
+    <meta property="og:type" content="article">
+    <meta property="og:site_name" content="DREAM Lab, UIUC">
+    <meta property="og:title" content="Does Recursive Self-Improvement Make AI Agents Forget?">
+    <meta property="og:description" content="Does recursive self-improvement make AI agents forget? Often, yes. Preserving old capabilities lifted retained task success from 41.8% to 52.8% in one test.">
+    <meta property="og:url" content="https://dream.ischool.illinois.edu/blogs/recursive_self_improvement_agents_forget.html">
+    <meta property="og:image" content="https://dream.ischool.illinois.edu/blogs/imgs/recursive_self_improvement_agents_forget/cover.png">
+    <meta property="article:published_time" content="2026-10-14">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@HaohanWang">
+    <meta name="twitter:title" content="Does Recursive Self-Improvement Make AI Agents Forget?">
+    <meta name="twitter:description" content="Does recursive self-improvement make AI agents forget? Often, yes. Preserving old capabilities lifted retained task success from 41.8% to 52.8% in one test.">
+    <meta name="twitter:image" content="https://dream.ischool.illinois.edu/blogs/imgs/recursive_self_improvement_agents_forget/cover.png">
+    <meta name="citation_title" content="Do Self-Evolving Agents Forget? Capability Degradation and Preservation in Lifelong LLM Agent Adaptation">
+    <meta name="citation_author" content="Yu, Ye">
+    <meta name="citation_author" content="Yuan, Xiaopeng">
+    <meta name="citation_author" content="Jin, Haibo">
+    <meta name="citation_author" content="Liu, Heming">
+    <meta name="citation_author" content="Yu, Yaoning">
+    <meta name="citation_author" content="Wang, Haohan">
+    <meta name="citation_publication_date" content="2026/05/10">
+    <meta name="citation_journal_title" content="arXiv">
+    <meta name="citation_arxiv_id" content="2605.09315">
+    <meta name="citation_pdf_url" content="https://arxiv.org/pdf/2605.09315">
+    <link rel="alternate" type="application/rss+xml" title="DREAM Lab blog" href="https://dream.ischool.illinois.edu/feed.xml">
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "BlogPosting",
+          "headline": "Does Recursive Self-Improvement Make AI Agents Forget?",
+          "description": "Does recursive self-improvement make AI agents forget? Often, yes. Preserving old capabilities lifted retained task success from 41.8% to 52.8% in one test.",
+          "datePublished": "2026-10-14",
+          "dateModified": "2026-10-14",
+          "url": "https://dream.ischool.illinois.edu/blogs/recursive_self_improvement_agents_forget.html",
+          "mainEntityOfPage": "https://dream.ischool.illinois.edu/blogs/recursive_self_improvement_agents_forget.html",
+          "image": "https://dream.ischool.illinois.edu/blogs/imgs/recursive_self_improvement_agents_forget/cover.png",
+          "inLanguage": "en",
+          "keywords": ["recursive self-improvement", "RSI", "self-evolving agents", "self-improving AI agents", "catastrophic forgetting", "continual learning", "capability erosion", "agent harness evolution", "agent memory", "skill libraries", "LLM agents"],
+          "author": [
+            {"@type": "Person", "name": "Ye Yu", "affiliation": {"@type": "CollegeOrUniversity", "name": "University of Illinois Urbana-Champaign"}},
+            {"@type": "Person", "@id": "https://dream.ischool.illinois.edu/#haohan-wang", "name": "Haohan Wang", "url": "https://haohanwang.ischool.illinois.edu/", "affiliation": {"@type": "CollegeOrUniversity", "name": "University of Illinois Urbana-Champaign"}}
+          ],
+          "publisher": {"@type": "ResearchOrganization", "@id": "https://dream.ischool.illinois.edu/#lab", "name": "DREAM Lab, UIUC", "url": "https://dream.ischool.illinois.edu/"},
+          "about": {
+            "@type": "ScholarlyArticle",
+            "name": "Do Self-Evolving Agents Forget? Capability Degradation and Preservation in Lifelong LLM Agent Adaptation",
+            "url": "https://arxiv.org/abs/2605.09315",
+            "datePublished": "2026-05-10",
+            "publisher": "arXiv",
+            "author": [
+              {"@type": "Person", "name": "Ye Yu"}, {"@type": "Person", "name": "Xiaopeng Yuan"},
+              {"@type": "Person", "name": "Haibo Jin"}, {"@type": "Person", "name": "Heming Liu"},
+              {"@type": "Person", "name": "Yaoning Yu"}, {"@type": "Person", "name": "Haohan Wang"}
+            ]
+          }
+        },
+        {
+          "@type": "BreadcrumbList",
+          "itemListElement": [
+            {"@type": "ListItem", "position": 1, "name": "DREAM Lab", "item": "https://dream.ischool.illinois.edu/"},
+            {"@type": "ListItem", "position": 2, "name": "Blog", "item": "https://dream.ischool.illinois.edu/blogs.html"},
+            {"@type": "ListItem", "position": 3, "name": "Does Recursive Self-Improvement Make AI Agents Forget?", "item": "https://dream.ischool.illinois.edu/blogs/recursive_self_improvement_agents_forget.html"}
+          ]
+        },
+        {
+          "@type": "FAQPage",
+          "mainEntity": [
+            {"@type": "Question", "name": "Does recursive self-improvement make AI agents forget?", "acceptedAnswer": {"@type": "Answer", "text": "Often, yes, at least in today's bounded self-improvement loops. Do Self-Evolving Agents Forget? (Yu et al., arXiv 2026) found that when LLM agents rewrite their workflows, skill libraries, model weights or memory to handle new tasks, performance on earlier tasks tends to erode. The authors call this capability erosion under self-evolution."}},
+            {"@type": "Question", "name": "What is recursive self-improvement in AI?", "acceptedAnswer": {"@type": "Answer", "text": "Recursive self-improvement (RSI) is a loop in which an AI system changes itself and the improved version makes the next change. In 2026 most working examples change an agent's code, prompts, tools or memory rather than the underlying model, for example the Darwin Gödel Machine and AIDE²; ICLR 2026 held a workshop on the topic."}},
+            {"@type": "Question", "name": "Why do self-evolving agents lose old skills?", "acceptedAnswer": {"@type": "Answer", "text": "Because every self-update rewrites a shared, mutable store, whether a workflow, a skill bank, weights or a memory bank, and it is optimized only for the new tasks. Changes that help the new tasks can overwrite structures that earlier tasks relied on; the paper shows this happens whenever the update moves along directions that matter for old tasks."}},
+            {"@type": "Question", "name": "How can a self-improving agent keep its old capabilities?", "acceptedAnswer": {"@type": "Answer", "text": "By adding an explicit retention constraint to every self-update. The paper's Capability-Preserving Evolution (CPE) anchors workflows to behavior that already worked, merges skills instead of evicting them, penalizes changes to important weights, and protects repeatedly verified memories. In workflow evolution with a GPT-5.1 optimizer, CPE raised retained simple-task success on τ²-Bench from 41.8% to 52.8% while also improving complex-task success from 23.9% to 33.4%."}}
+          ]
+        }
+      ]
+    }
+    </script>
+    <link rel="stylesheet" href="../assets2/css/main.css"/>
+    <link rel="stylesheet" href="blog.css"/>
+    <link rel="apple-touch-icon" sizes="180x180" href="../favicon/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="../favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="../favicon/favicon-16x16.png">
+    <link rel="manifest" href="../favicon/site.webmanifest">
+    <noscript>
+        <link rel="stylesheet" href="../assets2/css/noscript.css"/>
+    </noscript>
+</head>
+<body class="is-preload">
+<div id="page-wrapper">
+
+    <!-- Header -->
+    <header id="header">
+        <nav id="nav">
+            <ul>
+                <li><a href="../index.html">Home</a></li>
+                <li><a href="../overview.html">Overview</a></li>
+                <li><a href="../publications.html">Publications</a></li>
+                <li><a href="../blogs.html">Blogs</a></li>
+                <li><a href="../software.html">Software</a></li>
+                <li><a href="../contact.html">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Main -->
+    <div id="main" class="wrapper style1">
+        <div class="container">
+            <article>
+            <header class="major">
+                <h1>Does Recursive Self-Improvement Make AI Agents Forget?</h1>
+                <p>When LLM agents rewrite themselves to master new tasks, they often get worse at the tasks they had already mastered. Preserving what works has to be part of the loop.</p>
+                <p style="font-size:0.9em">
+                    By Ye Yu and
+                    <a href="https://haohanwang.ischool.illinois.edu/">Haohan Wang</a> &middot;
+                    <time datetime="2026-10-14">October 14, 2026</time> &middot;
+                    About our 2026 arXiv preprint (arXiv:2605.09315)
+                </p>
+                <ul class="actions">
+                    <li><a href="https://arxiv.org/abs/2605.09315" class="button">Paper</a></li>
+                    <li><a href="https://arxiv.org/pdf/2605.09315" class="button alt">PDF</a></li>
+                </ul>
+            </header>
+
+            <p>Recursive self-improvement, an AI system that improves itself and then lets the improved version make
+                the next improvement, has moved from thought experiment to working systems: agents now rewrite their own
+                code, prompts, tools and memory, and keep the changes that score better. The usual scorecard asks one
+                question, whether the agent got better at the new tasks. Our paper, <em>Do Self-Evolving Agents
+                Forget? Capability Degradation and Preservation in Lifelong LLM Agent Adaptation</em>, by Ye Yu,
+                Xiaopeng Yuan, Haibo Jin, Heming Liu, Yaoning Yu and Haohan Wang (University of Illinois
+                Urbana-Champaign), asks the other one: what happens to the tasks the agent had already mastered? Across
+                all four ways agents evolve themselves, workflow, skills, model weights and memory, the answer is that
+                old capabilities tend to erode. A simple retention constraint recovers much of the loss without slowing
+                learning on the new tasks.</p>
+
+            <!-- Answer-first summary. -->
+            <div class="intro-box">
+                <h2 style="margin-top:0">Key findings</h2>
+                <ul>
+                    <li><em>Do Self-Evolving Agents Forget?</em> (Yu et al., University of Illinois Urbana-Champaign,
+                        arXiv 2026) reports that self-evolving LLM agents lose previously mastered capabilities when they
+                        adapt to new tasks, across all four evolution channels studied: workflow, skill and tool, model,
+                        and memory evolution.</li>
+                    <li>When an EvoAgentX agent rewrote its workflow for harder &tau;&sup2;-Bench tasks with a GPT-5.1
+                        optimizer, unconstrained evolution left 41.8% success on the simpler tasks it started from;
+                        Capability-Preserving Evolution (CPE) kept 52.8% and also raised complex-task success from 23.9% to
+                        33.4%.</li>
+                    <li>Forgetting happens even when model weights never change: in the paper's memory experiment,
+                        unconstrained updates to an agent's external memory lowered average old-domain math accuracy from
+                        83.9% to 81.6%, while evidence-gated memory preservation kept it at 83.3%.</li>
+                    <li>The same pattern appeared in skill-library evolution on MATH (Algebra accuracy 82.6% vanilla vs
+                        84.4% with CPE for GPT-4o mini) and in STaR self-training on MedMCQA (Anatomy 68.9% vs 70.3% for
+                        Llama3.2-3B), where the gains from preservation were smaller but consistent.</li>
+                </ul>
+            </div>
+
+            <section>
+                <h2>What is recursive self-improvement in AI agents?</h2>
+                <p>Recursive self-improvement (RSI) is a loop in which a system modifies itself, and the modified system
+                    performs the next modification. The idea is old; what changed is that it now runs. The
+                    <a href="https://arxiv.org/abs/2505.22954">Darwin Gödel Machine</a> rewrites its own coding-agent code
+                    and keeps an archive of variants. <a href="https://arxiv.org/abs/2609.26457">AIDE&sup2;</a> lets a
+                    research agent edit its own code and benchmark the result. In April 2026, ICLR hosted a
+                    <a href="https://recursive-workshop.github.io/">workshop on AI with Recursive Self-Improvement</a> that
+                    treats RSI as a practical systems problem and lists long-horizon stability and regression risk among
+                    its open questions.</p>
+                <p>Most of these systems change an agent's <em>harness</em>, its prompts, workflow, tools and memory, while
+                    the base model stays fixed. Some also self-train the model. The research literature mostly calls them
+                    self-evolving agents. Our paper uses that term; the RRSI paper discussed below describes the same kind
+                    of loop as a form of RSI at the agent-system level. Either way, each accepted
+                    change becomes the starting point for the next one, and that is exactly where forgetting can
+                    accumulate.</p>
+
+                <h2>Key terms</h2>
+                <dl>
+                    <dt><strong>Recursive self-improvement (RSI)</strong></dt>
+                    <dd>A loop in which an AI system changes itself and the changed system makes the next change.</dd>
+                    <dt><strong>Self-evolving agent</strong></dt>
+                    <dd>An LLM agent that updates its own workflow, skills and tools, model parameters or memory from
+                        experience, without a human making each change.</dd>
+                    <dt><strong>Capability erosion under self-evolution</strong></dt>
+                    <dd>The paper's name for the loss of previously mastered capabilities as an agent adapts itself to a
+                        new task distribution.</dd>
+                    <dt><strong>Catastrophic forgetting</strong></dt>
+                    <dd>The classic continual-learning failure in which training a neural network on new data overwrites
+                        what it learned earlier; capability erosion extends it beyond weights.</dd>
+                    <dt><strong>Capability-Preserving Evolution (CPE)</strong></dt>
+                    <dd>The paper's stabilization principle: every self-update optimizes the new tasks plus a penalty for
+                        disrupting structures that earlier tasks relied on.</dd>
+                    <dt><strong>Stability&ndash;plasticity tradeoff</strong></dt>
+                    <dd>The balance between keeping old capabilities (stability) and learning new ones (plasticity),
+                        controlled in CPE by the strength of the penalty.</dd>
+                </dl>
+
+                <h2>Do self-evolving AI agents forget what they learned?</h2>
+                <p>The paper tests one scenario in every channel: an agent first becomes good at one task distribution,
+                    then evolves itself on a different one, and is then re-tested on the first. Each channel uses an
+                    existing self-evolution framework, run once unconstrained and once with CPE, under the same budget.</p>
+                <figure>
+                    <img src="imgs/recursive_self_improvement_agents_forget/figure_channels.png" alt="Four panels, one per self-evolution channel. Workflow: rewrites accumulate validation steps and detours; CPE anchors signatures from the seed workflow; tau-squared-Bench simple-task success with GPT-5.1 goes from 41.8% vanilla to 52.8% with CPE. Skills and tools: new specialised skills evict earlier general ones in a 30-skill bank; CPE merges related skills and protects high-utility ones; MATH Algebra accuracy for GPT-4o mini goes from 82.6% to 84.4%. Model weights: classic catastrophic forgetting; CPE adds a Fisher-weighted EWC-style penalty; MedMCQA Anatomy accuracy for Llama3.2-3B goes from 68.9% to 70.3%. Memory: new notes evict or out-compete earlier ones while weights stay fixed; CPE protects repeatedly verified memories; old-domain math accuracy goes from 81.6% to 83.3%, against 83.9% before evolution." style="max-width:100%"/>
+                    <figcaption class="figure-caption">The four channels, how each one erodes, and what CPE changes (data: Tables 1&ndash;4 and Appendix B of arXiv:2605.09315).</figcaption>
+                </figure>
+                <ul>
+                    <li><strong>Workflow.</strong> EvoAgentX on &tau;&sup2;-Bench (airline, retail and telecom customer
+                        service), with GPT-5.1 or GPT-5 nano as optimizer. A seed workflow is built on simple tasks, then
+                        evolved on complex ones; failed trajectories go back to an optimizer LLM that rewrites the
+                        workflow.</li>
+                    <li><strong>Skills and tools.</strong> A MemSkill-style agent on MATH with a bank capped at 30 skills,
+                        evolving Algebra &rarr; Geometry &rarr; Number Theory; the least-used skills are evicted when the
+                        bank is full.</li>
+                    <li><strong>Model.</strong> STaR self-training with LoRA on MedMCQA, Anatomy &rarr; Biochemistry
+                        &rarr; Dental, with Qwen3-0.6B and Llama3.2-3B: the model generates rationales, keeps the correct
+                        ones and fine-tunes on them.</li>
+                    <li><strong>Memory.</strong> A Dynamic-Cheatsheet-style memory of strategy notes, first adapted to
+                        Counting &amp; Probability, Prealgebra and Number Theory, then evolved on Geometry, with the model
+                        frozen.</li>
+                </ul>
+                <p>In all four, unconstrained evolution degraded earlier capability, and the paper describes three forms
+                    the erosion takes. <em>Retrospective decay</em>: accuracy on old tasks drops. <em>Behavioral policy
+                    drift</em>: evolved workflows grow longer, adding validation operators and detours that each looked
+                    reasonable for a hard case, until the workflow becomes over-defensive and rejects valid actions on
+                    routine ones. <em>Generalization erosion</em>: new specialised skills and memories crowd out general
+                    ones, so the skills that served Geometry are evicted once Number Theory arrives.</p>
+
+                <h2>Why does self-improvement erase old capabilities?</h2>
+                <p>The paper's explanation is the same for all four channels. Each one repeatedly rewrites a mutable
+                    store, a workflow, a skill bank, a set of weights or a memory bank, and each rewrite is chosen only
+                    for the current tasks. If the change that helps new tasks also moves the store along directions that
+                    old tasks depend on, old-task loss rises. A short local analysis makes this precise: for a small
+                    update, the increase in old-task loss is proportional to how much the update overlaps with the
+                    directions the old tasks are sensitive to, not simply to the size of the update.</p>
+                <p>This is catastrophic forgetting, a long-studied problem in continual learning, generalized from
+                    weights to everything an agent can change about itself. It also explains why an RSI loop that only
+                    keeps changes which raise the score on the current benchmark can drift: nothing in that acceptance
+                    rule notices when a change breaks something the benchmark does not measure.</p>
+
+                <h2>How can a self-improving agent keep its old capabilities?</h2>
+                <p>Capability-Preserving Evolution adds one term to every self-update: improve the new tasks, plus a
+                    penalty, weighted by &lambda;, for departing from what supported earlier tasks. Setting &lambda; = 0
+                    recovers ordinary self-evolution. The paper instantiates the penalty differently per channel:</p>
+                <ul>
+                    <li><strong>Workflow:</strong> behavioral signatures extracted from the seed workflow (core
+                        objectives, output constraints, failure-avoidance behaviors) are injected into the optimizer to
+                        discourage disruptive rewrites.</li>
+                    <li><strong>Skills:</strong> candidate skills are checked against preserved capability signatures,
+                        related skills are merged to free space, and historically useful skills are protected from
+                        deletion.</li>
+                    <li><strong>Model:</strong> an Elastic Weight Consolidation (EWC) style penalty weights each
+                        parameter by its Fisher-estimated importance to earlier domains.</li>
+                    <li><strong>Memory:</strong> memories gain stability each time they are self-verified as useful, and
+                        stable memories are protected from rewrite or eviction while low-evidence ones stay
+                        adaptable.</li>
+                </ul>
+                <p>Results after the full evolution sequence, unconstrained (vanilla) versus CPE:</p>
+                <table class="comparison-table">
+                    <tr><th>Channel and setting</th><th>Evaluated on</th><th>Vanilla</th><th>CPE</th></tr>
+                    <tr><td>Workflow, GPT-5.1 optimizer</td><td>&tau;&sup2;-Bench simple tasks (retained), avg.</td><td>41.8</td><td><strong>52.8</strong></td></tr>
+                    <tr><td>Workflow, GPT-5.1 optimizer</td><td>&tau;&sup2;-Bench complex tasks (new), avg.</td><td>23.9</td><td><strong>33.4</strong></td></tr>
+                    <tr><td>Workflow, GPT-5 nano optimizer</td><td>&tau;&sup2;-Bench simple tasks (retained), avg.</td><td>46.8</td><td><strong>55.7</strong></td></tr>
+                    <tr><td>Workflow, GPT-5 nano optimizer</td><td>&tau;&sup2;-Bench complex tasks (new), avg.</td><td>22.8</td><td><strong>26.7</strong></td></tr>
+                    <tr><td>Skills, GPT-5 nano</td><td>MATH Algebra (first domain)</td><td>84.3</td><td><strong>85.9</strong></td></tr>
+                    <tr><td>Skills, GPT-4o mini</td><td>MATH Algebra (first domain)</td><td>82.6</td><td><strong>84.4</strong></td></tr>
+                    <tr><td>Model, Qwen3-0.6B</td><td>MedMCQA Anatomy (first domain)</td><td>29.4</td><td><strong>30.5</strong></td></tr>
+                    <tr><td>Model, Llama3.2-3B</td><td>MedMCQA Anatomy (first domain)</td><td>68.9</td><td><strong>70.3</strong></td></tr>
+                    <tr><td>Memory, avg. of 6 domain&ndash;model settings</td><td>Old-domain math (83.9 before evolution)</td><td>81.6</td><td><strong>83.3</strong></td></tr>
+                </table>
+                <p>Accuracy or success rate in %, from Tables 1&ndash;4 and Appendix B of the paper. CPE was at least as
+                    good as vanilla in every per-domain cell the paper reports; in the workflow table, three of the
+                    twelve cells are ties.</p>
+                <p>Two results stand out. First, preservation did not cost new-task learning; in the workflow
+                    experiments it improved it, because the unconstrained workflows had become bloated. Second, the
+                    memory experiment shows forgetting in a system whose weights never move.</p>
+                <figure>
+                    <img src="imgs/recursive_self_improvement_agents_forget/figure_memory.png" alt="Horizontal bar chart of average accuracy on held-out old-domain math problems: 83.9% before the memory bank evolves on Geometry, 81.6% after unconstrained memory evolution, and 83.3% after CPE memory evolution, averaged over six domain and model settings." style="max-width:100%"/>
+                    <figcaption class="figure-caption">Memory-level forgetting with a frozen model (data: Appendix B of arXiv:2605.09315; horizontal axis starts at 78%).</figcaption>
+                </figure>
+
+                <h2>How does this compare with other work on recursive self-improvement?</h2>
+                <ul>
+                    <li><strong>RSI systems that keep what scores better.</strong> The <a href="https://arxiv.org/abs/2505.22954"><em>Darwin
+                        Gödel Machine: Open-Ended Evolution of Self-Improving Agents</em></a> (Zhang, Hu, Lu, Lange and Clune,
+                        2025) modifies its own code and validates each change on coding benchmarks, raising SWE-bench
+                        performance from 20.0% to 50.0%. <a href="https://arxiv.org/abs/2609.26457"><em>Recursive self-improvement
+                        of AI research agents</em></a> (Srikanth, Zhao, Xu, Wu and Jiang, 2026) found seven successive
+                        improvements in an 8-day autonomous run of AIDE&sup2;, with gains that transfer to four held-out
+                        benchmarks. Both show the loop can work. DGM's archive of earlier agents and AIDE&sup2;'s hidden
+                        evaluations are themselves ways of not losing ground; our paper measures directly what happens to
+                        old tasks when the loop runs without such safeguards on a shifted task distribution.</li>
+                    <li><strong>Regularizing the RSI loop.</strong> <a href="https://arxiv.org/abs/2609.24972"><em>RRSI:
+                        Regularized Recursive Self-Improvement of Agent Harnesses</em></a> (Xia, Han, Wang, &hellip;, Pfister
+                        and Lee, 2026) reaches a closely related conclusion from a different angle: unconstrained harness
+                        evolution overfits to the tasks it evolves on, and constraining proposals and selection gave up to
+                        4.3 points on five out-of-distribution benchmarks with 30% fewer policy tokens. RRSI targets
+                        generalization to unseen tasks; our paper targets retention of tasks already mastered. Both find
+                        that the loop needs a regularizer, and in both the constrained loop produced a leaner agent.</li>
+                    <li><strong>Gating updates.</strong> <a href="https://arxiv.org/abs/2609.00829"><em>HarnessEvolve: Learning
+                        from Reference Trajectories for Reliable Agent Self-Evolution</em></a> (Jiang et al., 2026) names
+                        catastrophic forgetting as one of three obstacles and accepts a harness update only if it improves
+                        the current batch without degrading recent ones. That acceptance gate and CPE's penalty are two
+                        complementary ways to protect old capability.</li>
+                    <li><strong>Safety drift.</strong> <a href="https://arxiv.org/abs/2509.26354"><em>Your Agent May Misevolve:
+                        Emergent Risks in Self-evolving LLM Agents</em></a> (Shao et al., ICLR 2026) studies the same four
+                        pathways, model, memory, tool and workflow, and finds that safety alignment can degrade as memory
+                        accumulates. Our paper studies functional capability rather than safety; together they suggest
+                        that anything an evolving agent does not actively protect can drift.</li>
+                    <li><strong>How far RSI has really gone.</strong> <a href="https://arxiv.org/abs/2607.07663"><em>Recursive
+                        Self-Improvement in AI: From Bounded Self-Refinement to Autonomous Research Loops</em></a> (Chen,
+                        Wang and Qu, 2026) surveys 1,250 arXiv papers and separates bounded self-refinement, which is
+                        established practice, from open-ended RSI, which it finds still limited on every measured axis. The
+                        experiments in our paper sit on the bounded side: a few evolution stages under a controlled task
+                        shift.</li>
+                </ul>
+                <p>The underlying idea is older than any of these. Elastic Weight Consolidation (Kirkpatrick et al.,
+                    PNAS 2017), which CPE uses for the model channel, was designed for networks trained on one task after
+                    another. What is new is that an agent's capability now lives in many places besides its weights, and
+                    each of them can forget.</p>
+
+                <h2>What this does not show</h2>
+                <ul>
+                    <li><strong>Not open-ended RSI.</strong> The experiments run a small number of evolution stages (three
+                        domains for skills and models, one shift for workflows and memory) under controlled distribution
+                        shifts. Whether erosion compounds, saturates or self-corrects over hundreds of RSI iterations is not
+                        tested.</li>
+                    <li><strong>Small gains in two channels.</strong> In skill and model evolution the vanilla&ndash;CPE gaps
+                        are about 0.1 to 2.6 points, and the paper reports single runs without error bars, so those
+                        differences should be read as consistent but modest.</li>
+                    <li><strong>The size of forgetting itself.</strong> For workflow, skill and model evolution the tables
+                        compare vanilla and CPE after evolution; the before-and-after decline is shown in trajectory
+                        figures rather than tables. Only the memory experiment reports the pre-evolution number (83.9%) in
+                        text.</li>
+                    <li><strong>Simple preservation methods.</strong> The authors describe their CPE instantiations as
+                        intentionally lightweight (anchors, merging, EWC, evidence gating). Better mechanisms, or one that
+                        coordinates all four channels at once, may do better.</li>
+                    <li><strong>Small and mid-size models.</strong> The model-evolution experiments use Qwen3-0.6B and
+                        Llama3.2-3B; frontier-scale self-training was not tested.</li>
+                    <li><strong>No code release is listed</strong> in the arXiv version.</li>
+                </ul>
+
+                <h2>Frequently asked questions</h2>
+                <h3>Does recursive self-improvement make AI agents forget?</h3>
+                <p>Often, yes, at least in today's bounded self-improvement loops. Do Self-Evolving Agents Forget? (Yu et
+                    al., arXiv 2026) found that when LLM agents rewrite their workflows, skill libraries, model weights or
+                    memory to handle new tasks, performance on earlier tasks tends to erode. The authors call this
+                    capability erosion under self-evolution.</p>
+                <h3>What is recursive self-improvement in AI?</h3>
+                <p>Recursive self-improvement (RSI) is a loop in which an AI system changes itself and the improved
+                    version makes the next change. In 2026 most working examples change an agent's code, prompts, tools or
+                    memory rather than the underlying model, for example the Darwin Gödel Machine and AIDE²; ICLR 2026
+                    held a workshop on the topic.</p>
+                <h3>Why do self-evolving agents lose old skills?</h3>
+                <p>Because every self-update rewrites a shared, mutable store, whether a workflow, a skill bank, weights
+                    or a memory bank, and it is optimized only for the new tasks. Changes that help the new tasks can
+                    overwrite structures that earlier tasks relied on; the paper shows this happens whenever the update
+                    moves along directions that matter for old tasks.</p>
+                <h3>How can a self-improving agent keep its old capabilities?</h3>
+                <p>By adding an explicit retention constraint to every self-update. The paper's Capability-Preserving
+                    Evolution (CPE) anchors workflows to behavior that already worked, merges skills instead of evicting
+                    them, penalizes changes to important weights, and protects repeatedly verified memories. In workflow
+                    evolution with a GPT-5.1 optimizer, CPE raised retained simple-task success on τ²-Bench from 41.8% to
+                    52.8% while also improving complex-task success from 23.9% to 33.4%.</p>
+
+                <h2>Citation</h2>
+<pre><code>@article{yu2026selfevolving,
+  title   = {Do Self-Evolving Agents Forget? Capability Degradation and Preservation in Lifelong LLM Agent Adaptation},
+  author  = {Yu, Ye and Yuan, Xiaopeng and Jin, Haibo and Liu, Heming and Yu, Yaoning and Wang, Haohan},
+  journal = {arXiv preprint arXiv:2605.09315},
+  year    = {2026}
+}</code></pre>
+
+                <h2>Related from our lab</h2>
+                <ul>
+                    <li><a href="rag_that_learns_over_time.html">RAG that learns over time: building lasting source knowledge into LLM agents</a></li>
+                    <li><a href="agent_primitives.html">Agent primitives: reusable building blocks for multi-agent systems</a></li>
+                    <li><a href="evolution_of_prompt_optimization.html">The evolution of prompt optimization, from perturbation to gradient-like methods</a></li>
+                    <li><a href="when_more_reasoning_is_actually_less.html">When more chain-of-thought reasoning hurts LLM accuracy</a></li>
+                    <li><a href="../preprints.html">DREAM Lab preprints</a></li>
+                </ul>
+
+                <div style="margin-top: 50px; padding-top: 30px; border-top: 1px solid rgba(255,255,255,0.2); font-size: 0.9em; color: rgba(255,255,255,0.6);">
+                    <p><strong>Paper:</strong> Ye Yu, Xiaopeng Yuan, Haibo Jin, Heming Liu, Yaoning Yu, Haohan Wang.
+                        &ldquo;<a href="https://arxiv.org/abs/2605.09315">Do Self-Evolving Agents Forget? Capability
+                        Degradation and Preservation in Lifelong LLM Agent Adaptation</a>.&rdquo; arXiv:2605.09315, May 2026.
+                        University of Illinois Urbana-Champaign.</p>
+                </div>
+            </section>
+            </article>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer id="footer">
+        <ul class="icons">
+            <li><a href="https://x.com/HaohanWang" class="icon brands alt fa-twitter"><span class="label">X</span></a></li>
+            <li><a href="https://www.linkedin.com/in/haohanwang/" class="icon brands alt fa-linkedin-in"><span class="label">LinkedIn</span></a></li>
+            <li><a href="https://github.com/DreamLabUIUC" class="icon brands alt fa-github"><span class="label">GitHub</span></a></li>
+            <li><a href="../feed.xml" class="icon solid alt fa-rss"><span class="label">RSS</span></a></li>
+        </ul>
+        <ul class="copyright">
+            <li>&copy; DREAM Lab, University of Illinois Urbana-Champaign</li>
+            <li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
+        </ul>
+    </footer>
+
+</div>
+
+<!-- Scripts -->
+<script src="../assets2/js/jquery.min.js"></script>
+<script src="../assets2/js/jquery.scrolly.min.js"></script>
+<script src="../assets2/js/jquery.dropotron.min.js"></script>
+<script src="../assets2/js/jquery.scrollex.min.js"></script>
+<script src="../assets2/js/browser.min.js"></script>
+<script src="../assets2/js/breakpoints.min.js"></script>
+<script src="../assets2/js/util.js"></script>
+<script src="../assets2/js/main.js"></script>
+
+</body>
+</html>

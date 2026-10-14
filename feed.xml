@@ -6,7 +6,15 @@
   <atom:link href="https://dream.ischool.illinois.edu/feed.xml" rel="self" type="application/rss+xml"/>
   <description>Plain-language explainers of research from the DREAM Lab at the University of Illinois Urbana-Champaign.</description>
   <language>en</language>
-  <lastBuildDate>Mon, 12 Oct 2026 12:00:00 +0000</lastBuildDate>
+  <lastBuildDate>Wed, 14 Oct 2026 12:00:00 +0000</lastBuildDate>
+  <item>
+    <title>Does Recursive Self-Improvement Make AI Agents Forget?</title>
+    <link>https://dream.ischool.illinois.edu/blogs/recursive_self_improvement_agents_forget.html</link>
+    <guid>https://dream.ischool.illinois.edu/blogs/recursive_self_improvement_agents_forget.html</guid>
+    <pubDate>Wed, 14 Oct 2026 12:00:00 +0000</pubDate>
+    <category>LLM agents</category>
+    <description>Does recursive self-improvement make AI agents forget? Often, yes. Preserving old capabilities lifted retained task success from 41.8% to 52.8% in one test.</description>
+  </item>
   <item>
     <title>Is AI Math Just Search? What LLMs Miss Between Math Fields</title>
     <link>https://dream.ischool.illinois.edu/blogs/ai_math_just_search_hidden_hypotheses.html</link>
