@@ -6,7 +6,15 @@
   <atom:link href="https://dream.ischool.illinois.edu/feed.xml" rel="self" type="application/rss+xml"/>
   <description>Plain-language explainers of research from the DREAM Lab at the University of Illinois Urbana-Champaign.</description>
   <language>en</language>
-  <lastBuildDate>Wed, 14 Oct 2026 12:00:00 +0000</lastBuildDate>
+  <lastBuildDate>Thu, 15 Oct 2026 12:00:00 +0000</lastBuildDate>
+  <item>
+    <title>How Should an AI Theorem Prover Pick a Proof Method?</title>
+    <link>https://dream.ischool.illinois.edu/blogs/ai_theorem_prover_proof_method_selection.html</link>
+    <guid>https://dream.ischool.illinois.edu/blogs/ai_theorem_prover_proof_method_selection.html</guid>
+    <pubDate>Thu, 15 Oct 2026 12:00:00 +0000</pubDate>
+    <category>LLM reasoning</category>
+    <description>How should an AI theorem prover pick a proof method? Letting each method propose its own use put a correct one in the top 5 for 95.0% of Putnam problems.</description>
+  </item>
   <item>
     <title>Does Recursive Self-Improvement Make AI Agents Forget?</title>
     <link>https://dream.ischool.illinois.edu/blogs/recursive_self_improvement_agents_forget.html</link>

@@ -1,0 +1,442 @@
+<!DOCTYPE HTML>
+<!--
+	Writing guide: tools/BLOG_PLAYBOOK.md
+-->
+<html lang="en">
+<head>
+    <title>How Should an AI Theorem Prover Pick a Proof Method? | DREAM Lab, UIUC</title>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <meta name="description" content="How should an AI theorem prover pick a proof method? Letting each method propose its own use put a correct one in the top 5 for 95.0% of Putnam problems.">
+    <link rel="canonical" href="https://dream.ischool.illinois.edu/blogs/ai_theorem_prover_proof_method_selection.html">
+    <meta property="og:type" content="article">
+    <meta property="og:site_name" content="DREAM Lab, UIUC">
+    <meta property="og:title" content="How Should an AI Theorem Prover Pick a Proof Method?">
+    <meta property="og:description" content="How should an AI theorem prover pick a proof method? Letting each method propose its own use put a correct one in the top 5 for 95.0% of Putnam problems.">
+    <meta property="og:url" content="https://dream.ischool.illinois.edu/blogs/ai_theorem_prover_proof_method_selection.html">
+    <meta property="og:image" content="https://dream.ischool.illinois.edu/blogs/imgs/ai_theorem_prover_proof_method_selection/cover.png">
+    <meta property="article:published_time" content="2026-10-15">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@HaohanWang">
+    <meta name="twitter:title" content="How Should an AI Theorem Prover Pick a Proof Method?">
+    <meta name="twitter:description" content="How should an AI theorem prover pick a proof method? Letting each method propose its own use put a correct one in the top 5 for 95.0% of Putnam problems.">
+    <meta name="twitter:image" content="https://dream.ischool.illinois.edu/blogs/imgs/ai_theorem_prover_proof_method_selection/cover.png">
+    <meta name="citation_title" content="Let the Library Speak: Self-Advertised Method Selection for Formal Proving">
+    <meta name="citation_author" content="Yuan, Xiaopeng">
+    <meta name="citation_author" content="Wang, Suijin">
+    <meta name="citation_author" content="Wang, Yanli">
+    <meta name="citation_author" content="Jin, Haibo">
+    <meta name="citation_author" content="Kuang, Peng">
+    <meta name="citation_author" content="Wang, Jerry">
+    <meta name="citation_author" content="Yu, Lijun">
+    <meta name="citation_author" content="Wang, Haohan">
+    <meta name="citation_publication_date" content="2026/10/07">
+    <meta name="citation_journal_title" content="arXiv">
+    <meta name="citation_arxiv_id" content="2610.09401">
+    <meta name="citation_pdf_url" content="https://arxiv.org/pdf/2610.09401">
+    <link rel="alternate" type="application/rss+xml" title="DREAM Lab blog" href="https://dream.ischool.illinois.edu/feed.xml">
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "BlogPosting",
+          "headline": "How Should an AI Theorem Prover Pick a Proof Method?",
+          "description": "How should an AI theorem prover pick a proof method? Letting each method propose its own use put a correct one in the top 5 for 95.0% of Putnam problems.",
+          "datePublished": "2026-10-15",
+          "dateModified": "2026-10-15",
+          "url": "https://dream.ischool.illinois.edu/blogs/ai_theorem_prover_proof_method_selection.html",
+          "mainEntityOfPage": "https://dream.ischool.illinois.edu/blogs/ai_theorem_prover_proof_method_selection.html",
+          "image": "https://dream.ischool.illinois.edu/blogs/imgs/ai_theorem_prover_proof_method_selection/cover.png",
+          "inLanguage": "en",
+          "keywords": ["AI theorem proving", "LLM theorem prover", "proof method selection", "Lean 4", "Mathlib", "premise selection", "retrieval-augmented proving", "LLM reranking", "Putnam", "IMO ProofBench", "formal mathematics"],
+          "author": [
+            {"@type": "Person", "name": "Xiaopeng Yuan", "affiliation": {"@type": "CollegeOrUniversity", "name": "University of Illinois Urbana-Champaign"}},
+            {"@type": "Person", "@id": "https://haohanwang.ischool.illinois.edu/#person", "name": "Haohan Wang", "url": "https://haohanwang.ischool.illinois.edu/", "affiliation": {"@type": "CollegeOrUniversity", "name": "University of Illinois Urbana-Champaign"}}
+          ],
+          "publisher": {"@type": "ResearchOrganization", "@id": "https://dream.ischool.illinois.edu/#lab", "name": "DREAM Lab, UIUC", "url": "https://dream.ischool.illinois.edu/"},
+          "about": {
+            "@type": "ScholarlyArticle",
+            "name": "Let the Library Speak: Self-Advertised Method Selection for Formal Proving",
+            "url": "https://arxiv.org/abs/2610.09401",
+            "datePublished": "2026-10-07",
+            "publisher": "arXiv",
+            "author": [
+              {"@type": "Person", "name": "Xiaopeng Yuan"}, {"@type": "Person", "name": "Suijin Wang"},
+              {"@type": "Person", "name": "Yanli Wang"}, {"@type": "Person", "name": "Haibo Jin"},
+              {"@type": "Person", "name": "Peng Kuang"}, {"@type": "Person", "name": "Jerry Wang"},
+              {"@type": "Person", "name": "Lijun Yu"}, {"@type": "Person", "name": "Haohan Wang"}
+            ]
+          }
+        },
+        {
+          "@type": "BreadcrumbList",
+          "itemListElement": [
+            {"@type": "ListItem", "position": 1, "name": "DREAM Lab", "item": "https://dream.ischool.illinois.edu/"},
+            {"@type": "ListItem", "position": 2, "name": "Blog", "item": "https://dream.ischool.illinois.edu/blogs.html"},
+            {"@type": "ListItem", "position": 3, "name": "How Should an AI Theorem Prover Pick a Proof Method?", "item": "https://dream.ischool.illinois.edu/blogs/ai_theorem_prover_proof_method_selection.html"}
+          ]
+        },
+        {
+          "@type": "FAQPage",
+          "mainEntity": [
+            {"@type": "Question", "name": "How do AI theorem provers choose a proof method?", "acceptedAnswer": {"@type": "Answer", "text": "Most LLM-based provers do not choose a method explicitly: they retrieve lemmas or prior proofs that look similar to the goal and let the model generate and repair Lean code. Let the Library Speak (arXiv 2026) makes the choice explicit: each of 82 reusable methods proposes what it would target, what it would do and what it needs, and methods that cannot state a concrete, supported use are ranked lower."}},
+            {"@type": "Question", "name": "Why doesn't embedding retrieval find the right proof method?", "acceptedAnswer": {"@type": "Answer", "text": "Because looking similar to a theorem does not mean a method applies to it. A useful method can come from a problem that looks quite different, and the paper proves that a similarity-only selector can give the same representation to goals that need different methods. On Putnam 2015-2025 the best embedding retriever put an annotated method in its top 5 for 77.5% of problems."}},
+            {"@type": "Question", "name": "Is an LLM reranker enough to select proof methods?", "acceptedAnswer": {"@type": "Answer", "text": "It helps, but it can only reorder what the similarity stage already retrieved. In Let the Library Speak, embedding plus LLM reranking reached at most 84.2-85.8% hit@5 on Putnam across three backbones, while self-advertisement, which judges every method in the library, reached 90.0-97.5%. Rerankers were still more precise at rank 1 in most settings."}},
+            {"@type": "Question", "name": "Does better method selection help LLMs prove Putnam problems in Lean?", "acceptedAnswer": {"@type": "Answer", "text": "In a first test, yes, modestly. Adding the top-ranked method contract to the AxProverBase proof loop with 10 Lean compilations per problem raised proved Putnam 2015-2025 problems from 5.8% to 12.5% and IMO ProofBench problems from 10.0% to 15.0%, but most problems stayed unsolved and the test does not separate selection from the contract's Lean guidance."}}
+          ]
+        }
+      ]
+    }
+    </script>
+    <link rel="stylesheet" href="../assets2/css/main.css"/>
+    <link rel="stylesheet" href="blog.css"/>
+    <link rel="apple-touch-icon" sizes="180x180" href="../favicon/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="../favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="../favicon/favicon-16x16.png">
+    <link rel="manifest" href="../favicon/site.webmanifest">
+    <noscript>
+        <link rel="stylesheet" href="../assets2/css/noscript.css"/>
+    </noscript>
+</head>
+<body class="is-preload">
+<div id="page-wrapper">
+
+    <!-- Header -->
+    <header id="header">
+        <nav id="nav">
+            <ul>
+                <li><a href="../index.html">Home</a></li>
+                <li><a href="../overview.html">Overview</a></li>
+                <li><a href="../publications.html">Publications</a></li>
+                <li><a href="../blogs.html">Blogs</a></li>
+                <li><a href="../software.html">Software</a></li>
+                <li><a href="../contact.html">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Main -->
+    <div id="main" class="wrapper style1">
+        <div class="container">
+            <article>
+            <header class="major">
+                <h1>How Should an AI Theorem Prover Pick a Proof Method?</h1>
+                <p>Ranking methods by how similar they look to a theorem misses many that would work. Asking each method how it would be used finds them.</p>
+                <p style="font-size:0.9em">
+                    By Xiaopeng Yuan and
+                    <a href="https://haohanwang.ischool.illinois.edu/">Haohan Wang</a> &middot;
+                    <time datetime="2026-10-15">October 15, 2026</time> &middot;
+                    About our 2026 arXiv preprint (arXiv:2610.09401)
+                </p>
+                <ul class="actions">
+                    <li><a href="https://arxiv.org/abs/2610.09401" class="button">Paper</a></li>
+                    <li><a href="https://arxiv.org/pdf/2610.09401" class="button alt">PDF</a></li>
+                </ul>
+            </header>
+
+            <p>Before an AI theorem prover writes a line of Lean, something has to decide which mathematical method
+                to try: Cauchy&ndash;Schwarz or AM-GM, induction or the pigeonhole principle, the mean value theorem or
+                a telescoping sum. Most LLM provers make that choice implicitly, by retrieving lemmas and past proofs
+                that look similar to the goal. Our new paper, <em>Let the Library Speak: Self-Advertised Method
+                Selection for Formal Proving</em>, argues that how a proof method <em>looks</em> is the wrong signal
+                and tests a different one: ask every method in a library how it would be used on this theorem, and
+                demote the ones that cannot say. On Putnam 2015&ndash;2025 problems, this puts an annotated method in
+                the top five for 95.0% of problems, against 84.2% for the strongest embedding-plus-LLM-reranking
+                baseline. The work is by Xiaopeng Yuan, Haibo Jin, Peng Kuang, Jerry Wang and Haohan Wang
+                (University of Illinois Urbana-Champaign), Suijin Wang (Tsinghua University), Yanli Wang (Imperial
+                College London) and Lijun Yu (Google).</p>
+
+            <!-- Answer-first summary. -->
+            <div class="intro-box">
+                <h2 style="margin-top:0">Key findings</h2>
+                <ul>
+                    <li>In <em>Let the Library Speak</em> (arXiv 2026), letting each of 82 reusable proof methods
+                        propose its own use on a theorem placed an annotated method in the top-5 shortlist for 95.0% of
+                        120 Putnam 2015&ndash;2025 problems with GPT-5.6 Luna, compared with 84.2% for the strongest
+                        embedding-plus-LLM-reranker baseline and 77.5% for the best embedding retriever alone.</li>
+                    <li>The gap grows with the model: across DeepSeek V4.1 Flash, GPT-5.6 Luna and GPT-5.6 Terra,
+                        self-advertisement's Putnam hit@5 rose from 90.0% to 95.0% to 97.5%, while the best reranker
+                        stayed at 84.2%, 84.2% and 85.8%, because a reranker cannot recover a method its similarity
+                        stage never retrieved.</li>
+                    <li>On 60 IMO ProofBench problems, self-advertisement reached 91.7% hit@5 versus 88.3% for the
+                        strongest reranker with GPT-5.6 Luna, and it had the highest recall@5 in all six
+                        backbone&ndash;benchmark settings tested by Yuan, Wang and colleagues at the University of
+                        Illinois Urbana-Champaign.</li>
+                    <li>Adding the top-ranked method to the AxProverBase Lean proof loop with 10 compilations per
+                        problem raised proved Putnam 2015&ndash;2025 problems from 5.8% to 12.5% and IMO ProofBench
+                        problems from 10.0% to 15.0%; most problems remained unsolved.</li>
+                </ul>
+            </div>
+
+            <section>
+                <h2>How do AI theorem provers choose a proof method today?</h2>
+                <p>Mostly, they do not choose one explicitly. Current LLM provers generate Lean code, run the Lean
+                    checker, and revise in response to its errors. What they get to see beforehand comes from
+                    retrieval: premise selection supplies Mathlib lemmas that might be needed, semantic Mathlib search
+                    finds declarations that match a query, and proof retrieval offers worked examples of related
+                    problems. Each of these ranks candidates by how related they look to the goal, using word overlap
+                    (BM25, TF-IDF) or text embeddings, sometimes followed by an LLM that reorders the top few.</p>
+                <p>The paper's starting point is that relevance does not answer the question a prover actually
+                    faces. A method has prerequisites, a part of the goal it targets, an action it takes, and
+                    obligations it leaves to prove. Two methods can look equally related to a theorem while only
+                    one offers a step that can be taken. A retrieved inequality may need nonnegativity that has not
+                    been established; the method that works may come from a problem that looks nothing like this
+                    one. A suggestion such as &ldquo;use induction&rdquo; still leaves open what to induct on and
+                    what will remain to be proved.</p>
+
+                <h2>Key terms</h2>
+                <dl>
+                    <dt><strong>Method selection</strong></dt>
+                    <dd>Choosing which reusable mathematical method, such as Cauchy&ndash;Schwarz or the mean value
+                        theorem, a prover should try on the current goal, as distinct from retrieving individual
+                        lemmas.</dd>
+                    <dt><strong>Applicability</strong></dt>
+                    <dd>A method is applicable to a goal if some correct proof of that goal contains a step that
+                        instantiates the method, as opposed to the method merely looking similar to the goal.</dd>
+                    <dt><strong>Method Contract</strong></dt>
+                    <dd>The paper's unit of retrieval: a method's description, when it applies and when not, plus
+                        Mathlib anchors, a Lean-checked scaffold, a worked instance, and the proof obligations it
+                        leaves.</dd>
+                    <dt><strong>Self-advertisement</strong></dt>
+                    <dd>A selection procedure in which a model writes, for every contract, a proposal stating what part
+                        of the goal it targets, what action it takes and what conditions that action needs, before
+                        any ranking.</dd>
+                    <dt><strong>Commitment gate</strong></dt>
+                    <dd>The rule that demotes a proposal that is vague (names no concrete object of the goal) or
+                        unsupported (cites no verified material from its contract).</dd>
+                    <dt><strong>hit@k and recall@k</strong></dt>
+                    <dd>hit@k is the share of problems whose top-k shortlist contains at least one annotated method;
+                        recall@k is the share of all annotated methods that appear in the top k.</dd>
+                </dl>
+
+                <h2>How does self-advertised method selection work?</h2>
+                <p>The authors built a library of 82 Method Contracts from official solutions to Putnam problems from
+                    2000&ndash;2014. GPT-5.6 Sol extracted the methods and drafted the contracts, the authors reviewed
+                    every extracted method and every proposed merge, and every Lean artifact was compiled with Lean
+                    v4.27.0 and Mathlib. All 82 contracts pass that check: each has a scaffold stated for arbitrary
+                    parameters and a compiled worked instance. A contract has two sides. The selector reads only the
+                    selection side (what the method does, its typical target, when it applies, when it should not be
+                    used). The prover receives the execution side (the Lean scaffold, Mathlib declarations, required
+                    conditions as Lean hypotheses and the obligations left after the step).</p>
+                <figure>
+                    <img src="imgs/ai_theorem_prover_proof_method_selection/figure_method.png" alt="Diagram of self-advertised method selection. A Lean goal and a library of 82 Method Contracts go into one batched model call in which every method proposes a target, an action and required conditions. In the paper's running example, Cauchy-Schwarz names a concrete target and passes the gate, AM-GM is demoted as unsupported because it needs a condition the goal does not give, and the pigeonhole principle is demoted as vague. The ranked shortlist, with an optional runoff over the top 10, sends the top contract's Lean scaffold to the prover; similarity retrieval would have picked AM-GM." style="max-width:100%"/>
+                    <figcaption class="figure-caption">Self-advertisement in four steps, redrawn from Figure 1 of arXiv:2610.09401.</figcaption>
+                </figure>
+                <p>Given a theorem, one batched model call reads the goal and the selection side of all 82 contracts,
+                    and returns a proposal for each one: the target it would address in terms of the goal's own
+                    objects, the action, the facts it needs, and the verified material from its contract that backs
+                    the claim. A proposal that names only generic phrases, or cites nothing, fails the commitment gate
+                    and is ranked below every supported nomination. The result is a shortlist in which each method
+                    comes with a claim a person or a prover can check.</p>
+                <p>Because the model scores each proposal on its own, close calls at the top are often ties. An
+                    optional <em>runoff</em> re-ranks the top ten by comparing neighbouring proposals directly, with
+                    the same model, which targets rank-1 accuracy rather than shortlist coverage.</p>
+
+                <h2>Why can't embedding retrieval or an LLM reranker find the right method?</h2>
+                <p>The paper gives a short formal answer. If a selector only sees similarity scores, two goals with
+                    the same scores get the same shortlist, even when their proofs need different methods (the paper's
+                    Proposition 2). A two-stage system that retrieves the top ten by similarity and then lets an LLM
+                    reorder them is bounded by what the first stage retrieved, whatever model does the reranking
+                    (Corollary 1). Self-advertisement avoids that ceiling by judging every contract in the library,
+                    not only the candidates similarity lets through.</p>
+                <p>The experiments match this. Against random ordering, BM25, TF-IDF, three embedding models (OpenAI
+                    text-embedding-3-small and -3-large, Qwen3-Embedding-0.6B) and a listwise LLM reranker on top of
+                    each embedding model, with every LLM-based method using the same backbone, the results on 120
+                    Putnam 2015&ndash;2025 problems and 60 IMO ProofBench problems with GPT-5.6 Luna were:</p>
+                <table class="comparison-table">
+                    <tr><th rowspan="2">Selector (GPT-5.6 Luna)</th><th colspan="4">Putnam 2015&ndash;2025</th><th colspan="4">IMO ProofBench</th></tr>
+                    <tr><th>hit@1</th><th>hit@5</th><th>R@5</th><th>MRR</th><th>hit@1</th><th>hit@5</th><th>R@5</th><th>MRR</th></tr>
+                    <tr><td>Qwen3-Embedding-0.6B (no LLM)</td><td>.450</td><td>.775</td><td>.291</td><td>.579</td><td>.350</td><td>.767</td><td>.380</td><td>.510</td></tr>
+                    <tr><td>OpenAI-large + LLM rerank</td><td><strong>.692</strong></td><td>.825</td><td>.361</td><td>.747</td><td><strong>.583</strong></td><td>.883</td><td>.460</td><td><strong>.714</strong></td></tr>
+                    <tr><td>Qwen3 + LLM rerank</td><td>.683</td><td>.842</td><td>.385</td><td>.756</td><td>.567</td><td>.883</td><td>.468</td><td>.688</td></tr>
+                    <tr><td>Self-advertisement</td><td>.658</td><td>.950</td><td>.446</td><td>.787</td><td>.550</td><td>.917</td><td><strong>.554</strong></td><td>.693</td></tr>
+                    <tr><td>Self-advertisement + runoff</td><td>.683</td><td><strong>.958</strong></td><td><strong>.461</strong></td><td><strong>.800</strong></td><td>.567</td><td><strong>.933</strong></td><td>.538</td><td>.703</td></tr>
+                </table>
+                <p>Selected rows from Table 1 of the paper. hit@k: share of problems with an annotated method in the
+                    top k; R@5: share of annotated methods in the top 5; MRR: mean reciprocal rank. Lexical baselines
+                    reached at most .525 hit@5 on Putnam (TF-IDF).</p>
+                <p>The paper also checks <em>where</em> the gain comes from. For each problem it compares the rank
+                    of the annotated method under self-advertisement with its rank under each similarity retriever.
+                    Across BM25 and all three embedding models, there are annotated methods that similarity ranks
+                    outside its top five but self-advertisement places inside, and many are so dissimilar to the
+                    problem that they never enter a reranker's candidate pool. These are the methods that apply
+                    without resembling the problem statement.</p>
+
+                <h2>Do stronger LLMs make method selection better?</h2>
+                <p>For self-advertisement, yes; for the reranking baselines, barely.</p>
+                <figure>
+                    <img src="imgs/ai_theorem_prover_proof_method_selection/figure_backbones.png" alt="Grouped bar chart of Putnam 2015-2025 hit@5 by backbone model. DeepSeek V4.1 Flash: best reranker 84.2%, self-advertisement 90.0%. GPT-5.6 Luna: best reranker 84.2%, self-advertisement 95.0%. GPT-5.6 Terra: best reranker 85.8%, self-advertisement 97.5%." style="max-width:100%"/>
+                    <figcaption class="figure-caption">Putnam hit@5 for the best embedding-plus-LLM reranker and for self-advertisement under three backbones (data: Table 1 of arXiv:2610.09401; vertical axis starts at 70%).</figcaption>
+                </figure>
+                <p>This is the pattern the candidate-pool ceiling predicts: a better model reorders the same ten
+                    candidates more cleverly, but cannot add a method the embedding stage missed. The lead under
+                    DeepSeek V4.1 Flash also matters for a different reason: the contracts and labels were drafted
+                    with an OpenAI model, so a gain under another model family suggests the result is not an artifact
+                    of shared wording.</p>
+                <p>Rank 1 is a different story. Rerankers remain more precise at the very top in most settings, so
+                    the paper's main claim is about shortlist coverage. The runoff narrows that gap: with GPT-5.6
+                    Terra it raised Putnam hit@1 from 62.5% to 72.5%, above the strongest reranker at 67.5%, and IMO
+                    ProofBench hit@1 from 51.7% to 60.0%.</p>
+
+                <h2>Does better method selection help LLMs prove Putnam problems in Lean?</h2>
+                <p>As a first check, the authors gave the top-ranked contract to AxProverBase, a minimal agentic proof loop from Axiomatic AI, with
+                    GPT-5.6 Luna and a budget of ten Lean compilations per problem, and compared it with the same loop
+                    without contracts and with other baselines:</p>
+                <table class="comparison-table">
+                    <tr><th>Prover setting (10 Lean compilations)</th><th>Putnam 2015&ndash;2025 proved</th><th>IMO ProofBench proved</th></tr>
+                    <tr><td>Base (one attempt, no retrieval)</td><td>0.0%</td><td>1.7%</td></tr>
+                    <tr><td>pass@20 (20 samples, twice the budget)</td><td>0.8%</td><td>1.7%</td></tr>
+                    <tr><td>APOLLO</td><td>2.5%</td><td>6.7%</td></tr>
+                    <tr><td>AxProverBase, no contract</td><td>5.8%</td><td>10.0%</td></tr>
+                    <tr><td>+ top self-advertised contract</td><td><strong>12.5%</strong></td><td><strong>15.0%</strong></td></tr>
+                </table>
+                <p>From Table 2 of the paper. On Putnam the gains came from analysis (3.3% to 10.0%) and discrete
+                    problems (4.3% to 17.4%), while algebra stayed at 9.1%. On IMO ProofBench the contract added Basic
+                    problems (20.0% to 26.7%) and the only Advanced problem solved by any setting.</p>
+
+                <h2>How does this compare with other work on retrieval for theorem proving?</h2>
+                <ul>
+                    <li><strong>Retrieval-augmented provers.</strong> <a href="https://arxiv.org/abs/2306.15626"><em>LeanDojo:
+                        Theorem Proving with Retrieval-Augmented Language Models</em></a> (Yang, Swope, Gu, Chalamala,
+                        Song, Yu, Godil, Prenger and Anandkumar; NeurIPS 2023 Datasets and Benchmarks) made premise
+                        retrieval a standard part of LLM proving, with the ReProver model and a benchmark of 98,734
+                        Mathlib theorems. Its unit of retrieval is a lemma; ours is a method with its conditions and
+                        obligations, which a prover can use alongside lemma retrieval.</li>
+                    <li><strong>Better premise retrieval.</strong> <a href="https://arxiv.org/abs/2605.13137"><em>LeanSearch
+                        v2: Global Premise Retrieval for Lean 4 Theorem Proving</em></a> (Gao, Sun, Jiang, Wang, Xu,
+                        Wu, Dai and Dong, 2026) retrieves the whole set of Mathlib lemmas a theorem needs, using an
+                        iterative sketch-retrieve-reflect loop, and reports 20% proof success in a fixed prover loop
+                        versus 4% without retrieval. <a href="https://openreview.net/forum?id=9Ll1y5OFn9"><em>DAPS:
+                        Dependency-Aware Premise Selection for LLM Theorem Proving</em></a> (Huang, Chen, Jiang, Wang and
+                        Sachan; ICML 2026) argues, as we do, that semantic similarity is the wrong signal on its own and
+                        adds dependency-graph structure, reporting Recall@32 of 89.31 on a Mathlib held-out set. Both
+                        improve which <em>facts</em> a prover sees; our paper asks which <em>method</em> to try, and the
+                        approaches are complementary.</li>
+                    <li><strong>LLMs as rerankers.</strong> <a href="https://arxiv.org/abs/2304.09542"><em>Is ChatGPT Good
+                        at Search? Investigating Large Language Models as Re-Ranking Agents</em></a> (Sun, Yan, Ma, Wang,
+                        Ren, Chen, Yin and Ren; EMNLP 2023) showed that instructed LLMs rank passages competitively with
+                        supervised methods, and its listwise approach is the reranking baseline in our paper. Our results
+                        agree that LLM reranking adds 7&ndash;8 points over embeddings alone; they also show it is capped
+                        by the retrieval stage in front of it.</li>
+                    <li><strong>Do libraries get reused?</strong> <a href="https://arxiv.org/abs/2410.20274"><em>Library
+                        Learning Doesn't: The Curious Case of the Single-Use &ldquo;Library&rdquo;</em></a>
+                        (Berlot-Attwell, Rudzicz and Si; MATH-AI Workshop at NeurIPS 2024) found that functions learned by
+                        two library-learning systems for math, LEGO-Prover and TroVE, were rarely reused, and that
+                        self-correction and self-consistency explained most of the gains. That is a useful caution for any
+                        reusable library, including ours: the contracts here are reused across held-out problems by
+                        construction, but the downstream test does not yet isolate how much of the gain comes from reuse.</li>
+                    <li><strong>The proof loop.</strong> <a href="https://arxiv.org/abs/2602.24273"><em>A Minimal Agent for
+                        Automated Theorem Proving</em></a> (Requena, Letson, Nowakowski, Beltran-Ferreiro and Sarra; ICML
+                        2026) introduces AxProverBase, a simple agentic baseline from Axiomatic AI with iterative proof refinement,
+                        library search and context management, released as <a href="https://github.com/Axiomatic-AI/ax-prover-base">open
+                        source</a>. Our downstream experiment uses it as the control and adds the selected contract to its
+                        initial prompt.</li>
+                </ul>
+                <p>Older ideas fit here too. Proof planning in the 1980s and 1990s (Bundy; Melis and Siekmann)
+                    represented methods with preconditions and expected effects, and case-based reasoning favoured cases
+                    that could be adapted rather than those that merely looked similar. Self-advertisement brings that
+                    view to LLM-era retrieval.</p>
+
+                <h2>What this does not show</h2>
+                <ul>
+                    <li><strong>Shortlist coverage is not a proof.</strong> The main results measure whether a suitable
+                        method is in the shortlist, not whether the prover then completes the Lean obligations it
+                        leaves. Most problems remained unsolved in the downstream test.</li>
+                    <li><strong>Selection and contract content are not separated.</strong> The downstream comparison adds
+                        the whole contract, including its Lean scaffold and Mathlib anchors, so the gain reflects both
+                        selection and the guidance in the contract.</li>
+                    <li><strong>Rank 1 is not where it wins.</strong> Without the runoff, LLM rerankers were more precise
+                        at hit@1 in most settings; the runoff helped clearly with GPT-5.6 Terra and DeepSeek V4.1 Flash
+                        and changed little with GPT-5.6 Luna.</li>
+                    <li><strong>Labels and scale.</strong> Labels are the contracts used in each official solution,
+                        proposed by GPT-5.6 Sol and checked by a human before any selector ran. Agreement with them
+                        understates applicability, because other proofs may use other methods. IMO ProofBench has 60
+                        problems, so one problem is 1.7 points; the paper reads those results as broader coverage at
+                        comparable top-5 hit rates.</li>
+                    <li><strong>One library, competition math.</strong> The 82 contracts come from Putnam solutions.
+                        Whether the approach carries to research-level Mathlib work, or to libraries of thousands of
+                        methods where one batched call may not fit, is not tested.</li>
+                    <li><strong>No code release is listed yet</strong> in the arXiv version.</li>
+                </ul>
+
+                <h2>Frequently asked questions</h2>
+                <h3>How do AI theorem provers choose a proof method?</h3>
+                <p>Most LLM-based provers do not choose a method explicitly: they retrieve lemmas or prior proofs that
+                    look similar to the goal and let the model generate and repair Lean code. Let the Library Speak
+                    (arXiv 2026) makes the choice explicit: each of 82 reusable methods proposes what it would target,
+                    what it would do and what it needs, and methods that cannot state a concrete, supported use are
+                    ranked lower.</p>
+                <h3>Why doesn't embedding retrieval find the right proof method?</h3>
+                <p>Because looking similar to a theorem does not mean a method applies to it. A useful method can come
+                    from a problem that looks quite different, and the paper proves that a similarity-only selector can
+                    give the same representation to goals that need different methods. On Putnam 2015-2025 the best
+                    embedding retriever put an annotated method in its top 5 for 77.5% of problems.</p>
+                <h3>Is an LLM reranker enough to select proof methods?</h3>
+                <p>It helps, but it can only reorder what the similarity stage already retrieved. In Let the Library
+                    Speak, embedding plus LLM reranking reached at most 84.2-85.8% hit@5 on Putnam across three
+                    backbones, while self-advertisement, which judges every method in the library, reached
+                    90.0-97.5%. Rerankers were still more precise at rank 1 in most settings.</p>
+                <h3>Does better method selection help LLMs prove Putnam problems in Lean?</h3>
+                <p>In a first test, yes, modestly. Adding the top-ranked method contract to the AxProverBase proof loop
+                    with 10 Lean compilations per problem raised proved Putnam 2015-2025 problems from 5.8% to 12.5%
+                    and IMO ProofBench problems from 10.0% to 15.0%, but most problems stayed unsolved and the test
+                    does not separate selection from the contract's Lean guidance.</p>
+
+                <h2>Citation</h2>
+<pre><code>@article{yuan2026library,
+  title   = {Let the Library Speak: Self-Advertised Method Selection for Formal Proving},
+  author  = {Yuan, Xiaopeng and Wang, Suijin and Wang, Yanli and Jin, Haibo and Kuang, Peng and Wang, Jerry and Yu, Lijun and Wang, Haohan},
+  journal = {arXiv preprint arXiv:2610.09401},
+  year    = {2026}
+}</code></pre>
+
+                <h2>Related from our lab</h2>
+                <ul>
+                    <li><a href="ai_math_just_search_hidden_hypotheses.html">Is AI math just search? What LLMs miss when they restate theorems between fields</a></li>
+                    <li><a href="agent_primitives.html">Agent primitives: reusable building blocks for multi-agent systems, another case of a reusable library for LLMs</a></li>
+                    <li><a href="when_more_reasoning_is_actually_less.html">When more chain-of-thought reasoning hurts LLM accuracy on inductive tasks</a></li>
+                    <li><a href="https://haohanwang.ischool.illinois.edu/blog/math-is-not-just-problem-solving.html">&ldquo;Math Is Not Just Problem Solving&rdquo;, an essay by Haohan Wang on what AI math benchmarks measure</a></li>
+                    <li><a href="../preprints.html">DREAM Lab preprints</a></li>
+                </ul>
+
+                <div style="margin-top: 50px; padding-top: 30px; border-top: 1px solid rgba(255,255,255,0.2); font-size: 0.9em; color: rgba(255,255,255,0.6);">
+                    <p><strong>Paper:</strong> Xiaopeng Yuan, Suijin Wang, Yanli Wang, Haibo Jin, Peng Kuang, Jerry Wang,
+                        Lijun Yu, Haohan Wang. &ldquo;<a href="https://arxiv.org/abs/2610.09401">Let the Library Speak:
+                        Self-Advertised Method Selection for Formal Proving</a>.&rdquo; arXiv:2610.09401, October 2026.
+                        University of Illinois Urbana-Champaign, Tsinghua University, Imperial College London, and
+                        Google.</p>
+                </div>
+            </section>
+            </article>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer id="footer">
+        <ul class="icons">
+            <li><a href="https://x.com/HaohanWang" class="icon brands alt fa-twitter"><span class="label">X</span></a></li>
+            <li><a href="https://www.linkedin.com/in/haohanwang/" class="icon brands alt fa-linkedin-in"><span class="label">LinkedIn</span></a></li>
+            <li><a href="https://github.com/DreamLabUIUC" class="icon brands alt fa-github"><span class="label">GitHub</span></a></li>
+            <li><a href="../feed.xml" class="icon solid alt fa-rss"><span class="label">RSS</span></a></li>
+        </ul>
+        <ul class="copyright">
+            <li>&copy; DREAM Lab, University of Illinois Urbana-Champaign</li>
+            <li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
+        </ul>
+    </footer>
+
+</div>
+
+<!-- Scripts -->
+<script src="../assets2/js/jquery.min.js"></script>
+<script src="../assets2/js/jquery.scrolly.min.js"></script>
+<script src="../assets2/js/jquery.dropotron.min.js"></script>
+<script src="../assets2/js/jquery.scrollex.min.js"></script>
+<script src="../assets2/js/browser.min.js"></script>
+<script src="../assets2/js/breakpoints.min.js"></script>
+<script src="../assets2/js/util.js"></script>
+<script src="../assets2/js/main.js"></script>
+
+</body>
+</html>

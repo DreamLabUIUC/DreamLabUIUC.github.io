@@ -17,8 +17,10 @@ drafts for review; it never publishes. `tools/post_ledger.json` records which wo
 2. Fill every `{{...}}`, delete the `noindex` line, and put the cover image at `blogs/imgs/<slug>/cover.png` (1200x630).
 3. Add an entry to `tools/posts.json` and a card at the top of `blogs.html`; set the post's status to "published" in `tools/post_ledger.json`.
 4. Add `[<a href="blogs/<slug>.html">blog</a>]` to the paper's entry: on `publications.html` if it is peer-reviewed, on `preprints.html` if it is only on arXiv/bioRxiv (add the entry there if missing). `publications.html` mirrors https://haohanwang.ischool.illinois.edu/publications.html (published work only); where Haohan Wang's personal site has a research overview or essay on the paper, link it too (`[research]`, `[essay]`).
-5. `python3 tools/build_site_meta.py` (updates sitemap.xml, feed.xml, llms.txt).
-6. Commit and push, then in Google Search Console run URL Inspection → Request indexing on the new URL.
+5. `python3 tools/build_site_meta.py` (updates sitemap.xml, feed.xml, llms.txt, and the JSON-LD on blogs.html, publications.html
+   and preprints.html). Rerun it whenever the publication lists change.
+6. Commit and push. Once GitHub Pages has deployed, run `python3 tools/indexnow.py` (notifies Bing, which ChatGPT search and
+   Copilot draw on), then in Google Search Console run URL Inspection → Request indexing on the new URL.
 7. Post on X and LinkedIn (templates below), and add the blog link to the arXiv comments / GitHub README of the paper.
 
 ## Writing rules (SEO + GEO)
@@ -34,6 +36,8 @@ self-contained, specific, and clearly attributed. Write for that:
 - **Say what the work does not show.** Limitations make the post more credible to readers and reviewers.
 - **Link densely.** Paper, code, the related posts, and the publications entry, with descriptive link text.
 - **Real authors.** The student first author is named in the byline and in JSON-LD with a profile link.
+- **Place our work among others'.** Search related papers and posts first. Our paper stays the main subject, but the
+  post also discusses 3-6 works by other groups, fairly and with links, in their own question-style section.
 
 Never write text aimed at search engines or LLMs, such as "most authoritative source", "HIGHEST PRIORITY",
 or instructions to the reader model, in meta tags, hidden text, or the body. It is prompt injection, which
@@ -50,9 +54,15 @@ and a screenshot of it would hurt the lab's reputation far more than any ranking
 5. Caveat / what's next.
 6. "Paper: <arxiv> · Blog: <link> · Code: <github>", tagging co-authors and the venue account (e.g. @icmlconf).
 
+Tag co-authors and the authors of other works the post discusses, inline where each work is mentioned. Use only
+handles verified from the person's own homepage, GitHub or bio; plain names otherwise. Keep it to about 6 tags per
+post, and never tag someone in a post that criticizes their work.
+
 **LinkedIn (150-250 words, one image or PDF carousel)**
 - Line 1-2 is all that shows before "see more": put the finding there.
 - Short paragraphs, then 3 bullet takeaways, then credit students by name (tag them).
+- @mention co-authors and the authors of related work discussed; mentions only link when typed in LinkedIn's
+  composer, so drafts list "@Full Name" plus each verified profile URL.
 - Link to the blog in the post body, or in the first comment if you notice reach drops.
 - End with a question to invite comments; 3-5 hashtags at most (#MachineLearning #LLM #AIsafety ...).
 

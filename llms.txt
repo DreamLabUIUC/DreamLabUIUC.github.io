@@ -1,12 +1,20 @@
 # DREAM Lab (UIUC)
 
-> DREAM (Developing Reliable and Efficient AI for Medicine) is a research lab at the School of Information Sciences, University of Illinois Urbana-Champaign, led by Assistant Professor Haohan Wang. The lab works on agentic AI and multi-agent LLM systems, the security of AI agents (e.g. prompt injection), LLM reasoning, trustworthy machine learning, and AI methods for computational biology.
+> DREAM Lab (Developing Reliable and Efficient AI for Medicine) is Haohan Wang's research lab at the School of Information Sciences, University of Illinois Urbana-Champaign. The lab builds reliable agentic AI for scientific discovery, studies the security of AI agents, and develops AI methods for computational biology.
+
+Research areas:
+- Agentic AI for scientific discovery: LLM agents and multi-agent systems that analyze biological data and do scientific reasoning, e.g. GenoTEX (benchmark for gene expression analysis agents), GenoMAS (multi-agent gene expression analysis, ACL Findings 2026), SCTA (target gene discovery from single-cell RNA-seq), and agentic transcriptomic and proteomic discovery.
+- Multi-agent LLM systems and their reliability: agent primitives, agent communication, test-time scaling, self-evolving agents.
+- Security of AI agents: prompt injection (SecFid, ICML 2026 Spotlight), jailbreaks, guardrails, and visibility in LLM-based search (CORE).
+- AI for computational biology: genetics of complex traits such as Alzheimer's disease and cancer.
+
+Haohan Wang is an Assistant Professor in the School of Information Sciences, affiliated with the Beckman Institute and the Siebel School of Computing and Data Science. He gives invited talks, seminars, and tutorials on agentic AI for scientific discovery and on LLM security; his homepage lists past talks and contact details.
 
 ## Lab
 - [Research overview](https://dream.ischool.illinois.edu/overview.html): research directions and projects
 - [Publications](https://dream.ischool.illinois.edu/publications.html): peer-reviewed publications, 2013 to present, with paper and code links
 - [Preprints](https://dream.ischool.illinois.edu/preprints.html): arXiv and bioRxiv preprints not yet peer reviewed
-- [Software](https://dream.ischool.illinois.edu/software.html): open-source tools
+- [Software](https://dream.ischool.illinois.edu/software.html): AI agent tools for data analysis and genomics, and other software
 - [Contact](https://dream.ischool.illinois.edu/contact.html): contact and information for prospective students
 - [Haohan Wang](https://haohanwang.ischool.illinois.edu/): PI homepage
 
@@ -14,6 +22,7 @@
 - [SecFid](https://dream.ischool.illinois.edu/secfid/): benchmark for security and fidelity of prompt injection defenses (ICML 2026 Spotlight)
 
 ## Blog posts
+- [How Should an AI Theorem Prover Pick a Proof Method?](https://dream.ischool.illinois.edu/blogs/ai_theorem_prover_proof_method_selection.html) (2026-10-15): How should an AI theorem prover pick a proof method? Letting each method propose its own use put a correct one in the top 5 for 95.0% of Putnam problems.
 - [Does Recursive Self-Improvement Make AI Agents Forget?](https://dream.ischool.illinois.edu/blogs/recursive_self_improvement_agents_forget.html) (2026-10-14): Does recursive self-improvement make AI agents forget? Often, yes. Preserving old capabilities lifted retained task success from 41.8% to 52.8% in one test.
 - [Is AI Math Just Search? What LLMs Miss Between Math Fields](https://dream.ischool.illinois.edu/blogs/ai_math_just_search_hidden_hypotheses.html) (2026-10-12): Is AI math just search? When 7 LLMs restated theorems in a more general field, 60.6% of rewrites silently widened the claim, an error no checker sees.
 - [Vision Transformer Robustness: The Inputs a ViT Cannot See](https://dream.ischool.illinois.edu/blogs/vision_transformer_robustness_nullspace.html) (2026-10-09): Vision transformer robustness: ViT-S/32 cannot see 2,688 of 3,072 input dimensions per patch, and nullspace fine-tuning lifts ViT-S's average from 26.5 to 34.5.

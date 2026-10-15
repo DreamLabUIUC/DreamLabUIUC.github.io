@@ -1,5 +1,5 @@
 {
-  "_doc": "One entry per Google Scholar work that has been handled. status: published | drafted | covered (discussed in an existing post) | skipped. Match works by arXiv id when present, else by normalized title.",
+  "_doc": "One entry per Google Scholar work that has been handled. status: published | drafted | planned (registered by the author for a future date) | covered (discussed in an existing post) | skipped. Match works by arXiv id when present, else by normalized title.",
   "phase": 1,
   "_phase_doc": "1 = clearing the 2026 backlog (Mon+Wed new, Fri early). Set to 2 permanently the first time no unhandled 2026+ work remains; never set back to 1 (Wed newest, Mon+Fri early).",
   "entries": [
@@ -35,8 +35,10 @@
       "title": "GenoTEX: an LLM Agent benchmark for automated gene expression data analysis",
       "arxiv": "2406.15341",
       "year": 2024,
-      "status": "skipped",
-      "reason": "2024 work; author decided not to post"
+      "status": "planned",
+      "reason_previous": "2024 work; author decided not to post",
+      "note": "Registered by the author on 2026-10-14 for a themed post on 2026-10-16 (GenoMAS main, GenoTEX and SCTA discussed).",
+      "published": true
     },
     {
       "title": "From Knowledge Access to Source Learning: Developing Source-Specific Competence",
@@ -100,13 +102,14 @@
       "title": "Let the Library Speak: Self-Advertised Method Selection for Formal Proving",
       "arxiv": "2610.09401",
       "year": 2026,
-      "status": "drafted",
+      "status": "published",
       "slug": "ai_theorem_prover_proof_method_selection",
       "draft_date": "2026-10-14",
       "kind": "new",
       "primary_query": "how do AI theorem provers choose a proof method",
       "published": false,
-      "note": "2026-10-14: author chose not to post this standalone today; plan to merge into a themed post (reusable primitives or formal proving). Keep draft files until then."
+      "publish_date": "2026-10-15",
+      "note": "2026-10-14: author first planned to merge this into a themed post; 2026-10-15: author asked to publish it standalone."
     },
     {
       "title": "Do Self-Evolving Agents Forget? Capability Degradation and Preservation in Lifelong LLM Agent Adaptation",
@@ -119,6 +122,26 @@
       "primary_query": "does recursive self-improvement make AI agents forget",
       "published": false,
       "note": "Requested by the author on 2026-10-14 in place of the scheduled pick; framed around recursive self-improvement (RSI)."
+    },
+    {
+      "title": "GenoMAS: A Multi-Agent Framework for Scientific Discovery via Code-Driven Gene Expression Analysis",
+      "arxiv": "2507.21035",
+      "year": 2026,
+      "status": "planned",
+      "planned_date": "2026-10-16",
+      "kind": "new",
+      "published": true,
+      "note": "Registered by the author on 2026-10-14 for a themed post on 2026-10-16 (GenoMAS main, GenoTEX and SCTA discussed)."
+    },
+    {
+      "title": "SCTA: An Agentic Framework for Stable and Interpretable Target Gene Discovery from Single-Cell RNA Sequencing",
+      "arxiv": "2607.23821",
+      "year": 2026,
+      "status": "planned",
+      "planned_date": "2026-10-16",
+      "kind": "new",
+      "published": true,
+      "note": "Registered by the author on 2026-10-14 for a themed post on 2026-10-16 (GenoMAS main, GenoTEX and SCTA discussed)."
     }
   ]
 }
