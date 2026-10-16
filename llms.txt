@@ -22,6 +22,7 @@ Haohan Wang is an Assistant Professor in the School of Information Sciences, aff
 - [SecFid](https://dream.ischool.illinois.edu/secfid/): benchmark for security and fidelity of prompt injection defenses (ICML 2026 Spotlight)
 
 ## Blog posts
+- [Can AI Agents Analyze Gene Expression Data Like Experts?](https://dream.ischool.illinois.edu/blogs/ai_agents_gene_expression_analysis.html) (2026-10-16): Can AI agents analyze gene expression data? GenoMAS (ACL Findings 2026) reaches 60.48% F1 on GenoTEX, up from 43.63%; human experts score 71.63%.
 - [How Should an AI Theorem Prover Pick a Proof Method?](https://dream.ischool.illinois.edu/blogs/ai_theorem_prover_proof_method_selection.html) (2026-10-15): How should an AI theorem prover pick a proof method? Letting each method propose its own use put a correct one in the top 5 for 95.0% of Putnam problems.
 - [Does Recursive Self-Improvement Make AI Agents Forget?](https://dream.ischool.illinois.edu/blogs/recursive_self_improvement_agents_forget.html) (2026-10-14): Does recursive self-improvement make AI agents forget? Often, yes. Preserving old capabilities lifted retained task success from 41.8% to 52.8% in one test.
 - [Is AI Math Just Search? What LLMs Miss Between Math Fields](https://dream.ischool.illinois.edu/blogs/ai_math_just_search_hidden_hypotheses.html) (2026-10-12): Is AI math just search? When 7 LLMs restated theorems in a more general field, 60.6% of rewrites silently widened the claim, an error no checker sees.

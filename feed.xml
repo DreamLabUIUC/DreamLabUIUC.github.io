@@ -6,7 +6,15 @@
   <atom:link href="https://dream.ischool.illinois.edu/feed.xml" rel="self" type="application/rss+xml"/>
   <description>Plain-language explainers of research from the DREAM Lab at the University of Illinois Urbana-Champaign.</description>
   <language>en</language>
-  <lastBuildDate>Thu, 15 Oct 2026 12:00:00 +0000</lastBuildDate>
+  <lastBuildDate>Fri, 16 Oct 2026 12:00:00 +0000</lastBuildDate>
+  <item>
+    <title>Can AI Agents Analyze Gene Expression Data Like Experts?</title>
+    <link>https://dream.ischool.illinois.edu/blogs/ai_agents_gene_expression_analysis.html</link>
+    <guid>https://dream.ischool.illinois.edu/blogs/ai_agents_gene_expression_analysis.html</guid>
+    <pubDate>Fri, 16 Oct 2026 12:00:00 +0000</pubDate>
+    <category>Agentic AI</category>
+    <description>Can AI agents analyze gene expression data? GenoMAS (ACL Findings 2026) reaches 60.48% F1 on GenoTEX, up from 43.63%; human experts score 71.63%.</description>
+  </item>
   <item>
     <title>How Should an AI Theorem Prover Pick a Proof Method?</title>
     <link>https://dream.ischool.illinois.edu/blogs/ai_theorem_prover_proof_method_selection.html</link>

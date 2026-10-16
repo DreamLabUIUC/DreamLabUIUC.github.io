@@ -35,10 +35,15 @@
       "title": "GenoTEX: an LLM Agent benchmark for automated gene expression data analysis",
       "arxiv": "2406.15341",
       "year": 2024,
-      "status": "planned",
+      "status": "published",
       "reason_previous": "2024 work; author decided not to post",
-      "note": "Registered by the author on 2026-10-14 for a themed post on 2026-10-16 (GenoMAS main, GenoTEX and SCTA discussed).",
-      "published": true
+      "note": "Registered by the author on 2026-10-14 for a themed post on 2026-10-16 (GenoMAS main, GenoTEX and SCTA discussed). Drafted 2026-10-16 as one themed post (GenoMAS main; GenoTEX and SCTA discussed).",
+      "published": true,
+      "slug": "ai_agents_gene_expression_analysis",
+      "draft_date": "2026-10-16",
+      "kind": "new",
+      "primary_query": "can AI agents analyze gene expression data",
+      "publish_date": "2026-10-16"
     },
     {
       "title": "From Knowledge Access to Source Learning: Developing Source-Specific Competence",
@@ -127,21 +132,27 @@
       "title": "GenoMAS: A Multi-Agent Framework for Scientific Discovery via Code-Driven Gene Expression Analysis",
       "arxiv": "2507.21035",
       "year": 2026,
-      "status": "planned",
-      "planned_date": "2026-10-16",
+      "status": "published",
       "kind": "new",
       "published": true,
-      "note": "Registered by the author on 2026-10-14 for a themed post on 2026-10-16 (GenoMAS main, GenoTEX and SCTA discussed)."
+      "note": "Registered by the author on 2026-10-14 for a themed post on 2026-10-16 (GenoMAS main, GenoTEX and SCTA discussed). Drafted 2026-10-16 as one themed post (GenoMAS main; GenoTEX and SCTA discussed).",
+      "slug": "ai_agents_gene_expression_analysis",
+      "draft_date": "2026-10-16",
+      "primary_query": "can AI agents analyze gene expression data",
+      "publish_date": "2026-10-16"
     },
     {
       "title": "SCTA: An Agentic Framework for Stable and Interpretable Target Gene Discovery from Single-Cell RNA Sequencing",
       "arxiv": "2607.23821",
       "year": 2026,
-      "status": "planned",
-      "planned_date": "2026-10-16",
+      "status": "published",
       "kind": "new",
       "published": true,
-      "note": "Registered by the author on 2026-10-14 for a themed post on 2026-10-16 (GenoMAS main, GenoTEX and SCTA discussed)."
+      "note": "Registered by the author on 2026-10-14 for a themed post on 2026-10-16 (GenoMAS main, GenoTEX and SCTA discussed). Drafted 2026-10-16 as one themed post (GenoMAS main; GenoTEX and SCTA discussed).",
+      "slug": "ai_agents_gene_expression_analysis",
+      "draft_date": "2026-10-16",
+      "primary_query": "can AI agents analyze gene expression data",
+      "publish_date": "2026-10-16"
     }
   ]
 }

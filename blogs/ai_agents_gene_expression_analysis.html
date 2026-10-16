@@ -1,0 +1,481 @@
+<!DOCTYPE HTML>
+<!--
+	Writing guide: tools/BLOG_PLAYBOOK.md
+-->
+<html lang="en">
+<head>
+    <title>Can AI Agents Analyze Gene Expression Data Like Experts? | DREAM Lab, UIUC</title>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <meta name="description" content="Can AI agents analyze gene expression data? GenoMAS (ACL Findings 2026) reaches 60.48% F1 on GenoTEX, up from 43.63%; human experts score 71.63%.">
+    <link rel="canonical" href="https://dream.ischool.illinois.edu/blogs/ai_agents_gene_expression_analysis.html">
+    <meta property="og:type" content="article">
+    <meta property="og:site_name" content="DREAM Lab, UIUC">
+    <meta property="og:title" content="Can AI Agents Analyze Gene Expression Data Like Experts?">
+    <meta property="og:description" content="Can AI agents analyze gene expression data? GenoMAS (ACL Findings 2026) reaches 60.48% F1 on GenoTEX, up from 43.63%; human experts score 71.63%.">
+    <meta property="og:url" content="https://dream.ischool.illinois.edu/blogs/ai_agents_gene_expression_analysis.html">
+    <meta property="og:image" content="https://dream.ischool.illinois.edu/blogs/imgs/ai_agents_gene_expression_analysis/cover.png">
+    <meta property="article:published_time" content="2026-10-16">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@HaohanWang">
+    <meta name="twitter:title" content="Can AI Agents Analyze Gene Expression Data Like Experts?">
+    <meta name="twitter:description" content="Can AI agents analyze gene expression data? GenoMAS (ACL Findings 2026) reaches 60.48% F1 on GenoTEX, up from 43.63%; human experts score 71.63%.">
+    <meta name="twitter:image" content="https://dream.ischool.illinois.edu/blogs/imgs/ai_agents_gene_expression_analysis/cover.png">
+    <meta name="citation_title" content="GenoMAS: A Multi-Agent Framework for Scientific Discovery via Code-Driven Gene Expression Analysis">
+    <meta name="citation_author" content="Liu, Haoyang">
+    <meta name="citation_author" content="Li, Yijiang">
+    <meta name="citation_author" content="Wang, Haohan">
+    <meta name="citation_publication_date" content="2026">
+    <meta name="citation_conference_title" content="Findings of the Association for Computational Linguistics: ACL 2026">
+    <meta name="citation_arxiv_id" content="2507.21035">
+    <meta name="citation_pdf_url" content="https://arxiv.org/pdf/2507.21035">
+    <link rel="alternate" type="application/rss+xml" title="DREAM Lab blog" href="https://dream.ischool.illinois.edu/feed.xml">
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "BlogPosting",
+          "headline": "Can AI Agents Analyze Gene Expression Data Like Experts?",
+          "description": "Can AI agents analyze gene expression data? GenoMAS (ACL Findings 2026) reaches 60.48% F1 on GenoTEX, up from 43.63%; human experts score 71.63%.",
+          "datePublished": "2026-10-16",
+          "dateModified": "2026-10-16",
+          "url": "https://dream.ischool.illinois.edu/blogs/ai_agents_gene_expression_analysis.html",
+          "mainEntityOfPage": "https://dream.ischool.illinois.edu/blogs/ai_agents_gene_expression_analysis.html",
+          "image": "https://dream.ischool.illinois.edu/blogs/imgs/ai_agents_gene_expression_analysis/cover.png",
+          "inLanguage": "en",
+          "keywords": ["AI agents for gene expression analysis", "LLM agents", "multi-agent systems", "bioinformatics automation", "transcriptomics", "gene-trait association", "GenoMAS", "GenoTEX", "GenoAgent", "SCTA", "single-cell RNA sequencing", "agentic AI for science"],
+          "author": [
+            {"@type": "Person", "name": "Haoyang Liu", "url": "https://liu-hy.github.io/", "affiliation": {"@type": "CollegeOrUniversity", "name": "University of Illinois Urbana-Champaign"}},
+            {"@type": "Person", "name": "Shuyu Chen", "url": "https://silviachen46.github.io/", "affiliation": {"@type": "CollegeOrUniversity", "name": "University of Illinois Urbana-Champaign"}},
+            {"@type": "Person", "@id": "https://haohanwang.ischool.illinois.edu/#person", "name": "Haohan Wang", "url": "https://haohanwang.ischool.illinois.edu/", "affiliation": {"@type": "CollegeOrUniversity", "name": "University of Illinois Urbana-Champaign"}}
+          ],
+          "publisher": {"@type": "ResearchOrganization", "@id": "https://dream.ischool.illinois.edu/#lab", "name": "DREAM Lab, UIUC", "url": "https://dream.ischool.illinois.edu/"},
+          "about": [
+            {
+              "@type": "ScholarlyArticle",
+              "name": "GenoMAS: A Multi-Agent Framework for Scientific Discovery via Code-Driven Gene Expression Analysis",
+              "url": "https://arxiv.org/abs/2507.21035",
+              "datePublished": "2026",
+              "publisher": "Findings of the Association for Computational Linguistics: ACL 2026",
+              "author": [{"@type": "Person", "name": "Haoyang Liu"}, {"@type": "Person", "name": "Yijiang Li"}, {"@type": "Person", "name": "Haohan Wang"}]
+            },
+            {
+              "@type": "ScholarlyArticle",
+              "name": "GenoTEX: An LLM Agent Benchmark for Automated Gene Expression Data Analysis",
+              "url": "https://arxiv.org/abs/2406.15341",
+              "datePublished": "2025",
+              "publisher": "Machine Learning in Computational Biology (MLCB) 2025",
+              "author": [{"@type": "Person", "name": "Haoyang Liu"}, {"@type": "Person", "name": "Shuyu Chen"}, {"@type": "Person", "name": "Ye Zhang"}, {"@type": "Person", "name": "Haohan Wang"}]
+            },
+            {
+              "@type": "ScholarlyArticle",
+              "name": "SCTA: An Agentic Framework for Stable and Interpretable Target Gene Discovery from Single-Cell RNA Sequencing",
+              "url": "https://arxiv.org/abs/2607.23821",
+              "datePublished": "2026",
+              "publisher": "BioKDD Workshop at ACM SIGKDD 2026",
+              "author": [{"@type": "Person", "name": "Shuyu Chen"}, {"@type": "Person", "name": "Chen Zhu"}, {"@type": "Person", "name": "Ye Zhang"}, {"@type": "Person", "name": "Yang Li"}, {"@type": "Person", "name": "Qiqi Xie"}, {"@type": "Person", "name": "Haohan Wang"}]
+            }
+          ]
+        },
+        {
+          "@type": "BreadcrumbList",
+          "itemListElement": [
+            {"@type": "ListItem", "position": 1, "name": "DREAM Lab", "item": "https://dream.ischool.illinois.edu/"},
+            {"@type": "ListItem", "position": 2, "name": "Blog", "item": "https://dream.ischool.illinois.edu/blogs.html"},
+            {"@type": "ListItem", "position": 3, "name": "Can AI Agents Analyze Gene Expression Data Like Experts?", "item": "https://dream.ischool.illinois.edu/blogs/ai_agents_gene_expression_analysis.html"}
+          ]
+        },
+        {
+          "@type": "FAQPage",
+          "mainEntity": [
+            {"@type": "Question", "name": "Can AI agents analyze gene expression data?", "acceptedAnswer": {"@type": "Answer", "text": "Yes, with structure, though not yet at expert level. On the GenoTEX benchmark of 1,384 gene-trait association problems, the GenoMAS multi-agent system (ACL Findings 2026) analyzed raw GEO and TCGA data end to end with a 98.78% code success rate and 60.48% F1 in identifying significant genes, compared with 71.63% for human bioinformaticians."}},
+            {"@type": "Question", "name": "Can ChatGPT or Claude find disease genes without analyzing the data?", "acceptedAnswer": {"@type": "Answer", "text": "Not reliably. In the GenoMAS paper, OpenAI o3 asked to name significant genes from its own knowledge, without data, scored 5.13% F1 and 0.56 AUROC, close to chance. The genes that matter depend on the specific cohort, so the analysis has to be run on the data."}},
+            {"@type": "Question", "name": "What is the hardest part of automating gene expression analysis?", "acceptedAnswer": {"@type": "Answer", "text": "Extracting clinical traits from messy metadata. GenoMAS matched the experts' gene expression tables closely (91.15% Composite Similarity Correlation) but reached only 32.61% on clinical trait data, because traits are hidden in free text, abbreviations and indirect descriptions that need biomedical judgement."}},
+            {"@type": "Question", "name": "Is there a benchmark for AI agents in gene expression analysis?", "acceptedAnswer": {"@type": "Answer", "text": "Yes. GenoTEX (Liu, Chen, Zhang and Wang, MLCB 2025) contains 1,384 gene-trait association problems over 911 GEO and TCGA datasets, with reference analyses written by bioinformaticians and evaluation of dataset selection, preprocessing and statistical analysis. Broader bioinformatics agent benchmarks include BixBench and BioAgent Bench."}}
+          ]
+        }
+      ]
+    }
+    </script>
+    <link rel="stylesheet" href="../assets2/css/main.css"/>
+    <link rel="stylesheet" href="blog.css"/>
+    <link rel="apple-touch-icon" sizes="180x180" href="../favicon/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="../favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="../favicon/favicon-16x16.png">
+    <link rel="manifest" href="../favicon/site.webmanifest">
+    <noscript>
+        <link rel="stylesheet" href="../assets2/css/noscript.css"/>
+    </noscript>
+</head>
+<body class="is-preload">
+<div id="page-wrapper">
+
+    <!-- Header -->
+    <header id="header">
+        <nav id="nav">
+            <ul>
+                <li><a href="../index.html">Home</a></li>
+                <li><a href="../overview.html">Overview</a></li>
+                <li><a href="../publications.html">Publications</a></li>
+                <li><a href="../blogs.html">Blogs</a></li>
+                <li><a href="../software.html">Software</a></li>
+                <li><a href="../contact.html">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Main -->
+    <div id="main" class="wrapper style1">
+        <div class="container">
+            <article>
+            <header class="major">
+                <h1>Can AI Agents Analyze Gene Expression Data Like Experts?</h1>
+                <p>A team of LLM agents that writes, reviews and revises its own analysis code now finds trait-associated genes from raw data far better than earlier agents. It is not yet as good as a bioinformatician, and we know where it falls short.</p>
+                <p style="font-size:0.9em">
+                    By <a href="https://liu-hy.github.io/">Haoyang Liu</a>,
+                    <a href="https://silviachen46.github.io/">Shuyu Chen</a> and
+                    <a href="https://haohanwang.ischool.illinois.edu/">Haohan Wang</a> &middot;
+                    <time datetime="2026-10-16">October 16, 2026</time> &middot;
+                    About our ACL Findings 2026, MLCB 2025 and BioKDD 2026 papers
+                </p>
+                <ul class="actions">
+                    <li><a href="https://arxiv.org/abs/2507.21035" class="button">GenoMAS paper</a></li>
+                    <li><a href="https://github.com/Liu-Hy/GenoMAS" class="button alt">Code</a></li>
+                    <li><a href="https://github.com/Liu-Hy/GenoTEX" class="button alt">GenoTEX benchmark</a></li>
+                </ul>
+            </header>
+
+            <p>Can AI agents analyze gene expression data? Increasingly, yes, if they are given the structure a
+                bioinformatician would use. Finding the genes associated with a disease in a public transcriptomics
+                dataset means wrangling large, semi-structured files, mapping probe IDs to gene symbols, pulling clinical
+                traits out of free-text metadata and correcting for confounders, and one early mistake can silently
+                invalidate the result. Our paper <em>GenoMAS: A Multi-Agent Framework for Scientific Discovery via
+                Code-Driven Gene Expression Analysis</em> by Haoyang Liu (University of Illinois Urbana-Champaign), Yijiang
+                Li (UC San Diego) and Haohan Wang (University of Illinois Urbana-Champaign), published in Findings of ACL
+                2026, shows that a team of six LLM agents can run this analysis end to end from raw data, reaching 60.48%
+                F1 against expert reference analyses, up from 43.63% for the previous best system. Human experts score
+                71.63% by the same measure. This post explains how it works, the benchmark behind the numbers, and where
+                agents still fall short.</p>
+
+            <!-- Answer-first summary. -->
+            <div class="intro-box">
+                <h2 style="margin-top:0">Key findings</h2>
+                <ul>
+                    <li>GenoMAS (Liu, Li and Wang, University of Illinois Urbana-Champaign, ACL Findings 2026), a team of
+                        six LLM agents, identified trait-associated genes from raw GEO and TCGA gene expression data with
+                        60.48% F1 on the GenoTEX benchmark, versus 43.63% for the previous best system, GenoAgent, and
+                        71.63% for human bioinformaticians.</li>
+                    <li>In the GenoMAS paper, the general-purpose biomedical agent Biomni scored 14.82% F1 on the same
+                        end-to-end task, and OpenAI o3 naming genes from memory without seeing data scored 5.13% F1: on
+                        this task, agents have to run the analysis, not recall it.</li>
+                    <li>Removing GenoMAS's Code Reviewer agent cut F1 from 60.48% to 24.98%, the largest drop of any
+                        ablation; removing guided planning cut it to 51.27% and removing the Domain Expert agent to
+                        47.57%.</li>
+                    <li>The bottleneck is clinical metadata: GenoMAS matched experts' gene expression tables at 91.15%
+                        Composite Similarity Correlation but clinical trait tables at only 32.61%, a gap first identified by
+                        the GenoTEX benchmark (Liu, Chen, Zhang and Wang, MLCB 2025).</li>
+                </ul>
+            </div>
+
+            <section>
+                <h2>Why is gene expression analysis hard to automate?</h2>
+                <p>Gene expression analysis measures which genes are active in which samples, and asks which of them
+                    track a trait such as a disease. Public repositories such as the Gene Expression Omnibus (GEO) and The Cancer Genome
+                    Atlas (TCGA) already hold vast amounts of this data. Yet
+                    turning one of those studies into a trustworthy gene list is slow, hand-written work. The GenoMAS paper
+                    lists five reasons: more than 20,000 genes measured on often fewer than 1,000 samples; different
+                    platforms (microarrays and RNA-seq) that need different pipelines; gene names that change over time;
+                    clinical information buried in inconsistent free text; and confounders such as batch effects that
+                    create false associations if ignored.</p>
+                <p>Two obvious approaches both fall short. A fixed pipeline is precise, but it breaks on the edge cases
+                    that real datasets are full of. A fully autonomous coding agent is flexible, but loses precision: in
+                    the GenoMAS paper's Appendix A, general-purpose agents including AutoGen, MetaGPT, Claude Code, Cursor
+                    and Manus did not produce complete, valid analyses on three hypertension cohorts that human experts and
+                    GenoMAS had processed, even when given the same detailed guidelines. Typical failures were skipping
+                    the probe-to-gene mapping or misreading how a cohort encoded its disease subtypes.</p>
+
+                <h2>Key terms</h2>
+                <dl>
+                    <dt><strong>Gene expression data</strong></dt>
+                    <dd>Measurements of how much RNA each gene produces in each sample, from microarrays or RNA
+                        sequencing.</dd>
+                    <dt><strong>Gene-trait association (GTA) analysis</strong></dt>
+                    <dd>Finding the genes whose expression is significantly associated with a trait, such as a disease,
+                        while controlling for confounding factors; a conditional GTA problem also accounts for a condition
+                        such as age, sex or a second disease.</dd>
+                    <dt><strong>GenoTEX</strong></dt>
+                    <dd>Our benchmark of 1,384 gene-trait association problems with reference analysis code and results
+                        written by bioinformaticians, covering dataset selection, preprocessing and statistical
+                        analysis.</dd>
+                    <dt><strong>GenoMAS</strong></dt>
+                    <dd>Our multi-agent system in which six LLM agents with different roles write, review and revise the
+                        code for a gene expression analysis.</dd>
+                    <dt><strong>Action Unit</strong></dt>
+                    <dd>A self-contained step of an analysis workflow, such as loading data or mapping gene identifiers,
+                        that a GenoMAS agent turns into code.</dd>
+                    <dt><strong>Composite Similarity Correlation (CSC)</strong></dt>
+                    <dd>GenoTEX's preprocessing score: the overlap of features times the overlap of samples times the
+                        average correlation of shared values, between an agent's preprocessed table and the expert's.</dd>
+                </dl>
+
+                <h2>How do multi-agent systems analyze gene expression data?</h2>
+                <p>GenoMAS treats the analysis as a programming problem done by a small team rather than a chain of tool
+                    calls. A PI agent assigns tasks and reuses cohorts that have already been processed. Three programming
+                    agents do the work: a GEO Data Engineer and a TCGA Data Engineer preprocess data from each repository,
+                    and a Statistician runs regression models that adjust for confounders. Two advisory agents check them:
+                    a Code Reviewer validates each piece of code against the task guidelines, and a Domain Expert answers
+                    questions that need biomedical knowledge, such as which metadata field holds the trait and how to
+                    encode it, in the form of code.</p>
+                <figure>
+                    <img src="imgs/ai_agents_gene_expression_analysis/figure_pipeline.png" alt="Diagram of the GenoMAS multi-agent system. Raw GEO and TCGA cohort data go to a PI agent, which assigns work to three programming agents: a GEO Data Engineer, a TCGA Data Engineer and a Statistician that runs Lasso-type regression with confounder and batch correction and outputs gene-trait associations. The programming agents send code to a Code Reviewer agent powered by OpenAI o3, and the Data Engineers consult a Domain Expert agent powered by Gemini 2.5 Pro. Below, a guided-planning bar shows that the programming agents, powered by Claude Sonnet 4, follow expert guidelines split into Action Units and at each step choose to advance, revise, bypass or backtrack, with validated code stored for reuse at about a 65% reuse rate." style="max-width:100%"/>
+                    <figcaption class="figure-caption">The six GenoMAS agents and guided planning (based on Sections 4.2&ndash;4.3 and 5.4 of arXiv:2507.21035).</figcaption>
+                </figure>
+                <p>The central idea is <em>guided planning</em>. Expert-written guidelines describe the analysis as a set
+                    of Action Units. At each step, a programming agent looks at what has happened so far and chooses to
+                    advance to the next unit, revise the current one, bypass a unit whose preconditions are not met, or
+                    backtrack to an earlier step whose decision turned out to cause problems downstream. This keeps the
+                    analysis on the expert's procedure while letting the agent handle the oddities of each dataset.</p>
+                <p>Three further choices matter. Different roles use different models: Claude Sonnet 4 writes the code,
+                    OpenAI o3 drives planning and code review, and Gemini 2.5 Pro serves as the Domain Expert. The reviewer
+                    judges each attempt without seeing its own earlier feedback at that step, to avoid compounding a
+                    mistaken review. And validated code is stored and reused: over the first 50 cohorts, the reuse rate
+                    settled around 65% and saved 57.8 minutes.</p>
+
+                <h2>How accurate are AI agents at finding disease genes?</h2>
+                <p>On GenoTEX, every method starts from raw files and must select datasets, preprocess them and identify
+                    significant genes. Results from Table 1 of the GenoMAS paper:</p>
+                <table class="comparison-table">
+                    <tr><th>Method</th><th>F1 (%)</th><th>AUROC</th><th>Code success (%)</th><th>API cost per problem</th></tr>
+                    <tr><td><strong>GenoMAS</strong> (heterogeneous LLMs)</td><td><strong>60.48</strong></td><td><strong>0.81</strong></td><td><strong>98.78</strong></td><td>$0.38</td></tr>
+                    <tr><td>GenoMAS, all agents Claude Sonnet 4 (thinking)</td><td>52.98</td><td>0.74</td><td>96.34</td><td>$0.73</td></tr>
+                    <tr><td>GenoMAS, all agents OpenAI o3</td><td>45.53</td><td>0.74</td><td>97.56</td><td>$0.32</td></tr>
+                    <tr><td>GenoAgent (previous best, from GenoTEX)</td><td>43.63</td><td>0.65</td><td>86.12</td><td>$0.69</td></tr>
+                    <tr><td>Biomni (general biomedical agent)</td><td>14.82</td><td>0.29</td><td>53.66</td><td>$0.78</td></tr>
+                    <tr><td>OpenAI o3, zero-shot, no data</td><td>5.13</td><td>0.56</td><td>&ndash;</td><td>$0.01</td></tr>
+                    <tr><td>Random gene selection</td><td>0.75</td><td>0.49</td><td>&ndash;</td><td>&ndash;</td></tr>
+                    <tr><td>Human experts</td><td>71.63</td><td>0.90</td><td>&ndash;</td><td>&ndash;</td></tr>
+                </table>
+                <p>Three things stand out. First, GenoMAS improved F1 by 16.85 points over GenoAgent while cutting API
+                    cost by 44.7%. Second, mixing models helped: the same system with Claude Sonnet 4 in every role
+                    reached 52.98% F1 at almost twice the cost. Third, an LLM's knowledge alone is not enough: o3 naming
+                    genes without data scored 5.13% F1, because the significant genes depend on the cohort.</p>
+                <p>The ablations show which parts carry the weight:</p>
+                <table class="comparison-table">
+                    <tr><th>GenoMAS variant</th><th>F1 (%)</th><th>Code success (%)</th></tr>
+                    <tr><td>Full system</td><td><strong>60.48</strong></td><td><strong>98.78</strong></td></tr>
+                    <tr><td>No guided planning (fixed workflow order)</td><td>51.27</td><td>89.59</td></tr>
+                    <tr><td>No Domain Expert agent</td><td>47.57</td><td>85.24</td></tr>
+                    <tr><td>Only one code-review round</td><td>46.61</td><td>91.76</td></tr>
+                    <tr><td>No Code Reviewer agent</td><td>24.98</td><td>56.23</td></tr>
+                </table>
+                <p>Without the reviewer, F1 falls by more than half. A second pair of eyes, even an artificial one, is
+                    what turns plausible code into correct code.</p>
+
+                <h2>Where do AI agents still fail in bioinformatics analysis?</h2>
+                <p>Breaking the pipeline into stages shows where the remaining gap to experts lies. Agents now handle the
+                    technical side well; the clinical side, which needs biomedical judgement, remains hard.</p>
+                <figure>
+                    <img src="imgs/ai_agents_gene_expression_analysis/figure_preprocessing.png" alt="Grouped bar chart of Composite Similarity Correlation with the experts' preprocessed data on GenoTEX. For gene expression data: GenoMAS 91.2%, GenoAgent 80.6%, Biomni 34.8%. For clinical trait data: GenoMAS 32.6%, GenoAgent 28.6%, Biomni 10.4%." style="max-width:100%"/>
+                    <figcaption class="figure-caption">Preprocessing quality by data type (data: Figure 3(b) of arXiv:2507.21035).</figcaption>
+                </figure>
+                <ul>
+                    <li><strong>Gene expression tables are largely handled.</strong> GenoMAS reached 91.15% CSC on gene
+                        data, against 80.58% for GenoAgent.</li>
+                    <li><strong>Clinical traits are the bottleneck.</strong> On clinical trait data GenoMAS reached only
+                        32.61% CSC. Traits appear in dataset-specific free text, abbreviations and indirect clues; the
+                        GenoTEX paper had already found clinical feature extraction to be "the weakest link" for
+                        GenoAgent (32.28% trait CSC versus 80.63% for genes).</li>
+                    <li><strong>Confounder control decides the statistics.</strong> Given experts' preprocessed data,
+                        GenoMAS reached 95.26% F1, but only 69.64% with batch effect correction switched off, and a plain
+                        Lasso script scored 14.03%. Running a regression is easy for agents; knowing what to correct for
+                        is not.</li>
+                </ul>
+                <p>The gene lists also make biological sense, within limits. Compared with known gene-disease
+                    associations from the Open Targets Platform, GenoMAS's unconditional results gave a GSEA enrichment
+                    score of 0.53 (FDR q = 0.16), which the authors describe as moderate concordance. Its high-confidence
+                    hits include established drivers such as TERT for lung cancer alongside plausible new candidates,
+                    which is useful for generating hypotheses, not for confirming them.</p>
+
+                <h2>How do you benchmark AI agents on gene expression analysis?</h2>
+                <p>Every number above comes from GenoTEX, the benchmark introduced in <em>GenoTEX: An LLM Agent Benchmark
+                    for Automated Gene Expression Data Analysis</em> by Haoyang Liu, Shuyu Chen, Ye Zhang (Novartis
+                    Institutes for BioMedical Research) and Haohan Wang, published at Machine Learning in Computational
+                    Biology (MLCB) 2025. It contains 1,384 gene-trait association problems over 132 traits, 132
+                    unconditional and 1,252 conditional, drawing on 911 cohort datasets from GEO and TCGA with 152,415
+                    samples (41.5 GB).</p>
+                <p>The reference answers were built the slow way. Nine trained bioinformaticians analysed the problems
+                    over 20 weeks, following shared guidelines that were refined through weekly discussion of edge cases,
+                    and wrote 237,907 lines of analysis code. Each trait was analysed independently by two of them, and an
+                    experienced researcher chose and refined the better version. Scored against the final reference, the two
+                    independent analyses averaged 0.89 AUROC for gene identification, which the GenoTEX paper reports as
+                    human-expert performance. Methods are scored separately on dataset selection, preprocessing (CSC) and statistical
+                    analysis (AUROC, F1 and GSEA), so a benchmark result says where a method fails, not only whether it
+                    fails.</p>
+                <p>GenoTEX also introduced GenoAgent, the team of agents that GenoMAS builds on. With OpenAI o1 it
+                    reached 0.74 AUROC end to end in the GenoTEX paper, against 0.89 for experts. GenoMAS's guided
+                    planning, typed messages between agents, heterogeneous models and code memory are what moved the
+                    system from there to 0.81.</p>
+
+                <h2>Can AI agents find drug targets in single-cell RNA-seq data?</h2>
+                <p>Single-cell data raises a different problem: stability. In <em>SCTA: An Agentic Framework for Stable
+                    and Interpretable Target Gene Discovery from Single-Cell RNA Sequencing</em> (Shuyu Chen, Chen Zhu, Ye
+                    Zhang, Yang Li, Qiqi Xie and Haohan Wang, BioKDD Workshop at ACM SIGKDD 2026), five agents handle
+                    preprocessing, cell-type annotation, selection of disease-relevant cell populations, evidence-based
+                    filtering and error repair, each with its own fixed tool set. Because LLM agents can return a different
+                    shortlist on every run, SCTA is evaluated on whether repeated runs agree.</p>
+                <p>With GPT-4o as the backend for all methods and 10 runs per dataset, SCTA's target lists overlapped
+                    more between runs than Biomni's on all three datasets tested: 0.33 versus 0.26 on prostate cancer, 0.43
+                    versus 0.12 on chronic pancreatitis, and 0.60 versus 0.44 on COVID-19, at the cost of longer runtimes.
+                    In hereditary chronic pancreatitis, removing network and gene-summary evidence halved within-setting
+                    stability (mean pairwise Jaccard 0.679 to 0.333), and the full system recovered the CCR6&ndash;CCL20
+                    axis that the original study had reported. The lesson matches GenoMAS: structure and evidence make
+                    agents more trustworthy, and stability is worth measuring alongside accuracy.</p>
+
+                <h2>How does this compare with other AI agents for biology?</h2>
+                <ul>
+                    <li><strong>General bioinformatics benchmarks.</strong> <a href="https://arxiv.org/abs/2503.00096"><em>BixBench:
+                        a Comprehensive Benchmark for LLM-based Agents in Computational Biology</em></a> (Mitchener, Laurent,
+                        Andonian, &hellip;, White, Sani and Rodriques, FutureHouse, 2025) poses nearly 300 open-answer
+                        questions over more than 50 real analysis scenarios and found that GPT-4o and Claude 3.5 Sonnet
+                        agents reached only 17% accuracy. GenoTEX is narrower but deeper: one task family, gene-trait
+                        association, with expert reference code for every stage, so it can show which stage fails.</li>
+                    <li><strong>Pipeline robustness.</strong> <a href="https://arxiv.org/abs/2601.21800"><em>BioAgent Bench:
+                        An AI Agent Evaluation Suite for Bioinformatics</em></a> (Fa, Culjak, Pandza and Cupic, ICML 2026)
+                        finds that frontier-model agents can complete multi-step pipelines such as RNA-seq and variant
+                        calling, but break under corrupted inputs, decoy files and prompt bloat. That agrees with what we
+                        see: building a pipeline that runs is not the same as making every step right, which is why
+                        GenoMAS reviews every step.</li>
+                    <li><strong>General-purpose biomedical agents.</strong> <a href="https://www.biorxiv.org/content/10.1101/2025.05.30.656746v1"><em>Biomni:
+                        A General-Purpose Biomedical AI Agent</em></a> (Huang, Zhang, &hellip;, Regev and Leskovec,
+                        Stanford, bioRxiv 2025) mines tools, databases and protocols from tens of thousands of papers
+                        across 25 biomedical domains and generalizes across tasks such as gene prioritization, rare disease
+                        diagnosis and cloning without task-specific tuning. It scored lower on GenoTEX, which the GenoMAS
+                        authors attribute to a difference in goals: Biomni aims for broad autonomy with minimal input,
+                        while GenoMAS automates a fully specified workflow with strict procedural control. The two are
+                        complementary rather than competing designs.</li>
+                    <li><strong>Agents that explore.</strong> <a href="https://www.biorxiv.org/content/10.1101/2025.06.03.657517"><em>CellVoyager:
+                        AI CompBio Agent Generates New Insights by Autonomously Analyzing Biological Data</em></a> (Alber,
+                        Chen, Sun, Isakova, Wilk and Zou, Stanford, Nature Methods 2026) goes the other way: it reanalyzes
+                        published single-cell datasets in new directions. On its CellBench of 50 studies it beat GPT-4o and
+                        o3-mini by up to 20% at predicting the analyses authors performed, and original authors rated 80% of
+                        its hypotheses scientifically interesting. Exploration and rigorous execution are different jobs;
+                        a lab will likely want both.</li>
+                </ul>
+
+                <h2>What this does not show</h2>
+                <ul>
+                    <li><strong>Not expert level yet.</strong> GenoMAS's 60.48% F1 is still 11 points below the experts'
+                        71.63%, and clinical trait extraction (32.61% CSC) remains far from solved.</li>
+                    <li><strong>One task family.</strong> GenoTEX covers gene-trait association with Lasso-style models on
+                        GEO and TCGA bulk data. Other analyses, such as differential expression with other models,
+                        pathway analysis or multi-omics, are not tested.</li>
+                    <li><strong>Agreement with experts, not biological truth.</strong> The benchmark scores agreement with
+                        reference analyses, and the GenoTEX authors note that several reasonable encoding choices often
+                        exist. Gene lists from GenoMAS or SCTA are hypotheses; wet-lab or clinical validation is still
+                        needed.</li>
+                    <li><strong>Guidelines written by experts.</strong> GenoMAS relies on expert-written guidelines and
+                        manually curated Action Units. It automates a known procedure; it does not invent one.</li>
+                    <li><strong>Small single-cell study.</strong> SCTA's comparison uses three datasets, and its ablation
+                        uses one disease with six runs per setting and fixed preprocessing, so it does not establish
+                        end-to-end stability.</li>
+                    <li><strong>Models change quickly.</strong> The results use mid-2025 models (Claude Sonnet 4, OpenAI o3,
+                        Gemini 2.5 Pro for GenoMAS; GPT-4o for SCTA). Newer models will shift the numbers, though the
+                        ablations suggest the structure will still matter.</li>
+                </ul>
+
+                <h2>Frequently asked questions</h2>
+                <h3>Can AI agents analyze gene expression data?</h3>
+                <p>Yes, with structure, though not yet at expert level. On the GenoTEX benchmark of 1,384 gene-trait
+                    association problems, the GenoMAS multi-agent system (ACL Findings 2026) analyzed raw GEO and TCGA data
+                    end to end with a 98.78% code success rate and 60.48% F1 in identifying significant genes, compared
+                    with 71.63% for human bioinformaticians.</p>
+                <h3>Can ChatGPT or Claude find disease genes without analyzing the data?</h3>
+                <p>Not reliably. In the GenoMAS paper, OpenAI o3 asked to name significant genes from its own knowledge,
+                    without data, scored 5.13% F1 and 0.56 AUROC, close to chance. The genes that matter depend on the
+                    specific cohort, so the analysis has to be run on the data.</p>
+                <h3>What is the hardest part of automating gene expression analysis?</h3>
+                <p>Extracting clinical traits from messy metadata. GenoMAS matched the experts' gene expression tables
+                    closely (91.15% Composite Similarity Correlation) but reached only 32.61% on clinical trait data,
+                    because traits are hidden in free text, abbreviations and indirect descriptions that need biomedical
+                    judgement.</p>
+                <h3>Is there a benchmark for AI agents in gene expression analysis?</h3>
+                <p>Yes. GenoTEX (Liu, Chen, Zhang and Wang, MLCB 2025) contains 1,384 gene-trait association problems
+                    over 911 GEO and TCGA datasets, with reference analyses written by bioinformaticians and evaluation of
+                    dataset selection, preprocessing and statistical analysis. Broader bioinformatics agent benchmarks
+                    include BixBench and BioAgent Bench.</p>
+
+                <h2>Citation</h2>
+<pre><code>@inproceedings{liu2026genomas,
+  title     = {GenoMAS: A Multi-Agent Framework for Scientific Discovery via Code-Driven Gene Expression Analysis},
+  author    = {Liu, Haoyang and Li, Yijiang and Wang, Haohan},
+  booktitle = {Findings of the Association for Computational Linguistics: ACL 2026},
+  year      = {2026}
+}
+
+@inproceedings{liu2025genotex,
+  title     = {GenoTEX: An LLM Agent Benchmark for Automated Gene Expression Data Analysis},
+  author    = {Liu, Haoyang and Chen, Shuyu and Zhang, Ye and Wang, Haohan},
+  booktitle = {Machine Learning in Computational Biology (MLCB)},
+  year      = {2025}
+}
+
+@inproceedings{chen2026scta,
+  title     = {SCTA: An Agentic Framework for Stable and Interpretable Target Gene Discovery from Single-Cell RNA Sequencing},
+  author    = {Chen, Shuyu and Zhu, Chen and Zhang, Ye and Li, Yang and Xie, Qiqi and Wang, Haohan},
+  booktitle = {BioKDD Workshop at ACM SIGKDD},
+  year      = {2026}
+}</code></pre>
+
+                <h2>Related from our lab</h2>
+                <ul>
+                    <li><a href="https://haohanwang.ischool.illinois.edu/research/agentic-ai-genomics.html">Agentic AI for genomics: LLM agents as virtual bioinformaticians, research overview by Haohan Wang</a></li>
+                    <li><a href="https://haohanwang.ischool.illinois.edu/blog/sounding-like-they-know.html">Sounding like you know: why fluent AI answers are hard to check in biology, an essay by Haohan Wang</a></li>
+                    <li><a href="agent_primitives.html">Agent primitives: reusable building blocks for LLM multi-agent systems</a></li>
+                    <li><a href="recursive_self_improvement_agents_forget.html">Does recursive self-improvement make AI agents forget what they mastered?</a></li>
+                    <li><a href="rag_that_learns_over_time.html">RAG that learns over time: building lasting source knowledge into LLM agents</a></li>
+                    <li><a href="../publications.html">DREAM Lab publications, including our work on agentic AI for genomics</a></li>
+                </ul>
+
+                <div style="margin-top: 50px; padding-top: 30px; border-top: 1px solid rgba(255,255,255,0.2); font-size: 0.9em; color: rgba(255,255,255,0.6);">
+                    <p><strong>Papers:</strong> Haoyang Liu, Yijiang Li, Haohan Wang. &ldquo;<a href="https://arxiv.org/abs/2507.21035">GenoMAS:
+                        A Multi-Agent Framework for Scientific Discovery via Code-Driven Gene Expression Analysis</a>.&rdquo;
+                        Findings of ACL 2026. &middot; Haoyang Liu, Shuyu Chen, Ye Zhang, Haohan Wang. &ldquo;<a href="https://arxiv.org/abs/2406.15341">GenoTEX:
+                        An LLM Agent Benchmark for Automated Gene Expression Data Analysis</a>.&rdquo; MLCB 2025. &middot;
+                        Shuyu Chen, Chen Zhu, Ye Zhang, Yang Li, Qiqi Xie, Haohan Wang. &ldquo;<a href="https://arxiv.org/abs/2607.23821">SCTA:
+                        An Agentic Framework for Stable and Interpretable Target Gene Discovery from Single-Cell RNA
+                        Sequencing</a>.&rdquo; BioKDD 2026. University of Illinois Urbana-Champaign.</p>
+                </div>
+            </section>
+            </article>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer id="footer">
+        <ul class="icons">
+            <li><a href="https://x.com/HaohanWang" class="icon brands alt fa-twitter"><span class="label">X</span></a></li>
+            <li><a href="https://www.linkedin.com/in/haohanwang/" class="icon brands alt fa-linkedin-in"><span class="label">LinkedIn</span></a></li>
+            <li><a href="https://github.com/DreamLabUIUC" class="icon brands alt fa-github"><span class="label">GitHub</span></a></li>
+            <li><a href="../feed.xml" class="icon solid alt fa-rss"><span class="label">RSS</span></a></li>
+        </ul>
+        <ul class="copyright">
+            <li>&copy; DREAM Lab, University of Illinois Urbana-Champaign</li>
+            <li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
+        </ul>
+    </footer>
+
+</div>
+
+<!-- Scripts -->
+<script src="../assets2/js/jquery.min.js"></script>
+<script src="../assets2/js/jquery.scrolly.min.js"></script>
+<script src="../assets2/js/jquery.dropotron.min.js"></script>
+<script src="../assets2/js/jquery.scrollex.min.js"></script>
+<script src="../assets2/js/browser.min.js"></script>
+<script src="../assets2/js/breakpoints.min.js"></script>
+<script src="../assets2/js/util.js"></script>
+<script src="../assets2/js/main.js"></script>
+
+</body>
+</html>
