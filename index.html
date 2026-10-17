@@ -154,6 +154,14 @@
 }
     </script>
     <link rel="stylesheet" href="assets/css/main.css"/>
+    <style>
+        /* The template draws a centre divider when the menu has an even number of items; with buttons of
+           unequal width it cuts through one of them. Keep every button's own border instead. */
+        @media screen and (min-width: 481px) {
+            #header nav.use-middle:after { display: none; }
+            #header nav.use-middle ul li.is-middle { border-left: solid 1px #ffffff; }
+        }
+    </style>
     <noscript>
         <link rel="stylesheet" href="assets/css/noscript.css"/>
     </noscript>
