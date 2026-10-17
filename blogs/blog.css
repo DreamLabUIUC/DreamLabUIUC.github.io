@@ -7,16 +7,16 @@ h1 {
 
 h2 {
     font-size: 1.8em;
-    color: #e44c65;
+    color: #4da3ff;
     margin-top: 50px;
     margin-bottom: 20px;
-    border-left: 5px solid #e44c65;
+    border-left: 5px solid #4da3ff;
     padding-left: 15px;
 }
 
 h3 {
     font-size: 1.4em;
-    color: #e76278;
+    color: #6db4ff;
     margin-top: 35px;
     margin-bottom: 15px;
 }
@@ -35,11 +35,11 @@ p {
 }
 
 .intro-box {
-    background-color: rgba(228, 76, 101, 0.1);
+    background-color: rgba(77, 163, 255, 0.1);
     padding: 25px;
     border-radius: 8px;
     margin: 30px 0;
-    border-left: 5px solid #e44c65;
+    border-left: 5px solid #4da3ff;
 }
 
 .highlight {
@@ -47,7 +47,7 @@ p {
     padding: 20px;
     border-radius: 5px;
     margin: 25px 0;
-    border-left: 4px solid #e76278;
+    border-left: 4px solid #6db4ff;
 }
 
 .figure-placeholder {
@@ -72,11 +72,11 @@ p {
     padding: 25px;
     margin: 25px 0;
     border-radius: 8px;
-    border-left: 5px solid #e44c65;
+    border-left: 5px solid #4da3ff;
 }
 
 .framework-box h4 {
-    color: #e44c65;
+    color: #4da3ff;
     margin-top: 0;
 }
 
@@ -94,7 +94,7 @@ li {
 }
 
 blockquote {
-    border-left: 4px solid #e44c65;
+    border-left: 4px solid #4da3ff;
     padding-left: 20px;
     margin: 25px 0;
     font-style: italic;
@@ -107,7 +107,7 @@ code {
     border-radius: 3px;
     font-family: 'Courier New', monospace;
     font-size: 0.9em;
-    color: #e76278;
+    color: #6db4ff;
 }
 
 @media (max-width: 768px) {
@@ -128,7 +128,7 @@ code {
     margin: 15px 0;
     padding: 10px;
     background-color: rgba(255, 255, 255, 0.05);
-    border-left: 4px solid #e44c65;
+    border-left: 4px solid #4da3ff;
 }
 
 .method-card {
@@ -153,7 +153,7 @@ code {
 }
 
 .comparison-table th {
-    background-color: #e44c65;
+    background-color: #4da3ff;
     color: #ffffff;
 }
 
