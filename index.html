@@ -226,6 +226,26 @@
 <script src="assets/js/breakpoints.min.js"></script>
 <script src="assets/js/util.js"></script>
 <script src="assets/js/main.js"></script>
+<script>
+    // Shift the menu so the border between two buttons sits under the vertical line coming down from the logo.
+    (function () {
+        function alignNavToConnector() {
+            var ul = document.querySelector('#header nav ul');
+            if (!ul) return;
+            ul.style.transform = '';
+            if (getComputedStyle(ul).flexDirection !== 'row') return;   // stacked menu on phones
+            var r = ul.getBoundingClientRect(), centre = r.left + r.width / 2, best = null;
+            Array.prototype.slice.call(ul.children, 1).forEach(function (li) {
+                var d = li.getBoundingClientRect().left - centre;
+                if (best === null || Math.abs(d) < Math.abs(best)) best = d;
+            });
+            if (best) ul.style.transform = 'translateX(' + (-best) + 'px)';
+        }
+        window.addEventListener('load', alignNavToConnector);
+        window.addEventListener('resize', alignNavToConnector);
+        if (document.fonts && document.fonts.ready) document.fonts.ready.then(alignNavToConnector);
+    })();
+</script>
 
 </body>
 </html>
