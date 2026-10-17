@@ -174,6 +174,9 @@
                 We also study the issues of its security, protecting AI from being maliciously used. Our work includes
                 developing transparent multi-agent systems and ensuring AI systems remain reliable, interpretable, and
                 safe in real-world applications.</p>
+            <p>From this line of work we built <a href="https://topcited.ai/" target="_blank" rel="noopener">TopCited.AI</a>,
+                a generative engine optimization (GEO) platform that helps brands get recommended and cited by
+                AI-powered search engines and large language models such as ChatGPT, Gemini, and Grok.</p>
             <!--            <ul class="actions">-->
             <!--                <li><a href="publications.html" class="button">Learn More</a></li>-->
             <!--            </ul>-->
@@ -191,10 +194,14 @@
             </header>
             <p>We pursue research directions that might be deemed overambitious or unconventional.
             </p>
-			<p> We recently released <a href="https://topcited.ai/">Topcited.AI</a> </p>
-			<p> We recently released <a href="https://www.heelo.dev/">Heelo.dev</a> </p>
+            <p><a href="https://www.heelo.dev/" target="_blank" rel="noopener">Heelo.dev</a> is one of them: an AI
+                coding system built by a university lab, competing with the best that the largest AI companies offer.
+                When we first released it in May 2026, it outperformed the strongest system of the time, GPT-5 with its
+                agent harness, at about 10% of the cost. By October 2026 it was going head to head with Claude Fable 5
+                in Claude Code, arguably the most capable coding combination in the world, on coding benchmarks, at a
+                lower cost.</p>
             <ul class="actions">
-                <li><a href="#" class="button">Join the Adventure</a></li>
+                <li><a href="contact.html" class="button" id="join-adventure">Join the Adventure</a></li>
             </ul>
         </div>
         <a href="#lab-members" class="goto-next scrolly">Next</a>
@@ -277,6 +284,38 @@
     <!--            </ul>-->
     <!--        </div>-->
     <!--    </section>-->
+
+
+    <!-- Join the Adventure pop-up -->
+    <dialog id="join-dialog" aria-labelledby="join-title">
+        <h3 id="join-title">Join the Adventure</h3>
+        <p>Prospective PhD students, interns, visiting scholars and collaborators: we would love to hear from you.</p>
+        <p><strong>Email:</strong> haohanw at illinois.edu<br>
+            <strong>X:</strong> <a href="https://x.com/HaohanWang" target="_blank" rel="noopener">@HaohanWang</a><br>
+            <strong>Office:</strong> RM 4123, 614 E. Daniel St., Champaign, IL 61820</p>
+        <p>Please include your CV and a few lines on the research you would like to do.
+            More on open positions on the <a href="contact.html">contact page</a>.</p>
+        <form method="dialog"><button class="button primary small">Close</button></form>
+    </dialog>
+    <style>
+        #join-dialog { max-width: 32rem; width: calc(100% - 2rem); padding: 2rem 2.25rem 1.75rem; border: 0;
+            border-top: 4px solid #4da3ff; border-radius: 6px; background: #1c1d26; color: rgba(255,255,255,0.85);
+            box-shadow: 0 1.5rem 4rem rgba(0,0,0,0.6); }
+        #join-dialog::backdrop { background: rgba(10, 11, 16, 0.75); }
+        #join-dialog h3 { color: #fff; margin-bottom: 0.75rem; }
+        #join-dialog p { margin-bottom: 1rem; }
+        #join-dialog form { margin: 0; text-align: right; }
+        #join-dialog .button.primary { background-color: #4da3ff !important; }
+        #join-dialog .button.primary:hover { background-color: #6db4ff !important; }
+    </style>
+    <script>
+        (function () {
+            var btn = document.getElementById('join-adventure'), dlg = document.getElementById('join-dialog');
+            if (!btn || !dlg || typeof dlg.showModal !== 'function') return;  // no support: link goes to contact.html
+            btn.addEventListener('click', function (e) { e.preventDefault(); dlg.showModal(); });
+            dlg.addEventListener('click', function (e) { if (e.target === dlg) dlg.close(); });  // click outside closes
+        })();
+    </script>
 
     <!-- Footer -->
     <footer id="footer">

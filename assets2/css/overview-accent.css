@@ -7,7 +7,9 @@ input[type="submit"]:active, input[type="reset"]:active, input[type="button"]:ac
 input[type="submit"].primary, input[type="reset"].primary, input[type="button"].primary, .button.primary { background-color: #e44c65; }
 input[type="submit"].primary:hover, input[type="reset"].primary:hover, input[type="button"].primary:hover, .button.primary:hover { background-color: #e76278; }
 input[type="submit"].primary:active, input[type="reset"].primary:active, input[type="button"].primary:active, .button.primary:active { background-color: #e13652; }
-.spotlight.style1 .content { border-color: #e44c65; }
 .wrapper.style2 { background: #e44c65; }
 .wrapper.style2 input[type="submit"].primary, .wrapper.style2 input[type="reset"].primary, .wrapper.style2 input[type="button"].primary, .wrapper.style2 .button.primary { color: #e44c65 !important; }
 #titleBar .toggle:before { background: #e44c65; }
+
+/* All four research sections share the blue accent (2026-10-17). */
+.spotlight .content { border-color: #4da3ff !important; }
