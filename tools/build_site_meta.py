@@ -10,7 +10,7 @@ BASE = "https://dream.ischool.illinois.edu/"
 ROOT = pathlib.Path(__file__).resolve().parent.parent
 posts = sorted(json.loads((ROOT / "tools/posts.json").read_text()), key=lambda p: p["date"], reverse=True)
 
-STATIC = [("", "1.0"), ("overview.html", "0.9"), ("publications.html", "0.9"), ("preprints.html", "0.8"), ("blogs.html", "0.9"),
+STATIC = [("", "1.0"), ("overview.html", "0.9"), ("publications.html", "0.9"), ("preprints.html", "0.8"), ("blogs.html", "0.9"), ("people.html", "0.8"),
           ("secfid/", "0.8"), ("software.html", "0.7"), ("contact.html", "0.5")]
 
 
@@ -75,6 +75,7 @@ Haohan Wang is an Assistant Professor in the School of Information Sciences, aff
 - [Publications]({BASE}publications.html): peer-reviewed publications, 2013 to present, with paper and code links
 - [Preprints]({BASE}preprints.html): arXiv and bioRxiv preprints not yet peer reviewed
 - [Software]({BASE}software.html): AI agent tools for data analysis and genomics, and other software
+- [People]({BASE}people.html): PI Haohan Wang and lab members
 - [Contact]({BASE}contact.html): contact and information for prospective students
 - [Haohan Wang]({BASE.replace('dream.', 'haohanwang.')}): PI homepage
 
