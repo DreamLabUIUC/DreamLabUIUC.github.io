@@ -1,0 +1,529 @@
+<!DOCTYPE HTML>
+<!--
+	Writing guide: tools/BLOG_PLAYBOOK.md
+-->
+<html lang="en">
+<head>
+    <meta name="robots" content="noindex">  <!-- delete this line in real posts -->
+    <title>Can LLM Agents Share the KV-Cache Instead of Text Messages? | DREAM Lab, UIUC</title>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <meta name="description" content="Can LLM agents share the KV-cache instead of text? KV-PRM (NeurIPS 2026) scores multi-agent reasoning from the cache 37x faster, with matched accuracy.">
+    <link rel="canonical" href="https://dream.ischool.illinois.edu/blogs/llm_agents_share_kv_cache.html">
+    <meta property="og:type" content="article">
+    <meta property="og:site_name" content="DREAM Lab, UIUC">
+    <meta property="og:title" content="Can LLM Agents Share the KV-Cache Instead of Text Messages?">
+    <meta property="og:description" content="Can LLM agents share the KV-cache instead of text? KV-PRM (NeurIPS 2026) scores multi-agent reasoning from the cache 37x faster, with matched accuracy.">
+    <meta property="og:url" content="https://dream.ischool.illinois.edu/blogs/llm_agents_share_kv_cache.html">
+    <meta property="og:image" content="https://dream.ischool.illinois.edu/blogs/imgs/llm_agents_share_kv_cache/cover.png">
+    <meta property="article:published_time" content="2026-10-19">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@HaohanWang">
+    <meta name="twitter:title" content="Can LLM Agents Share the KV-Cache Instead of Text Messages?">
+    <meta name="twitter:description" content="Can LLM agents share the KV-cache instead of text? KV-PRM (NeurIPS 2026) scores multi-agent reasoning from the cache 37x faster, with matched accuracy.">
+    <meta name="twitter:image" content="https://dream.ischool.illinois.edu/blogs/imgs/llm_agents_share_kv_cache/cover.png">
+    <meta name="citation_title" content="KV-PRM: Efficient Process Reward Modeling via KV-Cache Transfer for Multi-Agent Test-Time Scaling">
+    <meta name="citation_author" content="Kuang, Peng">
+    <meta name="citation_author" content="Jin, Haibo">
+    <meta name="citation_author" content="Han, Xiaoyu">
+    <meta name="citation_author" content="Wang, Yanli">
+    <meta name="citation_author" content="Yuan, Xiaopeng">
+    <meta name="citation_author" content="Yu, Ye">
+    <meta name="citation_author" content="Xu, Kaidi">
+    <meta name="citation_author" content="Wang, Haohan">
+    <meta name="citation_publication_date" content="2026">
+    <meta name="citation_conference_title" content="Advances in Neural Information Processing Systems (NeurIPS) 2026">
+    <meta name="citation_arxiv_id" content="2607.09153">
+    <meta name="citation_pdf_url" content="https://arxiv.org/pdf/2607.09153">
+    <link rel="alternate" type="application/rss+xml" title="DREAM Lab blog" href="https://dream.ischool.illinois.edu/feed.xml">
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "BlogPosting",
+          "headline": "Can LLM Agents Share the KV-Cache Instead of Text Messages?",
+          "description": "Can LLM agents share the KV-cache instead of text? KV-PRM (NeurIPS 2026) scores multi-agent reasoning from the cache 37x faster, with matched accuracy.",
+          "datePublished": "2026-10-19",
+          "dateModified": "2026-10-19",
+          "url": "https://dream.ischool.illinois.edu/blogs/llm_agents_share_kv_cache.html",
+          "mainEntityOfPage": "https://dream.ischool.illinois.edu/blogs/llm_agents_share_kv_cache.html",
+          "image": "https://dream.ischool.illinois.edu/blogs/imgs/llm_agents_share_kv_cache/cover.png",
+          "inLanguage": "en",
+          "keywords": ["KV-cache sharing between LLM agents", "latent communication", "multi-agent LLM systems", "process reward model", "test-time scaling", "KV-PRM", "DiffMAS", "ReLAT", "Agent Primitives", "latent reasoning"],
+          "author": [
+            {"@type": "Person", "name": "Peng Kuang", "url": "https://dream.ischool.illinois.edu/people.html", "affiliation": {"@type": "CollegeOrUniversity", "name": "University of Illinois Urbana-Champaign"}},
+            {"@type": "Person", "name": "Ye Yu", "url": "https://dream.ischool.illinois.edu/people.html", "affiliation": {"@type": "CollegeOrUniversity", "name": "University of Illinois Urbana-Champaign"}},
+            {"@type": "Person", "name": "Xiaopeng Yuan", "url": "https://dream.ischool.illinois.edu/people.html", "affiliation": {"@type": "CollegeOrUniversity", "name": "University of Illinois Urbana-Champaign"}},
+            {"@type": "Person", "name": "Haibo Jin", "url": "https://haibojin001.github.io/", "affiliation": {"@type": "CollegeOrUniversity", "name": "University of Illinois Urbana-Champaign"}},
+            {"@type": "Person", "@id": "https://haohanwang.ischool.illinois.edu/#person", "name": "Haohan Wang", "url": "https://haohanwang.ischool.illinois.edu/", "affiliation": {"@type": "CollegeOrUniversity", "name": "University of Illinois Urbana-Champaign"}}
+          ],
+          "publisher": {"@type": "ResearchOrganization", "@id": "https://dream.ischool.illinois.edu/#lab", "name": "DREAM Lab, UIUC", "url": "https://dream.ischool.illinois.edu/"},
+          "about": [
+            {
+              "@type": "ScholarlyArticle",
+              "name": "KV-PRM: Efficient Process Reward Modeling via KV-Cache Transfer for Multi-Agent Test-Time Scaling",
+              "url": "https://arxiv.org/abs/2607.09153",
+              "datePublished": "2026",
+              "publisher": "Advances in Neural Information Processing Systems (NeurIPS) 2026",
+              "author": [{"@type": "Person", "name": "Peng Kuang"}, {"@type": "Person", "name": "Haibo Jin"}, {"@type": "Person", "name": "Xiaoyu Han"}, {"@type": "Person", "name": "Yanli Wang"}, {"@type": "Person", "name": "Xiaopeng Yuan"}, {"@type": "Person", "name": "Ye Yu"}, {"@type": "Person", "name": "Kaidi Xu"}, {"@type": "Person", "name": "Haohan Wang"}]
+            },
+            {
+              "@type": "ScholarlyArticle",
+              "name": "Learning to Communicate: Toward End-to-End Optimization of Multi-Agent Language Systems",
+              "url": "https://arxiv.org/abs/2604.21794",
+              "datePublished": "2026",
+              "publisher": "arXiv",
+              "author": [{"@type": "Person", "name": "Ye Yu"}, {"@type": "Person", "name": "Heming Liu"}, {"@type": "Person", "name": "Haibo Jin"}, {"@type": "Person", "name": "Xiaopeng Yuan"}, {"@type": "Person", "name": "Peng Kuang"}, {"@type": "Person", "name": "Haohan Wang"}]
+            },
+            {
+              "@type": "ScholarlyArticle",
+              "name": "Closing the Loop on Latent Reasoning via Test-Time Reconstruction",
+              "url": "https://arxiv.org/abs/2606.06252",
+              "datePublished": "2026",
+              "publisher": "arXiv",
+              "author": [{"@type": "Person", "name": "Xiaopeng Yuan"}, {"@type": "Person", "name": "Haibo Jin"}, {"@type": "Person", "name": "Ye Yu"}, {"@type": "Person", "name": "Peng Kuang"}, {"@type": "Person", "name": "Lijun Yu"}, {"@type": "Person", "name": "Yushun Dong"}, {"@type": "Person", "name": "Haohan Wang"}]
+            },
+            {
+              "@type": "ScholarlyArticle",
+              "name": "Agent Primitives: Reusable Latent Building Blocks for Multi-Agent Systems",
+              "url": "https://arxiv.org/abs/2602.03695",
+              "datePublished": "2026",
+              "publisher": "International Conference on Machine Learning (ICML) 2026",
+              "author": [{"@type": "Person", "name": "Haibo Jin"}, {"@type": "Person", "name": "Peng Kuang"}, {"@type": "Person", "name": "Ye Yu"}, {"@type": "Person", "name": "Xiaopeng Yuan"}, {"@type": "Person", "name": "Haohan Wang"}]
+            }
+          ]
+        },
+        {
+          "@type": "BreadcrumbList",
+          "itemListElement": [
+            {"@type": "ListItem", "position": 1, "name": "DREAM Lab", "item": "https://dream.ischool.illinois.edu/"},
+            {"@type": "ListItem", "position": 2, "name": "Blog", "item": "https://dream.ischool.illinois.edu/blogs.html"},
+            {"@type": "ListItem", "position": 3, "name": "Can LLM Agents Share the KV-Cache Instead of Text Messages?", "item": "https://dream.ischool.illinois.edu/blogs/llm_agents_share_kv_cache.html"}
+          ]
+        },
+        {
+          "@type": "FAQPage",
+          "mainEntity": [
+            {"@type": "Question", "name": "Can LLM agents share the KV-cache instead of text?", "acceptedAnswer": {"@type": "Answer", "text": "Yes, when the agents run on the same model or a compatible one. The receiving agent attends to the sender's cached keys and values directly instead of reading a decoded message. In our papers, this has been used to score reasoning (KV-PRM, NeurIPS 2026), to train how agents communicate (DiffMAS, preprint) and to build reusable multi-agent blocks (Agent Primitives, ICML 2026)."}},
+            {"@type": "Question", "name": "What is the KV-cache in an LLM?", "acceptedAnswer": {"@type": "Answer", "text": "The KV-cache is the set of key and value vectors a transformer stores for every token it has already processed, at every layer. It lets the model generate the next token without recomputing the whole history, and it exists as a by-product of generation whether or not anything else uses it."}},
+            {"@type": "Question", "name": "How does KV-cache sharing speed up multi-agent LLM systems?", "acceptedAnswer": {"@type": "Answer", "text": "It removes repeated re-reading of the same history. A text-based process reward model re-encodes the whole trajectory at a cost that grows with the square of its length; KV-PRM reads the existing cache with one extra token. With Qwen3-8B on 4,096-token trajectories this cut scoring latency from 172.0 ms to 4.6 ms, 37 times lower, and memory per sequence by up to 34.2 times."}},
+            {"@type": "Question", "name": "Is latent communication between agents less reliable than text?", "acceptedAnswer": {"@type": "Answer", "text": "It can be, because a latent state cannot be read and checked the way text can. Two of our preprints address this: DiffMAS trains the latent channel, which gave lower perplexity than training-free latent communication (1.24 vs 1.31 on AIME 2024), and ReLAT checks that a latent thought still lets the model rebuild the original question. Neither is a guarantee of correct reasoning."}}
+          ]
+        }
+      ]
+    }
+    </script>
+    <link rel="stylesheet" href="../assets2/css/main.css"/>
+    <link rel="stylesheet" href="blog.css"/>
+    <link rel="apple-touch-icon" sizes="180x180" href="../favicon/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="../favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="../favicon/favicon-16x16.png">
+    <link rel="manifest" href="../favicon/site.webmanifest">
+    <noscript>
+        <link rel="stylesheet" href="../assets2/css/noscript.css"/>
+    </noscript>
+</head>
+<body class="is-preload">
+<div id="page-wrapper">
+
+    <!-- Header -->
+    <header id="header">
+        <nav id="nav">
+            <ul>
+                <li><a href="../index.html">Home</a></li>
+                <li><a href="../overview.html">Overview</a></li>
+                <li><a href="../people.html">People</a></li>
+                <li><a href="../publications.html">Publications</a></li>
+                <li><a href="../blogs.html">Blogs</a></li>
+                <li><a href="../software.html">Software</a></li>
+                <li><a href="../contact.html">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Main -->
+    <div id="main" class="wrapper style1">
+        <div class="container">
+            <article>
+            <header class="major">
+                <h1>Can LLM Agents Share the KV-Cache Instead of Text Messages?</h1>
+                <p>Agents built on the same model can hand each other their internal memory instead of writing messages. That memory turns out to be cheaper to read, can be trained, and needs checking.</p>
+                <p style="font-size:0.9em">
+                    By <a href="https://dream.ischool.illinois.edu/people.html">Peng Kuang</a>,
+                    <a href="https://dream.ischool.illinois.edu/people.html">Ye Yu</a>,
+                    <a href="https://dream.ischool.illinois.edu/people.html">Xiaopeng Yuan</a>,
+                    <a href="https://haibojin001.github.io/">Haibo Jin</a>,
+                    <a href="https://haohanwang.ischool.illinois.edu/">Haohan Wang</a>, and others &middot;
+                    <time datetime="2026-10-19">October 19, 2026</time> &middot;
+                    About our NeurIPS 2026 and ICML 2026 papers and two preprints
+                </p>
+                <ul class="actions">
+                    <li><a href="https://arxiv.org/abs/2607.09153" class="button">KV-PRM paper</a></li>
+                    <li><a href="https://arxiv.org/abs/2604.21794" class="button alt">DiffMAS paper</a></li>
+                    <li><a href="https://arxiv.org/abs/2606.06252" class="button alt">ReLAT paper</a></li>
+                </ul>
+            </header>
+
+            <p>Can LLM agents share the KV-cache instead of text? Yes, when they run on the same model: one agent can hand the
+                next its KV-cache, the internal memory a transformer keeps while it writes, instead of a written message.
+                Most multi-agent LLM systems still talk in text, which means every agent re-reads the whole history and
+                the rich internal state of the sender is squeezed into words. In <em>KV-PRM: Efficient Process Reward
+                Modeling via KV-Cache Transfer for Multi-Agent Test-Time Scaling</em> (Peng Kuang, Haibo Jin, Xiaoyu Han,
+                Yanli Wang, Xiaopeng Yuan, Ye Yu, Kaidi Xu and Haohan Wang, University of Illinois Urbana-Champaign, NeurIPS
+                2026), a reward model that reads this cache scored agents' reasoning 37 times faster than one that re-reads
+                the text, with matched or better accuracy. This post explains the KV-cache in plain words and walks through
+                three ways our lab has used it: to score agents, to train how they communicate, and to check latent
+                reasoning that no one can read.</p>
+
+            <!-- Answer-first summary. -->
+            <div class="intro-box">
+                <h2 style="margin-top:0">Key findings</h2>
+                <ul>
+                    <li>KV-PRM (Kuang et al., University of Illinois Urbana-Champaign, NeurIPS 2026) scores multi-agent
+                        reasoning by reading the KV-cache the agents already produced, cutting per-sequence scoring latency
+                        from 172.0 ms to 4.6 ms (37&times;) and memory by up to 34.2&times; versus a text-based process
+                        reward model with Qwen3-8B on 4,096-token trajectories.</li>
+                    <li>Despite using roughly 1/900 to 1/4,900 of the scoring compute, KV-PRM matched or beat the text-based
+                        reward model on average: under MCTS search on MATH and AIME 2024 it averaged 49.03% accuracy versus
+                        47.42%, with Qwen3 models from 0.6B to 8B parameters.</li>
+                    <li>In the preprint <em>Learning to Communicate</em> (Yu et al., 2026), training the KV-cache channel
+                        between agents (DiffMAS) raised Qwen3-8B from 50.0% to 76.7% on AIME 2024 and from 39.9% to 60.1% on
+                        GPQA-Diamond, after fine-tuning on only 210 math problems; text-based agents reached 50.0% and
+                        43.4%.</li>
+                    <li>In the preprint <em>Closing the Loop on Latent Reasoning</em> (Yuan et al., 2026), requiring a latent
+                        thought to reconstruct the original question at test time (ReLAT) raised Qwen3-8B on AIME 2024 from
+                        56.7% with training-free latent agents (LatentMAS) to 73.3%.</li>
+                </ul>
+            </div>
+
+            <section>
+                <h2>What is the KV-cache, in plain words?</h2>
+                <p>A large language model writes one token at a time. To choose each new token, every layer of the
+                    transformer looks back at all earlier tokens through attention, and for that it needs a "key" and a
+                    "value" vector for each of them. Recomputing these for the whole history at every step would be
+                    wasteful, so the model stores them as it goes. That store is the KV-cache: a key and a value for every
+                    token, at every layer. It is a running memory of everything the model has read and written, in the
+                    model's own internal language.</p>
+                <p>Two facts make the KV-cache interesting for multi-agent systems. First, it exists anyway: generation
+                    produces it whether or not anything else uses it. Second, it holds far more than the text it produced.
+                    The KV-PRM paper proves, under the linear representation hypothesis, that expressing a length-L cache
+                    losslessly in text would take on the order of d&middot;L / log|V| tokens, where d is the model's hidden
+                    size and |V| its vocabulary size. Text is a lossy summary of the cache, not the other way round.</p>
+
+                <h2>Key terms</h2>
+                <dl>
+                    <dt><strong>KV-cache (key-value cache)</strong></dt>
+                    <dd>The key and value vectors a transformer stores for every token it has processed, at every layer, so
+                        it can generate the next token without recomputing the history.</dd>
+                    <dt><strong>Multi-agent LLM system</strong></dt>
+                    <dd>Several LLM "agents" with different roles, such as planner, solver and verifier, that pass work to
+                        each other to solve one problem.</dd>
+                    <dt><strong>Latent communication</strong></dt>
+                    <dd>Agents exchanging internal representations, such as hidden states or KV-caches, instead of decoded
+                        text.</dd>
+                    <dt><strong>Process reward model (PRM)</strong></dt>
+                    <dd>A model that scores intermediate reasoning steps, so a search procedure can keep promising partial
+                        solutions and drop poor ones.</dd>
+                    <dt><strong>Test-time scaling</strong></dt>
+                    <dd>Spending more compute at inference, for example by sampling many candidate solutions and searching
+                        over them with beam search or Monte Carlo Tree Search (MCTS), to get better answers.</dd>
+                    <dt><strong>Verify token</strong></dt>
+                    <dd>In KV-PRM, a single extra token ("?") that attends to the existing KV-cache and outputs the reward,
+                        read from the probabilities of "+" and "&minus;".</dd>
+                </dl>
+
+                <h2>Why do multi-agent LLM systems waste compute passing text?</h2>
+                <p>In a text-based multi-agent system, each agent decodes its thinking into words and the next agent reads
+                    those words from scratch. The sender's internal state is compressed into tokens, and every reader pays
+                    again to encode the growing history. The cost is sharpest when something has to read whole trajectories
+                    many times, as a process reward model does during search: with beam width W over D agent steps it is
+                    called at least W&middot;D times, and each text-based call costs time that grows with the square of the
+                    trajectory length. The KV-PRM paper notes that when the reward model and the agents are the same size,
+                    scoring roughly doubles the system's total compute.</p>
+                <figure>
+                    <img src="imgs/llm_agents_share_kv_cache/figure_handoff.png" alt="Diagram comparing two handoffs between LLM agents. Top: Agent A decodes a text message and Agent B re-reads all of it, so rich internal state is squeezed into words and every reader re-encodes the history. Bottom: Agent A passes its KV-cache, the keys and values for every token at every layer, and Agent B attends to it directly, with nothing decoded or re-read. Below, three cards: Score it, KV-PRM, a reward model reads the cache with one verify token, NeurIPS 2026; Train it, DiffMAS, training runs over the whole shared-cache trajectory so agents learn how to write and read it, preprint; Check it, ReLAT, a latent thought must let the model rebuild the question, optimized at test time, preprint." style="max-width:100%"/>
+                    <figcaption class="figure-caption">Text handoff versus KV-cache handoff, and the three uses of latent handoffs discussed in this post.</figcaption>
+                </figure>
+
+                <h2>How does KV-cache sharing speed up multi-agent LLM systems?</h2>
+                <p>KV-PRM replaces the text-reading reward model with one that reads the cache. After an agent finishes,
+                    its KV-cache is already sitting in memory. KV-PRM appends a single verify token and runs it through the
+                    same base model with a small LoRA adapter switched on; the adapter has learned to read the cache and
+                    output a score. Generation itself is untouched, because the adapter is off while agents write. The
+                    scoring cost drops from growing with L&sup2; to growing with L, the trajectory length: about 5,000
+                    times fewer operations for a typical 5,000-token trajectory. A second theorem in the paper shows that
+                    extra verify tokens bring exponentially diminishing returns, which the experiments confirm: one token
+                    already captures most of the signal.</p>
+                <p>The authors trained KV-PRM and an otherwise identical text-based reward model (same LoRA settings, same
+                    MCTS-generated labels from the MATH training split) and plugged each into a sequential team of four Qwen3
+                    agents (Reader, Planner, Solver, Verifier). Results from Table 1 of the KV-PRM paper:</p>
+                <table class="comparison-table">
+                    <tr><th>Search</th><th>Scorer</th><th>MATH, Qwen3-8B (%)</th><th>AIME 2024, Qwen3-8B (%)</th><th>Average of 5 settings (%)</th><th>Scoring cost</th></tr>
+                    <tr><td>Majority voting, n=40</td><td>none</td><td>60.55</td><td>33.33</td><td>44.88</td><td>&ndash;</td></tr>
+                    <tr><td rowspan="3">MCTS, n=50</td><td>Policy log-prob</td><td>61.90</td><td>23.33</td><td>39.71</td><td>negligible</td></tr>
+                    <tr><td>Text-PRM</td><td>68.92</td><td>36.67</td><td>47.42</td><td>1&times;</td></tr>
+                    <tr><td><strong>KV-PRM</strong></td><td><strong>69.57</strong></td><td><strong>40.00</strong></td><td><strong>49.03</strong></td><td>1/4,367 (MATH, 8B)</td></tr>
+                    <tr><td rowspan="2">Beam search, W=1</td><td>Text-PRM</td><td>66.62</td><td>20.00</td><td>41.61</td><td>1&times;</td></tr>
+                    <tr><td><strong>KV-PRM</strong></td><td><strong>67.02</strong></td><td><strong>30.00</strong></td><td><strong>42.89</strong></td><td>1/2,782 (MATH, 8B)</td></tr>
+                    <tr><td rowspan="2">Weighted voting, n=10</td><td>Text-PRM</td><td><strong>60.51</strong></td><td>23.33</td><td>42.69</td><td>1&times;</td></tr>
+                    <tr><td><strong>KV-PRM</strong></td><td>60.46</td><td><strong>33.33</strong></td><td><strong>44.17</strong></td><td>1/3,137 (MATH, 8B)</td></tr>
+                </table>
+                <p>The average covers MATH with Qwen3-0.6B, 4B and 8B and AIME 2024 with Qwen3-4B and 8B. On wall-clock
+                    time, measured on an NVIDIA GH200 GPU, KV-PRM was 15 to 37 times faster per sequence, with the gap
+                    growing for longer trajectories and larger models; at 8B and 4,096 tokens one scoring call took 4.6 ms
+                    instead of 172.0 ms. It is not better everywhere: on GSM8K under MCTS it averaged 58.45% against 58.58%
+                    for the text-based model, and a few single cells are lower. Two further results stand out:</p>
+                <ul>
+                    <li><strong>A smaller text verifier is not the answer.</strong> Scoring Qwen3-8B's search trees on MATH,
+                        text-based reward models of 0.6B, 4B and 8B all scored below the 8B KV-PRM, which reached 68.0% at
+                        about 3,000 times lower cost than the 8B text model.</li>
+                    <li><strong>The cache can be steered.</strong> Because KV-PRM's score is differentiable with respect to the
+                        cache, the authors nudged the cache by gradient ascent at each agent handoff, with no search at all.
+                        This "KV Steering" proof of concept added 1.6 points on MATH with Qwen3-4B and 3.3 points on AIME 2024
+                        and 2025 with Qwen3-8B.</li>
+                </ul>
+
+                <h2>Can agents learn how to communicate through the KV-cache?</h2>
+                <p>Sharing the cache removes text from the handoff, but most existing methods leave the channel itself
+                    fixed: the receiving agent gets whatever the sender happened to store. <em>Learning to Communicate:
+                    Toward End-to-End Optimization of Multi-Agent Language Systems</em> (Ye Yu, Heming Liu, Haibo Jin,
+                    Xiaopeng Yuan, Peng Kuang and Haohan Wang, arXiv preprint 2026) asks whether the channel can be learned.
+                    Its method, DiffMAS, has upstream agents build one shared, growing KV trace; the final agent decodes the
+                    answer from that trace; and supervised fine-tuning with LoRA adapters is applied over the whole
+                    multi-agent trajectory, with the backbone frozen. The paper argues that because the trace is
+                    concatenated rather than overwritten, the training signal reaching early agents does not shrink with
+                    their distance from the output.</p>
+                <figure>
+                    <img src="imgs/llm_agents_share_kv_cache/figure_diffmas.png" alt="Two bar charts of accuracy with Qwen3-8B from Table 1 of the DiffMAS paper. AIME 2024: single agent 50.0, text-based multi-agent system 50.0, LatentMAS 56.7, DiffMAS 76.7. GPQA-Diamond: single agent 39.9, TextMAS 43.4, LatentMAS 45.5, DiffMAS 60.1. AIME 2024 has 30 problems, so one problem equals 3.3 points." style="max-width:100%"/>
+                    <figcaption class="figure-caption">DiffMAS versus single-agent, text-based and training-free latent agents (data: Table 1 of arXiv:2604.21794).</figcaption>
+                </figure>
+                <table class="comparison-table">
+                    <tr><th>Qwen3-8B, accuracy (%)</th><th>Single</th><th>TextMAS</th><th>LatentMAS</th><th><strong>DiffMAS</strong></th></tr>
+                    <tr><td>AIME 2024</td><td>50.0</td><td>50.0</td><td>56.7</td><td><strong>76.7</strong></td></tr>
+                    <tr><td>AIME 2025</td><td>46.7</td><td>53.3</td><td>53.3</td><td><strong>56.7</strong></td></tr>
+                    <tr><td>GPQA-Diamond</td><td>39.9</td><td>43.4</td><td>45.5</td><td><strong>60.1</strong></td></tr>
+                    <tr><td>HumanEval+</td><td>74.5</td><td>80.7</td><td>80.7</td><td><strong>81.5</strong></td></tr>
+                    <tr><td>MBPP+</td><td>64.8</td><td>69.5</td><td>74.6</td><td><strong>74.8</strong></td></tr>
+                    <tr><td>OpenBookQA</td><td>83.6</td><td>84.2</td><td>85.8</td><td>85.8</td></tr>
+                </table>
+                <p>The training sets were deliberately tiny: 210 Hendrycks MATH problems for one epoch for math and science,
+                    50 HumanEval problems for code, 700 CommonsenseQA questions for commonsense. Across Qwen3-4B, 8B and 14B,
+                    Ministral-3-8B and DeepSeek-R1-Distill-Qwen-32B, DiffMAS was best or tied for best on every benchmark
+                    reported, though the gains were smaller at 32B (70.0% versus 66.7% for a single agent on AIME 2024, and
+                    no gain on AIME 2025). Is it the communication or just the fine-tuning? The paper compares
+                    with text-based agents fine-tuned on the same data: both reached 76.7% on AIME 2024, but DiffMAS was
+                    ahead on AIME 2025 (56.7% vs 50.0%), GPQA-Diamond (60.1% vs 53.5%) and OpenBookQA (85.8% vs 81.2%).
+                    Two more observations: ten latent communication steps worked best (76.7%), and longer traces hurt
+                    (63.3% at 40 steps); and the trained channel decoded more steadily than the training-free one, with
+                    mean perplexity 1.24 against 1.31 for LatentMAS on AIME 2024.</p>
+
+                <h2>How do you check a latent thought you cannot read?</h2>
+                <p>Moving reasoning out of text has a cost: a text message that drops a constraint of the problem is
+                    visibly wrong, while a latent state that drops the same constraint looks like any other. <em>Closing the
+                    Loop on Latent Reasoning via Test-Time Reconstruction</em> (Xiaopeng Yuan, Haibo Jin, Ye Yu, Peng Kuang,
+                    Lijun Yu, Yushun Dong and Haohan Wang, arXiv preprint 2026) proposes a simple check: if a latent thought
+                    faithfully represents the question, the model should be able to rebuild the question from it. Strictly,
+                    this is latent reasoning inside one model rather than KV-cache sharing between agents: ReLAT's latent
+                    thought is a short sequence of 16 soft token embeddings. But it addresses the same weakness, and it is
+                    compared directly against LatentMAS, which passes KV-cache states between agents.</p>
+                <p>ReLAT (Reconstruction-Guided Latent Reasoning At Test Time) runs a Question &rarr; Latent Thought &rarr;
+                    Question loop for each test problem, updates temporary LoRA weights for 16 steps to lower the
+                    reconstruction loss, answers the question, and then resets the weights. Results from Table 1 of the
+                    paper with Qwen3-8B:</p>
+                <table class="comparison-table">
+                    <tr><th>Qwen3-8B, accuracy (%)</th><th>AIME 2024</th><th>AIME 2025</th><th>MedQA</th><th>MBPP+</th><th>GPQA-D.</th><th>Average</th></tr>
+                    <tr><td>Single model</td><td>50.0</td><td>46.7</td><td>53.0</td><td>64.8</td><td>39.9</td><td>50.9</td></tr>
+                    <tr><td>TextMAS</td><td>53.3</td><td>53.3</td><td>75.0</td><td>69.5</td><td>43.4</td><td>58.9</td></tr>
+                    <tr><td>LatentMAS (open-loop latent)</td><td>56.7</td><td>53.3</td><td><strong>75.3</strong></td><td>74.6</td><td>45.5</td><td>61.1</td></tr>
+                    <tr><td><strong>ReLAT</strong></td><td><strong>73.3</strong></td><td><strong>63.3</strong></td><td>74.0</td><td><strong>76.7</strong></td><td><strong>48.0</strong></td><td><strong>67.1</strong></td></tr>
+                </table>
+                <p>ReLAT had the best average on all four backbones tested (Qwen3-4B, 8B, 14B and
+                    DeepSeek-R1-Distill-Qwen-7B). It also beat two other test-time training objectives, COME and QTTT, and a
+                    compute-matched version that reconstructs the question without passing through the latent thought, which
+                    suggests the check works because it targets the latent state. On AIME 2025 it used about 10,280 tokens
+                    per question against about 64,381 for three rounds of text-based Self-Refine, an 84.0% reduction, while
+                    scoring 63.3% against 53.3%.</p>
+
+                <h2>What are Agent Primitives, and how do they use the KV-cache?</h2>
+                <p>The earliest of these papers is <em>Agent Primitives: Reusable Latent Building
+                    Blocks for Multi-Agent Systems</em> (Haibo Jin, Peng Kuang, Ye Yu, Xiaopeng Yuan and Haohan Wang, ICML
+                    2026). It breaks multi-agent systems into three reusable blocks, Review, Voting and Selection, and
+                    Planning and Execution, whose internal agents communicate through the KV-cache, with an Organizer agent
+                    that composes them for each query. Across eight benchmarks and five open-source backbones, these systems
+                    improved average accuracy by 12.0&ndash;16.5% over single agents and used about 3&ndash;4&times; fewer
+                    tokens and less latency than text-based multi-agent systems, at only 1.3&ndash;1.6&times; the cost of a
+                    single agent. The full story is in our <a href="agent_primitives.html">Agent Primitives project post</a>.
+                    KV-PRM's KV Steering experiment cites this work: it optimizes, by gradient, the kind of latent messages
+                    that Agent Primitives showed agents can exchange.</p>
+
+                <h2>What else do we know about KV-cache communication between agents?</h2>
+                <ul>
+                    <li><strong>Training-free latent collaboration.</strong> <a href="https://arxiv.org/abs/2511.20639"><em>Latent
+                        Collaboration in Multi-Agent Systems</em></a> (Jiaru Zou, Ruizhong Qiu, &hellip;, James Zou, Mengdi Wang
+                        and Ling Yang, ICML 2026 Spotlight) introduced LatentMAS, in which agents think in last-layer hidden
+                        states and share a latent working memory, with no training. Across nine benchmarks it reported up to
+                        14.6% higher accuracy than single agents and text-based systems, 70.8&ndash;83.7% fewer output tokens
+                        and 4&ndash;4.3&times; faster inference. LatentMAS is the main baseline in our DiffMAS and ReLAT papers;
+                        our results suggest that training the channel (DiffMAS) or checking it (ReLAT) adds accuracy on top of
+                        the training-free approach, at the cost of a training step.</li>
+                    <li><strong>Communication between different models.</strong> <a href="https://arxiv.org/abs/2510.03215"><em>Cache-to-Cache:
+                        Direct Semantic Communication Between Large Language Models</em></a> (Tianyu Fu, Zihan Min, Hanling
+                        Zhang, Jichao Yan, Guohao Dai, Wanli Ouyang and Yu Wang, ICLR 2026) learns a network that projects and
+                        fuses one model's KV-cache into another's, so even different model families can communicate. It
+                        reported 6.4&ndash;14.2% higher average accuracy than individual models, about 3.1&ndash;5.4% over text
+                        communication, and a 2.5&times; average latency speedup. Our methods assume agents share a model; C2C
+                        tackles the harder heterogeneous case. In the DiffMAS paper's reasoning benchmarks, C2C scored lower,
+                        which the authors attribute to its training data (OpenHermes-2.5, mainly instruction following) not
+                        matching long reasoning tasks.</li>
+                    <li><strong>Reusing caches for speed.</strong> <a href="https://arxiv.org/abs/2510.12872"><em>KVCOMM: Online
+                        Cross-context KV-cache Communication for Efficient LLM-based Multi-agent Systems</em></a> (Hancheng
+                        Ye, Zhengqi Gao, &hellip;, Danyang Zhuo and Yiran Chen, NeurIPS 2025) attacks the same waste from the
+                        systems side: agents re-process overlapping context, and caches cannot simply be reused because each
+                        agent's prefix differs. KVCOMM corrects the cache offsets with a pool of anchor examples, without
+                        training, and reported over 70% cache reuse and up to 7.8&times; faster prefill in a five-agent setting
+                        (time to first token from about 430 ms to about 55 ms). It speeds up reading shared context; KV-PRM
+                        speeds up scoring it. The two are complementary.</li>
+                    <li><strong>Process reward models for agents.</strong> <a href="https://arxiv.org/abs/2305.20050"><em>Let's
+                        Verify Step by Step</em></a> (Hunter Lightman, Vineet Kosaraju, &hellip;, Karl Cobbe, OpenAI, 2023)
+                        showed that rewarding each reasoning step beats rewarding only the final answer on MATH, and released
+                        800,000 step-level labels (PRM800K). <a href="https://arxiv.org/abs/2510.24803"><em>MASPRM: Multi-Agent
+                        System Process Reward Model</em></a> (Milad Yazdani, Mahdi Mostajabdaveh, Zirui Zhou and Ying Xiong,
+                        2025) brought step-level reward models to multi-agent systems, trained from MCTS rollouts without human
+                        step labels, and improved search on GSM8K, MATH, MMLU and LogiQA. Both score text; KV-PRM keeps their
+                        training recipe and changes what the scorer reads.</li>
+                    <li><strong>The privacy question.</strong> <a href="https://arxiv.org/abs/2605.22786"><em>LCGuard: Latent
+                        Communication Guard for Safe KV Sharing in Multi-Agent Systems</em></a> (Sadia Asif, Mohammad Mohammadi
+                        Amiri, Momin Abbas, Prasanna Sattigeri and Karthikeyan Natesan Ramamurthy, 2026) points out that a
+                        shared cache also carries an agent's inputs and intermediate reasoning, and that an adversarial decoder
+                        may reconstruct sensitive content from it. It learns transformations of the cache that reduce this
+                        leakage while keeping task performance. The richer information that makes the cache useful is the same
+                        information that makes it worth guarding.</li>
+                </ul>
+
+                <h2>What this does not show</h2>
+                <ul>
+                    <li><strong>Same model, same family.</strong> KV-PRM requires the reward model and the agents to share an
+                        architecture, and DiffMAS and Agent Primitives use one backbone for all agents. Mixing model families
+                        needs a translation layer such as Cache-to-Cache.</li>
+                    <li><strong>Mostly math, open models up to 32B.</strong> KV-PRM is tested on MATH, GSM8K and AIME with
+                        Qwen3 up to 8B; DiffMAS and ReLAT add science, code and commonsense benchmarks and models up to 32B.
+                        Closed API models do not expose their caches at all.</li>
+                    <li><strong>Small benchmarks, large swings.</strong> AIME 2024 and AIME 2025 have 30 problems each, so
+                        one problem moves accuracy by 3.3 points. The largest gains reported here (for example +26.7 points for
+                        DiffMAS and +16.6 for ReLAT on AIME 2024) amount to 8 and 5 problems.</li>
+                    <li><strong>Tuning on the test benchmarks.</strong> ReLAT's learning rate and thought length are ablated on
+                        AIME 2024 and 2025 themselves, and DiffMAS's number of communication steps on AIME 2024. The two
+                        preprints have not yet been peer reviewed.</li>
+                    <li><strong>Opaque by design.</strong> Latent messages cannot be read by a person. ReLAT's reconstruction
+                        check is a necessary condition for a faithful latent thought, not proof of correct reasoning, and a
+                        shared cache raises privacy questions that text logs do not.</li>
+                    <li><strong>KV Steering is preliminary.</strong> Its gains are a few points on small benchmarks and are
+                        presented by the authors as a proof of concept.</li>
+                </ul>
+
+                <h2>Frequently asked questions</h2>
+                <h3>Can LLM agents share the KV-cache instead of text?</h3>
+                <p>Yes, when the agents run on the same model or a compatible one. The receiving agent attends to the
+                    sender's cached keys and values directly instead of reading a decoded message. In our papers, this has
+                    been used to score reasoning (KV-PRM, NeurIPS 2026), to train how agents communicate (DiffMAS, preprint)
+                    and to build reusable multi-agent blocks (Agent Primitives, ICML 2026).</p>
+                <h3>What is the KV-cache in an LLM?</h3>
+                <p>The KV-cache is the set of key and value vectors a transformer stores for every token it has already
+                    processed, at every layer. It lets the model generate the next token without recomputing the whole
+                    history, and it exists as a by-product of generation whether or not anything else uses it.</p>
+                <h3>How does KV-cache sharing speed up multi-agent LLM systems?</h3>
+                <p>It removes repeated re-reading of the same history. A text-based process reward model re-encodes the
+                    whole trajectory at a cost that grows with the square of its length; KV-PRM reads the existing cache with
+                    one extra token. With Qwen3-8B on 4,096-token trajectories this cut scoring latency from 172.0 ms to 4.6
+                    ms, 37 times lower, and memory per sequence by up to 34.2 times.</p>
+                <h3>Is latent communication between agents less reliable than text?</h3>
+                <p>It can be, because a latent state cannot be read and checked the way text can. Two of our preprints
+                    address this: DiffMAS trains the latent channel, which gave lower perplexity than training-free latent
+                    communication (1.24 vs 1.31 on AIME 2024), and ReLAT checks that a latent thought still lets the model
+                    rebuild the original question. Neither is a guarantee of correct reasoning.</p>
+
+                <h2>Citation</h2>
+<pre><code>@inproceedings{kuang2026kvprm,
+  title     = {KV-PRM: Efficient Process Reward Modeling via KV-Cache Transfer for Multi-Agent Test-Time Scaling},
+  author    = {Kuang, Peng and Jin, Haibo and Han, Xiaoyu and Wang, Yanli and Yuan, Xiaopeng and Yu, Ye and Xu, Kaidi and Wang, Haohan},
+  booktitle = {Advances in Neural Information Processing Systems (NeurIPS)},
+  year      = {2026}
+}
+
+@article{yu2026learning,
+  title   = {Learning to Communicate: Toward End-to-End Optimization of Multi-Agent Language Systems},
+  author  = {Yu, Ye and Liu, Heming and Jin, Haibo and Yuan, Xiaopeng and Kuang, Peng and Wang, Haohan},
+  journal = {arXiv preprint arXiv:2604.21794},
+  year    = {2026}
+}
+
+@article{yuan2026closing,
+  title   = {Closing the Loop on Latent Reasoning via Test-Time Reconstruction},
+  author  = {Yuan, Xiaopeng and Jin, Haibo and Yu, Ye and Kuang, Peng and Yu, Lijun and Dong, Yushun and Wang, Haohan},
+  journal = {arXiv preprint arXiv:2606.06252},
+  year    = {2026}
+}
+
+@inproceedings{jin2026agentprimitives,
+  title     = {Agent Primitives: Reusable Latent Building Blocks for Multi-Agent Systems},
+  author    = {Jin, Haibo and Kuang, Peng and Yu, Ye and Yuan, Xiaopeng and Wang, Haohan},
+  booktitle = {International Conference on Machine Learning (ICML)},
+  year      = {2026}
+}</code></pre>
+
+                <h2>Related from our lab</h2>
+                <ul>
+                    <li><a href="agent_primitives.html">Agent Primitives: reusable latent building blocks for LLM multi-agent systems that talk through the KV-cache</a></li>
+                    <li><a href="ai_agents_gene_expression_analysis.html">Can AI agents analyze gene expression data like experts? A six-agent system in practice</a></li>
+                    <li><a href="recursive_self_improvement_agents_forget.html">Does recursive self-improvement make AI agents forget what they mastered?</a></li>
+                    <li><a href="when_more_reasoning_is_actually_less.html">When more reasoning is actually less: why longer chain-of-thought can hurt LLM accuracy</a></li>
+                    <li><a href="../publications.html">DREAM Lab publications, including KV-PRM (NeurIPS 2026) and Agent Primitives (ICML 2026)</a></li>
+                    <li><a href="../preprints.html">DREAM Lab preprints, including Learning to Communicate and Closing the Loop on Latent Reasoning</a></li>
+                </ul>
+
+                <div style="margin-top: 50px; padding-top: 30px; border-top: 1px solid rgba(255,255,255,0.2); font-size: 0.9em; color: rgba(255,255,255,0.6);">
+                    <p><strong>Papers:</strong> Peng Kuang, Haibo Jin, Xiaoyu Han, Yanli Wang, Xiaopeng Yuan, Ye Yu, Kaidi Xu,
+                        Haohan Wang. &ldquo;<a href="https://arxiv.org/abs/2607.09153">KV-PRM: Efficient Process Reward Modeling
+                        via KV-Cache Transfer for Multi-Agent Test-Time Scaling</a>.&rdquo; NeurIPS 2026. &middot; Ye Yu, Heming
+                        Liu, Haibo Jin, Xiaopeng Yuan, Peng Kuang, Haohan Wang. &ldquo;<a href="https://arxiv.org/abs/2604.21794">Learning
+                        to Communicate: Toward End-to-End Optimization of Multi-Agent Language Systems</a>.&rdquo; arXiv 2026.
+                        &middot; Xiaopeng Yuan, Haibo Jin, Ye Yu, Peng Kuang, Lijun Yu, Yushun Dong, Haohan Wang.
+                        &ldquo;<a href="https://arxiv.org/abs/2606.06252">Closing the Loop on Latent Reasoning via Test-Time
+                        Reconstruction</a>.&rdquo; arXiv 2026. &middot; Haibo Jin, Peng Kuang, Ye Yu, Xiaopeng Yuan, Haohan
+                        Wang. &ldquo;<a href="https://arxiv.org/abs/2602.03695">Agent Primitives: Reusable Latent Building Blocks
+                        for Multi-Agent Systems</a>.&rdquo; ICML 2026. University of Illinois Urbana-Champaign.</p>
+                </div>
+            </section>
+            </article>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer id="footer">
+        <ul class="icons">
+            <li><a href="https://x.com/HaohanWang" class="icon brands alt fa-twitter"><span class="label">X</span></a></li>
+            <li><a href="https://www.linkedin.com/in/haohanwang/" class="icon brands alt fa-linkedin-in"><span class="label">LinkedIn</span></a></li>
+            <li><a href="https://github.com/DreamLabUIUC" class="icon brands alt fa-github"><span class="label">GitHub</span></a></li>
+            <li><a href="../feed.xml" class="icon solid alt fa-rss"><span class="label">RSS</span></a></li>
+        </ul>
+        <ul class="copyright">
+            <li>&copy; DREAM Lab, University of Illinois Urbana-Champaign</li>
+            <li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
+        </ul>
+    </footer>
+
+</div>
+
+<!-- Scripts -->
+<script src="../assets2/js/jquery.min.js"></script>
+<script src="../assets2/js/jquery.scrolly.min.js"></script>
+<script src="../assets2/js/jquery.dropotron.min.js"></script>
+<script src="../assets2/js/jquery.scrollex.min.js"></script>
+<script src="../assets2/js/browser.min.js"></script>
+<script src="../assets2/js/breakpoints.min.js"></script>
+<script src="../assets2/js/util.js"></script>
+<script src="../assets2/js/main.js"></script>
+
+</body>
+</html>

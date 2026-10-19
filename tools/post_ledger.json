@@ -153,6 +153,45 @@
       "draft_date": "2026-10-16",
       "primary_query": "can AI agents analyze gene expression data",
       "publish_date": "2026-10-16"
+    },
+    {
+      "title": "KV-PRM: Efficient Process Reward Modeling via KV-Cache Transfer for Multi-Agent Test-Time Scaling",
+      "arxiv": "2607.09153",
+      "year": 2026,
+      "status": "drafted",
+      "planned_date": "2026-10-19",
+      "kind": "new",
+      "published": true,
+      "note": "Registered by the author on 2026-10-17 for a themed post on 2026-10-19 (KV-cache for multi-agent systems; KV-PRM lead, with Learning to Communicate, Closing the Loop and Agent Primitives).",
+      "slug": "llm_agents_share_kv_cache",
+      "draft_date": "2026-10-19",
+      "primary_query": "can LLM agents share KV cache instead of text"
+    },
+    {
+      "title": "Learning to Communicate: Toward End-to-End Optimization of Multi-Agent Language Systems",
+      "arxiv": "2604.21794",
+      "year": 2026,
+      "status": "drafted",
+      "planned_date": "2026-10-19",
+      "kind": "new",
+      "published": false,
+      "note": "Registered by the author on 2026-10-17 for a themed post on 2026-10-19 (KV-cache for multi-agent systems; KV-PRM lead, with Learning to Communicate, Closing the Loop and Agent Primitives).",
+      "slug": "llm_agents_share_kv_cache",
+      "draft_date": "2026-10-19",
+      "primary_query": "can LLM agents share KV cache instead of text"
+    },
+    {
+      "title": "Closing the Loop on Latent Reasoning via Test-Time Reconstruction",
+      "arxiv": "2606.06252",
+      "year": 2026,
+      "status": "drafted",
+      "planned_date": "2026-10-19",
+      "kind": "new",
+      "published": false,
+      "note": "Registered by the author on 2026-10-17 for a themed post on 2026-10-19 (KV-cache for multi-agent systems; KV-PRM lead, with Learning to Communicate, Closing the Loop and Agent Primitives).",
+      "slug": "llm_agents_share_kv_cache",
+      "draft_date": "2026-10-19",
+      "primary_query": "can LLM agents share KV cache instead of text"
     }
   ]
 }

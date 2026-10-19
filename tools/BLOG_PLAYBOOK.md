@@ -3,7 +3,8 @@
 ## Cadence
 
 A scheduled Claude task (`dream-lab-blog-drafts`, Mon/Wed/Fri 8:00) picks papers from Google Scholar and writes
-drafts for review; it never publishes. `tools/post_ledger.json` records which works are handled.
+drafts for review. It commits and pushes each draft with `noindex` and no links to it, so the author can
+check it live at its URL; it never lists, indexes or posts anything (that happens at "publish <slug>"). `tools/post_ledger.json` records which works are handled.
 
 - **Phase 1 (until every 2026 work is handled):** Mon + Wed = newest work, blog + X/LinkedIn copy; Fri = early work (2022 or before, most cited first), blog only.
 - **Phase 2 (permanent once reached; recorded as `"phase": 2` in the ledger):** Wed = the latest work on Scholar that has no post yet, blog + social; Mon + Fri = early works, blog only.
