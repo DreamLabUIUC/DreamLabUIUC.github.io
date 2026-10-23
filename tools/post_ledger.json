@@ -197,37 +197,40 @@
       "title": "An Investigation on LLMs' Visual Understanding Ability Using SVG for Image-Text Bridging",
       "arxiv": "2306.06094",
       "year": 2025,
-      "status": "drafted",
+      "status": "published",
       "slug": "turn_vision_into_language_modeling",
       "draft_date": "2026-10-23",
       "kind": "early",
       "primary_query": "can we turn vision into a language modeling problem",
       "published": true,
-      "note": "Requested by the author on 2026-10-23 in place of the scheduled early-work pick: one themed post on SVG as a bridge between images and language models (WACV 2025 paper, Beyond Pixels, Socratic Chart; content of an unpublished OpenReview paper used without naming it)."
+      "note": "Requested by the author on 2026-10-23 in place of the scheduled early-work pick: one themed post on SVG as a bridge between images and language models (WACV 2025 paper, Beyond Pixels, Socratic Chart; content of an unpublished OpenReview paper used without naming it).",
+      "publish_date": "2026-10-23"
     },
     {
       "title": "Beyond Pixels: Exploring Human-Readable SVG Generation for Simple Images with Vision Language Models",
       "arxiv": "2311.15543",
       "year": 2023,
-      "status": "drafted",
+      "status": "published",
       "slug": "turn_vision_into_language_modeling",
       "draft_date": "2026-10-23",
       "kind": "early",
       "primary_query": "can we turn vision into a language modeling problem",
       "published": false,
-      "note": "Requested by the author on 2026-10-23 in place of the scheduled early-work pick: one themed post on SVG as a bridge between images and language models (WACV 2025 paper, Beyond Pixels, Socratic Chart; content of an unpublished OpenReview paper used without naming it)."
+      "note": "Requested by the author on 2026-10-23 in place of the scheduled early-work pick: one themed post on SVG as a bridge between images and language models (WACV 2025 paper, Beyond Pixels, Socratic Chart; content of an unpublished OpenReview paper used without naming it).",
+      "publish_date": "2026-10-23"
     },
     {
       "title": "Socratic Chart: Cooperating Multiple Agents for Robust SVG Chart Understanding",
       "arxiv": "2504.09764",
       "year": 2025,
-      "status": "drafted",
+      "status": "published",
       "slug": "turn_vision_into_language_modeling",
       "draft_date": "2026-10-23",
       "kind": "early",
       "primary_query": "can we turn vision into a language modeling problem",
       "published": false,
-      "note": "Requested by the author on 2026-10-23 in place of the scheduled early-work pick: one themed post on SVG as a bridge between images and language models (WACV 2025 paper, Beyond Pixels, Socratic Chart; content of an unpublished OpenReview paper used without naming it)."
+      "note": "Requested by the author on 2026-10-23 in place of the scheduled early-work pick: one themed post on SVG as a bridge between images and language models (WACV 2025 paper, Beyond Pixels, Socratic Chart; content of an unpublished OpenReview paper used without naming it).",
+      "publish_date": "2026-10-23"
     }
   ]
 }

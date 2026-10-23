@@ -6,7 +6,15 @@
   <atom:link href="https://dream.ischool.illinois.edu/feed.xml" rel="self" type="application/rss+xml"/>
   <description>Plain-language explainers of research from the DREAM Lab at the University of Illinois Urbana-Champaign.</description>
   <language>en</language>
-  <lastBuildDate>Fri, 16 Oct 2026 12:00:00 +0000</lastBuildDate>
+  <lastBuildDate>Fri, 23 Oct 2026 12:00:00 +0000</lastBuildDate>
+  <item>
+    <title>Can We Turn Vision Into a Language Modeling Problem?</title>
+    <link>https://dream.ischool.illinois.edu/blogs/turn_vision_into_language_modeling.html</link>
+    <guid>https://dream.ischool.illinois.edu/blogs/turn_vision_into_language_modeling.html</guid>
+    <pubDate>Fri, 23 Oct 2026 12:00:00 +0000</pubDate>
+    <category>Computer vision</category>
+    <description>Can we turn vision into a language modeling problem? Written as SVG code, simple images let GPT-4 reach 0.89 on Sort-of-CLEVR, above a trained relation network.</description>
+  </item>
   <item>
     <title>Can AI Agents Analyze Gene Expression Data Like Experts?</title>
     <link>https://dream.ischool.illinois.edu/blogs/ai_agents_gene_expression_analysis.html</link>
