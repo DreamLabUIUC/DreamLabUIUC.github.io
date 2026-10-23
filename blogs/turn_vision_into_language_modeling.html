@@ -1,0 +1,498 @@
+<!DOCTYPE HTML>
+<!--
+	Writing guide: tools/BLOG_PLAYBOOK.md
+-->
+<html lang="en">
+<head>
+    <meta name="robots" content="noindex">  <!-- delete this line in real posts -->
+    <title>Can We Turn Vision Into a Language Modeling Problem? | DREAM Lab, UIUC</title>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <meta name="description" content="Can we turn vision into a language modeling problem? Written as SVG code, simple images let GPT-4 reach 0.89 on Sort-of-CLEVR, above a trained relation network.">
+    <link rel="canonical" href="https://dream.ischool.illinois.edu/blogs/turn_vision_into_language_modeling.html">
+    <meta property="og:type" content="article">
+    <meta property="og:site_name" content="DREAM Lab, UIUC">
+    <meta property="og:title" content="Can We Turn Vision Into a Language Modeling Problem?">
+    <meta property="og:description" content="Can we turn vision into a language modeling problem? Written as SVG code, simple images let GPT-4 reach 0.89 on Sort-of-CLEVR, above a trained relation network.">
+    <meta property="og:url" content="https://dream.ischool.illinois.edu/blogs/turn_vision_into_language_modeling.html">
+    <meta property="og:image" content="https://dream.ischool.illinois.edu/blogs/imgs/turn_vision_into_language_modeling/cover.png">
+    <meta property="article:published_time" content="2026-10-23">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@HaohanWang">
+    <meta name="twitter:title" content="Can We Turn Vision Into a Language Modeling Problem?">
+    <meta name="twitter:description" content="Can we turn vision into a language modeling problem? Written as SVG code, simple images let GPT-4 reach 0.89 on Sort-of-CLEVR, above a trained relation network.">
+    <meta name="twitter:image" content="https://dream.ischool.illinois.edu/blogs/imgs/turn_vision_into_language_modeling/cover.png">
+    <meta name="citation_title" content="An Investigation on LLMs' Visual Understanding Ability Using SVG for Image-Text Bridging">
+    <meta name="citation_author" content="Cai, Mu">
+    <meta name="citation_author" content="Huang, Zeyi">
+    <meta name="citation_author" content="Li, Yuheng">
+    <meta name="citation_author" content="Ojha, Utkarsh">
+    <meta name="citation_author" content="Wang, Haohan">
+    <meta name="citation_author" content="Lee, Yong Jae">
+    <meta name="citation_publication_date" content="2025">
+    <meta name="citation_conference_title" content="IEEE/CVF Winter Conference on Applications of Computer Vision (WACV 2025)">
+    <meta name="citation_arxiv_id" content="2306.06094">
+    <meta name="citation_pdf_url" content="https://arxiv.org/pdf/2306.06094">
+    <link rel="alternate" type="application/rss+xml" title="DREAM Lab blog" href="https://dream.ischool.illinois.edu/feed.xml">
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "BlogPosting",
+          "headline": "Can We Turn Vision Into a Language Modeling Problem?",
+          "description": "Can we turn vision into a language modeling problem? Written as SVG code, simple images let GPT-4 reach 0.89 on Sort-of-CLEVR, above a trained relation network.",
+          "datePublished": "2026-10-23",
+          "dateModified": "2026-10-23",
+          "url": "https://dream.ischool.illinois.edu/blogs/turn_vision_into_language_modeling.html",
+          "mainEntityOfPage": "https://dream.ischool.illinois.edu/blogs/turn_vision_into_language_modeling.html",
+          "image": "https://dream.ischool.illinois.edu/blogs/imgs/turn_vision_into_language_modeling/cover.png",
+          "inLanguage": "en",
+          "keywords": ["vision as language modeling", "SVG", "scalable vector graphics", "large language models", "visual reasoning", "chart understanding", "image vectorization", "multimodal models"],
+          "author": [
+            {"@type": "Person", "name": "Yuyang Ji", "affiliation": "University of Illinois Urbana-Champaign"},
+            {"@type": "Person", "name": "Tong Zhang"},
+            {"@type": "Person", "name": "Mu Cai", "url": "https://mu-cai.github.io/"},
+            {"@type": "Person", "@id": "https://haohanwang.ischool.illinois.edu/#person", "name": "Haohan Wang", "url": "https://haohanwang.ischool.illinois.edu/"}
+          ],
+          "publisher": {"@type": "ResearchOrganization", "@id": "https://dream.ischool.illinois.edu/#lab", "name": "DREAM Lab, UIUC", "url": "https://dream.ischool.illinois.edu/"},
+          "about": [
+            {
+              "@type": "ScholarlyArticle",
+              "name": "An Investigation on LLMs' Visual Understanding Ability Using SVG for Image-Text Bridging",
+              "url": "https://arxiv.org/abs/2306.06094",
+              "datePublished": "2025",
+              "publisher": "WACV 2025",
+              "author": [
+                {"@type": "Person", "name": "Mu Cai"}, {"@type": "Person", "name": "Zeyi Huang"},
+                {"@type": "Person", "name": "Yuheng Li"}, {"@type": "Person", "name": "Utkarsh Ojha"},
+                {"@type": "Person", "name": "Haohan Wang"}, {"@type": "Person", "name": "Yong Jae Lee"}
+              ]
+            },
+            {
+              "@type": "ScholarlyArticle",
+              "name": "Beyond Pixels: Exploring Human-Readable SVG Generation for Simple Images with Vision Language Models",
+              "url": "https://arxiv.org/abs/2311.15543",
+              "datePublished": "2023",
+              "publisher": "arXiv",
+              "author": [
+                {"@type": "Person", "name": "Tong Zhang"}, {"@type": "Person", "name": "Haoyang Liu"},
+                {"@type": "Person", "name": "Peiyan Zhang"}, {"@type": "Person", "name": "Yuxuan Cheng"},
+                {"@type": "Person", "name": "Haohan Wang"}
+              ]
+            },
+            {
+              "@type": "ScholarlyArticle",
+              "name": "Socratic Chart: Cooperating Multiple Agents for Robust SVG Chart Understanding",
+              "url": "https://arxiv.org/abs/2504.09764",
+              "datePublished": "2025",
+              "publisher": "arXiv",
+              "author": [
+                {"@type": "Person", "name": "Yuyang Ji"}, {"@type": "Person", "name": "Haohan Wang"}
+              ]
+            }
+          ]
+        },
+        {
+          "@type": "BreadcrumbList",
+          "itemListElement": [
+            {"@type": "ListItem", "position": 1, "name": "DREAM Lab", "item": "https://dream.ischool.illinois.edu/"},
+            {"@type": "ListItem", "position": 2, "name": "Blog", "item": "https://dream.ischool.illinois.edu/blogs.html"},
+            {"@type": "ListItem", "position": 3, "name": "Can We Turn Vision Into a Language Modeling Problem?", "item": "https://dream.ischool.illinois.edu/blogs/turn_vision_into_language_modeling.html"}
+          ]
+        },
+        {
+          "@type": "FAQPage",
+          "mainEntity": [
+            {"@type": "Question", "name": "Can a text-only LLM understand an image?", "acceptedAnswer": {"@type": "Answer", "text": "Yes, for simple images, if the image is first written as text such as SVG code. In the WACV 2025 paper by Cai et al., GPT-4 reading SVG reached 0.89 average accuracy on Sort-of-CLEVR visual reasoning questions, above a relation network trained on the task (0.75). It has not been shown for natural photographs, where SVG loses detail."}},
+            {"@type": "Question", "name": "Why give an LLM SVG code instead of pixels?", "acceptedAnswer": {"@type": "Answer", "text": "SVG lists an image as objects with explicit attributes such as shape, position, size and color, which is closer to how language models reason over words. In the same WACV 2025 paper, a Vicuna model fine-tuned on SVG digits kept 92.9% accuracy on recolored digits, while a ConvNeXt model trained on pixels fell to 32.6%."}},
+            {"@type": "Question", "name": "Does it matter how an image is converted to SVG?", "acceptedAnswer": {"@type": "Answer", "text": "Yes. In Beyond Pixels (Zhang et al., 2023), GPT-4-32k answered yes/no questions about shape scenes with 87.75% accuracy from compact S2VG2 SVGs, matching the ground-truth SVG, but only about 50%, the level of chance, from SVGs produced by the LIVE and DiffVG vectorizers, which were 19 to 84 times longer."}},
+            {"@type": "Question", "name": "Do multimodal models really read charts, or the numbers printed on them?", "acceptedAnswer": {"@type": "Answer", "text": "Often the numbers. In Socratic Chart (Ji and Wang, 2025), removing the text labels from ChartQA charts cut GPT-4V to 40.8% relaxed accuracy, a 37.6% relative drop. Converting each chart to SVG with a team of extraction agents reached 57.6% on the same unlabeled charts."}}
+          ]
+        }
+      ]
+    }
+    </script>
+    <link rel="stylesheet" href="../assets2/css/main.css"/>
+    <link rel="stylesheet" href="blog.css"/>
+    <link rel="apple-touch-icon" sizes="180x180" href="../favicon/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="../favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="../favicon/favicon-16x16.png">
+    <link rel="manifest" href="../favicon/site.webmanifest">
+    <noscript>
+        <link rel="stylesheet" href="../assets2/css/noscript.css"/>
+    </noscript>
+</head>
+<body class="is-preload">
+<div id="page-wrapper">
+
+    <!-- Header -->
+    <header id="header">
+        <nav id="nav">
+            <ul>
+                <li><a href="../index.html">Home</a></li>
+                <li><a href="../overview.html">Overview</a></li>
+                <li><a href="../people.html">People</a></li>
+                <li><a href="../publications.html">Publications</a></li>
+                <li><a href="../blogs.html">Blogs</a></li>
+                <li><a href="../software.html">Software</a></li>
+                <li><a href="../contact.html">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Main -->
+    <div id="main" class="wrapper style1">
+        <div class="container">
+            <article>
+            <header class="major">
+                <h1>Can We Turn Vision Into a Language Modeling Problem?</h1>
+                <p>Write an image as code, and a language model can reason about it. For simple images and charts, that
+                    already works, and how the code is written turns out to matter as much as the model reading it.</p>
+                <p style="font-size:0.9em">
+                    By Yuyang Ji, Tong Zhang, <a href="https://mu-cai.github.io/">Mu Cai</a>,
+                    <a href="https://haohanwang.ischool.illinois.edu/">Haohan Wang</a>, and others &middot;
+                    <time datetime="2026-10-23">October 23, 2026</time> &middot;
+                    About our WACV 2025 paper and two arXiv papers
+                </p>
+                <ul class="actions">
+                    <li><a href="https://arxiv.org/abs/2306.06094" class="button">WACV 2025 paper</a></li>
+                    <li><a href="https://github.com/mu-cai/svg-llm" class="button alt">Code</a></li>
+                    <li><a href="https://arxiv.org/abs/2504.09764" class="button alt">Socratic Chart</a></li>
+                </ul>
+            </header>
+
+            <p>Can we turn vision into a language modeling problem? Language models reason over discrete units with
+                explicit relations: words, phrases, sentences. Most vision models start from a grid of pixels and have
+                to recover every object and relation themselves. Three papers from our group test a simple alternative:
+                write the image as Scalable Vector Graphics (SVG) code, a text list of shapes with positions, sizes and
+                colors, and let a language model read it. In <em>An Investigation on LLMs' Visual Understanding Ability
+                Using SVG for Image-Text Bridging</em> (Cai, Huang, Li, Ojha, Wang and Lee, WACV 2025), GPT-4, which never
+                saw the pixels, answered Sort-of-CLEVR reasoning questions with 0.89 average accuracy, above a relation
+                network trained for the task (0.75). The two follow-ups show what makes this work and where it stops
+                working.</p>
+
+            <!-- Answer-first summary. -->
+            <div class="intro-box">
+                <h2 style="margin-top:0">Key findings</h2>
+                <ul>
+                    <li>In the WACV 2025 paper by Cai et al. (University of Wisconsin-Madison and University of Illinois
+                        Urbana-Champaign), GPT-4 reading images as SVG code answered Sort-of-CLEVR visual reasoning questions
+                        with 0.89 average accuracy, versus 0.75 for a relation network trained on the task, and held 0.84
+                        when new shapes were added, where the relation network fell to 0.61.</li>
+                    <li>In the same WACV 2025 paper, a Vicuna language model fine-tuned on MNIST digits written as SVG kept
+                        92.9% accuracy on digits with recolored foregrounds and backgrounds (Colored-MNIST-B), while a
+                        ConvNeXt model fine-tuned on pixels fell from 99.5% to 32.6%.</li>
+                    <li>In Beyond Pixels (Zhang, Liu, Zhang, Cheng and Wang, arXiv 2023), GPT-4-32k answered questions about
+                        simple shape scenes with 87.75% accuracy from compact SVGs written by the S&sup2;VG&sup2; model, the
+                        same as from the ground-truth SVG (87.73%), but only about 50% from SVGs made by the LIVE and DiffVG
+                        vectorizers.</li>
+                    <li>In Socratic Chart (Ji and Wang, University of Illinois Urbana-Champaign, arXiv 2025), turning ChartQA
+                        charts into SVG with a team of extraction agents reached 57.6% relaxed accuracy once the charts' text
+                        labels were removed, versus 40.8% for GPT-4V and 37.2% for Gemini 2.0 on the same charts.</li>
+                </ul>
+            </div>
+
+            <section>
+                <h2>Why would vision need to become a language problem?</h2>
+                <p>Large language models are good at in-context learning, multi-step reasoning and following open-ended
+                    instructions. Vision models have improved quickly, but they still struggle with questions that hinge on
+                    exact structure: which object is left of which, how tall a bar is, whether two shapes overlap. A
+                    natural guess is that part of the gap comes from the input. Text arrives already divided into units a
+                    model can reason over. An image arrives as millions of numbers, and the units have to be found first.</p>
+                <p>If that guess is right, one way to bring language-model reasoning to vision is to change the input: give
+                    the model an image that is already written as discrete parts with attributes. SVG is a convenient
+                    test case. It is plain XML text, it describes a picture as a list of shapes, and language models have
+                    seen a lot of it on the web. The question is not whether SVG is the final answer for vision, but
+                    whether a structured text version of an image lets a language model do things that pixel models find
+                    hard.</p>
+
+                <h2>Key terms</h2>
+                <dl>
+                    <dt><strong>Scalable Vector Graphics (SVG)</strong></dt>
+                    <dd>An XML text format that describes an image as shapes such as circles, rectangles and paths, each with
+                        coordinates, size and color, instead of as a grid of pixels.</dd>
+                    <dt><strong>Raster image</strong></dt>
+                    <dd>The usual pixel-grid image format (for example PNG or JPEG) that most vision models take as input.</dd>
+                    <dt><strong>Vectorization</strong></dt>
+                    <dd>Converting a raster image into vector graphics such as SVG.</dd>
+                    <dt><strong>Sort-of-CLEVR</strong></dt>
+                    <dd>A visual reasoning dataset of six colored shapes per image, with questions about one object
+                        (unary), pairs (binary) and triples (ternary) of objects.</dd>
+                    <dt><strong>Distribution shift</strong></dt>
+                    <dd>A change between training and test data, such as new colors or shapes, that often breaks models
+                        relying on surface cues.</dd>
+                    <dt><strong>Relaxed accuracy (ChartQA)</strong></dt>
+                    <dd>The standard ChartQA metric, which counts a numeric answer as correct if it is within 5% of the
+                        reference value.</dd>
+                </dl>
+
+                <h2>How do you turn an image into something a language model can read?</h2>
+                <p>The three papers take three routes to the same idea. The WACV 2025 paper asks the basic question:
+                    convert an image to SVG, paste the code into a prompt, and see what a text-only model can do with it.
+                    Beyond Pixels asks how the image should be written, since a vectorizer can describe the same picture
+                    with a few clean shapes or with dozens of overlapping paths. Socratic Chart moves to real data,
+                    charts, and uses a team of agents to write each chart as SVG before a multimodal model answers
+                    questions about it.</p>
+                <figure>
+                    <img src="imgs/turn_vision_into_language_modeling/figure_routes.png" alt="Diagram of three routes from image to language model. Top: an image of shapes is converted to SVG code and a text-only GPT-4 answers questions about it (WACV 2025). Middle: a BLIP vision-language model writes short, readable SVG code that a differentiable renderer refines (Beyond Pixels). Bottom: specialized agents extract bars, lines, text and axes from a chart, a critic agent merges them into SVG, and GPT-4V answers with both the image and the SVG (Socratic Chart)." style="max-width:100%"/>
+                    <figcaption class="figure-caption">Three ways to make an image readable for a language model: read
+                        converted SVG directly, learn to write readable SVG, or extract chart structure with agents.</figcaption>
+                </figure>
+
+                <h2>Can a text-only LLM understand an image written as SVG?</h2>
+                <p>For simple images, often yes. In the WACV 2025 paper (first titled <em>Leveraging Large Language Models
+                    for Scalable Vector Graphics-Driven Image Understanding</em> on arXiv), led by Mu Cai and Zeyi Huang
+                    in Yong Jae Lee's group with Haohan Wang, Sort-of-CLEVR images were converted to SVG and given to GPT-4
+                    as text, with the question appended. The comparison models, a CNN with an MLP head and a relation
+                    network, were trained on the dataset's pixel images. GPT-4 was not trained on the task at all.</p>
+                <table class="comparison-table">
+                    <tr><th>Sort-of-CLEVR accuracy</th><th>GPT-4, brief answer (SVG)</th><th>GPT-4, chain of thought (SVG)</th><th>CNN+MLP, trained (pixels)</th><th>Relation network, trained (pixels)</th></tr>
+                    <tr><td>Unary questions</td><td>0.50</td><td><strong>0.90</strong></td><td>0.65</td><td>0.89</td></tr>
+                    <tr><td>Binary questions</td><td>0.90</td><td><strong>0.95</strong></td><td>0.75</td><td>0.80</td></tr>
+                    <tr><td>Ternary questions</td><td>0.10</td><td><strong>0.88</strong></td><td>0.55</td><td>0.55</td></tr>
+                    <tr><td>Average, test set like training</td><td>0.50</td><td><strong>0.89</strong></td><td>0.65</td><td>0.75</td></tr>
+                    <tr><td>Average, new shapes added</td><td>&ndash;</td><td><strong>0.84</strong></td><td>0.49</td><td>0.61</td></tr>
+                    <tr><td>Average, new colors added</td><td>&ndash;</td><td><strong>0.87</strong></td><td>0.53</td><td>0.67</td></tr>
+                </table>
+                <p>Two details matter. First, asking GPT-4 to reason step by step was essential: with brief answers its
+                    ternary accuracy was 0.10. Second, the gap widened under distribution shift. Adding ellipses and
+                    triangles, or three new colors, cost the trained pixel models 8 to 16 points on average, while GPT-4
+                    reading SVG lost 2 to 5. The paper evaluated GPT-4 on 120 questions because of API cost, so these are
+                    small-sample numbers.</p>
+                <p>The same pattern appeared in classification. The authors fine-tuned the Vicuna language model on MNIST
+                    digits converted to SVG, and compared it with ConvNeXt and Vicuna fine-tuned on pixel images, then
+                    tested all three on recolored digits.</p>
+                <table class="comparison-table">
+                    <tr><th>Test set</th><th>ConvNeXt (pixels)</th><th>Vicuna (pixels)</th><th>Vicuna (SVG)</th></tr>
+                    <tr><td>MNIST</td><td>99.5%</td><td>99.4%</td><td>99.1%</td></tr>
+                    <tr><td>Colored-MNIST-A (red or green digits)</td><td>79.5%</td><td>42.9%</td><td><strong>95.7%</strong></td></tr>
+                    <tr><td>Colored-MNIST-B (20 foreground/background color pairs)</td><td>32.6%</td><td>24.8%</td><td><strong>92.9%</strong></td></tr>
+                </table>
+                <p>The authors' explanation is that SVG writes shape and color as separate attributes, so a model can
+                    learn to rely on the shape. The paper also built an SVG question-answering set of 2,318 human-checked
+                    questions about color, category and usage. There GPT-4 averaged 48.8%, Mixtral-8x7B 38.7% and GPT-3.5
+                    32.0%, against 25% chance: real but partial understanding. Not every result is strong. GPT-4 with no
+                    training classified SVG digits with only 20% accuracy zero-shot and 24% with one example.</p>
+
+                <h2>What makes an SVG readable for a language model?</h2>
+                <p>The WACV results used clean SVGs for clean images. Real vectorizers rarely produce code like that.
+                    Optimization-based methods such as DiffVG and LIVE fit a fixed budget of curved paths to the pixels,
+                    and the result can look right while the code is a pile of overlapping, partly hidden paths. In
+                    <em>Beyond Pixels: Exploring Human-Readable SVG Generation for Simple Images with Vision Language
+                    Models</em>, Tong Zhang, Haoyang Liu, Peiyan Zhang, Yuxuan Cheng and Haohan Wang built
+                    S&sup2;VG&sup2;, which fine-tunes the BLIP vision-language model to write SVG code token by token,
+                    then refines the shape parameters with the DiffVG differentiable renderer so the rendering matches the
+                    input. It was trained on 50,000 image-SVG pairs of colored shapes on a 3&times;3 grid (SVG-SHAPE) and
+                    500,000 pairs of transformed shapes (SVG-Transform).</p>
+                <p>The test of readability was direct: give each method's SVG to GPT-4-32k and ask questions about the
+                    picture.</p>
+                <table class="comparison-table">
+                    <tr><th>SVG source</th><th>VQA accuracy, all</th><th>Shape present?</th><th>Relative position</th><th>Mean length (tokens)</th></tr>
+                    <tr><td>Ground-truth SVG</td><td>87.73%</td><td>99.25%</td><td>76.20%</td><td>&ndash;</td></tr>
+                    <tr><td><strong>S&sup2;VG&sup2;</strong></td><td><strong>87.75%</strong></td><td><strong>99.05%</strong></td><td><strong>76.45%</strong></td><td><strong>187</strong></td></tr>
+                    <tr><td>LIVE</td><td>50.08%</td><td>50.10%</td><td>50.05%</td><td>3,625</td></tr>
+                    <tr><td>DiffVG</td><td>50.00%</td><td>50.00%</td><td>50.00%</td><td>15,736</td></tr>
+                </table>
+                <p>On yes/no questions, 50% is chance. The pixel-accurate but tangled SVGs from LIVE and DiffVG gave GPT-4
+                    nothing usable, while S&sup2;VG&sup2;'s SVGs, 19 to 84 times shorter, were as useful as the ground truth.
+                    S&sup2;VG&sup2; also scored best on the image-similarity metrics (LPIPS 0.004, SSIM 0.995), and in a
+                    small user study 85.8% of responses picked its SVGs as the easiest to understand.</p>
+                <p>The lesson we draw is that an image has many valid SVG descriptions, and only some of them carry
+                    structure a reader can use. That suggests treating readability as a target in its own right rather than
+                    a side effect: spell out what readable SVG code looks like (few elements, each one corresponding to an
+                    object, no hidden or redundant shapes, a sensible order), measure those properties, and turn them into
+                    training objectives that push a generator toward simpler, better-organized code. In language terms,
+                    the tokenizer and the grammar of the image matter, not just the model reading it.</p>
+
+                <h2>Do multimodal models really read charts, or just the numbers printed on them?</h2>
+                <p>Charts are a natural real-world test because the answer often depends on an exact bar height or line
+                    position. In <em>Socratic Chart: Cooperating Multiple Agents for Robust SVG Chart Understanding</em>,
+                    Yuyang Ji and Haohan Wang first checked whether strong multimodal models read ChartQA charts visually.
+                    They removed the printed value labels (a set they call ChartQA-RL) and, separately, stretched charts
+                    horizontally or vertically (ChartQA-HV). Without labels, GPT-4V fell to 40.8% relaxed accuracy, a
+                    37.6% relative drop, and Gemini 2.0 to 37.2%, a 50.0% drop: much of the reading was reading numbers.</p>
+                <p>Socratic Chart rebuilds the structure explicitly. A classifier agent identifies the chart type;
+                    specialized agent-generators extract bars, lines, pie segments, text and axes, each trying several
+                    tools; an agent-critic reconciles their versions; and the merged SVG goes to GPT-4V together with the
+                    chart image.</p>
+                <figure>
+                    <img src="imgs/turn_vision_into_language_modeling/figure_results.png" alt="Three bar charts. Left, WACV 2025: accuracy on recolored Colored-MNIST-B digits is 32.6% for ConvNeXt on pixels, 24.8% for Vicuna on pixels and 92.9% for Vicuna on SVG. Middle, Beyond Pixels: GPT-4-32k question-answering accuracy is 50.0% from DiffVG SVGs, 50.1% from LIVE SVGs, 87.75% from S2VG2 SVGs and 87.73% from ground-truth SVGs. Right, Socratic Chart: relaxed accuracy on ChartQA with labels removed is 37.2% for Gemini 2.0, 40.8% for GPT-4V, 50.0% for GPT-4o and 57.6% for Socratic Chart." style="max-width:100%"/>
+                    <figcaption class="figure-caption">One headline comparison from each paper. All numbers are from the
+                        papers' own tables.</figcaption>
+                </figure>
+                <table class="comparison-table">
+                    <tr><th>Model</th><th>ChartQA (with labels)</th><th>ChartQA-RL (labels removed)</th><th>ChartQA-HV (stretched)</th></tr>
+                    <tr><td>GPT-4V</td><td>&ndash;</td><td>40.8% (&minus;37.6%)</td><td>58.5% (&minus;19.9%)</td></tr>
+                    <tr><td>GPT-4o</td><td>&ndash;</td><td>50.0% (&minus;35.7%)</td><td><strong>71.5%</strong> (&minus;14.2%)</td></tr>
+                    <tr><td>Gemini 2.0</td><td>&ndash;</td><td>37.2% (&minus;50.0%)</td><td>52.6% (&minus;34.6%)</td></tr>
+                    <tr><td>SIMPLOT (chart-to-table)</td><td><strong>83.24%</strong></td><td>46.7% (&minus;36.5%)</td><td>62.8% (&minus;20.4%)</td></tr>
+                    <tr><td><strong>Socratic Chart, multi-agent</strong></td><td>81.50%</td><td><strong>57.6%</strong> (&minus;23.9%)</td><td>68.1% (&minus;13.4%)</td></tr>
+                </table>
+                <p>Percentages in parentheses are the relative drops reported in the paper against each model's standard
+                    ChartQA score. Socratic Chart was second overall on standard ChartQA, behind SIMPLOT, but first on
+                    the human-written questions (80.40% versus 78.07%). On stretched charts GPT-4o scored higher in
+                    absolute terms; Socratic Chart's advantage there is the smaller drop. An ablation supports the
+                    structural reading: removing the y-axis elements from the SVG cut accuracy on stretched charts from
+                    68.1% to 60.9%, and removing both axes to 59.2%. Removing the critic cost 1.2 points and replacing the
+                    specialized agents with one general extractor cost 3.3 points. On the harder CharXiv benchmark the
+                    system scored 30.1%, against 26.9% for GPT-4V.</p>
+
+                <h2>Where does the SVG approach break down?</h2>
+                <p>Natural photographs. A dog's fur or a cloudy sky does not decompose into a few circles and paths, so its
+                    SVG either throws away detail or becomes too long to read. The WACV 2025 paper measured this directly:
+                    on the 10-class Imagenette subset of ImageNet, Vicuna-7B reading SVG reached 68.14% top-1 accuracy,
+                    against 90.62% for a ResNet-50 trained on the original images. Beyond Pixels lists the same limits for
+                    image generation: a fixed token budget and difficulty with complex textures.</p>
+                <p>So our current view, also argued in Haohan Wang's essay <a href="https://haohanwang.ischool.illinois.edu/blog/vision-should-be-structural.html">Vision
+                    should be structural</a>, is that the structure matters more than the format. Vision may well become
+                    partly a language modeling problem, but over a representation of objects and relations, which may sit
+                    above raw SVG and may be combined with pixels, as Socratic Chart already does by giving the model both.
+                    For charts, diagrams, icons and simple graphics, explicit structure helped in every experiment here.
+                    For natural images, the question is open.</p>
+
+                <h2>How does this compare with other work on SVG and vision?</h2>
+                <p>Several groups have reached related conclusions independently.</p>
+                <ul>
+                    <li><a href="https://arxiv.org/abs/2407.06581"><em>Vision language models are blind</em></a>
+                        (Rahmanzadehgervi, Bolton, Taesiri and Nguyen, 2024) gives the problem statement from the pixel side.
+                        On seven very simple tasks, such as whether two circles overlap or how often two lines cross, four
+                        leading VLMs averaged 58.07%, with Claude 3.5 Sonnet best at 77.84%. Their linear probes suggest the
+                        vision encoders hold the information and the language side fails to decode it, which is the same
+                        gap that explicit structure tries to close.</li>
+                    <li><a href="https://arxiv.org/abs/2404.06479"><em>Visually Descriptive Language Model for Vector Graphics
+                        Reasoning</em></a> (VDLM; Zhenhailong Wang, Joy Hsu, Xingyao Wang, Kuan-Hao Huang, Manling Li,
+                        Jiajun Wu and Heng Ji, 2024) also encodes scenes as SVG, and observes that raw SVG is hard for
+                        models to interpret zero-shot. It adds an intermediate text description of primitives and their
+                        measurements. This agrees with the Beyond Pixels result that the form of the text matters, and
+                        suggests the right level may sit above raw SVG.</li>
+                    <li><a href="https://arxiv.org/abs/2312.11556"><em>StarVector: Generating Scalable Vector Graphics Code
+                        from Images and Text</em></a> (Rodriguez et al., CVPR 2025) treats vectorization as code generation
+                        with a multimodal LLM trained on SVG-Stack, 2 million samples, and argues that pixel metrics such as
+                        MSE miss what makes an SVG good, a point close to our readability results.</li>
+                    <li><a href="https://arxiv.org/abs/2505.20793"><em>Rendering-Aware Reinforcement Learning for Vector
+                        Graphics Generation</em></a> (RLRF; Rodriguez et al., 2025) renders the generated SVG and uses the
+                        match to the input image as a reward, a scalable alternative to the differentiable-rendering
+                        refinement step in S&sup2;VG&sup2;.</li>
+                    <li><a href="https://arxiv.org/abs/2510.11341"><em>InternSVG: Towards Unified SVG Tasks with Multimodal
+                        Large Language Models</em></a> (Haomin Wang et al., 2025) trains one model for SVG understanding,
+                        editing and generation, from icons to scientific diagrams and animations.</li>
+                </ul>
+                <p>The direction of travel is clear in this list: most recent SVG work trains models to write SVG, while
+                    most widely used vision-language models still read images through pixel encoders. The papers in this
+                    post ask the reverse question, whether reading a structured text version of an image helps reasoning,
+                    and for simple images and charts the answer so far is yes.</p>
+
+                <h2>What this does not show</h2>
+                <ul>
+                    <li><strong>Simple images only.</strong> The strongest results use synthetic shapes, digits and charts,
+                        which are close to vector graphics already. On natural photographs, SVG lost to a pixel model by
+                        22 points (68.14% versus 90.62% on Imagenette).</li>
+                    <li><strong>Small evaluations.</strong> GPT-4 on Sort-of-CLEVR was evaluated on 120 questions, and the
+                        Beyond Pixels user study was small. Treat the exact numbers as indicative.</li>
+                    <li><strong>Conversion is part of the system.</strong> In the WACV experiments, the SVGs came from clean
+                        sources or a curve-tracing converter. Beyond Pixels shows that a poor converter erases the benefit,
+                        so results depend on how the SVG is produced.</li>
+                    <li><strong>Charts were not solved.</strong> Socratic Chart reached 57.6% on unlabeled charts, well
+                        below its 81.50% on labeled ones, it runs several agents per chart, which adds latency, and GPT-4o
+                        scored higher in absolute terms on stretched charts.</li>
+                    <li><strong>Older models.</strong> These experiments used GPT-4, GPT-4V, Vicuna and BLIP-era models.
+                        Newer multimodal models may close part of the gap on their own, which these papers do not test.</li>
+                    <li><strong>Two of the three papers are preprints.</strong> Beyond Pixels and Socratic Chart are on arXiv
+                        and have not been peer reviewed; the WACV 2025 paper has.</li>
+                </ul>
+
+                <h2>Frequently asked questions</h2>
+                <h3>Can a text-only LLM understand an image?</h3>
+                <p>Yes, for simple images, if the image is first written as text such as SVG code. In the WACV 2025 paper by
+                    Cai et al., GPT-4 reading SVG reached 0.89 average accuracy on Sort-of-CLEVR visual reasoning questions,
+                    above a relation network trained on the task (0.75). It has not been shown for natural photographs,
+                    where SVG loses detail.</p>
+                <h3>Why give an LLM SVG code instead of pixels?</h3>
+                <p>SVG lists an image as objects with explicit attributes such as shape, position, size and color, which is
+                    closer to how language models reason over words. In the same WACV 2025 paper, a Vicuna model fine-tuned
+                    on SVG digits kept 92.9% accuracy on recolored digits, while a ConvNeXt model trained on pixels fell to
+                    32.6%.</p>
+                <h3>Does it matter how an image is converted to SVG?</h3>
+                <p>Yes. In Beyond Pixels (Zhang et al., 2023), GPT-4-32k answered yes/no questions about shape scenes with
+                    87.75% accuracy from compact S2VG2 SVGs, matching the ground-truth SVG, but only about 50%, the level of
+                    chance, from SVGs produced by the LIVE and DiffVG vectorizers, which were 19 to 84 times longer.</p>
+                <h3>Do multimodal models really read charts, or the numbers printed on them?</h3>
+                <p>Often the numbers. In Socratic Chart (Ji and Wang, 2025), removing the text labels from ChartQA charts cut
+                    GPT-4V to 40.8% relaxed accuracy, a 37.6% relative drop. Converting each chart to SVG with a team of extraction
+                    agents reached 57.6% on the same unlabeled charts.</p>
+
+                <h2>Citation</h2>
+<pre><code>@inproceedings{cai2025svgllm,
+  title     = {An Investigation on LLMs' Visual Understanding Ability Using SVG for Image-Text Bridging},
+  author    = {Cai, Mu and Huang, Zeyi and Li, Yuheng and Ojha, Utkarsh and Wang, Haohan and Lee, Yong Jae},
+  booktitle = {IEEE/CVF Winter Conference on Applications of Computer Vision (WACV)},
+  year      = {2025}
+}
+
+@article{zhang2023beyondpixels,
+  title   = {Beyond Pixels: Exploring Human-Readable SVG Generation for Simple Images with Vision Language Models},
+  author  = {Zhang, Tong and Liu, Haoyang and Zhang, Peiyan and Cheng, Yuxuan and Wang, Haohan},
+  journal = {arXiv preprint arXiv:2311.15543},
+  year    = {2023}
+}
+
+@article{ji2025socraticchart,
+  title   = {Socratic Chart: Cooperating Multiple Agents for Robust SVG Chart Understanding},
+  author  = {Ji, Yuyang and Wang, Haohan},
+  journal = {arXiv preprint arXiv:2504.09764},
+  year    = {2025}
+}</code></pre>
+
+                <h2>Related from our lab</h2>
+                <ul>
+                    <li><a href="https://haohanwang.ischool.illinois.edu/blog/vision-should-be-structural.html">Vision should be structural: why we turned images into SVG code, an essay by Haohan Wang</a></li>
+                    <li><a href="vision_transformer_robustness_nullspace.html">Vision transformer robustness: the input changes a ViT cannot see</a></li>
+                    <li><a href="agent_primitives.html">Agent primitives: reusable building blocks for LLM multi-agent systems</a></li>
+                    <li><a href="../publications.html">DREAM Lab publications, including our WACV 2025 paper on LLM visual understanding through SVG</a></li>
+                    <li><a href="../preprints.html">DREAM Lab preprints on vision, language models and agents</a></li>
+                </ul>
+
+                <div style="margin-top: 50px; padding-top: 30px; border-top: 1px solid rgba(255,255,255,0.2); font-size: 0.9em; color: rgba(255,255,255,0.6);">
+                    <p><strong>Papers:</strong> Mu Cai, Zeyi Huang, Yuheng Li, Utkarsh Ojha, Haohan Wang, Yong Jae Lee.
+                        &ldquo;<a href="https://arxiv.org/abs/2306.06094">An Investigation on LLMs' Visual Understanding
+                        Ability Using SVG for Image-Text Bridging</a>.&rdquo; WACV 2025. &middot; Tong Zhang, Haoyang Liu,
+                        Peiyan Zhang, Yuxuan Cheng, Haohan Wang. &ldquo;<a href="https://arxiv.org/abs/2311.15543">Beyond
+                        Pixels: Exploring Human-Readable SVG Generation for Simple Images with Vision Language
+                        Models</a>.&rdquo; arXiv 2023. &middot; Yuyang Ji, Haohan Wang. &ldquo;<a href="https://arxiv.org/abs/2504.09764">Socratic
+                        Chart: Cooperating Multiple Agents for Robust SVG Chart Understanding</a>.&rdquo; arXiv 2025.
+                        University of Illinois Urbana-Champaign.</p>
+                </div>
+            </section>
+            </article>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer id="footer">
+        <ul class="icons">
+            <li><a href="https://x.com/HaohanWang" class="icon brands alt fa-twitter"><span class="label">X</span></a></li>
+            <li><a href="https://www.linkedin.com/in/haohanwang/" class="icon brands alt fa-linkedin-in"><span class="label">LinkedIn</span></a></li>
+            <li><a href="https://github.com/DreamLabUIUC" class="icon brands alt fa-github"><span class="label">GitHub</span></a></li>
+            <li><a href="../feed.xml" class="icon solid alt fa-rss"><span class="label">RSS</span></a></li>
+        </ul>
+        <ul class="copyright">
+            <li>&copy; DREAM Lab, University of Illinois Urbana-Champaign</li>
+            <li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
+        </ul>
+    </footer>
+
+</div>
+
+<!-- Scripts -->
+<script src="../assets2/js/jquery.min.js"></script>
+<script src="../assets2/js/jquery.scrolly.min.js"></script>
+<script src="../assets2/js/jquery.dropotron.min.js"></script>
+<script src="../assets2/js/jquery.scrollex.min.js"></script>
+<script src="../assets2/js/browser.min.js"></script>
+<script src="../assets2/js/breakpoints.min.js"></script>
+<script src="../assets2/js/util.js"></script>
+<script src="../assets2/js/main.js"></script>
+
+</body>
+</html>
