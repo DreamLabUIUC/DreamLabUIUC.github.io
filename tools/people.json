@@ -1,0 +1,12 @@
+{
+  "_doc": "DREAM Lab members, from the People form (2026-10). Handles are self-reported by each person, so they count as verified for tagging on X/LinkedIn. Keep in sync with people.html.",
+  "people": [
+    {"name": "Haohan Wang", "x": "@HaohanWang", "linkedin": "https://www.linkedin.com/in/haohanwang/", "scholar": "https://scholar.google.com/citations?user=nZxJGeUAAAAJ", "page": "https://haohanwang.ischool.illinois.edu/"},
+    {"name": "Yurui Li", "role": "PhD student", "linkedin": "https://www.linkedin.com/in/yurui-li-590706217/", "github": "https://github.com/lyrrrr", "scholar": "https://scholar.google.com/citations?user=KGFypoQAAAAJ", "page": "https://dream.ischool.illinois.edu/people/yurui-li/"},
+    {"name": "Haibo Jin", "role": "PhD student", "x": "@Haibo_Jin97", "linkedin": "https://www.linkedin.com/in/haibo-jin-14160b383", "scholar": "https://scholar.google.com/citations?user=tj0eV-sAAAAJ", "page": "https://dream.ischool.illinois.edu/people/haibo-jin/"},
+    {"name": "Mitchell Hermon", "role": "PhD student", "x": "@mitchellhermon", "linkedin": "https://www.linkedin.com/in/mitchell-hermon/", "github": "https://github.com/mhermon", "scholar": "https://scholar.google.com/citations?user=xjCfkXAAAAAJ", "page": "https://mitchellhermon.com/"},
+    {"name": "Peng Kuang", "role": "PhD student", "x": "@Krumper2312", "linkedin": "https://www.linkedin.com/in/peng-kuang-a8110026a/", "scholar": "https://scholar.google.com/citations?user=p-1Cga8AAAAJ", "page": "https://dream.ischool.illinois.edu/people/peng-kuang/"},
+    {"name": "Xiaopeng Yuan", "role": "PhD student", "linkedin": "https://www.linkedin.com/in/xiaopeng-yuan-394253431/", "scholar": "https://scholar.google.com/citations?user=Z8tHFdIAAAAJ", "page": "https://dream.ischool.illinois.edu/people/xiaopeng-yuan/"},
+    {"name": "Haochuan Wang", "role": "PhD student", "page": "https://hansenwang123.github.io/"}
+  ]
+}

@@ -40,13 +40,27 @@
       "@id": "https://dream.ischool.illinois.edu/people.html#page",
       "url": "https://dream.ischool.illinois.edu/people.html",
       "name": "People | DREAM Lab, UIUC (Haohan Wang)",
-      "isPartOf": {"@id": "https://dream.ischool.illinois.edu/#site"},
-      "about": {"@id": "https://dream.ischool.illinois.edu/#lab"},
+      "isPartOf": {
+        "@id": "https://dream.ischool.illinois.edu/#site"
+      },
+      "about": {
+        "@id": "https://dream.ischool.illinois.edu/#lab"
+      },
       "breadcrumb": {
         "@type": "BreadcrumbList",
         "itemListElement": [
-          {"@type": "ListItem", "position": 1, "name": "DREAM Lab, UIUC", "item": "https://dream.ischool.illinois.edu/"},
-          {"@type": "ListItem", "position": 2, "name": "People", "item": "https://dream.ischool.illinois.edu/people.html"}
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "DREAM Lab, UIUC",
+            "item": "https://dream.ischool.illinois.edu/"
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "People",
+            "item": "https://dream.ischool.illinois.edu/people.html"
+          }
         ]
       }
     },
@@ -55,7 +69,29 @@
       "@id": "https://dream.ischool.illinois.edu/#lab",
       "name": "DREAM Lab",
       "url": "https://dream.ischool.illinois.edu/",
-      "member": [{"@id": "https://dream.ischool.illinois.edu/#haohan-wang"}]
+      "member": [
+        {
+          "@id": "https://dream.ischool.illinois.edu/#haohan-wang"
+        },
+        {
+          "@id": "https://dream.ischool.illinois.edu/people.html#yurui-li"
+        },
+        {
+          "@id": "https://dream.ischool.illinois.edu/people.html#haibo-jin"
+        },
+        {
+          "@id": "https://dream.ischool.illinois.edu/people.html#mitchell-hermon"
+        },
+        {
+          "@id": "https://dream.ischool.illinois.edu/people.html#peng-kuang"
+        },
+        {
+          "@id": "https://dream.ischool.illinois.edu/people.html#xiaopeng-yuan"
+        },
+        {
+          "@id": "https://dream.ischool.illinois.edu/people.html#haochuan-wang"
+        }
+      ]
     },
     {
       "@type": "Person",
@@ -65,15 +101,188 @@
       "jobTitle": "Assistant Professor",
       "image": "https://dream.ischool.illinois.edu/images/people/haohanwang.png",
       "url": "https://haohanwang.ischool.illinois.edu/",
-      "worksFor": {"@id": "https://dream.ischool.illinois.edu/#lab"},
-      "affiliation": {"@type": "CollegeOrUniversity", "name": "University of Illinois Urbana-Champaign"},
-      "alumniOf": {"@type": "CollegeOrUniversity", "name": "Carnegie Mellon University"},
+      "worksFor": {
+        "@id": "https://dream.ischool.illinois.edu/#lab"
+      },
+      "affiliation": {
+        "@type": "CollegeOrUniversity",
+        "name": "University of Illinois Urbana-Champaign"
+      },
+      "alumniOf": {
+        "@type": "CollegeOrUniversity",
+        "name": "Carnegie Mellon University"
+      },
       "sameAs": [
         "https://haohanwang.ischool.illinois.edu/",
         "https://ischool.illinois.edu/people/haohan-wang",
         "https://scholar.google.com/citations?user=nZxJGeUAAAAJ",
         "https://x.com/HaohanWang",
         "https://www.linkedin.com/in/haohanwang/"
+      ]
+    },
+    {
+      "@type": "Person",
+      "@id": "https://dream.ischool.illinois.edu/people.html#yurui-li",
+      "name": "Yurui Li",
+      "jobTitle": "PhD Student",
+      "image": "https://dream.ischool.illinois.edu/images/people/yurui-li.png",
+      "url": "https://dream.ischool.illinois.edu/people/yurui-li/",
+      "description": "Yurui Li is a Ph.D. student in Informatics at the University of Illinois Urbana-Champaign. Her research focuses on developing computational methods based on deep learning and large language models to study cellular interactions, regulatory processes, and underlying biological mechanisms. She aims to advance AI-driven approaches that enable deeper insights into complex cellular systems and facilitate biological discovery.",
+      "knowsAbout": [
+        "AI for biology",
+        "computational biology",
+        "spatial transcriptomics",
+        "gene regulation",
+        "cell–cell communication",
+        "AI virtual cells",
+        "LLM-based reasoning"
+      ],
+      "affiliation": {
+        "@type": "CollegeOrUniversity",
+        "name": "University of Illinois Urbana-Champaign"
+      },
+      "memberOf": {
+        "@id": "https://dream.ischool.illinois.edu/#lab"
+      },
+      "sameAs": [
+        "https://scholar.google.com/citations?user=KGFypoQAAAAJ",
+        "https://github.com/lyrrrr",
+        "https://www.linkedin.com/in/yurui-li-590706217/"
+      ]
+    },
+    {
+      "@type": "Person",
+      "@id": "https://dream.ischool.illinois.edu/people.html#haibo-jin",
+      "name": "Haibo Jin",
+      "jobTitle": "PhD Student",
+      "image": "https://dream.ischool.illinois.edu/images/people/haibo-jin.png",
+      "url": "https://dream.ischool.illinois.edu/people/haibo-jin/",
+      "description": "Haibo Jin is a PhD student at the University of Illinois Urbana-Champaign, advised by Prof. Haohan Wang. His research focuses on building reliable, efficient, and scalable agentic AI systems through reusable primitives and harness engineering. His broader interests include AI safety and generative engine optimization (GEO), with an emphasis on improving the trustworthiness and effectiveness of AI systems in real-world applications.",
+      "knowsAbout": [
+        "AI safety",
+        "reusable primitives",
+        "agentic AI systems",
+        "generative engine optimization"
+      ],
+      "affiliation": {
+        "@type": "CollegeOrUniversity",
+        "name": "University of Illinois Urbana-Champaign"
+      },
+      "memberOf": {
+        "@id": "https://dream.ischool.illinois.edu/#lab"
+      },
+      "sameAs": [
+        "https://haibojin001.github.io/",
+        "https://scholar.google.com/citations?user=tj0eV-sAAAAJ",
+        "https://www.linkedin.com/in/haibo-jin-14160b383",
+        "https://x.com/Haibo_Jin97"
+      ]
+    },
+    {
+      "@type": "Person",
+      "@id": "https://dream.ischool.illinois.edu/people.html#mitchell-hermon",
+      "name": "Mitchell Hermon",
+      "jobTitle": "PhD Student",
+      "image": "https://dream.ischool.illinois.edu/images/people/mitchell-hermon.png",
+      "url": "https://mitchellhermon.com/",
+      "description": "Mitchell Hermon studies when and why language models fail and how to fix them, focusing on agents that are trustworthy, secure, and safe. As agents take on real work, their failures get harder to spot and more costly, and his research aims to catch them before deployment.",
+      "knowsAbout": [
+        "LLM evaluation",
+        "failure analysis",
+        "agent security",
+        "prompt injection",
+        "trustworthy AI"
+      ],
+      "affiliation": {
+        "@type": "CollegeOrUniversity",
+        "name": "University of Illinois Urbana-Champaign"
+      },
+      "memberOf": {
+        "@id": "https://dream.ischool.illinois.edu/#lab"
+      },
+      "sameAs": [
+        "https://mitchellhermon.com/",
+        "https://scholar.google.com/citations?user=xjCfkXAAAAAJ",
+        "https://github.com/mhermon",
+        "https://www.linkedin.com/in/mitchell-hermon/",
+        "https://x.com/mitchellhermon"
+      ]
+    },
+    {
+      "@type": "Person",
+      "@id": "https://dream.ischool.illinois.edu/people.html#peng-kuang",
+      "name": "Peng Kuang",
+      "jobTitle": "PhD Student",
+      "image": "https://dream.ischool.illinois.edu/images/people/peng-kuang.png",
+      "url": "https://dream.ischool.illinois.edu/people/peng-kuang/",
+      "description": "Peng Kuang studies how to develop effective and efficient supervision for evolving AI systems, and how those systems can learn and adapt from feedback. His work aims to make AI more reliable and capable while keeping the cost of supervision practical and scalable as systems take on increasingly complex tasks.",
+      "knowsAbout": [
+        "LLM agents",
+        "AI supervision",
+        "efficiency"
+      ],
+      "affiliation": {
+        "@type": "CollegeOrUniversity",
+        "name": "University of Illinois Urbana-Champaign"
+      },
+      "memberOf": {
+        "@id": "https://dream.ischool.illinois.edu/#lab"
+      },
+      "sameAs": [
+        "https://krumperisok.github.io/",
+        "https://scholar.google.com/citations?user=p-1Cga8AAAAJ",
+        "https://www.linkedin.com/in/peng-kuang-a8110026a/",
+        "https://x.com/Krumper2312"
+      ]
+    },
+    {
+      "@type": "Person",
+      "@id": "https://dream.ischool.illinois.edu/people.html#xiaopeng-yuan",
+      "name": "Xiaopeng Yuan",
+      "jobTitle": "PhD Student",
+      "image": "https://dream.ischool.illinois.edu/images/people/xiaopeng-yuan.png",
+      "url": "https://dream.ischool.illinois.edu/people/xiaopeng-yuan/",
+      "description": "Xiaopeng Yuan is a first-year PhD student at the UIUC School of Information Sciences, advised by Haohan Wang. He studies LLM reasoning, test-time training, and long-context learning to make language models more capable and reliable on complex tasks. He hopes to build AI tools that people find genuinely useful and that can benefit a wide range of users.",
+      "knowsAbout": [
+        "LLM reasoning",
+        "test-time training",
+        "long-context learning",
+        "multi-agent reasoning"
+      ],
+      "affiliation": {
+        "@type": "CollegeOrUniversity",
+        "name": "University of Illinois Urbana-Champaign"
+      },
+      "memberOf": {
+        "@id": "https://dream.ischool.illinois.edu/#lab"
+      },
+      "sameAs": [
+        "https://scholar.google.com/citations?user=Z8tHFdIAAAAJ",
+        "https://www.linkedin.com/in/xiaopeng-yuan-394253431/"
+      ]
+    },
+    {
+      "@type": "Person",
+      "@id": "https://dream.ischool.illinois.edu/people.html#haochuan-wang",
+      "name": "Haochuan Wang",
+      "jobTitle": "PhD Student",
+      "image": "https://dream.ischool.illinois.edu/images/people/haochuan-wang.png",
+      "url": "https://hansenwang123.github.io/",
+      "description": "Haochuan Wang aims to harness multidisciplinary approaches that integrate high-throughput genomics and LLM agents to elucidate the regulatory mechanisms underlying human diseases.",
+      "knowsAbout": [
+        "gene regulation",
+        "LLM agents",
+        "genetics"
+      ],
+      "affiliation": {
+        "@type": "CollegeOrUniversity",
+        "name": "University of Illinois Urbana-Champaign"
+      },
+      "memberOf": {
+        "@id": "https://dream.ischool.illinois.edu/#lab"
+      },
+      "sameAs": [
+        "https://hansenwang123.github.io/"
       ]
     }
   ]
@@ -86,6 +295,7 @@
             border: 3px solid #4da3ff; display: block; background-color: #1c1d26; }
         .person-card .bio h3 { margin-bottom: 0.2em; }
         .person-card .bio .role { color: rgba(255, 255, 255, 0.6); margin-bottom: 1em; }
+        .person-card .bio .interests { font-size: 0.9em; color: rgba(255, 255, 255, 0.75); }
         .person-card .links a { margin-right: 1.2em; white-space: nowrap; }
         @media screen and (max-width: 736px) {
             .person-card { flex-direction: column; align-items: center; text-align: center; gap: 1.5em; }
@@ -121,11 +331,8 @@
                 <p>The people of the DREAM Lab</p>
             </header>
 
-            <p style="text-align:center;font-size:0.9em;color:rgba(255,255,255,0.65);border:1px dashed rgba(77,163,255,0.5);border-radius:6px;padding:0.75em 1em;max-width:36em;margin:0 auto 3em">
-                This page is under construction: profiles of our students and researchers are being added.</p>
-
             <!-- Haohan Wang -->
-            <section id="pi">
+            <section id="haohan-wang">
                 <div class="person-card">
                     <div class="portrait">
                         <img src="images/people/haohanwang.png"
@@ -156,7 +363,128 @@
                 </div>
             </section>
 
-            <!-- Students: cards are added here as profiles come in -->
+
+            <section id="yurui-li">
+                <div class="person-card">
+                    <div class="portrait">
+                        <img src="images/people/yurui-li.png" alt="Yurui Li with her cat" loading="lazy"/>
+                    </div>
+                    <div class="bio">
+                        <h3><a href="people/yurui-li/">Yurui Li</a></h3>
+                        <p class="role">PhD Student in Informatics, University of Illinois Urbana-Champaign</p>
+                        <p>Yurui Li is a Ph.D. student in Informatics at the University of Illinois Urbana-Champaign. Her research focuses on developing computational methods based on deep learning and large language models to study cellular interactions, regulatory processes, and underlying biological mechanisms. She aims to advance AI-driven approaches that enable deeper insights into complex cellular systems and facilitate biological discovery.</p>
+                        <p class="interests"><strong>Research interests:</strong> AI for biology, computational biology, spatial transcriptomics, gene regulation, cell–cell communication, AI virtual cells, LLM-based reasoning</p>
+                        <p class="links">
+                            <a href="people/yurui-li/">Homepage</a>
+                            <a href="https://scholar.google.com/citations?user=KGFypoQAAAAJ" target="_blank" rel="noopener">Google Scholar</a>
+                            <a href="https://github.com/lyrrrr" target="_blank" rel="noopener">GitHub</a>
+                            <a href="https://www.linkedin.com/in/yurui-li-590706217/" target="_blank" rel="noopener">LinkedIn</a>
+                        </p>
+                    </div>
+                </div>
+            </section>
+
+            <section id="haibo-jin">
+                <div class="person-card">
+                    <div class="portrait">
+                        <img src="images/people/haibo-jin.png" alt="Portrait of Haibo Jin" loading="lazy"/>
+                    </div>
+                    <div class="bio">
+                        <h3><a href="people/haibo-jin/">Haibo Jin</a></h3>
+                        <p class="role">PhD Student, University of Illinois Urbana-Champaign</p>
+                        <p>Haibo Jin is a PhD student at the University of Illinois Urbana-Champaign, advised by Prof. Haohan Wang. His research focuses on building reliable, efficient, and scalable agentic AI systems through reusable primitives and harness engineering. His broader interests include AI safety and generative engine optimization (GEO), with an emphasis on improving the trustworthiness and effectiveness of AI systems in real-world applications.</p>
+                        <p class="interests"><strong>Research interests:</strong> AI safety, reusable primitives, agentic AI systems, generative engine optimization</p>
+                        <p><strong>Proudest work:</strong> <a href="blogs/agent_primitives.html">Agent Primitives: Reusable Latent Building Blocks for Multi-Agent Systems (ICML 2026)</a>. It shows how complex multi-agent systems can be built from a small set of reusable primitives, improving efficiency, scalability, and robustness while simplifying agent collaboration.</p>
+                        <p class="links">
+                            <a href="people/haibo-jin/">Homepage</a>
+                            <a href="https://haibojin001.github.io/" target="_blank" rel="noopener">Also at haibojin001.github.io</a>
+                            <a href="https://scholar.google.com/citations?user=tj0eV-sAAAAJ" target="_blank" rel="noopener">Google Scholar</a>
+                            <a href="https://www.linkedin.com/in/haibo-jin-14160b383" target="_blank" rel="noopener">LinkedIn</a>
+                            <a href="https://x.com/Haibo_Jin97" target="_blank" rel="noopener">X</a>
+                        </p>
+                    </div>
+                </div>
+            </section>
+
+            <section id="mitchell-hermon">
+                <div class="person-card">
+                    <div class="portrait">
+                        <img src="images/people/mitchell-hermon.png" alt="Portrait of Mitchell Hermon" loading="lazy"/>
+                    </div>
+                    <div class="bio">
+                        <h3><a href="https://mitchellhermon.com/" target="_blank" rel="noopener">Mitchell Hermon</a></h3>
+                        <p class="role">PhD Student, University of Illinois Urbana-Champaign</p>
+                        <p>Mitchell Hermon studies when and why language models fail and how to fix them, focusing on agents that are trustworthy, secure, and safe. As agents take on real work, their failures get harder to spot and more costly, and his research aims to catch them before deployment.</p>
+                        <p class="interests"><strong>Research interests:</strong> LLM evaluation, failure analysis, agent security, prompt injection, trustworthy AI</p>
+                        <p><strong>Proudest work:</strong> <a href="secfid/">SecFid: Security–Fidelity Tradeoffs in Prompt Injection Defense (ICML 2026 Spotlight)</a>. It shows that security scores alone can reward prompt-injection defenses for discarding content users need, and introduces a benchmark that measures both security and fidelity, along with a training method that improves both.</p>
+                        <p class="links">
+                            <a href="https://mitchellhermon.com/" target="_blank" rel="noopener">Website</a>
+                            <a href="https://scholar.google.com/citations?user=xjCfkXAAAAAJ" target="_blank" rel="noopener">Google Scholar</a>
+                            <a href="https://github.com/mhermon" target="_blank" rel="noopener">GitHub</a>
+                            <a href="https://www.linkedin.com/in/mitchell-hermon/" target="_blank" rel="noopener">LinkedIn</a>
+                            <a href="https://x.com/mitchellhermon" target="_blank" rel="noopener">X</a>
+                        </p>
+                    </div>
+                </div>
+            </section>
+
+            <section id="peng-kuang">
+                <div class="person-card">
+                    <div class="portrait">
+                        <img src="images/people/peng-kuang.png" alt="Portrait of Peng Kuang" loading="lazy"/>
+                    </div>
+                    <div class="bio">
+                        <h3><a href="people/peng-kuang/">Peng Kuang</a></h3>
+                        <p class="role">PhD Student, University of Illinois Urbana-Champaign</p>
+                        <p>Peng Kuang studies how to develop effective and efficient supervision for evolving AI systems, and how those systems can learn and adapt from feedback. His work aims to make AI more reliable and capable while keeping the cost of supervision practical and scalable as systems take on increasingly complex tasks.</p>
+                        <p class="interests"><strong>Research interests:</strong> LLM agents, AI supervision, efficiency</p>
+                        <p><strong>Proudest work:</strong> <a href="https://krumperisok.github.io/KV-PRM/" target="_blank" rel="noopener">KV-PRM: Efficient Process Reward Modeling via KV-Cache Transfer for Multi-Agent Test-Time Scaling</a>. It makes process reward modeling much more efficient in long-context scenarios, allowing multi-agent systems to scale better at test time.</p>
+                        <p class="links">
+                            <a href="people/peng-kuang/">Homepage</a>
+                            <a href="https://krumperisok.github.io/" target="_blank" rel="noopener">Also at krumperisok.github.io</a>
+                            <a href="https://scholar.google.com/citations?user=p-1Cga8AAAAJ" target="_blank" rel="noopener">Google Scholar</a>
+                            <a href="https://www.linkedin.com/in/peng-kuang-a8110026a/" target="_blank" rel="noopener">LinkedIn</a>
+                            <a href="https://x.com/Krumper2312" target="_blank" rel="noopener">X</a>
+                        </p>
+                    </div>
+                </div>
+            </section>
+
+            <section id="xiaopeng-yuan">
+                <div class="person-card">
+                    <div class="portrait">
+                        <img src="images/people/xiaopeng-yuan.png" alt="Portrait of Xiaopeng Yuan" loading="lazy"/>
+                    </div>
+                    <div class="bio">
+                        <h3><a href="people/xiaopeng-yuan/">Xiaopeng Yuan</a></h3>
+                        <p class="role">PhD Student, School of Information Sciences, University of Illinois Urbana-Champaign</p>
+                        <p>Xiaopeng Yuan is a first-year PhD student at the UIUC School of Information Sciences, advised by Haohan Wang. He studies LLM reasoning, test-time training, and long-context learning to make language models more capable and reliable on complex tasks. He hopes to build AI tools that people find genuinely useful and that can benefit a wide range of users.</p>
+                        <p class="interests"><strong>Research interests:</strong> LLM reasoning, test-time training, long-context learning, multi-agent reasoning</p>
+                        <p class="links">
+                            <a href="people/xiaopeng-yuan/">Homepage</a>
+                            <a href="https://scholar.google.com/citations?user=Z8tHFdIAAAAJ" target="_blank" rel="noopener">Google Scholar</a>
+                            <a href="https://www.linkedin.com/in/xiaopeng-yuan-394253431/" target="_blank" rel="noopener">LinkedIn</a>
+                        </p>
+                    </div>
+                </div>
+            </section>
+
+            <section id="haochuan-wang">
+                <div class="person-card">
+                    <div class="portrait">
+                        <img src="images/people/haochuan-wang.png" alt="Portrait of Haochuan Wang" loading="lazy"/>
+                    </div>
+                    <div class="bio">
+                        <h3><a href="https://hansenwang123.github.io/" target="_blank" rel="noopener">Haochuan Wang</a></h3>
+                        <p class="role">PhD Student, University of Illinois Urbana-Champaign</p>
+                        <p>Haochuan Wang aims to harness multidisciplinary approaches that integrate high-throughput genomics and LLM agents to elucidate the regulatory mechanisms underlying human diseases.</p>
+                        <p class="interests"><strong>Research interests:</strong> gene regulation, LLM agents, genetics</p>
+                        <p class="links">
+                            <a href="https://hansenwang123.github.io/" target="_blank" rel="noopener">Website</a>
+                        </p>
+                    </div>
+                </div>
+            </section>
 
             <section id="join">
                 <p style="text-align:center">Interested in joining us as a PhD student, intern or visiting scholar?

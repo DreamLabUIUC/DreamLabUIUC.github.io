@@ -10,7 +10,7 @@ BASE = "https://dream.ischool.illinois.edu/"
 ROOT = pathlib.Path(__file__).resolve().parent.parent
 posts = sorted(json.loads((ROOT / "tools/posts.json").read_text()), key=lambda p: p["date"], reverse=True)
 
-STATIC = [("", "1.0"), ("overview.html", "0.9"), ("publications.html", "0.9"), ("preprints.html", "0.8"), ("blogs.html", "0.9"), ("people.html", "0.8"),
+STATIC = [("", "1.0"), ("overview.html", "0.9"), ("publications.html", "0.9"), ("preprints.html", "0.8"), ("blogs.html", "0.9"), ("people.html", "0.8"), ("people/yurui-li/", "0.6"), ("people/haibo-jin/", "0.6"), ("people/peng-kuang/", "0.6"), ("people/xiaopeng-yuan/", "0.6"),
           ("secfid/", "0.8"), ("software.html", "0.7"), ("contact.html", "0.5")]
 
 
