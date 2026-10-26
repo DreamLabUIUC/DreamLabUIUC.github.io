@@ -1,0 +1,442 @@
+<!DOCTYPE HTML>
+<!--
+	Writing guide: tools/BLOG_PLAYBOOK.md
+-->
+<html lang="en">
+<head>
+    <meta name="robots" content="noindex">  <!-- delete this line in real posts -->
+    <title>How to Make LLM Answers More Diverse: Search for the Gaps | DREAM Lab, UIUC</title>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <meta name="description" content="How to make LLM answers more diverse: Gap Detection searches for relevant but unclaimed ideas, cutting answer similarity 10.8% on 90 Infinity-Chat queries.">
+    <link rel="canonical" href="https://dream.ischool.illinois.edu/blogs/make_llm_answers_more_diverse.html">
+    <meta property="og:type" content="article">
+    <meta property="og:site_name" content="DREAM Lab, UIUC">
+    <meta property="og:title" content="How to Make LLM Answers More Diverse: Search for the Gaps">
+    <meta property="og:description" content="How to make LLM answers more diverse: Gap Detection searches for relevant but unclaimed ideas, cutting answer similarity 10.8% on 90 Infinity-Chat queries.">
+    <meta property="og:url" content="https://dream.ischool.illinois.edu/blogs/make_llm_answers_more_diverse.html">
+    <meta property="og:image" content="https://dream.ischool.illinois.edu/blogs/imgs/make_llm_answers_more_diverse/cover.png">
+    <meta property="article:published_time" content="2026-10-26">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@HaohanWang">
+    <meta name="twitter:title" content="How to Make LLM Answers More Diverse: Search for the Gaps">
+    <meta name="twitter:description" content="How to make LLM answers more diverse: Gap Detection searches for relevant but unclaimed ideas, cutting answer similarity 10.8% on 90 Infinity-Chat queries.">
+    <meta name="twitter:image" content="https://dream.ischool.illinois.edu/blogs/imgs/make_llm_answers_more_diverse/cover.png">
+    <meta name="citation_title" content="Gap Detection: Mitigating Homogenization through Demand and Defensibility">
+    <meta name="citation_author" content="Yu, Xucheng">
+    <meta name="citation_author" content="Jin, Haibo">
+    <meta name="citation_author" content="Wang, Xiaoqi">
+    <meta name="citation_author" content="Kong, Runze">
+    <meta name="citation_author" content="Wang, Haohan">
+    <meta name="citation_publication_date" content="2026/10/14">
+    <meta name="citation_journal_title" content="arXiv">
+    <meta name="citation_arxiv_id" content="2610.20162">
+    <meta name="citation_pdf_url" content="https://arxiv.org/pdf/2610.20162">
+    <link rel="alternate" type="application/rss+xml" title="DREAM Lab blog" href="https://dream.ischool.illinois.edu/feed.xml">
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "BlogPosting",
+          "headline": "How to Make LLM Answers More Diverse: Search for the Gaps",
+          "description": "How to make LLM answers more diverse: Gap Detection searches for relevant but unclaimed ideas, cutting answer similarity 10.8% on 90 Infinity-Chat queries.",
+          "datePublished": "2026-10-26",
+          "dateModified": "2026-10-26",
+          "url": "https://dream.ischool.illinois.edu/blogs/make_llm_answers_more_diverse.html",
+          "mainEntityOfPage": "https://dream.ischool.illinois.edu/blogs/make_llm_answers_more_diverse.html",
+          "image": "https://dream.ischool.illinois.edu/blogs/imgs/make_llm_answers_more_diverse/cover.png",
+          "inLanguage": "en",
+          "keywords": ["LLM output diversity", "homogenization", "mode collapse", "Artificial Hivemind", "Infinity-Chat", "Gap Detection", "GapScore", "Vendi Score", "synthetic data diversity", "generative engine optimization"],
+          "author": [
+            {"@type": "Person", "name": "Xucheng Yu", "affiliation": {"@type": "CollegeOrUniversity", "name": "University of Illinois Urbana-Champaign"}},
+            {"@type": "Person", "name": "Haibo Jin", "url": "https://dream.ischool.illinois.edu/people/haibo-jin/", "affiliation": {"@type": "CollegeOrUniversity", "name": "University of Illinois Urbana-Champaign"}},
+            {"@type": "Person", "@id": "https://haohanwang.ischool.illinois.edu/#person", "name": "Haohan Wang", "url": "https://haohanwang.ischool.illinois.edu/", "affiliation": {"@type": "CollegeOrUniversity", "name": "University of Illinois Urbana-Champaign"}}
+          ],
+          "publisher": {"@type": "ResearchOrganization", "@id": "https://dream.ischool.illinois.edu/#lab", "name": "DREAM Lab, UIUC", "url": "https://dream.ischool.illinois.edu/"},
+          "about": {
+            "@type": "ScholarlyArticle",
+            "name": "Gap Detection: Mitigating Homogenization through Demand and Defensibility",
+            "url": "https://arxiv.org/abs/2610.20162",
+            "datePublished": "2026-10-14",
+            "publisher": "arXiv",
+            "author": [
+              {"@type": "Person", "name": "Xucheng Yu"}, {"@type": "Person", "name": "Haibo Jin"},
+              {"@type": "Person", "name": "Xiaoqi Wang"}, {"@type": "Person", "name": "Runze Kong"},
+              {"@type": "Person", "name": "Haohan Wang"}
+            ]
+          }
+        },
+        {
+          "@type": "BreadcrumbList",
+          "itemListElement": [
+            {"@type": "ListItem", "position": 1, "name": "DREAM Lab", "item": "https://dream.ischool.illinois.edu/"},
+            {"@type": "ListItem", "position": 2, "name": "Blog", "item": "https://dream.ischool.illinois.edu/blogs.html"},
+            {"@type": "ListItem", "position": 3, "name": "How to Make LLM Answers More Diverse: Search for the Gaps", "item": "https://dream.ischool.illinois.edu/blogs/make_llm_answers_more_diverse.html"}
+          ]
+        },
+        {
+          "@type": "FAQPage",
+          "mainEntity": [
+            {"@type": "Question", "name": "How can I make LLM answers more diverse?", "acceptedAnswer": {"@type": "Answer", "text": "One way is to tell the model what has already been said and ask it for something that is still missing. Gap Detection (Yu et al., arXiv 2026) embeds the existing answers and the question, searches for a direction that is relevant to the question but far from every existing answer, turns that direction into concept words, and has a model write a new answer around them. On 90 Infinity-Chat queries it lowered mean answer similarity by 10.8%."}},
+            {"@type": "Question", "name": "Why do LLMs give the same answers to open-ended questions?", "acceptedAnswer": {"@type": "Answer", "text": "Research points to mode collapse: post-training pushes models toward a few typical answers, and different models converge on the same ones. Artificial Hivemind (Jiang et al., NeurIPS 2025) documented this repetition within and across models on real open-ended queries, and Verbalized Sampling (Zhang et al., 2025) traces part of it to annotators' preference for typical text."}},
+            {"@type": "Question", "name": "Does raising the temperature make LLM answers more diverse?", "acceptedAnswer": {"@type": "Answer", "text": "It changes which words are sampled, but it does not tell the model which ideas are already covered, so answers often vary in wording more than in substance. The Gap Detection paper argues for representing the existing answers explicitly; it does not include a matched temperature baseline, so it does not show by how much it beats sampling changes."}},
+            {"@type": "Question", "name": "How do you measure the diversity of LLM outputs?", "acceptedAnswer": {"@type": "Answer", "text": "A common approach embeds each response and measures similarity. The Gap Detection paper reports Collision, the mean pairwise cosine similarity of a set of responses (lower means more varied), and the Vendi Score, the exponential of the entropy of the similarity matrix's eigenvalues, which estimates an effective number of distinct responses. Both depend on the embedding model and neither replaces human judgment."}}
+          ]
+        }
+      ]
+    }
+    </script>
+    <link rel="stylesheet" href="../assets2/css/main.css"/>
+    <link rel="stylesheet" href="blog.css"/>
+    <link rel="apple-touch-icon" sizes="180x180" href="../favicon/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="../favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="../favicon/favicon-16x16.png">
+    <link rel="manifest" href="../favicon/site.webmanifest">
+    <noscript>
+        <link rel="stylesheet" href="../assets2/css/noscript.css"/>
+    </noscript>
+</head>
+<body class="is-preload">
+<div id="page-wrapper">
+
+    <!-- Header -->
+    <header id="header">
+        <nav id="nav">
+            <ul>
+                <li><a href="../index.html">Home</a></li>
+                <li><a href="../overview.html">Overview</a></li>
+                <li><a href="../people.html">People</a></li>
+                <li><a href="../publications.html">Publications</a></li>
+                <li><a href="../blogs.html">Blogs</a></li>
+                <li><a href="../software.html">Software</a></li>
+                <li><a href="../contact.html">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Main -->
+    <div id="main" class="wrapper style1">
+        <div class="container">
+            <article>
+            <header class="major">
+                <h1>How to Make LLM Answers More Diverse: Search for the Gaps</h1>
+                <p>Language models keep landing on the same few answers. Instead of sampling again and hoping, you can map what has already been said and search for what is relevant but still missing.</p>
+                <p style="font-size:0.9em">
+                    By Xucheng Yu, <a href="https://dream.ischool.illinois.edu/people/haibo-jin/">Haibo Jin</a>,
+                    <a href="https://haohanwang.ischool.illinois.edu/">Haohan Wang</a>, and others &middot;
+                    <time datetime="2026-10-26">October 26, 2026</time> &middot;
+                    About our 2026 arXiv preprint (arXiv:2610.20162)
+                </p>
+                <ul class="actions">
+                    <li><a href="https://arxiv.org/abs/2610.20162" class="button">Paper</a></li>
+                    <li><a href="https://arxiv.org/pdf/2610.20162" class="button alt">PDF</a></li>
+                </ul>
+            </header>
+
+            <p>Ask a language model for a metaphor about time, and you will probably get a river. Ask again, or ask a
+                different model, and you will often get a river again, or weaving. How do you make LLM answers more
+                diverse in substance, not just in wording? Our paper, <em>Gap Detection: Mitigating Homogenization
+                through Demand and Defensibility</em>, by Xucheng Yu, Haibo Jin, Xiaoqi Wang, Runze Kong and Haohan Wang
+                (University of Illinois Urbana-Champaign, Starc Institute and University of Michigan), treats it as a
+                search problem: put the question and the answers already given into one embedding space, and look for a
+                direction that is relevant to the question but far from every existing answer. On 90 real open-ended
+                questions from Infinity-Chat, the answers this produced lowered average similarity by 10.8%.</p>
+
+            <!-- Answer-first summary. -->
+            <div class="intro-box">
+                <h2 style="margin-top:0">Key findings</h2>
+                <ul>
+                    <li><em>Gap Detection</em> (Yu et al., University of Illinois Urbana-Champaign, arXiv 2026) makes
+                        LLM answers more diverse by searching an embedding space for directions that score high on
+                        GapScore, the product of relevance to the question (Demand) and distance from the nearest existing
+                        answer (Defensibility).</li>
+                    <li>On 90 open-ended questions from the Infinity-Chat dataset, Gap Detection lowered mean answer
+                        similarity (Collision) from 0.7766 to 0.6915, a mean relative reduction of 10.8%, and its best new
+                        sentence passed the novelty check for 88 of 90 questions (97.8%).</li>
+                    <li>On five creative topics with 20 GPT-4o answers each, the reported mean relative reduction in
+                        Collision was 12.8%, ranging from 10.7% for a metaphor about time to 17.9% for describing hope
+                        through natural elements.</li>
+                    <li>Used to augment synthetic sentiment data (SST-2, 100 training examples per method), Gap
+                        Detection lowered Collision from 0.324 to 0.298 and raised the Vendi Score from 27.16 to 29.20
+                        compared with undirected data accumulation; the accuracy difference was one test example out of
+                        40.</li>
+                </ul>
+            </div>
+
+            <section>
+                <h2>Why do LLMs give the same answers to open-ended questions?</h2>
+                <p>The effect is well documented. <a href="https://arxiv.org/abs/2510.22954"><em>Artificial Hivemind:
+                    The Open-Ended Homogeneity of Language Models (and Beyond)</em></a> (Jiang, Chai, Li, Liu, Fok,
+                    Dziri, Tsvetkov, Sap, Albalak and Choi, NeurIPS 2025 Datasets and Benchmarks, oral) collected
+                    Infinity-Chat, 26K real open-ended user queries, and found that a single model keeps repeating itself
+                    and, more strikingly, that different models produce very similar outputs. The authors call it the
+                    Artificial Hivemind effect. <a href="https://arxiv.org/abs/2510.01171"><em>Verbalized Sampling: How to
+                    Mitigate Mode Collapse and Unlock LLM Diversity</em></a> (Zhang, Yu, Chong, Sicilia, Tomz, Manning and
+                    Shi, 2025) offers one cause: people who rate model outputs during post-training tend to prefer
+                    familiar, typical text, which pushes models toward the most typical answer.</p>
+                <p>For a person who wants a different perspective, a reworded river is not a new answer. The Gap
+                    Detection paper starts from a simple distinction: sampling another answer is not the same as
+                    identifying an answer that is missing. Changing the temperature or the decoding rule changes which
+                    tokens come out, but nothing in it represents what the existing answers already cover. Pushing away
+                    from previous answers alone does not work either: the farthest point from every river metaphor may
+                    have nothing to do with time.</p>
+
+                <h2>Key terms</h2>
+                <dl>
+                    <dt><strong>Homogenization</strong></dt>
+                    <dd>The tendency of language models to give semantically similar answers to questions that have many
+                        reasonable answers.</dd>
+                    <dt><strong>Occupied set</strong></dt>
+                    <dd>The content that already exists, such as earlier answers, competitors' product claims or a pool
+                        of synthetic training examples, which a new item should not repeat.</dd>
+                    <dt><strong>Demand</strong></dt>
+                    <dd>How relevant a candidate direction is to the question (or weighted set of queries), measured as
+                        cosine similarity in an embedding space.</dd>
+                    <dt><strong>Defensibility</strong></dt>
+                    <dd>One minus the similarity to the nearest occupied item; it measures geometric separation, not
+                        factual or commercial validity.</dd>
+                    <dt><strong>GapScore</strong></dt>
+                    <dd>Demand multiplied by Defensibility, so a direction scores well only if it is both relevant and
+                        unclaimed.</dd>
+                    <dt><strong>Collision</strong></dt>
+                    <dd>The mean pairwise cosine similarity of a set of texts; lower means the set is more varied.</dd>
+                    <dt><strong>Vendi Score</strong></dt>
+                    <dd>A diversity metric (Friedman and Dieng, TMLR 2023) equal to the exponential of the entropy of a
+                        similarity matrix's eigenvalues, read as an effective number of distinct items.</dd>
+                </dl>
+
+                <h2>How does Gap Detection find answers nobody gave?</h2>
+                <p>The method works in four steps, shown below.</p>
+                <figure>
+                    <img src="imgs/make_llm_answers_more_diverse/figure_method.png" alt="Diagram of Gap Detection. Left: a circle stands for the space of embedding directions; a white arrow points from the centre to the query, existing answers sit in a tight cluster at the tip of that arrow, a shaded wedge marks directions relevant to the query, and a blue dot marks a gap direction inside the wedge but away from the cluster, with a dashed line to the nearest existing answer. Right: GapScore equals Demand times Defensibility; four pipeline boxes read Search, Concepts, Write and Check; an example for a metaphor about time shows typical answers rivers and weaving, gap concept words poetic, nighttime and tempo, and the generated sentence 'The night hums a quiet tempo, its stars ticking softly'." style="max-width:100%"/>
+                    <figcaption class="figure-caption">Gap Detection searches for a direction that is relevant and unclaimed, then turns it into text and checks it (example from Table 13 of arXiv:2610.20162).</figcaption>
+                </figure>
+                <ol>
+                    <li><strong>Search.</strong> The question and the existing answers are embedded with OpenAI's
+                        text-embedding-3-small (1,536 dimensions). The method then climbs GapScore on the unit sphere with
+                        projected gradient steps, from 15 restarts per starting strategy (towards the question, near it,
+                        and random). The gradient has an intuitive form: one term pulls towards the question, the other
+                        pushes away from the nearest existing answer. Each chosen direction is added to the occupied set,
+                        so the next search must go somewhere else; the paper uses five directions per question.</li>
+                    <li><strong>Concepts.</strong> A direction is a vector, not an idea. The 20 nearest unused words from
+                        a 13,409-word English vocabulary are retrieved; Qwen2.5-3B-Instruct selects up to three that could
+                        answer the question, and GPT-4o-mini checks that they fit, for example that a word is not just a
+                        synonym of the question.</li>
+                    <li><strong>Write.</strong> GPT-4o-mini writes one sentence around the concept words while being told
+                        to avoid the 12 frequent words closest to the centre of the existing answers and their recurring
+                        sentence patterns.</li>
+                    <li><strong>Check.</strong> A new sentence is kept only if its similarity to every original answer
+                        is below 0.7 and the new sentences differ from each other (pairwise similarity below 0.8);
+                        otherwise the search continues.</li>
+                </ol>
+                <p>Why a product instead of a weighted sum? A sum lets a very high score on one factor hide a zero on the
+                    other; with a product, an empty but irrelevant direction scores zero, and so does a relevant
+                    direction that duplicates an existing answer. The paper also shows that whenever the question has a
+                    component outside the span of the existing answers, a direction with Defensibility of exactly one
+                    exists, which gives a lower bound on the best achievable score. With 20 answers in 1,536
+                    dimensions, there is plenty of geometric room; the hard part is finding words for it.</p>
+
+                <h2>How much more diverse do the answers get?</h2>
+                <p>The main study used five hand-picked creative topics, each with five query variants and 20 GPT-4o
+                    answers as the occupied set, plus a second study on 90 manually selected Infinity-Chat queries.</p>
+                <figure>
+                    <img src="imgs/make_llm_answers_more_diverse/cover.png" alt="Paired horizontal bar chart of Collision, the mean similarity between answers, before and after Gap Detection. Time metaphor 0.736 to 0.657 (minus 10.7%); loneliness metaphor 0.745 to 0.663 (minus 10.9%); redefine courage 0.805 to 0.716 (minus 11.0%); memory as substance 0.816 to 0.708 (minus 13.3%); hope via natural elements 0.818 to 0.671 (minus 17.9%); 90 Infinity-Chat queries 0.777 to 0.692 (minus 10.8%)." style="max-width:100%"/>
+                    <figcaption class="figure-caption">Collision before and after Gap Detection (data: Table 1 of arXiv:2610.20162).</figcaption>
+                </figure>
+                <table class="comparison-table">
+                    <tr><th>Evaluation</th><th>Collision before</th><th>Collision after</th><th>Mean relative reduction</th></tr>
+                    <tr><td>Time metaphor</td><td>0.7362</td><td>0.6573</td><td>10.7%</td></tr>
+                    <tr><td>Loneliness metaphor</td><td>0.7449</td><td>0.6634</td><td>10.9%</td></tr>
+                    <tr><td>Redefine courage</td><td>0.8046</td><td>0.7160</td><td>11.0%</td></tr>
+                    <tr><td>Memory as substance</td><td>0.8163</td><td>0.7080</td><td>13.3%</td></tr>
+                    <tr><td>Hope via natural elements</td><td>0.8178</td><td>0.6712</td><td>17.9%</td></tr>
+                    <tr><td><strong>Five-topic mean</strong></td><td>0.784</td><td>0.683</td><td><strong>12.8%</strong></td></tr>
+                    <tr><td><strong>90 Infinity-Chat queries</strong></td><td>0.7766</td><td>0.6915</td><td><strong>10.8%</strong></td></tr>
+                </table>
+                <p>Lower Collision means less similar answers; from Table 1 of the paper. The largest single-query
+                    reduction among the 90 queries was 20.5%.</p>
+                <p>Two transfer tests matter for practice. When each of four models (GPT-4o-mini, Claude-Sonnet-4.5,
+                    Gemini-2.0-Flash and Qwen2.5-3B) supplied its own 20 existing answers, Collision fell for every
+                    source, by 8.8% to 12.7% (10.4% on average), so the existing answers need not come from the model
+                    that writes the new ones. When the writer changed instead, the reduction was 9.0% with GPT-4o-mini,
+                    11.6% with GPT-4o and 14.8% with Claude-Sonnet-4.5: the search finds the gap, but how well it is
+                    expressed depends on the writer.</p>
+
+                <h2>Do you need both relevance and distance?</h2>
+                <p>The paper's ablation keeps every stage fixed and changes only the rule for choosing directions. The
+                    answer is less tidy than a method paper usually reports, and that is useful.</p>
+                <figure>
+                    <img src="imgs/make_llm_answers_more_diverse/figure_ablation.png" alt="Three small bar charts comparing four direction rules on five topics. Direction GapScore: random 0.003, Demand only 0.298, Defensibility only minus 0.228, GapScore 0.375 (best). Collision reduction: random 10.3%, Demand only 7.8%, Defensibility only 11.5% (best), GapScore 10.7%. Novelty pass: random 100% (best), Demand only 92%, Defensibility only 96%, GapScore 84%." style="max-width:100%"/>
+                    <figcaption class="figure-caption">Direction-selection ablation on five topics (data: Table 2 of arXiv:2610.20162).</figcaption>
+                </figure>
+                <table class="comparison-table">
+                    <tr><th>Direction rule</th><th>Direction GapScore</th><th>Collision reduction</th><th>Novelty pass</th></tr>
+                    <tr><td>Random direction</td><td>0.003</td><td>10.3%</td><td><strong>100%</strong></td></tr>
+                    <tr><td>Demand only</td><td>0.298</td><td>7.8%</td><td>92%</td></tr>
+                    <tr><td>Defensibility only</td><td>&minus;0.228</td><td><strong>11.5%</strong></td><td>96%</td></tr>
+                    <tr><td>GapScore (Demand &times; Defensibility)</td><td><strong>0.375</strong></td><td>10.7%</td><td>84%</td></tr>
+                </table>
+                <p>The product finds the best directions by its own measure, and Demand-only search, which ignores
+                    what has been said, gives the smallest reduction in repetition. But Defensibility-only search
+                    reduced Collision slightly more, and random directions passed the novelty check most often. The
+                    authors read this plainly: the shared concept-filtering and avoidance-prompting stages contribute a
+                    lot, and a better direction score does not by itself guarantee better text. The open problem is
+                    turning a well-separated, relevant direction into an answer that is measurably better, not just
+                    measurably different.</p>
+
+                <h2>Can the same idea diversify synthetic data and product positioning?</h2>
+                <p>The paper applies the same search in two more settings, each with its own checks.</p>
+                <p><strong>Synthetic training data.</strong> Recursive training on generated data can reduce diversity,
+                    and keeping old data alongside new data changes that trajectory. Here the occupied set is the
+                    current pool of synthetic SST-2 sentiment examples, demand comes from the class descriptions, and a
+                    VADER polarity check filters each new example. After five rounds, with 100 training examples per
+                    method:</p>
+                <table class="comparison-table">
+                    <tr><th>Method</th><th>Collision (lower = more varied)</th><th>Vendi Score</th><th>Accuracy (40 test examples)</th></tr>
+                    <tr><td>No intervention (replace the pool each round)</td><td>0.362</td><td>9.06</td><td>60.0%</td></tr>
+                    <tr><td>Data accumulation (keep pool, add undirected samples)</td><td>0.324</td><td>27.16</td><td>60.0%</td></tr>
+                    <tr><td>Gap Detection (keep pool, add directed samples)</td><td><strong>0.298</strong></td><td><strong>29.20</strong></td><td>62.5%</td></tr>
+                </table>
+                <p>From Table 4 of the paper. The 2.5-point accuracy difference is one test example. In separate runs
+                    with four different generators, Gap Detection had lower Collision than accumulation every time, but
+                    its Vendi Score was 0.74 lower with Qwen2.5-3B.</p>
+                <p><strong>Product positioning for AI search.</strong> In generative engine optimization (GEO), new
+                    content should answer what shoppers ask while saying something competitors do not. With Amazon
+                    product claims for water filters, protein powder, sports water bottles and yoga mats, Gap Detection
+                    proposed new claims and a GPT-4o-mini citation simulation measured how much of an answer cited them.
+                    For water filters, the top direction (campground, wilderness, hike) had GapScore 0.410 and a
+                    citation share of 0.518; a generic direction (screened, cleansing, reservoir) was cited slightly
+                    more, 0.544, but had GapScore 0.135. Being cited and being differentiated are not the same thing.
+                    These are proposed positions in a simulation, not verified product facts.</p>
+
+                <h2>How does this compare with other ways to diversify LLM outputs?</h2>
+                <ul>
+                    <li><strong>Measuring the problem.</strong> <a href="https://arxiv.org/abs/2510.22954"><em>Artificial
+                        Hivemind</em></a> (Jiang et al., NeurIPS 2025) supplies both the motivation and the 90 queries
+                        used here. It also shows that reward models and LM judges are less well calibrated to human
+                        ratings on answers where people disagree, a reason to be careful about judging diversity with
+                        models alone.</li>
+                    <li><strong>Prompting for a distribution.</strong> <a href="https://arxiv.org/abs/2510.01171"><em>Verbalized
+                        Sampling</em></a> (Zhang et al., 2025) asks the model to list several responses with their
+                        probabilities, which raised diversity in creative writing by 1.6 to 2.1 times over direct
+                        prompting without training. It is simpler to deploy than Gap Detection, which needs an
+                        embedding model and a search loop. The two act at different points: Verbalized Sampling changes
+                        what the model generates in one go, while Gap Detection takes the existing answers as input
+                        and targets the space they leave empty. The Gap Detection paper does not compare against it.</li>
+                    <li><strong>Deciding when diversity matters.</strong> <a href="https://arxiv.org/abs/2509.21267"><em>Task-Dependent
+                        Evaluation of LLM Output Homogenization: A Taxonomy-Guided Framework</em></a> (Jain, Lanchantin,
+                        Nickel, Ross, Ullrich, Wilson and Watson-Daniels, 2025) argues that homogenization is a problem
+                        for creative tasks but not for a math answer, and only increases diversity where it is wanted.
+                        Gap Detection's concept and plausibility filters play a similar role in a narrower form: a new
+                        direction must still fit what the question asks for.</li>
+                    <li><strong>Reranking with redundancy.</strong> Maximal Marginal Relevance (Carbonell and Goldstein,
+                        SIGIR 1998) balances relevance against similarity to items already chosen. GapScore shares that
+                        idea, but multiplies instead of adds, searches continuous directions instead of reordering a fixed
+                        candidate list, and generates new text.</li>
+                    <li><strong>Synthetic data and model collapse.</strong> <a href="https://arxiv.org/abs/2404.01413"><em>Is
+                        Model Collapse Inevitable? Breaking the Curse of Recursion by Accumulating Real and Synthetic
+                        Data</em></a> (Gerstgrasser et al., COLM 2024) showed that accumulating data across generations,
+                        instead of replacing it, avoids collapse in the settings it studied. The Gap Detection experiment
+                        asks the next question, whether directing the new samples adds diversity beyond accumulation, in a
+                        much smaller classifier setting without retraining a generator.</li>
+                    <li><strong>Visibility in AI search.</strong> <a href="https://arxiv.org/abs/2311.09735"><em>GEO:
+                        Generative Engine Optimization</em></a> (Aggarwal et al., KDD 2024) showed that the way content
+                        is written can raise its visibility in generative engine answers by up to 40%; the citation
+                        measure here is adapted from it. Gap Detection addresses an earlier choice: which position new
+                        content should take relative to what competitors already claim.</li>
+                </ul>
+
+                <h2>What this does not show</h2>
+                <ul>
+                    <li><strong>No human judgment.</strong> Collision, novelty and the Vendi Score are computed with the
+                        same embedding model used for the search, and no human evaluation of answer quality is reported.
+                        Lower similarity is not the same as better or more creative answers.</li>
+                    <li><strong>No sampling baseline.</strong> The study does not rerun temperature, min-p or other
+                        decoding baselines on the same queries, so it does not show how much the method beats simply
+                        sampling differently.</li>
+                    <li><strong>Mixed ablation.</strong> GapScore wins on its own direction score but not on every
+                        output metric; the authors note that the filtering and prompting stages shared with the baselines contribute substantially.</li>
+                    <li><strong>Small, hand-picked evaluations.</strong> The topics and the 90 queries were selected
+                        manually, results are single runs without error bars, and the synthetic-data test uses 10 seed examples per class
+                        and 40 test examples with a TF-IDF classifier.</li>
+                    <li><strong>Simulated GEO.</strong> The product study uses a fixed citation simulation, not a live
+                        AI search engine, and proposed claims are not checked against any real product. Any real use
+                        would need factual verification.</li>
+                    <li><strong>No code release</strong> is listed; the paper provides aggregate results, settings and
+                        prompts.</li>
+                </ul>
+
+                <h2>Frequently asked questions</h2>
+                <h3>How can I make LLM answers more diverse?</h3>
+                <p>One way is to tell the model what has already been said and ask it for something that is still
+                    missing. Gap Detection (Yu et al., arXiv 2026) embeds the existing answers and the question, searches
+                    for a direction that is relevant to the question but far from every existing answer, turns that
+                    direction into concept words, and has a model write a new answer around them. On 90 Infinity-Chat
+                    queries it lowered mean answer similarity by 10.8%.</p>
+                <h3>Why do LLMs give the same answers to open-ended questions?</h3>
+                <p>Research points to mode collapse: post-training pushes models toward a few typical answers, and
+                    different models converge on the same ones. Artificial Hivemind (Jiang et al., NeurIPS 2025)
+                    documented this repetition within and across models on real open-ended queries, and Verbalized
+                    Sampling (Zhang et al., 2025) traces part of it to annotators' preference for typical text.</p>
+                <h3>Does raising the temperature make LLM answers more diverse?</h3>
+                <p>It changes which words are sampled, but it does not tell the model which ideas are already covered,
+                    so answers often vary in wording more than in substance. The Gap Detection paper argues for
+                    representing the existing answers explicitly; it does not include a matched temperature baseline,
+                    so it does not show by how much it beats sampling changes.</p>
+                <h3>How do you measure the diversity of LLM outputs?</h3>
+                <p>A common approach embeds each response and measures similarity. The Gap Detection paper reports
+                    Collision, the mean pairwise cosine similarity of a set of responses (lower means more varied), and
+                    the Vendi Score, the exponential of the entropy of the similarity matrix's eigenvalues, which
+                    estimates an effective number of distinct responses. Both depend on the embedding model and neither
+                    replaces human judgment.</p>
+
+                <h2>Citation</h2>
+<pre><code>@article{yu2026gapdetection,
+  title   = {Gap Detection: Mitigating Homogenization through Demand and Defensibility},
+  author  = {Yu, Xucheng and Jin, Haibo and Wang, Xiaoqi and Kong, Runze and Wang, Haohan},
+  journal = {arXiv preprint arXiv:2610.20162},
+  year    = {2026}
+}</code></pre>
+
+                <h2>Related from our lab</h2>
+                <ul>
+                    <li><a href="comparing_llm_search_visibility.html">SEO vs GEO vs CORE: how content is ranked in LLM-based search</a></li>
+                    <li><a href="core_explained.html">CORE explained: how retrieved content changes rankings in LLM-based search, step by step</a></li>
+                    <li><a href="test_product_descriptions_ai_recommendations.html">How to test whether product descriptions influence AI shopping recommendations</a></li>
+                    <li><a href="../preprints.html">SCI-Defense: defending generative engines against GEO manipulation, and our other preprints</a></li>
+                    <li><a href="https://haohanwang.ischool.illinois.edu/research/llm-search-visibility.html">Visibility in LLM-based search: research overview by Haohan Wang</a></li>
+                </ul>
+            </section>
+            </article>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer id="footer">
+        <ul class="icons">
+            <li><a href="https://x.com/HaohanWang" class="icon brands alt fa-twitter"><span class="label">X</span></a></li>
+            <li><a href="https://www.linkedin.com/in/haohanwang/" class="icon brands alt fa-linkedin-in"><span class="label">LinkedIn</span></a></li>
+            <li><a href="https://github.com/DreamLabUIUC" class="icon brands alt fa-github"><span class="label">GitHub</span></a></li>
+            <li><a href="../feed.xml" class="icon solid alt fa-rss"><span class="label">RSS</span></a></li>
+        </ul>
+        <ul class="copyright">
+            <li>&copy; DREAM Lab, University of Illinois Urbana-Champaign</li>
+            <li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
+        </ul>
+    </footer>
+
+</div>
+
+<!-- Scripts -->
+<script src="../assets2/js/jquery.min.js"></script>
+<script src="../assets2/js/jquery.scrolly.min.js"></script>
+<script src="../assets2/js/jquery.dropotron.min.js"></script>
+<script src="../assets2/js/jquery.scrollex.min.js"></script>
+<script src="../assets2/js/browser.min.js"></script>
+<script src="../assets2/js/breakpoints.min.js"></script>
+<script src="../assets2/js/util.js"></script>
+<script src="../assets2/js/main.js"></script>
+
+</body>
+</html>

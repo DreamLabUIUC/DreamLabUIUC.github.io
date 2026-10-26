@@ -231,6 +231,17 @@
       "published": false,
       "note": "Requested by the author on 2026-10-23 in place of the scheduled early-work pick: one themed post on SVG as a bridge between images and language models (WACV 2025 paper, Beyond Pixels, Socratic Chart; content of an unpublished OpenReview paper used without naming it).",
       "publish_date": "2026-10-23"
+    },
+    {
+      "title": "Gap Detection: Mitigating Homogenization through Demand and Defensibility",
+      "arxiv": "2610.20162",
+      "year": 2026,
+      "status": "drafted",
+      "slug": "make_llm_answers_more_diverse",
+      "draft_date": "2026-10-26",
+      "kind": "new",
+      "primary_query": "how to make LLM answers more diverse",
+      "published": false
     }
   ]
 }
