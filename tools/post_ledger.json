@@ -242,6 +242,25 @@
       "kind": "new",
       "primary_query": "how to make LLM answers more diverse",
       "published": false
+    },
+    {
+      "title": "Large-scale Repository Engineering via Agent-Native Reusable Code Primitives",
+      "arxiv": "2610.09079",
+      "year": 2026,
+      "status": "skipped",
+      "reason": "Author said on 2026-10-28 that this paper was already discussed with the primitives package; picked the Alzheimer's stratification paper instead."
+    },
+    {
+      "title": "Stratifying Alzheimer's disease by patient-specific genetic signatures reveals cognition-linked and cross-disease heterogeneity",
+      "doi": "10.1038/s44400-026-00124-5",
+      "year": 2026,
+      "status": "drafted",
+      "slug": "genetic_subtypes_alzheimers_disease",
+      "draft_date": "2026-10-28",
+      "kind": "new",
+      "primary_query": "are there genetic subtypes of Alzheimer's disease",
+      "published": true,
+      "note": "Chosen by the author on 2026-10-28 in place of the scheduled pick; blog only (author already posted on X and LinkedIn), with extra depth for biomedical SEO/GEO."
     }
   ]
 }
