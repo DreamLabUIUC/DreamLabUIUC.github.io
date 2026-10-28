@@ -254,13 +254,14 @@
       "title": "Stratifying Alzheimer's disease by patient-specific genetic signatures reveals cognition-linked and cross-disease heterogeneity",
       "doi": "10.1038/s44400-026-00124-5",
       "year": 2026,
-      "status": "drafted",
+      "status": "published",
       "slug": "genetic_subtypes_alzheimers_disease",
       "draft_date": "2026-10-28",
       "kind": "new",
       "primary_query": "are there genetic subtypes of Alzheimer's disease",
       "published": true,
-      "note": "Chosen by the author on 2026-10-28 in place of the scheduled pick; blog only (author already posted on X and LinkedIn), with extra depth for biomedical SEO/GEO."
+      "note": "Chosen by the author on 2026-10-28 in place of the scheduled pick; blog only (author already posted on X and LinkedIn), with extra depth for biomedical SEO/GEO.",
+      "publish_date": "2026-10-28"
     }
   ]
 }

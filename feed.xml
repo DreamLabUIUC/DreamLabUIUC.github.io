@@ -6,7 +6,15 @@
   <atom:link href="https://dream.ischool.illinois.edu/feed.xml" rel="self" type="application/rss+xml"/>
   <description>Plain-language explainers of research from the DREAM Lab at the University of Illinois Urbana-Champaign.</description>
   <language>en</language>
-  <lastBuildDate>Fri, 23 Oct 2026 12:00:00 +0000</lastBuildDate>
+  <lastBuildDate>Wed, 28 Oct 2026 12:00:00 +0000</lastBuildDate>
+  <item>
+    <title>Are There Genetic Subtypes of Alzheimer's Disease? What We Found</title>
+    <link>https://dream.ischool.illinois.edu/blogs/genetic_subtypes_alzheimers_disease.html</link>
+    <guid>https://dream.ischool.illinois.edu/blogs/genetic_subtypes_alzheimers_disease.html</guid>
+    <pubDate>Wed, 28 Oct 2026 12:00:00 +0000</pubDate>
+    <category>Disease genetics</category>
+    <description>Are there genetic subtypes of Alzheimer's disease? Patient-level genetic profiles split 251 ADNI patients into two groups that differ on five memory measures.</description>
+  </item>
   <item>
     <title>Can We Turn Vision Into a Language Modeling Problem?</title>
     <link>https://dream.ischool.illinois.edu/blogs/turn_vision_into_language_modeling.html</link>
