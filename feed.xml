@@ -6,7 +6,15 @@
   <atom:link href="https://dream.ischool.illinois.edu/feed.xml" rel="self" type="application/rss+xml"/>
   <description>Plain-language explainers of research from the DREAM Lab at the University of Illinois Urbana-Champaign.</description>
   <language>en</language>
-  <lastBuildDate>Wed, 28 Oct 2026 12:00:00 +0000</lastBuildDate>
+  <lastBuildDate>Fri, 30 Oct 2026 12:00:00 +0000</lastBuildDate>
+  <item>
+    <title>Is There a Genetic Link Between Alzheimer's and Epilepsy?</title>
+    <link>https://dream.ischool.illinois.edu/blogs/alzheimers_epilepsy_genetic_link.html</link>
+    <guid>https://dream.ischool.illinois.edu/blogs/alzheimers_epilepsy_genetic_link.html</guid>
+    <pubDate>Fri, 30 Oct 2026 12:00:00 +0000</pubDate>
+    <category>Disease genetics</category>
+    <description>Is there a genetic link between Alzheimer's and epilepsy? In 251 ADNI patients, 9 of 13 epilepsy variants split two subgroups, vs 0.35% expected by chance.</description>
+  </item>
   <item>
     <title>Are There Genetic Subtypes of Alzheimer's Disease? What We Found</title>
     <link>https://dream.ischool.illinois.edu/blogs/genetic_subtypes_alzheimers_disease.html</link>

@@ -23,6 +23,7 @@ Haohan Wang is an Assistant Professor in the School of Information Sciences, aff
 - [SecFid](https://dream.ischool.illinois.edu/secfid/): benchmark for security and fidelity of prompt injection defenses (ICML 2026 Spotlight)
 
 ## Blog posts
+- [Is There a Genetic Link Between Alzheimer's and Epilepsy?](https://dream.ischool.illinois.edu/blogs/alzheimers_epilepsy_genetic_link.html) (2026-10-30): Is there a genetic link between Alzheimer's and epilepsy? In 251 ADNI patients, 9 of 13 epilepsy variants split two subgroups, vs 0.35% expected by chance.
 - [Are There Genetic Subtypes of Alzheimer's Disease? What We Found](https://dream.ischool.illinois.edu/blogs/genetic_subtypes_alzheimers_disease.html) (2026-10-28): Are there genetic subtypes of Alzheimer's disease? Patient-level genetic profiles split 251 ADNI patients into two groups that differ on five memory measures.
 - [Can We Turn Vision Into a Language Modeling Problem?](https://dream.ischool.illinois.edu/blogs/turn_vision_into_language_modeling.html) (2026-10-23): Can we turn vision into a language modeling problem? Written as SVG code, simple images let GPT-4 reach 0.89 on Sort-of-CLEVR, above a trained relation network.
 - [Can AI Agents Analyze Gene Expression Data Like Experts?](https://dream.ischool.illinois.edu/blogs/ai_agents_gene_expression_analysis.html) (2026-10-16): Can AI agents analyze gene expression data? GenoMAS (ACL Findings 2026) reaches 60.48% F1 on GenoTEX, up from 43.63%; human experts score 71.63%.

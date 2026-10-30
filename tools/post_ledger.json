@@ -266,7 +266,9 @@
         {
           "slug": "alzheimers_epilepsy_genetic_link",
           "draft_date": "2026-10-30",
-          "primary_query": "is there a genetic link between Alzheimer's and epilepsy"
+          "primary_query": "is there a genetic link between Alzheimer's and epilepsy",
+          "status": "published",
+          "publish_date": "2026-10-30"
         }
       ]
     }
