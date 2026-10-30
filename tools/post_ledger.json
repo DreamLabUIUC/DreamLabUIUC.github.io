@@ -261,7 +261,14 @@
       "primary_query": "are there genetic subtypes of Alzheimer's disease",
       "published": true,
       "note": "Chosen by the author on 2026-10-28 in place of the scheduled pick; blog only (author already posted on X and LinkedIn), with extra depth for biomedical SEO/GEO.",
-      "publish_date": "2026-10-28"
+      "publish_date": "2026-10-28",
+      "extra_posts": [
+        {
+          "slug": "alzheimers_epilepsy_genetic_link",
+          "draft_date": "2026-10-30",
+          "primary_query": "is there a genetic link between Alzheimer's and epilepsy"
+        }
+      ]
     }
   ]
 }
