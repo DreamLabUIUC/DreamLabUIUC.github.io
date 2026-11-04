@@ -6,7 +6,15 @@
   <atom:link href="https://dream.ischool.illinois.edu/feed.xml" rel="self" type="application/rss+xml"/>
   <description>Plain-language explainers of research from the DREAM Lab at the University of Illinois Urbana-Champaign.</description>
   <language>en</language>
-  <lastBuildDate>Fri, 30 Oct 2026 12:00:00 +0000</lastBuildDate>
+  <lastBuildDate>Wed, 04 Nov 2026 12:00:00 +0000</lastBuildDate>
+  <item>
+    <title>Can LLMs Simulate Real Online Discussions? What ThreadBench Found</title>
+    <link>https://dream.ischool.illinois.edu/blogs/llms_simulate_real_online_discussions.html</link>
+    <guid>https://dream.ischool.illinois.edu/blogs/llms_simulate_real_online_discussions.html</guid>
+    <pubDate>Wed, 04 Nov 2026 12:00:00 +0000</pubDate>
+    <category>LLM agents</category>
+    <description>Can LLMs simulate real online discussions? On ThreadBench (9,817 Reddit threads), two existing simulators pass only 0-17% of 12 realism tests.</description>
+  </item>
   <item>
     <title>Is There a Genetic Link Between Alzheimer's and Epilepsy?</title>
     <link>https://dream.ischool.illinois.edu/blogs/alzheimers_epilepsy_genetic_link.html</link>

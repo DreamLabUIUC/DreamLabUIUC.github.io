@@ -271,6 +271,20 @@
           "publish_date": "2026-10-30"
         }
       ]
+    },
+    {
+      "title": "ThreadBench: Benchmarking Realism in Agentic Simulation of Real-world Discussions",
+      "former_title": "MiroBench: Benchmarking Realism in Agentic Simulation of Real-world Discussions",
+      "arxiv": "2606.14715",
+      "year": 2026,
+      "status": "published",
+      "slug": "llms_simulate_real_online_discussions",
+      "draft_date": "2026-11-04",
+      "kind": "new",
+      "primary_query": "can LLMs simulate real online discussions",
+      "published": false,
+      "note": "Chosen by the author on 2026-11-04 (Scholar and the personal list still use the first title, MiroBench).",
+      "publish_date": "2026-11-04"
     }
   ]
 }
