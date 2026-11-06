@@ -269,6 +269,13 @@
           "primary_query": "is there a genetic link between Alzheimer's and epilepsy",
           "status": "published",
           "publish_date": "2026-10-30"
+        },
+        {
+          "slug": "what_is_personalized_regression",
+          "draft_date": "2026-11-06",
+          "primary_query": "what is personalized regression",
+          "status": "published",
+          "publish_date": "2026-11-06"
         }
       ]
     },

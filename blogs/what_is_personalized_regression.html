@@ -1,0 +1,551 @@
+<!DOCTYPE HTML>
+<html lang="en">
+<head>
+    <title>What Is Personalized Regression? Patient-Specific Genetic Effects | DREAM Lab, UIUC</title>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <meta name="description" content="What is personalized regression? It fits one set of effects per person. Het-PR built such profiles for 251 Alzheimer's patients across 1,684 SNPs.">
+    <link rel="canonical" href="https://dream.ischool.illinois.edu/blogs/what_is_personalized_regression.html">
+    <meta property="og:type" content="article">
+    <meta property="og:site_name" content="DREAM Lab, UIUC">
+    <meta property="og:title" content="What Is Personalized Regression? Patient-Specific Genetic Effects">
+    <meta property="og:description" content="What is personalized regression? It fits one set of effects per person. Het-PR built such profiles for 251 Alzheimer's patients across 1,684 SNPs.">
+    <meta property="og:url" content="https://dream.ischool.illinois.edu/blogs/what_is_personalized_regression.html">
+    <meta property="og:image" content="https://dream.ischool.illinois.edu/blogs/imgs/what_is_personalized_regression/cover.png">
+    <meta property="article:published_time" content="2026-11-06">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@HaohanWang">
+    <meta name="twitter:title" content="What Is Personalized Regression? Patient-Specific Genetic Effects">
+    <meta name="twitter:description" content="What is personalized regression? It fits one set of effects per person. Het-PR built such profiles for 251 Alzheimer's patients across 1,684 SNPs.">
+    <meta name="twitter:image" content="https://dream.ischool.illinois.edu/blogs/imgs/what_is_personalized_regression/cover.png">
+    <meta name="citation_title" content="Stratifying Alzheimer's disease by patient-specific genetic signatures reveals cognition-linked and cross-disease heterogeneity">
+    <meta name="citation_author" content="Zhang, Jiahui">
+    <meta name="citation_author" content="Yu, Ziyu">
+    <meta name="citation_author" content="Zhang, Xingcai">
+    <meta name="citation_author" content="Wang, Haohan">
+    <meta name="citation_publication_date" content="2026/09/29">
+    <meta name="citation_journal_title" content="npj Dementia">
+    <meta name="citation_volume" content="2">
+    <meta name="citation_firstpage" content="90">
+    <meta name="citation_doi" content="10.1038/s44400-026-00124-5">
+    <meta name="citation_pdf_url" content="https://www.nature.com/articles/s44400-026-00124-5.pdf">
+    <link rel="alternate" type="application/rss+xml" title="DREAM Lab blog" href="https://dream.ischool.illinois.edu/feed.xml">
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "BlogPosting",
+          "headline": "What Is Personalized Regression? Patient-Specific Genetic Effects",
+          "description": "What is personalized regression? It fits one set of effects per person. Het-PR built such profiles for 251 Alzheimer's patients across 1,684 SNPs.",
+          "datePublished": "2026-11-06",
+          "dateModified": "2026-11-06",
+          "url": "https://dream.ischool.illinois.edu/blogs/what_is_personalized_regression.html",
+          "mainEntityOfPage": "https://dream.ischool.illinois.edu/blogs/what_is_personalized_regression.html",
+          "image": "https://dream.ischool.illinois.edu/blogs/imgs/what_is_personalized_regression/cover.png",
+          "inLanguage": "en",
+          "keywords": ["personalized regression", "sample-specific models", "patient-specific genetic effects", "heteroscedastic personalized regression", "Het-PR", "varying-coefficient models", "linear mixed model", "FaST-LMM", "distance matching", "precision medicine statistics", "ADNI"],
+          "author": [
+            {"@type": "Person", "name": "Jiahui Zhang", "url": "https://github.com/zjh688", "affiliation": {"@type": "CollegeOrUniversity", "name": "University of Illinois Urbana-Champaign"}},
+            {"@type": "Person", "@id": "https://haohanwang.ischool.illinois.edu/#person", "name": "Haohan Wang", "url": "https://haohanwang.ischool.illinois.edu/", "affiliation": {"@type": "CollegeOrUniversity", "name": "University of Illinois Urbana-Champaign"}}
+          ],
+          "publisher": {"@type": "ResearchOrganization", "@id": "https://dream.ischool.illinois.edu/#lab", "name": "DREAM Lab, UIUC", "url": "https://dream.ischool.illinois.edu/"},
+          "about": [
+            {
+              "@type": "ScholarlyArticle",
+              "name": "Stratifying Alzheimer's disease by patient-specific genetic signatures reveals cognition-linked and cross-disease heterogeneity",
+              "url": "https://doi.org/10.1038/s44400-026-00124-5",
+              "sameAs": "https://www.nature.com/articles/s44400-026-00124-5",
+              "identifier": {"@type": "PropertyValue", "propertyID": "DOI", "value": "10.1038/s44400-026-00124-5"},
+              "datePublished": "2026-09-29",
+              "isPartOf": {"@type": "PublicationVolume", "volumeNumber": "2", "isPartOf": {"@type": "Periodical", "name": "npj Dementia", "publisher": {"@type": "Organization", "name": "Springer Nature"}}},
+              "pageStart": "90",
+              "author": [
+                {"@type": "Person", "name": "Jiahui Zhang", "affiliation": {"@type": "CollegeOrUniversity", "name": "University of Illinois Urbana-Champaign"}},
+                {"@type": "Person", "name": "Ziyu Yu", "affiliation": {"@type": "CollegeOrUniversity", "name": "Stanford University School of Medicine"}},
+                {"@type": "Person", "name": "Xingcai Zhang", "affiliation": {"@type": "CollegeOrUniversity", "name": "Stanford University School of Medicine"}},
+                {"@type": "Person", "name": "Haohan Wang", "affiliation": {"@type": "CollegeOrUniversity", "name": "University of Illinois Urbana-Champaign"}}
+              ]
+            },
+            {"@type": "DefinedTerm", "name": "Personalized regression", "description": "A regression approach that gives each sample its own coefficients and borrows information from other samples to make them estimable."},
+            {"@type": "MedicalCondition", "name": "Alzheimer's disease", "alternateName": "AD", "code": {"@type": "MedicalCode", "code": "G30", "codingSystem": "ICD-10"}, "sameAs": "https://en.wikipedia.org/wiki/Alzheimer%27s_disease"}
+          ],
+          "mentions": [
+            {"@type": "SoftwareSourceCode", "name": "Het-PR", "codeRepository": "https://github.com/zjh688/Het-PR"},
+            {"@type": "SoftwareApplication", "name": "FaST-LMM", "applicationCategory": "Genome-wide association analysis"},
+            {"@type": "Dataset", "name": "Alzheimer's Disease Neuroimaging Initiative (ADNI)", "url": "https://adni.loni.usc.edu"},
+            {"@type": "ScholarlyArticle", "name": "Personalized regression enables sample-specific pan-cancer analysis", "url": "https://doi.org/10.1093/bioinformatics/bty250"},
+            {"@type": "ScholarlyArticle", "name": "Learning Sample-Specific Models with Low-Rank Personalized Regression", "url": "https://arxiv.org/abs/1910.06939"}
+          ]
+        },
+        {
+          "@type": "BreadcrumbList",
+          "itemListElement": [
+            {"@type": "ListItem", "position": 1, "name": "DREAM Lab", "item": "https://dream.ischool.illinois.edu/"},
+            {"@type": "ListItem", "position": 2, "name": "Blog", "item": "https://dream.ischool.illinois.edu/blogs.html"},
+            {"@type": "ListItem", "position": 3, "name": "What Is Personalized Regression? Patient-Specific Genetic Effects", "item": "https://dream.ischool.illinois.edu/blogs/what_is_personalized_regression.html"}
+          ]
+        },
+        {
+          "@type": "FAQPage",
+          "mainEntity": [
+            {"@type": "Question", "name": "What is personalized regression?", "acceptedAnswer": {"@type": "Answer", "text": "Personalized regression is a family of methods that gives every sample its own regression coefficients instead of one set shared by everyone. Because one person's data cannot fix many coefficients alone, each method adds a rule for borrowing from other samples, usually that similar samples should have similar coefficients. The idea was introduced for genomics by Lengerich, Aragam and Xing (Bioinformatics, 2018)."}},
+            {"@type": "Question", "name": "How do you estimate patient-specific genetic effects?", "acceptedAnswer": {"@type": "Answer", "text": "You need a way to borrow strength across patients, since each patient supplies only one row of data. Heteroscedastic personalized regression (Het-PR, npj Dementia 2026) does this by fitting one weighted regression per target patient on the whole cohort, giving less weight to people whose background genotype is far from the target. The output is a model-derived association score per patient and SNP, not a measured causal effect."}},
+            {"@type": "Question", "name": "How is personalized regression different from a linear mixed model?", "acceptedAnswer": {"@type": "Answer", "text": "A linear mixed model in genetics estimates population-level effects and uses random effects for population-level structure. Het-PR estimates coefficients for one target person at a time. Its likelihood has the same algebraic form as a mixed model with a sample-specific variance, which lets it reuse fast solvers such as FaST-LMM, but its variance term is a weighting device, not a random effect."}},
+            {"@type": "Question", "name": "Is personalized regression the same as a polygenic risk score?", "acceptedAnswer": {"@type": "Answer", "text": "No. A polygenic risk score estimates a person's genetic liability to a trait from their genotype and data from a genome-wide association study, so it gives one number per person for that trait. Personalized regression instead estimates a separate profile of associations per person, one value for each variant, and it is a research method rather than a risk test."}}
+          ]
+        }
+      ]
+    }
+    </script>
+    <link rel="stylesheet" href="../assets2/css/main.css"/>
+    <link rel="stylesheet" href="blog.css"/>
+    <link rel="apple-touch-icon" sizes="180x180" href="../favicon/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="../favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="../favicon/favicon-16x16.png">
+    <link rel="manifest" href="../favicon/site.webmanifest">
+    <noscript>
+        <link rel="stylesheet" href="../assets2/css/noscript.css"/>
+    </noscript>
+</head>
+<body class="is-preload">
+<div id="page-wrapper">
+
+    <!-- Header -->
+    <header id="header">
+        <nav id="nav">
+            <ul>
+                <li><a href="../index.html">Home</a></li>
+                <li><a href="../overview.html">Overview</a></li>
+                <li><a href="../people.html">People</a></li>
+                <li><a href="../publications.html">Publications</a></li>
+                <li><a href="../blogs.html">Blogs</a></li>
+                <li><a href="../software.html">Software</a></li>
+                <li><a href="../contact.html">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Main -->
+    <div id="main" class="wrapper style1">
+        <div class="container">
+            <article>
+            <header class="major">
+                <h1>What Is Personalized Regression? Patient-Specific Genetic Effects</h1>
+                <p>Standard regression gives everyone the same coefficients. Personalized regression gives each person their own, even though each person is only one row of data. Here is how that can work, with a small example you can check by hand.</p>
+                <p style="font-size:0.9em">
+                    By <a href="https://github.com/zjh688">Jiahui Zhang</a>,
+                    <a href="https://haohanwang.ischool.illinois.edu/">Haohan Wang</a>, and others &middot;
+                    <time datetime="2026-11-06">November 6, 2026</time> &middot;
+                    About our npj Dementia 2026 paper
+                </p>
+                <ul class="actions">
+                    <li><a href="https://doi.org/10.1038/s44400-026-00124-5" class="button">Paper (open access)</a></li>
+                    <li><a href="https://github.com/zjh688/Het-PR" class="button alt">Code</a></li>
+                </ul>
+            </header>
+
+            <p>What is personalized regression? It is a way to fit a separate set of coefficients for every sample, so
+                that a genetic variant can matter for one patient and not for another. The difficulty is that one patient
+                is a single row of data, so the method has to borrow from other patients without erasing what makes each
+                one different. This post explains heteroscedastic personalized regression (Het-PR), from
+                <em>Stratifying Alzheimer's disease by patient-specific genetic signatures reveals cognition-linked and
+                cross-disease heterogeneity</em>, by Jiahui Zhang, Ziyu Yu, Xingcai Zhang and Haohan Wang (University of
+                Illinois Urbana-Champaign and Stanford University School of Medicine, <em>npj Dementia</em>, 2026). Het-PR
+                fits one weighted regression per person, and in that study it produced a profile over 1,684 SNPs for each
+                of 251 Alzheimer's patients.</p>
+
+            <div class="intro-box">
+                <h2 style="margin-top:0">Key findings</h2>
+                <ul>
+                    <li>Heteroscedastic personalized regression (Het-PR; Zhang, Yu, Zhang and Wang, <em>npj Dementia</em>
+                        2026, University of Illinois Urbana-Champaign) estimates one person's coefficients by fitting all
+                        samples and treating the difference between that person and everyone else as extra noise, which
+                        grows with distance on background covariates, so all 815 people in its Alzheimer's analysis inform
+                        each person's estimate.</li>
+                    <li>In the Alzheimer's Disease Neuroimaging Initiative (ADNI), Het-PR ran on 815 people (251 with
+                        Alzheimer's, 564 controls), with 1,684 exonic SNPs as features and 72,842 background SNPs defining
+                        similarity, and needed no tuned similarity scale because that scale was fixed in advance.</li>
+                    <li>In the <em>npj Dementia</em> paper's structured-subgroup simulations, where the similarity matrix
+                        came from the true groups, Het-PR found truly influential SNPs at AUROC 0.82&ndash;0.94 while
+                        baselines rarely exceeded 0.65, and clustering its scores recovered hidden subgroups with
+                        90&ndash;100% accuracy.</li>
+                    <li>The gain shrinks when the similarity information is weak: in the paper's sensitivity analysis on
+                        ADNI-derived genotypes, Het-PR's AUROC was 0.945 with oracle covariates and 0.914 with random ones,
+                        against 0.901 for a population model, and with no subgroups at all both scored 1.000.</li>
+                </ul>
+            </div>
+
+            <p style="font-size:0.9em"><strong>Note for patients and families:</strong> this post is about a statistical
+                research method. "Patient-specific" here means a score computed for each research participant, not a test
+                that a doctor can order, and it says nothing about what any individual should do. If you have questions
+                about genetic risk or memory changes, a neurologist or genetic counselor is the right person to ask.</p>
+
+            <section>
+                <h2>Why isn't one regression enough for everyone?</h2>
+                <p>Most genetic association studies estimate one effect per variant for the whole cohort. As the paper
+                    puts it, these traditional models treat all individuals as sharing a common genetic architecture. That
+                    is a reasonable start, and it is how many Alzheimer's risk loci were found. But if a variant pushes the
+                    outcome up in some people and has no effect or the opposite effect in others, the single average
+                    describes neither group.</p>
+                <p>For the clinical side of this problem, see our earlier posts on the same paper:
+                    <a href="genetic_subtypes_alzheimers_disease.html">Are there genetic subtypes of Alzheimer's disease?</a>
+                    covers the subgroups and memory differences, and
+                    <a href="alzheimers_epilepsy_genetic_link.html">Is there a genetic link between Alzheimer's and
+                    epilepsy?</a> covers the cross-disease result. This post is about the method underneath them.</p>
+
+                <h2>Key terms</h2>
+                <dl>
+                    <dt><strong>Personalized regression</strong></dt>
+                    <dd>A regression that gives each sample its own coefficients and borrows from other samples to make
+                        them estimable.</dd>
+                    <dt><strong>Sample-specific model</strong></dt>
+                    <dd>The general name in machine learning for a model with parameters that belong to one sample rather
+                        than to a whole population.</dd>
+                    <dt><strong>Heteroscedastic noise</strong></dt>
+                    <dd>Noise whose variance differs between observations, so some data points are trusted less than
+                        others.</dd>
+                    <dt><strong>Heteroscedastic personalized regression (Het-PR)</strong></dt>
+                    <dd>A personalized regression that estimates each target person's coefficients from all samples by
+                        giving more distant samples larger noise variance.</dd>
+                    <dt><strong>Background covariates (the matrix C)</strong></dt>
+                    <dd>The variables used to decide who counts as similar to whom; in the ADNI analysis, 72,842 SNPs
+                        outside the feature set.</dd>
+                    <dt><strong>Linear mixed model (LMM)</strong></dt>
+                    <dd>A regression with fixed effects plus random effects, widely used in genome-wide association
+                        studies.</dd>
+                    <dt><strong>AUROC</strong></dt>
+                    <dd>A score from 0.5 (chance) to 1.0 (perfect) for how well a method ranks true signals above false
+                        ones.</dd>
+                </dl>
+
+                <h2>Why can't you just fit a regression for each person?</h2>
+                <p>Ordinary linear regression assumes one coefficient vector &beta; for all n samples:</p>
+                <div class="equation">Y = X&beta; + &epsilon;</div>
+                <p>Personalized regression replaces it with a vector &beta;<sub>i</sub> for each sample i:</p>
+                <div class="equation">Y<sub>i</sub> = X<sub>i</sub>&beta;<sub>i</sub> + &epsilon;<sub>i</sub></div>
+                <p>Now there are n times as many unknowns, and, as the paper notes, each &beta;<sub>i</sub> is supported by
+                    only a single sample. One row cannot determine many coefficients, so every personalized method needs an
+                    extra assumption. The classic one, from Lengerich, Aragam and Xing, is that samples with similar
+                    covariates should have similar coefficients.</p>
+
+                <h2>How does heteroscedastic personalized regression work?</h2>
+                <figure>
+                    <img src="imgs/what_is_personalized_regression/figure_method.png" alt="Method diagram of Het-PR. Top: earlier personalized regression lets each person's effects differ with the same noise for all, solving all coefficient vectors jointly; Het-PR exchanges this for one effect vector for the target person with noise that differs by person, because the term X_j times (beta_j minus beta_i) becomes extra noise. Middle, four steps: pick a target person from the 815 in ADNI, 251 with Alzheimer's and 564 controls; measure distance from every person to the target on 72,842 background SNPs to get a variance; fit a weighted regression on all 815 people using the FaST-LMM solver; store the target's score for each of 1,684 exonic SNPs and move to the next person. Bottom: circles shrink as people get more distant from the target in background genotype, showing lower weight. The result is a patient-by-SNP score matrix of 251 Alzheimer's patients by 1,684 SNPs, clustered into groups of 232 and 19." style="max-width:100%"/>
+                    <figcaption class="figure-caption">The "exchange" at the heart of Het-PR, and the four steps repeated for each person (summary of the Methods of the npj Dementia paper; the circle sizes are schematic).</figcaption>
+                </figure>
+                <p>Het-PR's idea is to move the variation from the coefficients into the noise. The paper calls this an
+                    "exchange": instead of a model with a different coefficient vector per person and the same noise for
+                    everyone, it uses a model that is homogeneous in the coefficients, with error variance that differs
+                    across samples.</p>
+                <p>Fix a target person i. For anyone else, j, add and subtract the same term:</p>
+                <div class="equation">Y<sub>j</sub> = X<sub>j</sub>&beta;<sub>i</sub> + X<sub>j</sub>(&beta;<sub>j</sub> &minus; &beta;<sub>i</sub>) + &epsilon;<sub>j</sub></div>
+                <p>This is plain algebra, and it says that person j's outcome can be written with person i's coefficients
+                    plus a discrepancy. Het-PR then treats the discrepancy as a zero-mean Gaussian term with variance
+                    &sigma;<sub>ji</sub><sup>2</sup>. That variance cannot be computed from the unknown coefficients, so it
+                    is tied to something observable, the distance between the two people on the background covariates:</p>
+                <div class="equation">&sigma;<sub>ji</sub><sup>2</sup> = &gamma;<sup>2</sup> &#8214;C<sub>i</sub> &minus; C<sub>j</sub>&#8214;<sup>2</sup>,
+                    &nbsp;&nbsp; so &nbsp;&nbsp; Y<sub>j</sub> ~ N( X<sub>j</sub>&beta;<sub>i</sub>, &nbsp;&sigma;<sub>ji</sub><sup>2</sup> X<sub>j</sub>X<sub>j</sub><sup>T</sup> + &sigma;<sub>&epsilon;</sub><sup>2</sup> )</div>
+                <p>Every person now contributes to the estimate of &beta;<sub>i</sub>, but someone far from the target
+                    carries a large variance and so a small effective weight. The target's own row has
+                    &sigma;<sub>ii</sub><sup>2</sup> = 0. Repeat for each target, and you have a coefficient vector per
+                    person.</p>
+                <p>The paper is explicit that this is a statistical working design. It does not claim that differences
+                    between Alzheimer's patients are unstructured random noise; the Gaussian term is a variance-weighting
+                    approximation that makes each person's estimate feasible.</p>
+
+                <h2>Can you show personalized regression with a worked example?</h2>
+                <p>Yes. The numbers below are made up by us to show the mechanics; they are not from the paper. Six people
+                    have a dosage x of one SNP and an outcome y. The true effect is +1 for P1&ndash;P3 and &minus;1 for
+                    P4&ndash;P6, and nobody has told the model which is which. With no intercept and a noise variance
+                    &sigma;<sub>&epsilon;</sub><sup>2</sup> = 0.1, take P1 as the target. Each person's variance is
+                    &sigma;<sub>j1</sub><sup>2</sup>x<sup>2</sup> + 0.1, and each weight is one over that variance.</p>
+                <table class="comparison-table">
+                    <tr><th>Person</th><th>SNP dosage x</th><th>Outcome y</th><th>Background distance to P1 (&sigma;<sub>j1</sub><sup>2</sup>)</th><th>Variance</th><th>Weight</th><th>Share of total weight</th></tr>
+                    <tr><td>P1 (target)</td><td>2</td><td>2.1</td><td>0</td><td>0.10</td><td>10.00</td><td>39.5%</td></tr>
+                    <tr><td>P2</td><td>1</td><td>0.9</td><td>0.02</td><td>0.12</td><td>8.33</td><td>33.0%</td></tr>
+                    <tr><td>P3</td><td>2</td><td>1.9</td><td>0.02</td><td>0.18</td><td>5.56</td><td>22.0%</td></tr>
+                    <tr><td>P4</td><td>1</td><td>&minus;1.1</td><td>1</td><td>1.10</td><td>0.91</td><td>3.6%</td></tr>
+                    <tr><td>P5</td><td>2</td><td>&minus;1.9</td><td>1</td><td>4.10</td><td>0.24</td><td>1.0%</td></tr>
+                    <tr><td>P6</td><td>2</td><td>&minus;2.1</td><td>1</td><td>4.10</td><td>0.24</td><td>1.0%</td></tr>
+                </table>
+                <p>The weighted least-squares slope is &Sigma;wxy / &Sigma;wx<sup>2</sup> = 0.92 for P1. One ordinary
+                    regression on all six gives &Sigma;xy / &Sigma;x<sup>2</sup> = &minus;0.2 / 18 = &minus;0.01, which says
+                    that the SNP does nothing. Swap the target to P5, with the distances reversed, and the same calculation
+                    gives &minus;0.92. Nobody was dropped from either fit; the weights did the work.</p>
+                <figure>
+                    <img src="imgs/what_is_personalized_regression/figure_worked_example.png" alt="Scatter plot of the six made-up people, SNP dosage on the x axis and outcome on the y axis. P1, P2 and P3 lie on a rising line and are drawn large because they carry most of the weight in P1's fit; P4, P5 and P6 lie on a falling line and are drawn small. A dashed nearly flat line shows the single population fit, slope minus 0.01. A blue line shows the fit for target P1, slope plus 0.92, and a dark line shows the fit for target P5, slope minus 0.92. True effects are plus 1 for P1 to P3 and minus 1 for P4 to P6." style="max-width:100%"/>
+                    <figcaption class="figure-caption">The population fit averages two opposite effects to about zero; the target-specific fits recover each one. Illustration with made-up numbers, not data from the paper.</figcaption>
+                </figure>
+                <p>Two simplifications to keep in mind. The real model has many features, and it runs through a mixed-model
+                    solver instead of this one-line formula. And here we chose distances that happen to line up with the
+                    true groups; in real data the distances come from C, which may line up much less well. The
+                    <a href="#simulations">simulation results below</a> show what that costs.</p>
+
+                <h2>How is Het-PR applied to real genetic data?</h2>
+                <p>The ADNI analysis is a good example of the choices a user has to make.</p>
+                <ul>
+                    <li><strong>Outcome.</strong> Alzheimer's versus cognitively normal diagnosis at the baseline visit,
+                        for 815 people (251 Alzheimer's, 564 controls). Demographic covariates were regressed out first,
+                        and the standardized residuals were used as the outcome.</li>
+                    <li><strong>Features X.</strong> 1,684 exonic SNPs in Alzheimer's-related genes.</li>
+                    <li><strong>Background C.</strong> The remaining 72,842 SNPs, used only to measure who is similar to
+                        whom.</li>
+                    <li><strong>Similarity scale.</strong> &gamma; was not tuned by cross-validation or grid search. The
+                        squared distance was divided by the number of background SNPs m, which is the same as fixing
+                        &gamma; = 1/&radic;m.</li>
+                    <li><strong>Fit.</strong> Equation 12 of the paper has the same Gaussian form as a linear mixed model
+                        with a sample-specific variance, so each target's fit runs through the FaST-LMM algorithm. The
+                        paper reports that overall cost scales linearly with n because the fit is repeated once per
+                        sample.</li>
+                    <li><strong>Output.</strong> For each person and SNP, a working-likelihood score: the paper's term is an
+                        "individualized association score", the local evidence that the SNP helps separate Alzheimer's from
+                        controls for that person under the model.</li>
+                    <li><strong>Use.</strong> Scores for the 251 patients were transformed to
+                        &minus;log<sub>10</sub>, then clustered hierarchically, which gave groups of 232 and 19 patients. The
+                        split was unchanged in 500 runs that each used 80% of the patients.</li>
+                </ul>
+                <p>The same recipe can in principle personalize other base models. The paper writes a general form for any
+                    regression function f(X; &Theta;), where the variance term uses the model's Jacobian with respect to
+                    its parameters, so nonlinear models fit the framework on paper. The ADNI analysis used the linear
+                    version, and the two base models in the simulations were a linear mixed model variant and standard
+                    linear regression.</p>
+                <p>The code is at <a href="https://github.com/zjh688/Het-PR">github.com/zjh688/Het-PR</a> and runs on your
+                    own prepared data with <code>python runHetPr.py fit -t csv -n toyData</code>. The repository holds the
+                    model and data pipeline; scripts for reproducing the paper's experiments are available from the
+                    authors. ADNI data require an application and a data use agreement.</p>
+
+                <h2 id="simulations">Does personalized regression recover true effects in simulations?</h2>
+                <p>Yes in the settings tested, though by how much depends a lot on the setting. The main benchmark split
+                    samples into cohorts with different sparse effect vectors, across 27 configurations of sample size,
+                    feature count, sparsity and number of cohorts, with five runs each. C was the true cohort information,
+                    so similarity was correctly specified by construction.</p>
+                <table class="comparison-table">
+                    <tr><th>Structured-subgroup benchmark (oracle C)</th><th>Het-PR</th><th>Alternatives</th></tr>
+                    <tr><td>AUROC for finding truly influential SNPs</td><td><strong>typically 0.82&ndash;0.94</strong></td><td>baselines rarely above 0.65</td></tr>
+                    <tr><td>Recovering latent subgroups by clustering scores</td><td><strong>90&ndash;100% accuracy</strong>; AUROC near 0.95 in most settings</td><td>subgroup AUROC often close to 0.5</td></tr>
+                </table>
+                <p>From the Simulation results section of the paper. The baselines were a distance-matching personalized
+                    regression, penalized angular regression, a clustering regression and a population regression. In the
+                    supplement, Het-PR scored higher than the others in nearly all cases, with one stated exception: a
+                    clustering regression that was told the true clusters.</p>
+                <p>An oracle C is a generous test, and the authors ran a sensitivity analysis to check how much it
+                    helped. There, C was replaced by noisy group labels, principal components of the features, or random
+                    numbers:</p>
+                <figure>
+                    <img src="imgs/what_is_personalized_regression/figure_sensitivity.png" alt="Dumbbell chart of mean causal-SNP AUROC for Het-PR versus a population baseline. With real-genotype features, the baseline is 0.901 and Het-PR is 0.945 with oracle group C, 0.924 with noisy group C, 0.922 with feature PCA C and 0.914 with random C. With uniform features, the baseline is 0.806 and Het-PR is 0.864, 0.855, 0.843, 0.843 and 0.841 for oracle, noisy 0.10, noisy 0.30, feature PCA and random C. With a nonlinear interaction, the baseline is 0.785 and Het-PR is 0.816 with feature PCA C and 0.819 with random C." style="max-width:100%"/>
+                    <figcaption class="figure-caption">Het-PR stays ahead of the population model as C gets worse, but the gap narrows (data: Table S8 of the npj Dementia supplement).</figcaption>
+                </figure>
+                <table class="comparison-table">
+                    <tr><th>Scenario</th><th>Features</th><th>C</th><th>Het-PR AUROC</th><th>Population AUROC</th></tr>
+                    <tr><td>Structured subgroups</td><td>Real genotype</td><td>Oracle group</td><td><strong>0.945</strong></td><td>0.901</td></tr>
+                    <tr><td>Structured subgroups</td><td>Real genotype</td><td>Noisy group (0.30)</td><td><strong>0.924</strong></td><td>0.901</td></tr>
+                    <tr><td>Structured subgroups</td><td>Real genotype</td><td>Feature PCA</td><td><strong>0.922</strong></td><td>0.901</td></tr>
+                    <tr><td>Structured subgroups</td><td>Real genotype</td><td>Random</td><td><strong>0.914</strong></td><td>0.901</td></tr>
+                    <tr><td>Structured subgroups</td><td>Uniform</td><td>Oracle group</td><td><strong>0.864</strong></td><td>0.806</td></tr>
+                    <tr><td>Structured subgroups</td><td>Uniform</td><td>Noisy group (0.10)</td><td><strong>0.855</strong></td><td>0.806</td></tr>
+                    <tr><td>Structured subgroups</td><td>Uniform</td><td>Noisy group (0.30)</td><td><strong>0.843</strong></td><td>0.806</td></tr>
+                    <tr><td>Structured subgroups</td><td>Uniform</td><td>Feature PCA</td><td><strong>0.843</strong></td><td>0.806</td></tr>
+                    <tr><td>Structured subgroups</td><td>Uniform</td><td>Random</td><td><strong>0.841</strong></td><td>0.806</td></tr>
+                    <tr><td>Nonlinear interaction</td><td>Uniform</td><td>Feature PCA</td><td><strong>0.816</strong></td><td>0.785</td></tr>
+                    <tr><td>Nonlinear interaction</td><td>Uniform</td><td>Random</td><td><strong>0.819</strong></td><td>0.785</td></tr>
+                    <tr><td>No subgroups</td><td>Uniform</td><td>Feature PCA</td><td>1.000</td><td>1.000</td></tr>
+                    <tr><td>No subgroups</td><td>Uniform</td><td>Random</td><td>1.000</td><td>1.000</td></tr>
+                </table>
+                <p>From Table S8 of the paper's supplement: mean sample-level causal-SNP AUROC across three seeds.</p>
+                <p>Three readings. Better similarity information helps, since oracle C is the top score in both feature
+                    settings. Het-PR did not fall below the population model when C was noisy or even random, and when there
+                    were no subgroups at all it simply matched it, so personalizing did no harm here. And the margins in
+                    this table are much smaller than the 0.82&ndash;0.94 versus 0.65 contrast above. The population baseline
+                    scores far higher here than the baselines in the main benchmark, so the two sets of numbers appear to come
+                    from different simulation setups and should not be read side by side. For planning a real analysis, we think
+                    this table is the more cautious guide.</p>
+                <p>There is also a check on real data. In a negative control, the Alzheimer's and control labels were
+                    shuffled and Het-PR was refitted 50 times. The share of patient-SNP scores at or below 0.05 was 5.66%
+                    with the real labels, against a shuffled median of 4.13% and a range of 2.49&ndash;10.83%. So the count
+                    of scores passing the threshold is not evidence of signal, and the authors do not use it as such: it
+                    is a calibration reference showing that the scores behave close to their null at that level.</p>
+
+                <h2>How does Het-PR compare with mixed models and other sample-specific methods?</h2>
+                <p>Het-PR sits in a long line of models whose parameters vary across samples:</p>
+                <table class="comparison-table">
+                    <tr><th>Approach</th><th>What varies</th><th>How samples share information</th></tr>
+                    <tr><td>Population regression</td><td>Nothing: one &beta; for all</td><td>All samples count equally</td></tr>
+                    <tr><td>Mixture of regressions</td><td>A few group-level models</td><td>Samples in a component share one model</td></tr>
+                    <tr><td>Varying-coefficient model</td><td>&beta; as a smooth function of covariates</td><td>Through that function</td></tr>
+                    <tr><td>Contextualized model</td><td>&beta; from a learned context encoder</td><td>A deep network maps context to parameters</td></tr>
+                    <tr><td>Personalized regression (distance matching)</td><td>A &beta;<sub>i</sub> per sample</td><td>Joint fit; coefficient distances match covariate distances</td></tr>
+                    <tr><td>Low-rank personalized regression</td><td>A &beta;<sub>i</sub> per sample, in a shared low-rank dictionary</td><td>Shared dictionary plus distance matching</td></tr>
+                    <tr><td>Bayesian hierarchical model</td><td>Subject effects drawn from a population prior</td><td>Shrinkage towards the population</td></tr>
+                    <tr><td><strong>Het-PR</strong></td><td>A &beta;<sub>i</sub> per target person</td><td>Separate fit per target; variance grows with distance</td></tr>
+                </table>
+                <ul>
+                    <li><strong>Personalized regression.</strong> <a href="https://doi.org/10.1093/bioinformatics/bty250"><em>Personalized
+                        regression enables sample-specific pan-cancer analysis</em></a> (Benjamin Lengerich, Bryon Aragam and
+                        Eric Xing, Carnegie Mellon University, <em>Bioinformatics</em>, 2018) is the work Het-PR builds on.
+                        It starts from a population lasso fit and uses a distance-matching regularizer, so that distances
+                        between coefficient vectors track distances between covariates, on TCGA data with 9,663 RNA-seq
+                        profiles (8,944 cases and 719 matched controls). Its joint formulation states the problem
+                        directly; Het-PR is a different route to the same target.</li>
+                    <li><strong>Low-rank personalized regression.</strong> <a href="https://arxiv.org/abs/1910.06939"><em>Learning
+                        Sample-Specific Models with Low-Rank Personalized Regression</em></a> (Lengerich, Aragam and Xing,
+                        NeurIPS 2019) factorizes the coefficient matrix through a shared dictionary, cutting the parameter
+                        count from about np to q(n + p), and fits over 10,000 samples and thousands of predictors in under
+                        an hour on a laptop. On a mass-spectrometry cancer task it reports test AUROC 0.923, against 0.794
+                        for a population model and 0.876 for a mixture of regressions. Where it estimates all samples jointly
+                        in a compressed space, Het-PR fits each target separately.</li>
+                    <li><strong>Varying-coefficient models.</strong> <a href="https://doi.org/10.1111/j.2517-6161.1993.tb01939.x"><em>Varying-Coefficient
+                        Models</em></a> (Trevor Hastie and Robert Tibshirani, <em>Journal of the Royal Statistical
+                        Society: Series B</em>, 1993) let coefficients vary as smooth functions of other variables. This is
+                        the classic statistical ancestor, and a good choice when a meaningful covariate such as age drives
+                        the change.</li>
+                    <li><strong>Contextualized models.</strong> <a href="https://arxiv.org/abs/2310.11340"><em>Contextualized
+                        Machine Learning</em></a> (Lengerich, Ellington, Rubbi, Kellis and Xing, arXiv, 2023) applies deep
+                        learning to the relationship between context and context-specific parametric models, with an
+                        accompanying PyTorch package. <a href="https://cnellington.github.io/blog/2022/personalized_models">Evolution
+                        of Personalized Models</a> by Caleb Ellington is a clear map of this whole family.</li>
+                    <li><strong>Linear mixed models.</strong> <a href="https://doi.org/10.1038/nmeth.1681"><em>FaST linear mixed
+                        models for genome-wide association studies</em></a> (Lippert, Listgarten, Liu, Kadie, Davidson and
+                        Heckerman, <em>Nature Methods</em>, 2011) is an algorithm that scales linearly with cohort size in
+                        run time and memory, and its authors report analyzing 120,000 individuals in a few hours. Het-PR uses
+                        this machinery for computation only. Its likelihood has the same form as a mixed model, but the
+                        variance comes from the working discrepancy term and the C-based weighting, not from population-level
+                        random effects, so the paper does not read it as a conventional random effect.</li>
+                    <li><strong>Bayesian hierarchical models.</strong> As the paper describes them, these place a population
+                        distribution or prior over subject-level coefficients and return posterior or shrinkage estimates.
+                        Het-PR builds a working likelihood for each target instead, so its output is a score profile, not a
+                        posterior distribution. If you need calibrated uncertainty about a person's effect, a hierarchical
+                        model is the more direct tool.</li>
+                </ul>
+
+                <h2>When should you use personalized regression?</h2>
+                <p>Our reading of the results above, as practical guidance:</p>
+                <ul>
+                    <li><strong>It suits exploration.</strong> Use it when you suspect that effects differ between people,
+                        you have no labels for the groups, and you want profiles to cluster or inspect.</li>
+                    <li><strong>You need a defensible C.</strong> The method is only as personal as its similarity measure.
+                        Choose C before looking at the results, and keep it separate from the features, as the ADNI analysis
+                        did.</li>
+                    <li><strong>It adds little if effects are shared.</strong> In the no-subgroup simulation, Het-PR matched
+                        the population model. A population analysis remains the simpler first step.</li>
+                    <li><strong>Validate downstream.</strong> Treat the scores as a way to generate structure, then test that
+                        structure against information the model never saw, as the paper did with memory measures and
+                        trait-associated variants.</li>
+                </ul>
+
+                <h2>What this does not show</h2>
+                <ul>
+                    <li><strong>Scores are not measured effects.</strong> Het-PR outputs are model-derived association scores,
+                        conditional on the working likelihood and on C. A per-patient score is not a validated finding that a
+                        SNP acts in that person, and it is not a causal estimate.</li>
+                    <li><strong>No individual-level ground truth.</strong> In real data nobody knows a patient's true
+                        coefficients. The evidence for accuracy comes from simulations, where the truth is known by
+                        construction.</li>
+                    <li><strong>Scores near their null at p &le; 0.05.</strong> With shuffled labels, the share of passing scores
+                        (median 4.13%) was close to the observed 5.66%. Downstream structure, not the raw count of passing
+                        scores, is what the paper relies on.</li>
+                    <li><strong>The gain depends on C.</strong> With random C on ADNI-derived genotypes, the margin over a
+                        population model was 0.914 versus 0.901.</li>
+                    <li><strong>A working assumption.</strong> Treating differences between people as Gaussian noise is an
+                        approximation. The authors note that real differences may be structured, and they suggest explicit
+                        mixture or subgroup-aware extensions as future work.</li>
+                    <li><strong>Limited covariates.</strong> In ADNI, demographics entered only through outcome
+                        residualization, and C held SNPs alone. Comorbidities, medication and environment were not modeled.</li>
+                    <li><strong>One real cohort.</strong> The Alzheimer's application uses ADNI only, with a 19-patient
+                        subgroup and no independent replication.</li>
+                    <li><strong>The nonlinear form is largely untested.</strong> The general formula covers nonlinear models,
+                        but the experiments used linear base models; nonlinear effects were tested only as data that a
+                        linear-base model had to cope with.</li>
+                    <li><strong>Not a clinical tool.</strong> This is a research method. It does not give a diagnosis, a risk
+                        estimate or a treatment recommendation.</li>
+                </ul>
+
+                <h2>Frequently asked questions</h2>
+                <h3>What is personalized regression?</h3>
+                <p>Personalized regression is a family of methods that gives every sample its own regression coefficients
+                    instead of one set shared by everyone. Because one person's data cannot fix many coefficients alone,
+                    each method adds a rule for borrowing from other samples, usually that similar samples should have
+                    similar coefficients. The idea was introduced for genomics by Lengerich, Aragam and Xing (Bioinformatics,
+                    2018).</p>
+                <h3>How do you estimate patient-specific genetic effects?</h3>
+                <p>You need a way to borrow strength across patients, since each patient supplies only one row of data.
+                    Heteroscedastic personalized regression (Het-PR, npj Dementia 2026) does this by fitting one weighted
+                    regression per target patient on the whole cohort, giving less weight to people whose background genotype
+                    is far from the target. The output is a model-derived association score per patient and SNP, not a
+                    measured causal effect.</p>
+                <h3>How is personalized regression different from a linear mixed model?</h3>
+                <p>A linear mixed model in genetics estimates population-level effects and uses random effects for
+                    population-level structure. Het-PR estimates coefficients for one target person at a time. Its likelihood
+                    has the same algebraic form as a mixed model with a sample-specific variance, which lets it reuse fast
+                    solvers such as FaST-LMM, but its variance term is a weighting device, not a random effect.</p>
+                <h3>Is personalized regression the same as a polygenic risk score?</h3>
+                <p>No. A <a href="https://doi.org/10.1038/s41596-020-0353-1">polygenic risk score</a> estimates a person's genetic liability to a trait from their genotype and data
+                    from a genome-wide association study, so it gives one number per person for that trait. Personalized
+                    regression instead estimates a separate profile of associations per person, one value for each variant,
+                    and it is a research method rather than a risk test.</p>
+
+                <h2>Citation</h2>
+<pre><code>@article{zhang2026stratifying,
+  title   = {Stratifying Alzheimer's disease by patient-specific genetic signatures reveals cognition-linked and cross-disease heterogeneity},
+  author  = {Zhang, Jiahui and Yu, Ziyu and Zhang, Xingcai and Wang, Haohan},
+  journal = {npj Dementia},
+  volume  = {2},
+  pages   = {90},
+  year    = {2026},
+  doi     = {10.1038/s44400-026-00124-5}
+}</code></pre>
+
+                <h2>References</h2>
+                <ol style="font-size:0.9em">
+                    <li>Zhang J, Yu Z, Zhang X, Wang H. Stratifying Alzheimer's disease by patient-specific genetic signatures reveals cognition-linked and cross-disease heterogeneity. <em>npj Dementia</em> 2, 90 (2026). <a href="https://doi.org/10.1038/s44400-026-00124-5">doi:10.1038/s44400-026-00124-5</a></li>
+                    <li>Chen Z, Wang H. Heteroscedastic personalized regression unveils genetic basis of Alzheimer's disease stratified by cognitive level. <em>bioRxiv</em> (2023). <a href="https://doi.org/10.1101/2023.09.12.557499">doi:10.1101/2023.09.12.557499</a></li>
+                    <li>Lengerich BJ, Aragam B, Xing EP. Personalized regression enables sample-specific pan-cancer analysis. <em>Bioinformatics</em> 34(13), i178&ndash;i186 (2018). <a href="https://doi.org/10.1093/bioinformatics/bty250">doi:10.1093/bioinformatics/bty250</a></li>
+                    <li>Lengerich B, Aragam B, Xing EP. Learning sample-specific models with low-rank personalized regression. <em>Advances in Neural Information Processing Systems</em> (NeurIPS 2019). <a href="https://arxiv.org/abs/1910.06939">arXiv:1910.06939</a></li>
+                    <li>Hastie T, Tibshirani R. Varying-coefficient models. <em>Journal of the Royal Statistical Society: Series B</em> 55(4), 757&ndash;779 (1993). <a href="https://doi.org/10.1111/j.2517-6161.1993.tb01939.x">doi:10.1111/j.2517-6161.1993.tb01939.x</a></li>
+                    <li>Lengerich B, Ellington CN, Rubbi A, Kellis M, Xing EP. Contextualized machine learning. <em>arXiv</em> (2023). <a href="https://arxiv.org/abs/2310.11340">arXiv:2310.11340</a></li>
+                    <li>Lippert C, Listgarten J, Liu Y, Kadie CM, Davidson RI, Heckerman D. FaST linear mixed models for genome-wide association studies. <em>Nature Methods</em> 8, 833&ndash;835 (2011). <a href="https://doi.org/10.1038/nmeth.1681">doi:10.1038/nmeth.1681</a></li>
+                    <li>Choi SW, Mak TSH, O'Reilly PF. Tutorial: a guide to performing polygenic risk score analyses. <em>Nature Protocols</em> 15, 2759&ndash;2772 (2020). <a href="https://doi.org/10.1038/s41596-020-0353-1">doi:10.1038/s41596-020-0353-1</a></li>
+                </ol>
+
+                <h2>Related from our lab</h2>
+                <ul>
+                    <li><a href="genetic_subtypes_alzheimers_disease.html">Are there genetic subtypes of Alzheimer's disease? The Het-PR subgroups and their memory differences</a></li>
+                    <li><a href="alzheimers_epilepsy_genetic_link.html">Is there a genetic link between Alzheimer's and epilepsy? The cross-disease result from the same paper</a></li>
+                    <li><a href="https://haohanwang.ischool.illinois.edu/blog/alzheimers-same-diagnosis-different-patients.html">Why Alzheimer's patients with the same diagnosis differ: an essay by Haohan Wang</a></li>
+                    <li><a href="https://haohanwang.ischool.illinois.edu/research/gene-regulation-disease-genetics.html">Gene regulation and disease genetics, including Alzheimer's heterogeneity: research overview by Haohan Wang</a></li>
+                    <li><a href="ai_agents_gene_expression_analysis.html">Can AI agents analyze gene expression data like experts? GenoMAS, GenoTEX and SCTA</a></li>
+                    <li><a href="../publications.html">This paper and our other peer-reviewed work on Alzheimer's disease and computational genomics</a></li>
+                </ul>
+            </section>
+            </article>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer id="footer">
+        <ul class="icons">
+            <li><a href="https://x.com/HaohanWang" class="icon brands alt fa-twitter"><span class="label">X</span></a></li>
+            <li><a href="https://www.linkedin.com/in/haohanwang/" class="icon brands alt fa-linkedin-in"><span class="label">LinkedIn</span></a></li>
+            <li><a href="https://github.com/DreamLabUIUC" class="icon brands alt fa-github"><span class="label">GitHub</span></a></li>
+            <li><a href="../feed.xml" class="icon solid alt fa-rss"><span class="label">RSS</span></a></li>
+        </ul>
+        <ul class="copyright">
+            <li>&copy; DREAM Lab, University of Illinois Urbana-Champaign</li>
+            <li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
+        </ul>
+    </footer>
+
+</div>
+
+<!-- Scripts -->
+<script src="../assets2/js/jquery.min.js"></script>
+<script src="../assets2/js/jquery.scrolly.min.js"></script>
+<script src="../assets2/js/jquery.dropotron.min.js"></script>
+<script src="../assets2/js/jquery.scrollex.min.js"></script>
+<script src="../assets2/js/browser.min.js"></script>
+<script src="../assets2/js/breakpoints.min.js"></script>
+<script src="../assets2/js/util.js"></script>
+<script src="../assets2/js/main.js"></script>
+
+</body>
+</html>
