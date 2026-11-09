@@ -1,0 +1,296 @@
+<!DOCTYPE HTML>
+<html lang="en">
+<head>
+    <title>Why Do AI Agents Fail at Real-World Tasks? The Last Mile | DREAM Lab, UIUC</title>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <meta name="description" content="Why do AI agents fail at real-world tasks? A UIUC study traces it to the last mile: Claude Code finished 9 of 46 live tasks alone and 39 with primitives.">
+    <link rel="canonical" href="https://dream.ischool.illinois.edu/blogs/why_ai_agents_fail_real_world_tasks.html">
+    <meta property="og:type" content="article">
+    <meta property="og:site_name" content="DREAM Lab, UIUC">
+    <meta property="og:title" content="Why Do AI Agents Fail at Real-World Tasks? The Last Mile">
+    <meta property="og:description" content="Why do AI agents fail at real-world tasks? A UIUC study traces it to the last mile: Claude Code finished 9 of 46 live tasks alone and 39 with primitives.">
+    <meta property="og:url" content="https://dream.ischool.illinois.edu/blogs/why_ai_agents_fail_real_world_tasks.html">
+    <meta property="og:image" content="https://dream.ischool.illinois.edu/blogs/imgs/why_ai_agents_fail_real_world_tasks/cover.png">
+    <meta property="article:published_time" content="2026-11-09">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@HaohanWang">
+    <meta name="twitter:title" content="Why Do AI Agents Fail at Real-World Tasks? The Last Mile">
+    <meta name="twitter:description" content="Why do AI agents fail at real-world tasks? A UIUC study traces it to the last mile: Claude Code finished 9 of 46 live tasks alone and 39 with primitives.">
+    <meta name="twitter:image" content="https://dream.ischool.illinois.edu/blogs/imgs/why_ai_agents_fail_real_world_tasks/cover.png">
+    <meta name="citation_title" content="The Last Mile to the Real World: Agent-Native Primitives as Reusable Building Blocks for Solving Real-World Tasks">
+    <meta name="citation_author" content="Jin, Haibo">
+    <meta name="citation_author" content="Kuang, Peng">
+    <meta name="citation_author" content="Yuan, Xiaopeng">
+    <meta name="citation_author" content="Fu, Lucheng">
+    <meta name="citation_author" content="Wang, Jerry">
+    <meta name="citation_author" content="Yu, Xucheng">
+    <meta name="citation_author" content="Yu, Yaoning">
+    <meta name="citation_author" content="Wu, Dehao">
+    <meta name="citation_author" content="Li, Runguo">
+    <meta name="citation_author" content="Su, Colin">
+    <meta name="citation_author" content="Sun, Jingxuan">
+    <meta name="citation_author" content="Liu, Xuyang">
+    <meta name="citation_author" content="Luo, Haojing">
+    <meta name="citation_author" content="Wang, Haohan">
+    <meta name="citation_publication_date" content="2026">
+    <meta name="citation_conference_title" content="arXiv">
+    <meta name="citation_pdf_url" content="https://arxiv.org/pdf/2611.07461">
+    <link rel="alternate" type="application/rss+xml" title="DREAM Lab blog" href="https://dream.ischool.illinois.edu/feed.xml">
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "BlogPosting",
+          "headline": "Why Do AI Agents Fail at Real-World Tasks? The Last Mile",
+          "description": "Why do AI agents fail at real-world tasks? A UIUC study traces it to the last mile: Claude Code finished 9 of 46 live tasks alone and 39 with primitives.",
+          "datePublished": "2026-11-09",
+          "dateModified": "2026-11-09",
+          "url": "https://dream.ischool.illinois.edu/blogs/why_ai_agents_fail_real_world_tasks.html",
+          "mainEntityOfPage": "https://dream.ischool.illinois.edu/blogs/why_ai_agents_fail_real_world_tasks.html",
+          "image": "https://dream.ischool.illinois.edu/blogs/imgs/why_ai_agents_fail_real_world_tasks/cover.png",
+          "inLanguage": "en",
+          "keywords": ["LLM agents", "agent harness", "agent-native primitives", "tool use", "real-world tasks", "Terminal-Bench"],
+          "author": [
+            {"@type": "Person", "name": "Haibo Jin", "url": "https://dream.ischool.illinois.edu/people/haibo-jin/"},
+            {"@type": "Person", "@id": "https://haohanwang.ischool.illinois.edu/#person", "name": "Haohan Wang", "url": "https://haohanwang.ischool.illinois.edu/"}
+          ],
+          "publisher": {"@type": "ResearchOrganization", "@id": "https://dream.ischool.illinois.edu/#lab", "name": "DREAM Lab, UIUC", "url": "https://dream.ischool.illinois.edu/"},
+          "about": {
+            "@type": "ScholarlyArticle",
+            "name": "The Last Mile to the Real World: Agent-Native Primitives as Reusable Building Blocks for Solving Real-World Tasks",
+            "url": "https://arxiv.org/abs/2611.07461",
+            "datePublished": "2026",
+            "publisher": "arXiv"
+          }
+        },
+        {
+          "@type": "BreadcrumbList",
+          "itemListElement": [
+            {"@type": "ListItem", "position": 1, "name": "DREAM Lab", "item": "https://dream.ischool.illinois.edu/"},
+            {"@type": "ListItem", "position": 2, "name": "Blog", "item": "https://dream.ischool.illinois.edu/blogs.html"},
+            {"@type": "ListItem", "position": 3, "name": "Why Do AI Agents Fail at Real-World Tasks? The Last Mile", "item": "https://dream.ischool.illinois.edu/blogs/why_ai_agents_fail_real_world_tasks.html"}
+          ]
+        },
+        {
+          "@type": "FAQPage",
+          "mainEntity": [
+            {"@type": "Question", "name": "What is an agent harness?", "acceptedAnswer": {"@type": "Answer", "text": "An agent harness is everything a task needs around the model: the tools it can call, the loop that runs them, the context it is given, the checks on its output, and the retries. Codex and Claude Code are harnesses built for GPT and Claude. The Last Mile to the Real World argues that a harness should not be fixed in advance but composed for each task from validated parts."}},
+            {"@type": "Question", "name": "What is an agent-native primitive?", "acceptedAnswer": {"@type": "Answer", "text": "An agent-native primitive is a reusable resource, such as a tool, a code component, a proof method or a document source, packaged together with a resident LLM that applies the resource to a request in context and sends messages to the other primitives its result constrains. The caller states a need in natural language instead of reading the resource and binding it itself."}},
+            {"@type": "Question", "name": "Does connecting an agent to more tools through MCP make it better at real tasks?", "acceptedAnswer": {"@type": "Answer", "text": "Access alone is not enough. In the paper's own control, showing the caller the retrieved code components with their contracts and tests as read-only context reached 0.3544 repository delivery, close to the 0.3469 of diagnosis with no library at all and well below the 0.5134 of Code Primitives. What helped on the 46 live heelo.dev tasks was that each tool behind the MCP server applies itself, not that more tools were reachable."}},
+            {"@type": "Question", "name": "How well do Claude Code and Codex do on real-world tasks on their own?", "acceptedAnswer": {"@type": "Answer", "text": "On the 46 live tasks of the heelo.dev platform, Claude Opus 5.5 with Claude Code and GPT-6.1 Sol with Codex each completed 9, with mean task scores of 28% and 25%. On public benchmarks, Terminal-Bench 4.0 at maximum reasoning effort resolves 37.3% of tasks for GPT-5.6 Sol with Codex and 51.8% for Claude Opus 5 with Claude Code."}}
+          ]
+        }
+      ]
+    }
+    </script>
+    <link rel="stylesheet" href="../assets2/css/main.css"/>
+    <link rel="stylesheet" href="blog.css"/>
+    <link rel="apple-touch-icon" sizes="180x180" href="../favicon/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="../favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="../favicon/favicon-16x16.png">
+    <link rel="manifest" href="../favicon/site.webmanifest">
+    <noscript>
+        <link rel="stylesheet" href="../assets2/css/noscript.css"/>
+    </noscript>
+</head>
+<body class="is-preload">
+<div id="page-wrapper">
+
+    <!-- Header -->
+    <header id="header">
+        <nav id="nav">
+            <ul>
+                <li><a href="../index.html">Home</a></li>
+                <li><a href="../overview.html">Overview</a></li>
+                <li><a href="../people.html">People</a></li>
+                <li><a href="../publications.html">Publications</a></li>
+                <li><a href="../blogs.html">Blogs</a></li>
+                <li><a href="../software.html">Software</a></li>
+                <li><a href="../contact.html">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Main -->
+    <div id="main" class="wrapper style1">
+        <div class="container">
+            <article>
+            <header class="major">
+                <h1>Why Do AI Agents Fail at Real-World Tasks? The Last Mile</h1>
+                <p>Reaching a tool is solved. Applying it to the task at hand is where agents still break &mdash; and that step can be packaged and reused.</p>
+                <p style="font-size:0.9em">
+                    By <a href="https://dream.ischool.illinois.edu/people/haibo-jin/">Haibo Jin</a>,
+                    <a href="https://dream.ischool.illinois.edu/people/peng-kuang/">Peng Kuang</a>,
+                    <a href="https://haohanwang.ischool.illinois.edu/">Haohan Wang</a>, and others &middot;
+                    <time datetime="2026-11-09">November 9, 2026</time> &middot;
+                    About our arXiv preprint
+                </p>
+                <ul class="actions">
+                    <li><a href="https://arxiv.org/abs/2611.07461" class="button">Paper</a></li>
+                    <li><a href="https://www.heelo.dev/" class="button alt">Project page</a></li>
+                </ul>
+            </header>
+
+            <div class="intro-box">
+                <h2 style="margin-top:0">Key findings</h2>
+                <ul>
+                    <li>AI agents fail at real-world tasks mostly at what <em>The Last Mile to the Real World</em> (Haibo Jin and colleagues, University of Illinois Urbana-Champaign, arXiv 2026) calls the last mile: the step from reaching a resource to applying it to the task's own objects.</li>
+                    <li>On the 46 live tasks of the heelo.dev platform, Claude Opus 5.5 with Claude Code completed 9 on its own and 39 when connected through MCP to HEELO, the paper's harness engineering framework; GPT-6.1 Sol with Codex went from 9 to 35.</li>
+                    <li>On the same GPT-5.6 Sol backbone, Dev-Primitives raised Terminal-Bench 4.0 resolution from 37.3% under Codex to 55.5%, and Tool Primitives raised the ToolBench pass rate on Qwen3-8B from 55.8% for DFSDT to 75.1%.</li>
+                    <li>The gain is not extra inference: a budget-matched control that spends the same calls self-refining arguments over raw tool schemas reached 34.2% on ToolBench, against 75.1% when the same tools were wrapped as primitives.</li>
+                </ul>
+            </div>
+
+            <section>
+                <h2>Where exactly does an AI agent break on a real task?</h2>
+                <p>Ask why AI agents fail at real-world tasks and most answers point at the model. The measurements say otherwise. On Terminal-Bench 4.0 at maximum reasoning effort, GPT-5.6 Sol with Codex resolves 37.3% of tasks and Claude Opus 5 with Claude Code resolves 51.8%. These are strong models inside the harnesses built for them, and they still miss half the work. <a href="https://arxiv.org/abs/2611.07461">The Last Mile to the Real World: Agent-Native Primitives as Reusable Building Blocks for Solving Real-World Tasks</a>, by Haibo Jin, Peng Kuang, Xiaopeng Yuan, Lucheng Fu, Jerry Wang, Xucheng Yu, Yaoning Yu, Dehao Wu, Runguo Li, Colin Su, Jingxuan Sun, Xuyang Liu, Haojing Luo and Haohan Wang at the University of Illinois Urbana-Champaign, locates the failure in a narrower place.</p>
+                <p>The last decade of agent work has been about <em>reach</em>: tool catalogues, retrieval, memory, skill libraries, the Model Context Protocol. Reach is largely solved. What remains is <em>application</em>. A tool call has to ground every argument, often in an earlier call's output, and respect the rules of its environment. A retrieved code component has to be adapted to its target and to everything that depends on it. A proof method only applies where its conditions hold. An answer drawn from documents has to stay faithful to its source. Today that competence sits with the caller, so every harness rebuilds it for every task: what the caller has to take in grows with the library, what it learns dies with the task, and its work is hard to check.</p>
+                <p>Two more things break alongside it. <strong>Composition</strong>: what one step produces has to reach the steps that consume it, in a usable form. <strong>Evidence-driven revision</strong>: when a task fails, the failure has to be traced back to the work that caused it, so only that work is redone. Together these three make up the last mile.</p>
+
+                <h2>Key terms</h2>
+                <dl>
+                    <dt><strong>Agent harness</strong></dt>
+                    <dd>Everything a task needs around the model: the tools, the execution loop, the context, the checks and the retries. Codex and Claude Code are the harnesses built for GPT and Claude.</dd>
+                    <dt><strong>The last mile to the real world</strong></dt>
+                    <dd>The step from reaching a resource to applying it to the task's own objects, including getting each result to the step that consumes it and tracing a failure back to the work that caused it.</dd>
+                    <dt><strong>Agent-native primitive</strong></dt>
+                    <dd>A reusable resource &mdash; a tool, a code component, a proof method, a document source, a repository file &mdash; packaged with a resident LLM that applies it to a natural-language request in context and sends messages to the other primitives its result constrains.</dd>
+                    <dt><strong>Resident LLM</strong></dt>
+                    <dd>The model that lives inside a primitive, conditioned on that primitive's resource. One base model can serve as the resident LLM of an entire library, conditioned on a different resource each time.</dd>
+                    <dt><strong>HEELO</strong></dt>
+                    <dd>Harness Engineering around Evolving Agent-Native Primitives for the Last Mile to Real-World Tasks: the framework that composes each task's harness from a library of primitives, verifies it against the task's own evidence, and publishes validated primitives back to the library.</dd>
+                </dl>
+
+                <h2>What is an agent-native primitive, and how does HEELO use one?</h2>
+                <p>The proposal is one sentence long: the competence to apply a resource should travel with the resource. An agent-native primitive pairs a resource with a resident LLM and an interface. Invoked with a request in context, the resident LLM applies the resource and returns both a result and messages addressed to other primitives &mdash; the requirements its result places on them. Passive artifacts become participants that reason locally and talk to each other, and a harness can find and invoke a primitive without reading the resource at all. Where a domain offers an exact procedure, a program takes the resident LLM's place.</p>
+                <figure>
+                    <img src="imgs/why_ai_agents_fail_real_world_tasks/figure_method.png" alt="Left: a single caller holds every tool schema, code component, proof method and document source in its own context and applies each one itself. Right: each resource is wrapped in an agent-native primitive with a resident LLM that applies it and sends messages to other primitives. Below: the HEELO loop composes primitives, runs and verifies them against the task's evidence, revises only what the failure implicates, and publishes validated primitives back to the library." style="max-width:100%"/>
+                    <figcaption class="figure-caption">A harness today makes the caller apply every resource. An agent-native primitive keeps that competence with the resource, and HEELO composes, verifies, revises and publishes.</figcaption>
+                </figure>
+                <p>HEELO adds the three mechanisms a primitive cannot supply on its own. <strong>Library selection and composition</strong> finds candidates through their interfaces, lets each primitive assess whether it actually applies rather than trusting similarity alone, and wires the few the task needs into a task-specific graph that carries each result and message to its consumer. <strong>Evidence-based execution and improvement</strong> runs that graph in rounds, verifies the integrated result against evidence from the environment &mdash; a build, a test, a compiler, a trace &mdash; and on failure revises only the primitives that the evidence implicates, keeping the rest. A failed build sets the verdict to fail, and no model judgment overrides it. <strong>Validation and publishing</strong> improves the library between tasks: a new or improved primitive enters only after its own tests, compiler or matched development runs confirm it.</p>
+                <p>Two properties of that selection are proved in the companion studies and restated in the paper. Activation stays bounded by the task's demand rather than by the library's size, so a library can grow without the harness growing. And per-task composition beats the best single fixed harness exactly when primitives help unevenly across tasks &mdash; which is what the experiments find.</p>
+
+                <h2>How much do agent-native primitives actually help?</h2>
+                <p>The paper instantiates HEELO as eight primitive families, each built for one kind of real-world task, and evaluates them on more than twenty benchmarks. The libraries are large where the domain allows: 25,519 Tool Primitives, 16,464 of them wrapping live APIs; 1,424 Code Primitives, each validated against the tests it carries; and 82 Math Primitives whose Lean artifacts compile.</p>
+                <figure>
+                    <img src="imgs/why_ai_agents_fail_real_world_tasks/figure_families.png" alt="Bar chart comparing the reference baseline and agent-native primitives for eight families: Tool (ToolBench pass rate 55.8 to 75.1 percent), Code (LEGO-REPO delivery 0.3180 to 0.5134), Math (Putnam hit at 5, 84.2 to 95.0 percent), Knowledge (MultiDoc2Dial accuracy 64.9 to 77.6 percent), Agent (mean accuracy 58.8 to 75.3 percent), Dev (Terminal-Bench 4.0 resolved 37.3 to 55.5 percent), Navigation (GAIA-Text-103 45.6 to 58.3 percent) and Harness (Terminal-Bench 2.0 Pass@1 60.0 to 72.2 percent)." style="max-width:100%"/>
+                    <figcaption class="figure-caption">Each family is measured on its own benchmark, metric and backbone, so the rows are not comparable with one another; within a row, the comparison is against that study's reference baseline.</figcaption>
+                </figure>
+                <table class="comparison-table">
+                    <thead>
+                        <tr><th>Primitive family</th><th>Benchmark and metric</th><th>Baseline</th><th>With primitives</th></tr>
+                    </thead>
+                    <tbody>
+                        <tr><td>Tool</td><td>ToolBench pass rate, Qwen3-8B</td><td>55.8% (DFSDT)</td><td>75.1%</td></tr>
+                        <tr><td>Code</td><td>Repository delivery, 522 LEGO-REPO tasks</td><td>0.3180 (execution feedback)</td><td>0.5134</td></tr>
+                        <tr><td>Math</td><td>Putnam hit@5, proof-method selection</td><td>84.2% (strongest reranker)</td><td>95.0%</td></tr>
+                        <tr><td>Knowledge</td><td>MultiDoc2Dial accuracy, GPT-5.6 Luna</td><td>64.9% (Hybrid RAG)</td><td>77.6%</td></tr>
+                        <tr><td>Agent</td><td>Mean accuracy over 8 benchmarks, Qwen3-8B</td><td>58.8% (single agent)</td><td>75.3%</td></tr>
+                        <tr><td>Dev</td><td>Terminal-Bench 4.0 resolved, GPT-5.6 Sol</td><td>37.3% (Codex)</td><td>55.5%</td></tr>
+                        <tr><td>Navigation</td><td>GAIA-Text-103 accuracy</td><td>45.6% (iterative sparse retrieval)</td><td>58.3%</td></tr>
+                        <tr><td>Harness</td><td>Terminal-Bench 2.0 Pass@1, 45 tasks</td><td>60.0% (mini-SWE-agent seed harness)</td><td>72.2%</td></tr>
+                    </tbody>
+                </table>
+                <p>The more interesting results are the controls, because they say <em>why</em> this works. With the backbone, the call budget and the tools all held fixed, reallocating the primitives' calls to self-refining arguments over raw schemas reaches 34.2% ToolBench pass rate against 75.1% &mdash; so the gain is the primitive, not extra thinking. Nor is access the answer: showing the caller the same retrieved code components with their contracts and tests as read-only context reaches 0.3544 delivery, barely above the 0.3469 of diagnosis with no library at all, against 0.5134 for Code Primitives.</p>
+                <p>What crosses between primitives matters as much as what happens inside them. In the Dev-Primitives ablation, removing the directed messages between components while keeping each primitive's local reasoning and edits lowers Terminal-Bench 4.0 resolution from 51.8% to 46.1% in that ablation's setting and the SWE Refactor Bench composite from 31.0 to 23.5, with a much smaller drop on SWE-bench Verified (97.0 to 94.2) &mdash; the pattern you would expect if messages are what coordinate changes across files. And activating more than the task needs costs accuracy, not just money: keeping every initially identified Dev-Primitive active raises calls from 9.6 to 28.7 per SWE-bench Verified task and lowers the score on all four benchmarks by 1.2 to 3.0 points.</p>
+
+                <h2>Does any of this survive outside a frozen benchmark?</h2>
+                <p>Benchmarks freeze the environment and fix the grader in advance. Real tasks run against live services, accounts and people. To test that, the team built <a href="https://www.heelo.dev/">heelo.dev</a>, a platform that exposes real-world actions &mdash; publishing pages, sending outreach, reading invoices, scraping sources, calendars, flights, browser automation &mdash; as agent-native primitives behind one endpoint, including an MCP server that external agents connect to.</p>
+                <p>They then wrote 46 tasks covering 26 capabilities in four end-to-end loops, with pass criteria fixed before the first run as facts a person can check: an invoice total, the pages of a PDF, a refused channel. The tasks include failure paths, such as a wrong contact identifier that must return a clean error and a page that robots.txt disallows. No task names a heelo.dev tool.</p>
+                <table class="comparison-table">
+                    <thead>
+                        <tr><th>Arm</th><th>Mean task score</th><th>Tasks completed (of 46)</th><th>Time per completed task</th><th>Cost per completed task</th></tr>
+                    </thead>
+                    <tbody>
+                        <tr><td>Claude Opus 5.5 with Claude Code</td><td>28%</td><td>9</td><td>6.3 min</td><td>$1.24</td></tr>
+                        <tr><td>&nbsp;&nbsp;+ HEELO through MCP</td><td>90%</td><td>39</td><td>3.4 min</td><td>$0.80</td></tr>
+                        <tr><td>GPT-6.1 Sol with Codex</td><td>25%</td><td>9</td><td>8.0 min</td><td>$0.65</td></tr>
+                        <tr><td>&nbsp;&nbsp;+ HEELO through MCP</td><td>83%</td><td>35</td><td>3.5 min</td><td>$0.42</td></tr>
+                    </tbody>
+                </table>
+                <p>Both agents gain time and money as well as tasks: 1.9&times; and 2.3&times; less time and about 1.55&times; lower cost per completed task. The composition itself is cheap &mdash; choosing which Harness Primitives to wire in costs 2.7% to 4.3% of a single actor attempt. And smaller models hold up inside the primitives: with GPT-OSS-20B as the resident LLM of every Code Primitive and as the diagnosis model, delivery keeps 95.1% of its value at 24.0% lower recorded-call cost. The pattern across families is consistent &mdash; a strong model coordinates, cheaper models do the work inside the primitives.</p>
+
+                <h2>How does this compare with other approaches to building better agents?</h2>
+                <p>Several lines of work attack the same problem from different sides, and the paper is explicit that it builds on them.</p>
+                <ul>
+                    <li><a href="https://arxiv.org/abs/2307.16789">ToolLLM: Facilitating Large Language Models to Master 16000+ Real-world APIs</a> (Yujia Qin and colleagues, ICLR 2024) collected 16,464 real RESTful APIs and the ToolBench dataset, and introduced DFSDT, a depth-first search over a decision tree of calls. It is the reason a large tool catalogue is reachable at all, and it is the strongest same-backbone scaffold baseline in this paper, at 55.8% ToolBench pass rate against 75.1%. The difference is where the binding happens: in ToolLLM the caller writes the schema-compliant arguments; in a Tool Primitive the tool does.</li>
+                    <li><a href="https://arxiv.org/abs/2305.16291">Voyager: An Open-Ended Embodied Agent with Large Language Models</a> (Guanzhi Wang and colleagues, TMLR 2024) showed that an agent can grow a library of executable skills from its own experience in Minecraft, with self-verification deciding what is kept. Voyager's skills are code that a central agent calls; agent-native primitives add a resident model to each unit and a validation path separate from task execution.</li>
+                    <li><a href="https://arxiv.org/abs/2409.07429">Agent Workflow Memory</a> (Zora Zhiruo Wang, Jiayuan Mao, Daniel Fried and Graham Neubig, ICML 2025) induces reusable workflows from past trajectories and feeds the relevant ones into later tasks, improving relative success on Mind2Web and WebArena. It is also a baseline here, in the knowledge-intensive setting, where the paper reports that it moves question-answering accuracy by at most 3.9 points &mdash; a useful reminder that remembering <em>how a task went</em> is not the same as understanding the source or the tool it used.</li>
+                    <li><a href="https://arxiv.org/abs/2408.08435">Automated Design of Agentic Systems</a> (Shengran Hu, Cong Lu and Jeff Clune, ICLR 2025) and <a href="https://arxiv.org/abs/2410.10762">AFlow: Automating Agentic Workflow Generation</a> (Jiayi Zhang and colleagues, ICLR 2025) both search for better agent programs &mdash; ADAS with a meta agent that writes new agents in code, AFlow with Monte Carlo tree search over code-represented workflows. They produce one strong design; HEELO instead selects a design per task, which is the comparison its Proposition 3.2 formalizes and the experiments test: per-task composition reaches 80.5% Pass@1 on SWE-bench Verified against 76.0% for the best single primitive applied everywhere and 73.3% for a random composer.</li>
+                    <li><a href="https://arxiv.org/abs/2607.08938">Better Harnesses, Smaller Models: Building 90% Cheaper Agents via Automated Harness Adaptation</a> (Chenyang Yang, Xinran Zhao, Tongshuang Wu and Christian K&auml;stner, arXiv 2026) is the closest contemporary in spirit, and it is work by another group that we think deserves more attention. It maps agent failure modes to harness adaptation strategies and has a meta agent discover adaptations from failure trajectories, reporting significant improvements on 16 of 21 task&ndash;model pairs and closing the small-model-to-frontier gap on seven. Its conclusion agrees with ours where it matters most: much of a task's difficulty can be lifted out of the model and into the harness. The two papers differ in what the harness is made of &mdash; tailored instructions and orchestration loops there, validated reusable units with their own resident models here &mdash; and they have not been compared head to head.</li>
+                </ul>
+                <p>The <a href="https://modelcontextprotocol.io/">Model Context Protocol</a> sits underneath all of this as plumbing, and the heelo.dev evaluation uses it: an MCP server is how Claude Code and Codex reach HEELO at all. The result above is a reasonable argument that the protocol is not the hard part. The same agents, over the same protocol, went from 9 tasks to 39 and 35 depending on what was on the other end of it.</p>
+
+                <h2>What this does not show</h2>
+                <p>This is an arXiv preprint (102 pages, 21 figures, 54 tables) and has not been peer reviewed.</p>
+                <p>The 46 live tasks are the paper's strongest claim and also its most self-made evidence: the same team built the platform, wrote the tasks and fixed the pass criteria. The criteria were set before the first run and are facts a person can check, and two of the four loops were graded blind by Claude Sonnet 5.5 with the arm names and tool names removed, then reviewed by a person against the run records. Still, when a run exposed a defect in a primitive, the primitive was fixed and the task re-run, and the reported numbers are the post-fix runs. Most tasks ran three times per arm. Forty-six tasks is a small sample, and no other harness-adaptation system was run on them.</p>
+                <p>Part of the 9-versus-39 gap is access rather than competence. An agent on its own received no credentials and could not act on any account, so it was scored on the pass criteria its work met &mdash; a ready draft, a script that needed only a credential. The gap therefore measures what a connected, primitive-backed platform adds over an agent that has to build everything itself, not a like-for-like contest between two agents with the same permissions.</p>
+                <p>On the benchmark side, each of the eight families uses its own benchmarks, metrics and backbone, so the rows of the table above cannot be compared with one another, and there is no single backbone on which all eight were run together. The companion studies carry the per-family evidence; this paper's contribution is the shared definition, the shared mechanisms and the cross-family analysis.</p>
+
+                <h2>Frequently asked questions</h2>
+                <h3>What is an agent harness?</h3>
+                <p>An agent harness is everything a task needs around the model: the tools it can call, the loop that runs them, the context it is given, the checks on its output, and the retries. Codex and Claude Code are harnesses built for GPT and Claude. <em>The Last Mile to the Real World</em> argues that a harness should not be fixed in advance but composed for each task from validated parts.</p>
+                <h3>What is an agent-native primitive?</h3>
+                <p>An agent-native primitive is a reusable resource, such as a tool, a code component, a proof method or a document source, packaged together with a resident LLM that applies the resource to a request in context and sends messages to the other primitives its result constrains. The caller states a need in natural language instead of reading the resource and binding it itself.</p>
+                <h3>Does connecting an agent to more tools through MCP make it better at real tasks?</h3>
+                <p>Access alone is not enough. In the paper's own control, showing the caller the retrieved code components with their contracts and tests as read-only context reached 0.3544 repository delivery, close to the 0.3469 of diagnosis with no library at all and well below the 0.5134 of Code Primitives. What helped on the 46 live heelo.dev tasks was that each tool behind the MCP server applies itself, not that more tools were reachable.</p>
+                <h3>How well do Claude Code and Codex do on real-world tasks on their own?</h3>
+                <p>On the 46 live tasks of the heelo.dev platform, Claude Opus 5.5 with Claude Code and GPT-6.1 Sol with Codex each completed 9, with mean task scores of 28% and 25%. On public benchmarks, Terminal-Bench 4.0 at maximum reasoning effort resolves 37.3% of tasks for GPT-5.6 Sol with Codex and 51.8% for Claude Opus 5 with Claude Code.</p>
+
+                <h2>Citation</h2>
+<pre><code>@article{jin2026lastmile,
+  title     = { The Last Mile to the Real World: Agent-Native Primitives as Reusable
+                Building Blocks for Solving Real-World Tasks },
+  author    = { Jin, Haibo and Kuang, Peng and Yuan, Xiaopeng and Fu, Lucheng and
+                Wang, Jerry and Yu, Xucheng and Yu, Yaoning and Wu, Dehao and
+                Li, Runguo and Su, Colin and Sun, Jingxuan and Liu, Xuyang and
+                Luo, Haojing and Wang, Haohan },
+  journal   = { arXiv preprint arXiv:2611.07461 },
+  year      = { 2026 }
+}</code></pre>
+
+                <h2>Related from our lab</h2>
+                <ul>
+                    <li><a href="agent_primitives.html">Agent Primitives, the multi-agent family in this framework, explained</a></li>
+                    <li><a href="ai_theorem_prover_proof_method_selection.html">How a theorem prover picks a proof method &mdash; the Math Primitives family</a></li>
+                    <li><a href="rag_that_learns_over_time.html">RAG that learns a source over time &mdash; the Knowledge Primitives family</a></li>
+                    <li><a href="ai_agents_gene_expression_analysis.html">AI agents running a full gene expression analysis end to end</a></li>
+                    <li><a href="recursive_self_improvement_agents_forget.html">What self-evolving agents forget as they adapt</a></li>
+                    <li><a href="https://haohanwang.ischool.illinois.edu/blog/will-ai-replace-scientists-human-ai-collaboration.html">Will AI replace scientists? &mdash; essay by Haohan Wang on what agents doing real work still need a human for</a></li>
+                    <li><a href="../preprints.html">All DREAM Lab preprints</a></li>
+                </ul>
+            </section>
+            </article>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer id="footer">
+        <ul class="icons">
+            <li><a href="https://x.com/HaohanWang" class="icon brands alt fa-twitter"><span class="label">X</span></a></li>
+            <li><a href="https://www.linkedin.com/in/haohanwang/" class="icon brands alt fa-linkedin-in"><span class="label">LinkedIn</span></a></li>
+            <li><a href="https://github.com/DreamLabUIUC" class="icon brands alt fa-github"><span class="label">GitHub</span></a></li>
+            <li><a href="../feed.xml" class="icon solid alt fa-rss"><span class="label">RSS</span></a></li>
+        </ul>
+        <ul class="copyright">
+            <li>&copy; DREAM Lab, University of Illinois Urbana-Champaign</li>
+            <li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
+        </ul>
+    </footer>
+
+</div>
+
+<!-- Scripts -->
+<script src="../assets2/js/jquery.min.js"></script>
+<script src="../assets2/js/jquery.scrolly.min.js"></script>
+<script src="../assets2/js/jquery.dropotron.min.js"></script>
+<script src="../assets2/js/jquery.scrollex.min.js"></script>
+<script src="../assets2/js/browser.min.js"></script>
+<script src="../assets2/js/breakpoints.min.js"></script>
+<script src="../assets2/js/util.js"></script>
+<script src="../assets2/js/main.js"></script>
+
+</body>
+</html>

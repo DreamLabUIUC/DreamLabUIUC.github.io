@@ -6,7 +6,15 @@
   <atom:link href="https://dream.ischool.illinois.edu/feed.xml" rel="self" type="application/rss+xml"/>
   <description>Plain-language explainers of research from the DREAM Lab at the University of Illinois Urbana-Champaign.</description>
   <language>en</language>
-  <lastBuildDate>Fri, 06 Nov 2026 12:00:00 +0000</lastBuildDate>
+  <lastBuildDate>Mon, 09 Nov 2026 12:00:00 +0000</lastBuildDate>
+  <item>
+    <title>Why Do AI Agents Fail at Real-World Tasks? The Last Mile</title>
+    <link>https://dream.ischool.illinois.edu/blogs/why_ai_agents_fail_real_world_tasks.html</link>
+    <guid>https://dream.ischool.illinois.edu/blogs/why_ai_agents_fail_real_world_tasks.html</guid>
+    <pubDate>Mon, 09 Nov 2026 12:00:00 +0000</pubDate>
+    <category>Agentic AI</category>
+    <description>Why do AI agents fail at real-world tasks? A UIUC study traces it to the last mile: Claude Code finished 9 of 46 live tasks alone and 39 with primitives.</description>
+  </item>
   <item>
     <title>What Is Personalized Regression? Patient-Specific Genetic Effects</title>
     <link>https://dream.ischool.illinois.edu/blogs/what_is_personalized_regression.html</link>

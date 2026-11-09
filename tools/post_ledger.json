@@ -4,6 +4,18 @@
   "_phase_doc": "1 = clearing the 2026 backlog (Mon+Wed new, Fri early). Set to 2 permanently the first time no unhandled 2026+ work remains; never set back to 1 (Wed newest, Mon+Fri early).",
   "entries": [
     {
+      "title": "The Last Mile to the Real World: Agent-Native Primitives as Reusable Building Blocks for Solving Real-World Tasks",
+      "arxiv": "2611.07461",
+      "year": 2026,
+      "status": "published",
+      "slug": "why_ai_agents_fail_real_world_tasks",
+      "draft_date": "2026-11-09",
+      "publish_date": "2026-11-09",
+      "kind": "new",
+      "primary_query": "why do AI agents fail at real-world tasks",
+      "published": false
+    },
+    {
       "title": "Security--Fidelity Tradeoffs: The Hidden Cost of Prompt Injection Defense",
       "arxiv": "2606.30783",
       "year": 2026,
