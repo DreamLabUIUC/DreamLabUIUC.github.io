@@ -7,8 +7,11 @@ posts. Once its checks pass it publishes each post directly (removes `noindex`, 
 below, pushes, pings IndexNow; author's instruction 2026-10-30), and the author reviews the live post afterwards. It
 never posts to social media. `tools/post_ledger.json` records which works are handled.
 
-- **Phase 1 (until every 2026 work is handled):** Mon + Wed = newest work, blog + X/LinkedIn copy; Fri = early work (2022 or before, most cited first), blog only.
-- **Phase 2 (permanent once reached; recorded as `"phase": 2` in the ledger):** Wed = the latest work on Scholar that has no post yet, blog + social; Mon + Fri = early works, blog only.
+- **Phase 1 (until every 2026 work is handled):** Mon + Wed = newest work; Fri = early work (under-cited, at least a year old), blog only.
+- **Phase 2 (permanent once reached; recorded as `"phase": 2` in the ledger):** Wed = the latest work on Scholar that has no post yet; Mon + Fri = early works.
+- **Social is Wednesday only (one package a week, since 2026-11-11).** The X thread, LinkedIn post, poster and video are
+  written for the Wednesday new-work post and no other. Monday and Friday posts are blog only. The blog stays at three a
+  week: a post's SEO/GEO value comes from the page, not from social.
 - Every draft starts from a chosen search query (primary + secondary), checked with a web search, and must pass the SEO/GEO checklist in the task prompt.
 - Every draft is checked by an author before it goes live. Google's spam policy on "scaled content abuse"
   targets many pages made mainly to rank, however they are produced.
