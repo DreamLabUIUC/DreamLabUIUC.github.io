@@ -4,6 +4,18 @@
   "_phase_doc": "1 = clearing the 2026 backlog (Mon+Wed new, Fri early). Set to 2 permanently the first time no unhandled 2026+ work remains; never set back to 1 (Wed newest, Mon+Fri early).",
   "entries": [
     {
+      "title": "Characterizing Adversarial GEO via Implicit Brand Injection",
+      "arxiv": "2611.04005",
+      "year": 2026,
+      "status": "published",
+      "slug": "single_brand_mention_ai_search",
+      "draft_date": "2026-11-11",
+      "publish_date": "2026-11-11",
+      "kind": "new",
+      "primary_query": "can a single brand mention change what AI search recommends",
+      "published": false
+    },
+    {
       "title": "The Last Mile to the Real World: Agent-Native Primitives as Reusable Building Blocks for Solving Real-World Tasks",
       "arxiv": "2611.07461",
       "year": 2026,

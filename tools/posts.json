@@ -1,5 +1,13 @@
 [
   {
+    "path": "blogs/single_brand_mention_ai_search.html",
+    "title": "Can One Brand Mention Steer AI Search Answers?",
+    "date": "2026-11-11",
+    "description": "A single brand mention added to one sentence of an ordinary article reached AI search answers 62.7% of the time with GPT-5-mini, a UIUC and IISc study finds.",
+    "topic": "LLM search visibility",
+    "paper": "https://arxiv.org/abs/2611.04005"
+  },
+  {
     "path": "blogs/why_ai_agents_fail_real_world_tasks.html",
     "title": "Why Do AI Agents Fail at Real-World Tasks? The Last Mile",
     "date": "2026-11-09",

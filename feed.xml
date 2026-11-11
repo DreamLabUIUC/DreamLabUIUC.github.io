@@ -6,7 +6,15 @@
   <atom:link href="https://dream.ischool.illinois.edu/feed.xml" rel="self" type="application/rss+xml"/>
   <description>Plain-language explainers of research from the DREAM Lab at the University of Illinois Urbana-Champaign.</description>
   <language>en</language>
-  <lastBuildDate>Mon, 09 Nov 2026 12:00:00 +0000</lastBuildDate>
+  <lastBuildDate>Wed, 11 Nov 2026 12:00:00 +0000</lastBuildDate>
+  <item>
+    <title>Can One Brand Mention Steer AI Search Answers?</title>
+    <link>https://dream.ischool.illinois.edu/blogs/single_brand_mention_ai_search.html</link>
+    <guid>https://dream.ischool.illinois.edu/blogs/single_brand_mention_ai_search.html</guid>
+    <pubDate>Wed, 11 Nov 2026 12:00:00 +0000</pubDate>
+    <category>LLM search visibility</category>
+    <description>A single brand mention added to one sentence of an ordinary article reached AI search answers 62.7% of the time with GPT-5-mini, a UIUC and IISc study finds.</description>
+  </item>
   <item>
     <title>Why Do AI Agents Fail at Real-World Tasks? The Last Mile</title>
     <link>https://dream.ischool.illinois.edu/blogs/why_ai_agents_fail_real_world_tasks.html</link>
