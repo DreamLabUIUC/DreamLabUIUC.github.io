@@ -1,0 +1,478 @@
+<!DOCTYPE HTML>
+<html lang="en">
+<head>
+    <title>Can Knowledge Distillation Transfer Robustness From CLIP? | DREAM Lab, UIUC</title>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <meta name="description" content="Can knowledge distillation transfer robustness from CLIP? In our NeurIPS 2023 paper, DAD lifted a ViT-B/16 from 39.5% to 65.1% on ImageNet-Rendition.">
+    <link rel="canonical" href="https://dream.ischool.illinois.edu/blogs/distill_robustness_from_clip.html">
+    <meta property="og:type" content="article">
+    <meta property="og:site_name" content="DREAM Lab, UIUC">
+    <meta property="og:title" content="Can Knowledge Distillation Transfer Robustness From CLIP?">
+    <meta property="og:description" content="Can knowledge distillation transfer robustness from CLIP? In our NeurIPS 2023 paper, DAD lifted a ViT-B/16 from 39.5% to 65.1% on ImageNet-Rendition.">
+    <meta property="og:url" content="https://dream.ischool.illinois.edu/blogs/distill_robustness_from_clip.html">
+    <meta property="og:image" content="https://dream.ischool.illinois.edu/blogs/imgs/distill_robustness_from_clip/cover.png">
+    <meta property="article:published_time" content="2026-11-13">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@HaohanWang">
+    <meta name="twitter:title" content="Can Knowledge Distillation Transfer Robustness From CLIP?">
+    <meta name="twitter:description" content="Can knowledge distillation transfer robustness from CLIP? In our NeurIPS 2023 paper, DAD lifted a ViT-B/16 from 39.5% to 65.1% on ImageNet-Rendition.">
+    <meta name="twitter:image" content="https://dream.ischool.illinois.edu/blogs/imgs/distill_robustness_from_clip/cover.png">
+    <meta name="citation_title" content="Distilling Out-of-Distribution Robustness from Vision-Language Foundation Models">
+    <meta name="citation_author" content="Zhou, Andy">
+    <meta name="citation_author" content="Wang, Jindong">
+    <meta name="citation_author" content="Wang, Yu-Xiong">
+    <meta name="citation_author" content="Wang, Haohan">
+    <meta name="citation_publication_date" content="2023">
+    <meta name="citation_conference_title" content="Advances in Neural Information Processing Systems (NeurIPS 2023)">
+    <meta name="citation_volume" content="36">
+    <meta name="citation_pdf_url" content="https://arxiv.org/pdf/2311.01441">
+    <link rel="alternate" type="application/rss+xml" title="DREAM Lab blog" href="https://dream.ischool.illinois.edu/feed.xml">
+    <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "BlogPosting",
+      "headline": "Can Knowledge Distillation Transfer Robustness From CLIP?",
+      "description": "Can knowledge distillation transfer robustness from CLIP? In our NeurIPS 2023 paper, DAD lifted a ViT-B/16 from 39.5% to 65.1% on ImageNet-Rendition.",
+      "datePublished": "2026-11-13",
+      "dateModified": "2026-11-13",
+      "url": "https://dream.ischool.illinois.edu/blogs/distill_robustness_from_clip.html",
+      "mainEntityOfPage": "https://dream.ischool.illinois.edu/blogs/distill_robustness_from_clip.html",
+      "image": "https://dream.ischool.illinois.edu/blogs/imgs/distill_robustness_from_clip/cover.png",
+      "inLanguage": "en",
+      "keywords": [
+        "knowledge distillation",
+        "out-of-distribution robustness",
+        "CLIP",
+        "distribution shift",
+        "data augmentation",
+        "adversarial training",
+        "vision transformers"
+      ],
+      "author": [
+        {
+          "@type": "Person",
+          "name": "Andy Zhou",
+          "url": "https://github.com/andyz245"
+        },
+        {
+          "@type": "Person",
+          "@id": "https://haohanwang.ischool.illinois.edu/#person",
+          "name": "Haohan Wang",
+          "url": "https://haohanwang.ischool.illinois.edu/"
+        }
+      ],
+      "publisher": {
+        "@type": "ResearchOrganization",
+        "@id": "https://dream.ischool.illinois.edu/#lab",
+        "name": "DREAM Lab, UIUC",
+        "url": "https://dream.ischool.illinois.edu/"
+      },
+      "about": {
+        "@type": "ScholarlyArticle",
+        "name": "Distilling Out-of-Distribution Robustness from Vision-Language Foundation Models",
+        "url": "https://arxiv.org/abs/2311.01441",
+        "sameAs": "https://proceedings.neurips.cc/paper_files/paper/2023/hash/67f30132d98e758f7b4e28c36091d86e-Abstract-Conference.html",
+        "datePublished": "2023",
+        "publisher": "NeurIPS 2023",
+        "author": [
+          {
+            "@type": "Person",
+            "name": "Andy Zhou"
+          },
+          {
+            "@type": "Person",
+            "name": "Jindong Wang"
+          },
+          {
+            "@type": "Person",
+            "name": "Yu-Xiong Wang"
+          },
+          {
+            "@type": "Person",
+            "name": "Haohan Wang"
+          }
+        ]
+      }
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "DREAM Lab",
+          "item": "https://dream.ischool.illinois.edu/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Blog",
+          "item": "https://dream.ischool.illinois.edu/blogs.html"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "Can Knowledge Distillation Transfer Robustness From CLIP?",
+          "item": "https://dream.ischool.illinois.edu/blogs/distill_robustness_from_clip.html"
+        }
+      ]
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "Can knowledge distillation transfer robustness from a large model to a small one?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes, at least for robustness to natural distribution shifts. In the NeurIPS 2023 paper by Zhou, Wang, Wang and Wang, plain knowledge distillation from CLIP ViT-L/14 on clean ImageNet images raised ImageNet-Rendition accuracy by 10.2 points on average across four students, and the DAD method raised a ViT-B/16 from 39.5% to 65.1%."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Does a bigger teacher make a better student in knowledge distillation?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Not for clean accuracy, but it can for robustness. Earlier work found that larger teachers often do not produce more accurate students, and DAD also lowered a ResNet34's ImageNet accuracy (63.6% vs 66.5% without a teacher). Yet the most robust teacher tested, CLIP ViT-L/14, gave every student its best ImageNet-Rendition score."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How do you make a small vision model robust to distribution shift?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "One cheap option is to distill from a robust foundation model such as CLIP and add the teacher's own adversarial examples, redrawn by a VQGAN, as extra training data. With this recipe (DAD), a ResNet50 reached 51.6% on ImageNet-Rendition and 35.8% on ImageNet-Sketch, against 42.0% and 27.3% for discrete adversarial training (DAT), at about 2x the cost of standard training."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What is discrete adversarial distillation (DAD)?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "DAD is a training method from the NeurIPS 2023 paper Distilling Out-of-Distribution Robustness from Vision-Language Foundation Models. It finds small image changes that fool a CLIP teacher, redraws those images with a VQGAN, keeps the ones CLIP still labels correctly, and trains a smaller student to match CLIP's outputs on both the original and the redrawn images."
+          }
+        }
+      ]
+    }
+  ]
+}
+    </script>
+    <link rel="stylesheet" href="../assets2/css/main.css"/>
+    <link rel="stylesheet" href="blog.css"/>
+    <link rel="apple-touch-icon" sizes="180x180" href="../favicon/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="../favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="../favicon/favicon-16x16.png">
+    <link rel="manifest" href="../favicon/site.webmanifest">
+    <noscript>
+        <link rel="stylesheet" href="../assets2/css/noscript.css"/>
+    </noscript>
+</head>
+<body class="is-preload">
+<div id="page-wrapper">
+
+    <!-- Header -->
+    <header id="header">
+        <nav id="nav">
+            <ul>
+                <li><a href="../index.html">Home</a></li>
+                <li><a href="../overview.html">Overview</a></li>
+                <li><a href="../people.html">People</a></li>
+                <li><a href="../publications.html">Publications</a></li>
+                <li><a href="../blogs.html">Blogs</a></li>
+                <li><a href="../software.html">Software</a></li>
+                <li><a href="../contact.html">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Main -->
+    <div id="main" class="wrapper style1">
+        <div class="container">
+            <article>
+            <header class="major">
+                <h1>Can Knowledge Distillation Transfer Robustness From CLIP?</h1>
+                <p>A small image classifier can inherit much of a large vision-language model's robustness to sketches, renderings and other natural shifts, using only ImageNet data and about twice the cost of standard training.</p>
+                <p style="font-size:0.9em">
+                    By <a href="https://github.com/andyz245">Andy Zhou</a>,
+                    <a href="https://haohanwang.ischool.illinois.edu/">Haohan Wang</a>, and others &middot;
+                    <time datetime="2026-11-13">November 13, 2026</time> &middot;
+                    About our NeurIPS 2023 paper
+                </p>
+                <ul class="actions">
+                    <li><a href="https://arxiv.org/abs/2311.01441" class="button">Paper</a></li>
+                    <li><a href="https://github.com/andyz245/DiscreteAdversarialDistillation" class="button alt">Code</a></li>
+                </ul>
+            </header>
+
+            <p>Large vision-language models such as CLIP recognize objects in sketches, cartoons and paintings far better
+                than ordinary ImageNet classifiers, but they are too big for many deployments. So a practical question is
+                whether <strong>knowledge distillation can transfer robustness</strong>, not just accuracy, from such a
+                model to a small one. Our paper <em>Distilling Out-of-Distribution Robustness from Vision-Language
+                Foundation Models</em>, by Andy Zhou, Jindong Wang, Yu-Xiong Wang and Haohan Wang (University of Illinois
+                Urbana-Champaign and Microsoft Research), published at NeurIPS 2023, answers yes for natural distribution
+                shifts. Even plain distillation on clean ImageNet images helps, and a method we call Discrete Adversarial
+                Distillation (DAD) helps much more: a ViT-B/16 student went from 39.5% to 65.1% accuracy on
+                ImageNet-Rendition.</p>
+
+            <figure>
+                <img src="imgs/distill_robustness_from_clip/cover.png" alt="Bar chart of ImageNet-Rendition accuracy for a ViT-B/16 trained on ImageNet: 39.5% with AugReg, 47.7% with Pyramid adversarial training, 47.3% with discrete adversarial training, and 65.1% with DAD distillation from CLIP, whose own accuracy is 87.7%" style="max-width:100%"/>
+                <figcaption class="figure-caption">ImageNet-Rendition accuracy of a ViT-B/16 student (data: Table 1 of arXiv:2311.01441). The dashed line is the CLIP ViT-L/14 teacher.</figcaption>
+            </figure>
+
+            <!-- Answer-first summary. -->
+            <div class="intro-box">
+                <h2 style="margin-top:0">Key findings</h2>
+                <ul>
+                    <li>Plain knowledge distillation from CLIP ViT-L/14 on clean ImageNet images, with no extra data or
+                        augmentation, raised ImageNet-Rendition accuracy by 10.2 points on average across ResNet34,
+                        ResNet50, ViT-S and ViT-B students, according to Appendix A of the NeurIPS 2023 paper by Zhou, Wang,
+                        Wang and Wang.</li>
+                    <li>Discrete Adversarial Distillation (DAD), which trains the student on CLIP's adversarial examples
+                        redrawn by a VQGAN, gave a ViT-B/16 65.1% on ImageNet-Rendition and 46.1% on ImageNet-Sketch,
+                        17.8 and 11.3 points above discrete adversarial training (DAT), the strongest prior augmentation
+                        compared (NeurIPS 2023, Table 1).</li>
+                    <li>On a ResNet50, DAD raised average accuracy over ImageNet-Rendition, ImageNet-Sketch and ImageNet-A
+                        to 31.7%, from 20.0% for standard training and 24.6% with DAT, while clean ImageNet accuracy stayed
+                        near 76% (75.7% vs 76.1%).</li>
+                    <li>Because DAD generates its adversarial images once from a frozen teacher and reuses them, it costs
+                        about 2x standard training on ImageNet, compared with 3.5x for DAT and 11x for standard adversarial
+                        training (NeurIPS 2023, Table 7).</li>
+                </ul>
+            </div>
+
+            <section>
+                <h2>Can knowledge distillation transfer robustness, not just accuracy?</h2>
+                <p>Image classifiers trained on ImageNet are accurate on photos like the ones they were trained on and
+                    much worse on the same objects drawn as sketches, rendered as cartoons, or photographed in unusual
+                    conditions. CLIP, trained on hundreds of millions of image-text pairs, is far more robust to these
+                    <em>natural distribution shifts</em>: in the paper's measurements, CLIP ViT-L/14 scores 87.7% on
+                    ImageNet-Rendition, while a ViT-B/16 trained on ImageNet with standard augmentation scores 39.5%.</p>
+                <p>Knowledge distillation is the usual way to compress a big model into a small one: the small
+                    &ldquo;student&rdquo; is trained to match the outputs of a big &ldquo;teacher&rdquo;. It is normally
+                    judged on clean accuracy, and there it has a known weakness: very large teachers are often poor
+                    teachers for small students. The paper asks whether distillation can carry over something else, the
+                    teacher's robustness, when the student only ever sees ImageNet images.</p>
+                <p>The first answer comes from the simplest possible experiment. Distilling CLIP into four students with
+                    the original distillation objective, on clean ImageNet images only, raised ImageNet-Rendition accuracy
+                    for every student, by 8.8 to 12.0 points. The ResNet34 student, about 13.7 times smaller than the
+                    teacher, also gained on ImageNet-Sketch (21.0% to 28.5%) and on clean ImageNet (66.5% to 74.5%).</p>
+                <figure>
+                    <img src="imgs/distill_robustness_from_clip/figure2.png" alt="Paired bar chart of ImageNet-Rendition accuracy before and after plain distillation from CLIP ViT-L/14: ResNet34 32.4 to 41.2, ResNet50 36.1 to 47.0, ViT-S 36.9 to 45.9, ViT-B 39.5 to 51.5" style="max-width:100%"/>
+                    <figcaption class="figure-caption">Plain knowledge distillation from CLIP, trained on clean ImageNet images only (data: Table 8, Appendix A of arXiv:2311.01441).</figcaption>
+                </figure>
+
+                <h2>Key terms</h2>
+                <dl>
+                    <dt><strong>Knowledge distillation</strong></dt>
+                    <dd>Training a smaller student model to reproduce the output probabilities of a larger teacher model,
+                        usually alongside the true labels.</dd>
+                    <dt><strong>Out-of-distribution (OOD) robustness</strong></dt>
+                    <dd>A model's accuracy on data that differs from its training data without being adversarially
+                        attacked, such as sketches (ImageNet-Sketch), renderings (ImageNet-Rendition) or hard natural photos
+                        (ImageNet-A).</dd>
+                    <dt><strong>Natural vs synthetic distribution shift</strong></dt>
+                    <dd>Natural shifts are real images collected in a different style or setting; synthetic shifts are
+                        generated corruptions such as noise, blur or style transfer (ImageNet-C, Stylized-ImageNet).</dd>
+                    <dt><strong>Adversarial example</strong></dt>
+                    <dd>An input changed slightly, on purpose, so that a model gets it wrong.</dd>
+                    <dt><strong>VQGAN</strong></dt>
+                    <dd>A generative model that encodes an image into a grid of entries from a learned codebook of visual
+                        &ldquo;words&rdquo; and decodes it back into an image.</dd>
+                    <dt><strong>Model capacity gap</strong></dt>
+                    <dd>The observation that a student much smaller than its teacher often cannot imitate it well, so a
+                        bigger teacher does not always give a better student.</dd>
+                </dl>
+
+                <h2>What is discrete adversarial distillation (DAD)?</h2>
+                <p>Plain distillation only shows the student how the teacher behaves on ordinary ImageNet photos. DAD adds
+                    images on which the teacher's knowledge is most informative. For each training image it finds a small
+                    change that pushes CLIP toward a wrong answer, then passes the result through a pretrained VQGAN. The
+                    VQGAN redraws the image from its codebook, which turns an invisible pixel-level perturbation into a
+                    visible change in color, texture or shape. Only images that CLIP still classifies correctly are kept,
+                    so the teacher acts as an oracle for what the redrawn image shows.</p>
+                <p>The student is then trained on three terms: the true label on clean images, CLIP's output on clean
+                    images, and CLIP's output on the redrawn images. The redrawn images are produced once from the frozen
+                    teacher and stored, so the expensive attack step is not repeated during training.</p>
+                <figure>
+                    <img src="imgs/distill_robustness_from_clip/figure1.png" alt="Diagram of discrete adversarial distillation: an ImageNet image is attacked against the CLIP teacher, redrawn by a VQGAN, kept only if CLIP still labels it correctly, stored once, and used with the clean image to train a small student to match CLIP's outputs" style="max-width:100%"/>
+                    <figcaption class="figure-caption">How DAD builds its training data and trains the student (Section 3.3 of arXiv:2311.01441).</figcaption>
+                </figure>
+                <p>The paper also gives a theoretical argument, using Wasserstein distance between distributions, for why
+                    the teacher matters: a teacher trained on more diverse data produces more diverse adversarial
+                    examples, which sit closer to unseen test distributions. This connects to independent evidence that
+                    CLIP's robustness comes mainly from the diversity of its training data (see the comparison section
+                    below).</p>
+
+                <h2>How much more robust is the distilled model?</h2>
+                <p>All students below are trained on ImageNet-1K at 224&times;224 resolution; the teacher is a frozen CLIP
+                    ViT-L/14. Numbers are top-1 accuracy (%) from Table 1 of the paper.</p>
+                <table class="comparison-table">
+                    <thead>
+                    <tr><th>Model</th><th>ImageNet</th><th>Rendition</th><th>Sketch</th><th>ImageNet-A</th><th>Natural-shift avg</th></tr>
+                    </thead>
+                    <tbody>
+                    <tr><td>CLIP ViT-L/14 (teacher, zero-shot)</td><td>79.9</td><td>87.7</td><td>61.6</td><td>64.2</td><td>71.2</td></tr>
+                    <tr><td>ViT-B/16, AugReg</td><td>79.9</td><td>39.5</td><td>29.2</td><td>19.0</td><td>29.2</td></tr>
+                    <tr><td>ViT-B/16, + Pyramid AT</td><td>81.7</td><td>47.7</td><td>36.8</td><td>23.0</td><td>35.8</td></tr>
+                    <tr><td>ViT-B/16, + DAT</td><td>81.5</td><td>47.3</td><td>34.8</td><td>30.2</td><td>37.4</td></tr>
+                    <tr><td><strong>ViT-B/16, + DAD</strong></td><td>79.6</td><td><strong>65.1</strong></td><td><strong>46.1</strong></td><td><strong>31.8</strong></td><td><strong>47.7</strong></td></tr>
+                    <tr><td>ResNet50, standard</td><td>76.1</td><td>36.1</td><td>24.0</td><td>0.0</td><td>20.0</td></tr>
+                    <tr><td>ResNet50, DAT</td><td>76.5</td><td>42.0</td><td>27.3</td><td>4.4</td><td>24.6</td></tr>
+                    <tr><td><strong>ResNet50, DAD</strong></td><td>75.7</td><td><strong>51.6</strong></td><td><strong>35.8</strong></td><td><strong>7.7</strong></td><td><strong>31.7</strong></td></tr>
+                    </tbody>
+                </table>
+                <p>Two more results help separate what does the work. First, the distillation objective matters: with
+                    the same DAD images, the DAD objective averaged 51.7 over the paper's seven in-distribution and shifted test
+                    sets on ViT-B/16 (ImageNet-C counted as 100 minus its error), against 48.9 for Adversarially Robust Distillation (ARD), 47.9 for RSLAD and 43.2 for
+                    plain distillation (Table 3). Second, the teacher matters: distilling from the smaller CLIP-RN101
+                    instead of CLIP ViT-L/14 gave the same ViT-B/16 student 48.7% instead of 65.1% on ImageNet-Rendition
+                    (Table 5). Starting from a ViT-B/16 pretrained on ImageNet-21K pushed DAD further, to 72.1% on
+                    Rendition and 51.2% on Sketch (Table 4).</p>
+
+                <h2>Is it cheaper than adversarial training?</h2>
+                <p>Yes. Adversarial training normally recomputes attacks at every training step. DAD attacks a frozen
+                    teacher once and reuses the images, so the only extra cost is training on a larger dataset. For a
+                    ResNet50 trained for 100 epochs, the paper reports these budgets relative to standard training
+                    (Table 7):</p>
+                <table class="comparison-table">
+                    <thead><tr><th>Method</th><th>Attack steps</th><th>Training budget</th></tr></thead>
+                    <tbody>
+                    <tr><td>Standard ImageNet training</td><td>0</td><td>1x</td></tr>
+                    <tr><td>Adversarial training</td><td>10</td><td>11x</td></tr>
+                    <tr><td>AdvProp</td><td>5</td><td>7x</td></tr>
+                    <tr><td>Fast AdvProp</td><td>1</td><td>3x</td></tr>
+                    <tr><td>DAT</td><td>1</td><td>3.5x</td></tr>
+                    <tr><td><strong>DAD</strong></td><td>1</td><td><strong>2x</strong></td></tr>
+                    </tbody>
+                </table>
+
+                <h2>How does this compare with other ways to get robust small models?</h2>
+                <ul>
+                    <li><strong>The capacity gap.</strong> <a href="https://arxiv.org/abs/1910.01348">On the Efficacy of
+                        Knowledge Distillation</a> by Jang Hyun Cho and Bharath Hariharan (ICCV 2019) found that larger,
+                        more accurate teachers often do not make better teachers, because small students cannot mimic
+                        them. Our results agree on clean accuracy (DAD from CLIP lowered a ResNet34's ImageNet accuracy
+                        from 66.5% to 63.6%) but show that robustness to natural shifts still transfers, so the two
+                        findings are about different targets.</li>
+                    <li><strong>Distilling adversarial robustness.</strong> <a href="https://arxiv.org/abs/1905.09747">Adversarially
+                        Robust Distillation</a> by Micah Goldblum, Liam Fowl, Soheil Feizi and Tom Goldstein (AAAI 2020)
+                        showed that much adversarial robustness is inherited even when distilling on clean images, and
+                        introduced ARD. Our paper reaches a parallel conclusion for out-of-distribution robustness, and
+                        uses ARD as a baseline objective: with the same augmented data it was the strongest alternative
+                        (48.9 vs 51.7 average).</li>
+                    <li><strong>How to distill well.</strong> <a href="https://arxiv.org/abs/2106.05237">Knowledge
+                        distillation: A good teacher is patient and consistent</a> by Lucas Beyer, Xiaohua Zhai, Am&eacute;lie
+                        Royer, Larisa Markeeva, Rohan Anil and Alexander Kolesnikov (CVPR 2022) showed that teacher and
+                        student should see the same augmented views, with long training schedules, to compress large
+                        models without losing accuracy. DAD follows the same spirit, since the teacher labels exactly the
+                        augmented images the student sees, but focuses on robustness rather than clean accuracy.</li>
+                    <li><strong>Discrete adversarial training.</strong> <a href="https://arxiv.org/abs/2209.07735">Enhance
+                        the Visual Representation via Discrete Adversarial Training</a> by Xiaofeng Mao and colleagues
+                        (NeurIPS 2022) introduced the idea of using a VQGAN to turn adversarial images into discrete
+                        &ldquo;visual words&rdquo;, which DAD builds on. DAT attacks the model being trained; DAD attacks
+                        a robust teacher instead. DAT still gave better clean ImageNet accuracy and lower ImageNet-C error
+                        on ViT-B/16, and the paper shows the two can be combined.</li>
+                    <li><strong>Where CLIP's robustness comes from.</strong> <a href="https://arxiv.org/abs/2205.01397">Data
+                        Determines Distributional Robustness in Contrastive Language Image Pre-training (CLIP)</a> by
+                        Alex Fang, Gabriel Ilharco, Mitchell Wortsman and colleagues (ICML 2022) found that the diversity
+                        of the training distribution, not language supervision or the contrastive loss, is the main cause
+                        of CLIP's robustness. This fits the paper's argument that a teacher trained on more diverse data
+                        produces more useful augmentations.</li>
+                    <li><strong>Keeping robustness when fine-tuning CLIP itself.</strong> <a href="https://arxiv.org/abs/2109.01903">Robust
+                        fine-tuning of zero-shot models</a> (WiSE-FT) by Mitchell Wortsman and colleagues (CVPR 2022)
+                        averages the weights of zero-shot and fine-tuned CLIP, improving accuracy under distribution
+                        shift by 4 to 6 points over prior work. It keeps CLIP's full size; distillation is the
+                        complementary route when the deployed model must be small.</li>
+                </ul>
+
+                <h2>What held up, and what changed?</h2>
+                <p>This section is our lab's current perspective rather than a result of the paper. Since 2023, distilling
+                    large pretrained models into small ones has become routine, and the paper's central point still seems
+                    useful to us: the teacher's training distribution, not only its size, determines what a student can
+                    inherit. Newer and larger vision-language teachers exist now, and we would expect the method to
+                    benefit from them, as the paper itself anticipates, but we have not tested this and the numbers here
+                    are for CLIP ViT-L/14.</p>
+
+                <h2>What this does not show</h2>
+                <ul>
+                    <li><strong>Gains are mostly on natural shifts.</strong> The student inherits the teacher's strengths
+                        and weaknesses. CLIP is weaker on synthetic corruptions, and on ViT-B/16 DAD had a higher
+                        ImageNet-C error than DAT (53.2 vs 44.7 mean corruption error) and slightly lower Stylized-ImageNet
+                        accuracy (22.4% vs 23.1%).</li>
+                    <li><strong>Clean accuracy can drop slightly.</strong> ViT-B/16 with DAD scored 79.6% on ImageNet
+                        against 81.5% with DAT and 79.9% for the AugReg baseline. Combining DAD with DAT recovered clean
+                        accuracy (81.9%) at some cost on natural shifts.</li>
+                    <li><strong>The capacity gap is real for clean accuracy.</strong> A ResNet34 distilled with DAD from
+                        CLIP ViT-L/14 was less accurate on clean ImageNet than one trained without a teacher (63.6% vs
+                        66.5%), even though it was more robust to renderings and sketches.</li>
+                    <li><strong>A strong teacher is required.</strong> The benefit depends most on the teacher's
+                        robustness; a weaker CLIP-RN101 teacher transferred much less.</li>
+                    <li><strong>Limited scope.</strong> Experiments cover ImageNet classification with ResNet and ViT
+                        students and CLIP teachers. The main paper does not evaluate detection, segmentation or other
+                        domains, and robustness to adversarial attacks is only touched on in an appendix ablation.</li>
+                </ul>
+
+                <h2>Frequently asked questions</h2>
+                <h3>Can knowledge distillation transfer robustness from a large model to a small one?</h3>
+                <p>Yes, at least for robustness to natural distribution shifts. In the NeurIPS 2023 paper by Zhou, Wang, Wang and Wang, plain knowledge distillation from CLIP ViT-L/14 on clean ImageNet images raised ImageNet-Rendition accuracy by 10.2 points on average across four students, and the DAD method raised a ViT-B/16 from 39.5% to 65.1%.</p>
+                <h3>Does a bigger teacher make a better student in knowledge distillation?</h3>
+                <p>Not for clean accuracy, but it can for robustness. Earlier work found that larger teachers often do not produce more accurate students, and DAD also lowered a ResNet34&#x27;s ImageNet accuracy (63.6% vs 66.5% without a teacher). Yet the most robust teacher tested, CLIP ViT-L/14, gave every student its best ImageNet-Rendition score.</p>
+                <h3>How do you make a small vision model robust to distribution shift?</h3>
+                <p>One cheap option is to distill from a robust foundation model such as CLIP and add the teacher&#x27;s own adversarial examples, redrawn by a VQGAN, as extra training data. With this recipe (DAD), a ResNet50 reached 51.6% on ImageNet-Rendition and 35.8% on ImageNet-Sketch, against 42.0% and 27.3% for discrete adversarial training (DAT), at about 2x the cost of standard training.</p>
+                <h3>What is discrete adversarial distillation (DAD)?</h3>
+                <p>DAD is a training method from the NeurIPS 2023 paper Distilling Out-of-Distribution Robustness from Vision-Language Foundation Models. It finds small image changes that fool a CLIP teacher, redraws those images with a VQGAN, keeps the ones CLIP still labels correctly, and trains a smaller student to match CLIP&#x27;s outputs on both the original and the redrawn images.</p>
+
+                <h2>Citation</h2>
+<pre><code>@inproceedings{zhou2023distilling,
+  title     = {Distilling Out-of-Distribution Robustness from Vision-Language Foundation Models},
+  author    = {Zhou, Andy and Wang, Jindong and Wang, Yu-Xiong and Wang, Haohan},
+  booktitle = {Advances in Neural Information Processing Systems (NeurIPS)},
+  volume    = {36},
+  year      = {2023}
+}</code></pre>
+
+                <h2>Related from our lab</h2>
+                <ul>
+                    <li><a href="../publications.html#tagML_Zhou-NeurIPS23">The NeurIPS 2023 paper on distilling out-of-distribution robustness in our publication list</a></li>
+                    <li><a href="../publications.html#tagML_Huang-ICCV23">A Sentence Speaks a Thousand Images (ICCV 2023): domain generalization by distilling CLIP with language guidance</a></li>
+                    <li><a href="vision_transformer_robustness_nullspace.html">Vision transformer robustness: the input changes a ViT cannot see, and how to use them for fine-tuning</a></li>
+                    <li><a href="thousand_ideas_trustworthy_ML.html">Three frameworks behind most trustworthy ML methods, including data augmentation for robustness</a></li>
+                    <li><a href="https://haohanwang.ischool.illinois.edu/blog/unified-trustworthy-ai.html">A unified view of trustworthy AI, an essay by Haohan Wang</a></li>
+                </ul>
+            </section>
+            </article>
+
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer id="footer">
+        <ul class="icons">
+            <li><a href="https://x.com/HaohanWang" class="icon brands alt fa-twitter"><span class="label">X</span></a></li>
+            <li><a href="https://www.linkedin.com/in/haohanwang/" class="icon brands alt fa-linkedin-in"><span class="label">LinkedIn</span></a></li>
+            <li><a href="https://github.com/DreamLabUIUC" class="icon brands alt fa-github"><span class="label">GitHub</span></a></li>
+            <li><a href="../feed.xml" class="icon solid alt fa-rss"><span class="label">RSS</span></a></li>
+        </ul>
+        <ul class="copyright">
+            <li>&copy; DREAM Lab, University of Illinois Urbana-Champaign</li>
+            <li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
+        </ul>
+    </footer>
+
+</div>
+
+<!-- Scripts -->
+<script src="../assets2/js/jquery.min.js"></script>
+<script src="../assets2/js/jquery.scrolly.min.js"></script>
+<script src="../assets2/js/jquery.dropotron.min.js"></script>
+<script src="../assets2/js/jquery.scrollex.min.js"></script>
+<script src="../assets2/js/browser.min.js"></script>
+<script src="../assets2/js/breakpoints.min.js"></script>
+<script src="../assets2/js/util.js"></script>
+<script src="../assets2/js/main.js"></script>
+
+</body>
+</html>

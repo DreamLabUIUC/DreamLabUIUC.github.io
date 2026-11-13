@@ -1,5 +1,13 @@
 [
   {
+    "path": "blogs/distill_robustness_from_clip.html",
+    "title": "Can Knowledge Distillation Transfer Robustness From CLIP?",
+    "date": "2026-11-13",
+    "description": "Can knowledge distillation transfer robustness from CLIP? In our NeurIPS 2023 paper, DAD lifted a ViT-B/16 from 39.5% to 65.1% on ImageNet-Rendition.",
+    "topic": "Robust machine learning",
+    "paper": "https://arxiv.org/abs/2311.01441"
+  },
+  {
     "path": "blogs/single_brand_mention_ai_search.html",
     "title": "Can One Brand Mention Steer AI Search Answers?",
     "date": "2026-11-11",

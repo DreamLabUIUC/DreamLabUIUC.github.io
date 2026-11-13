@@ -23,6 +23,7 @@ Haohan Wang is an Assistant Professor in the School of Information Sciences, aff
 - [SecFid](https://dream.ischool.illinois.edu/secfid/): benchmark for security and fidelity of prompt injection defenses (ICML 2026 Spotlight)
 
 ## Blog posts
+- [Can Knowledge Distillation Transfer Robustness From CLIP?](https://dream.ischool.illinois.edu/blogs/distill_robustness_from_clip.html) (2026-11-13): Can knowledge distillation transfer robustness from CLIP? In our NeurIPS 2023 paper, DAD lifted a ViT-B/16 from 39.5% to 65.1% on ImageNet-Rendition.
 - [Can One Brand Mention Steer AI Search Answers?](https://dream.ischool.illinois.edu/blogs/single_brand_mention_ai_search.html) (2026-11-11): A single brand mention added to one sentence of an ordinary article reached AI search answers 62.7% of the time with GPT-5-mini, a UIUC and IISc study finds.
 - [Why Do AI Agents Fail at Real-World Tasks? The Last Mile](https://dream.ischool.illinois.edu/blogs/why_ai_agents_fail_real_world_tasks.html) (2026-11-09): Why do AI agents fail at real-world tasks? A UIUC study traces it to the last mile: Claude Code finished 9 of 46 live tasks alone and 39 with primitives.
 - [What Is Personalized Regression? Patient-Specific Genetic Effects](https://dream.ischool.illinois.edu/blogs/what_is_personalized_regression.html) (2026-11-06): What is personalized regression? It fits one set of effects per person. Het-PR built such profiles for 251 Alzheimer's patients across 1,684 SNPs.
