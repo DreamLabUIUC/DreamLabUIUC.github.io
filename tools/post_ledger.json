@@ -328,6 +328,18 @@
       "published": false,
       "note": "Chosen by the author on 2026-11-04 (Scholar and the personal list still use the first title, MiroBench).",
       "publish_date": "2026-11-04"
+    },
+    {
+      "title": "STEVE: Stabilizing Textual Gradient-Based Prompt Optimization via Error-Driven Refinement and Regularized Verification",
+      "arxiv": "2609.23716",
+      "year": 2026,
+      "status": "published",
+      "slug": "why_prompt_optimization_makes_prompts_worse",
+      "draft_date": "2026-11-17",
+      "kind": "new",
+      "primary_query": "why does automatic prompt optimization make prompts worse",
+      "published": false,
+      "publish_date": "2026-11-17"
     }
   ]
 }

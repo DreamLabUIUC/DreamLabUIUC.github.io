@@ -1,5 +1,13 @@
 [
   {
+    "path": "blogs/why_prompt_optimization_makes_prompts_worse.html",
+    "title": "Why Does Automatic Prompt Optimization Make Prompts Worse?",
+    "date": "2026-11-17",
+    "description": "Why does automatic prompt optimization make prompts worse? In our STEVE paper, feedback from a correct answer cut test accuracy from 74.1% to 38.5%.",
+    "topic": "LLM reasoning and prompt optimization",
+    "paper": "https://arxiv.org/abs/2609.23716"
+  },
+  {
     "path": "blogs/distill_robustness_from_clip.html",
     "title": "Can Knowledge Distillation Transfer Robustness From CLIP?",
     "date": "2026-11-13",

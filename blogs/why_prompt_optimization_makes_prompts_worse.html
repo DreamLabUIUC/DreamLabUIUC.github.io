@@ -1,0 +1,473 @@
+<!DOCTYPE HTML>
+<html lang="en">
+<head>
+    <title>Why Does Automatic Prompt Optimization Make Prompts Worse? | DREAM Lab, UIUC</title>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <meta name="description" content="Why does automatic prompt optimization make prompts worse? In our STEVE paper, feedback from a correct answer cut test accuracy from 74.1% to 38.5%.">
+    <link rel="canonical" href="https://dream.ischool.illinois.edu/blogs/why_prompt_optimization_makes_prompts_worse.html">
+    <meta property="og:type" content="article">
+    <meta property="og:site_name" content="DREAM Lab, UIUC">
+    <meta property="og:title" content="Why Does Automatic Prompt Optimization Make Prompts Worse?">
+    <meta property="og:description" content="Why does automatic prompt optimization make prompts worse? In our STEVE paper, feedback from a correct answer cut test accuracy from 74.1% to 38.5%.">
+    <meta property="og:url" content="https://dream.ischool.illinois.edu/blogs/why_prompt_optimization_makes_prompts_worse.html">
+    <meta property="og:image" content="https://dream.ischool.illinois.edu/blogs/imgs/why_prompt_optimization_makes_prompts_worse/cover.png">
+    <meta property="article:published_time" content="2026-11-17">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@HaohanWang">
+    <meta name="twitter:title" content="Why Does Automatic Prompt Optimization Make Prompts Worse?">
+    <meta name="twitter:description" content="Why does automatic prompt optimization make prompts worse? In our STEVE paper, feedback from a correct answer cut test accuracy from 74.1% to 38.5%.">
+    <meta name="twitter:image" content="https://dream.ischool.illinois.edu/blogs/imgs/why_prompt_optimization_makes_prompts_worse/cover.png">
+    <meta name="citation_title" content="STEVE: Stabilizing Textual Gradient-Based Prompt Optimization via Error-Driven Refinement and Regularized Verification">
+    <meta name="citation_author" content="Xu, Yifan">
+    <meta name="citation_author" content="Li, Yixuan">
+    <meta name="citation_author" content="Li, Xinzhuo">
+    <meta name="citation_author" content="Gu, Yixin">
+    <meta name="citation_author" content="Shen, Yifan">
+    <meta name="citation_author" content="Yu, Lijun">
+    <meta name="citation_author" content="Wang, Haohan">
+    <meta name="citation_publication_date" content="2026">
+    <meta name="citation_conference_title" content="Findings of the Association for Computational Linguistics: AACL-IJCNLP 2026">
+    <meta name="citation_arxiv_id" content="2609.23716">
+    <meta name="citation_pdf_url" content="https://arxiv.org/pdf/2609.23716">
+    <link rel="alternate" type="application/rss+xml" title="DREAM Lab blog" href="https://dream.ischool.illinois.edu/feed.xml">
+    <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "BlogPosting",
+      "headline": "Why Does Automatic Prompt Optimization Make Prompts Worse?",
+      "description": "Why does automatic prompt optimization make prompts worse? In our STEVE paper, feedback from a correct answer cut test accuracy from 74.1% to 38.5%.",
+      "datePublished": "2026-11-17",
+      "dateModified": "2026-11-17",
+      "url": "https://dream.ischool.illinois.edu/blogs/why_prompt_optimization_makes_prompts_worse.html",
+      "mainEntityOfPage": "https://dream.ischool.illinois.edu/blogs/why_prompt_optimization_makes_prompts_worse.html",
+      "image": "https://dream.ischool.illinois.edu/blogs/imgs/why_prompt_optimization_makes_prompts_worse/cover.png",
+      "inLanguage": "en",
+      "keywords": ["automatic prompt optimization", "textual gradients", "TextGrad", "prompt overfitting", "LLM prompt engineering", "STEVE"],
+      "author": [
+        {"@type": "Person", "name": "Yifan Xu", "url": "https://arxiv.org/abs/2609.23716"},
+        {"@type": "Person", "@id": "https://haohanwang.ischool.illinois.edu/#person", "name": "Haohan Wang", "url": "https://haohanwang.ischool.illinois.edu/"}
+      ],
+      "publisher": {"@type": "ResearchOrganization", "@id": "https://dream.ischool.illinois.edu/#lab", "name": "DREAM Lab, UIUC", "url": "https://dream.ischool.illinois.edu/"},
+      "about": {
+        "@type": "ScholarlyArticle",
+        "name": "STEVE: Stabilizing Textual Gradient-Based Prompt Optimization via Error-Driven Refinement and Regularized Verification",
+        "url": "https://arxiv.org/abs/2609.23716",
+        "datePublished": "2026",
+        "publisher": "Findings of the Association for Computational Linguistics: AACL-IJCNLP 2026",
+        "author": [
+          {"@type": "Person", "name": "Yifan Xu"},
+          {"@type": "Person", "name": "Yixuan Li"},
+          {"@type": "Person", "name": "Xinzhuo Li"},
+          {"@type": "Person", "name": "Yixin Gu"},
+          {"@type": "Person", "name": "Yifan Shen"},
+          {"@type": "Person", "name": "Lijun Yu"},
+          {"@type": "Person", "@id": "https://haohanwang.ischool.illinois.edu/#person", "name": "Haohan Wang"}
+        ]
+      }
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {"@type": "ListItem", "position": 1, "name": "DREAM Lab", "item": "https://dream.ischool.illinois.edu/"},
+        {"@type": "ListItem", "position": 2, "name": "Blog", "item": "https://dream.ischool.illinois.edu/blogs.html"},
+        {"@type": "ListItem", "position": 3, "name": "Why Does Automatic Prompt Optimization Make Prompts Worse?", "item": "https://dream.ischool.illinois.edu/blogs/why_prompt_optimization_makes_prompts_worse.html"}
+      ]
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+        {"@type": "Question", "name": "Why does TextGrad sometimes make my prompt worse?", "acceptedAnswer": {"@type": "Answer", "text": "Usually for one of two reasons identified in the STEVE paper: feedback written about examples the model already answered correctly is mostly noise, and repeated fixes for hard examples pile narrow rules into the prompt until simple questions suffer. In the paper's Table 1, TextGrad ended below the starting zero-shot prompt in 5 of 30 benchmark-model settings."}},
+        {"@type": "Question", "name": "Should prompt optimization use feedback from correct or incorrect examples?", "acceptedAnswer": {"@type": "Answer", "text": "Use incorrect examples to generate the feedback, and correct examples to check that nothing broke. In the STEVE ablation, generating feedback only from correct examples left GSM8k at 76.5% and Object Counting at 76.1% against starting scores of 76.3% and 77.9%, while failure-only feedback with verification reached 86.2% and 95.7%."}},
+        {"@type": "Question", "name": "How do I stop prompt optimization from overfitting?", "acceptedAnswer": {"@type": "Answer", "text": "Treat every rewrite as provisional and test it on examples the original prompt already solved before accepting it. STEVE does this with 20 resampled preservation examples per step and a penalty that grows each step; removing this check lowered Object Counting accuracy from 95.7% to 92.2%. Selecting the final prompt on a separate validation set also helps."}},
+        {"@type": "Question", "name": "How much does STEVE cost to run?", "acceptedAnswer": {"@type": "Answer", "text": "More than plain TextGrad, because each step writes three candidate prompts and scores each on the failed batch and the preservation sample. The paper estimates about 2,300 executor calls and about 4.05 US dollars for one run on BBH Object Counting with gpt-4o as evaluator and optimizer and gpt-3.5-turbo as executor, at September 2025 prices."}}
+      ]
+    }
+  ]
+}
+    </script>
+    <link rel="stylesheet" href="../assets2/css/main.css"/>
+    <link rel="stylesheet" href="blog.css"/>
+    <link rel="apple-touch-icon" sizes="180x180" href="../favicon/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="../favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="../favicon/favicon-16x16.png">
+    <link rel="manifest" href="../favicon/site.webmanifest">
+    <noscript>
+        <link rel="stylesheet" href="../assets2/css/noscript.css"/>
+    </noscript>
+</head>
+<body class="is-preload">
+<div id="page-wrapper">
+
+    <!-- Header -->
+    <header id="header">
+        <nav id="nav">
+            <ul>
+                <li><a href="../index.html">Home</a></li>
+                <li><a href="../overview.html">Overview</a></li>
+                <li><a href="../people.html">People</a></li>
+                <li><a href="../publications.html">Publications</a></li>
+                <li><a href="../blogs.html">Blogs</a></li>
+                <li><a href="../software.html">Software</a></li>
+                <li><a href="../contact.html">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Main -->
+    <div id="main" class="wrapper style1">
+        <div class="container">
+            <article>
+            <header class="major">
+                <h1>Why Does Automatic Prompt Optimization Make Prompts Worse?</h1>
+                <p>Two habits of textual-gradient optimizers quietly damage prompts: learning from answers that were already right, and fixing hard cases until easy ones break. Changing what the optimizer learns from, and what it is allowed to keep, fixes much of it.</p>
+                <p style="font-size:0.9em">
+                    By Yifan Xu,
+                    <a href="https://haohanwang.ischool.illinois.edu/">Haohan Wang</a>, and others &middot;
+                    <time datetime="2026-11-17">November 17, 2026</time> &middot;
+                    About our Findings of AACL-IJCNLP 2026 paper
+                </p>
+                <ul class="actions">
+                    <li><a href="https://arxiv.org/abs/2609.23716" class="button">Paper</a></li>
+                    <li><a href="../preprints.html#tagML_XuY-2609.23716" class="button alt">Publication entry</a></li>
+                </ul>
+            </header>
+
+            <p>Tools such as TextGrad let a strong language model critique another model's answers and rewrite its
+                prompt, step after step. This <strong>automatic prompt optimization</strong> often helps, but practitioners
+                also see the opposite: a rewrite makes the prompt worse, or a prompt that improved for a few steps grows
+                into a long checklist and starts failing simple questions. Our paper <em>STEVE: Stabilizing Textual
+                Gradient-Based Prompt Optimization via Error-Driven Refinement and Regularized Verification</em>, by Yifan
+                Xu, Yixuan Li, Xinzhuo Li, Yixin Gu, Yifan Shen, Lijun Yu (Google DeepMind) and Haohan Wang, at the
+                University of Illinois Urbana-Champaign, accepted to Findings of AACL-IJCNLP 2026, traces this to two
+                causes. In one example, a single rewrite based on feedback about a correctly answered question dropped
+                test accuracy from 74.1% to 38.5%, while feedback about a wrongly answered one raised it to 88.9%.</p>
+
+            <figure>
+                <img src="imgs/why_prompt_optimization_makes_prompts_worse/cover.png" alt="Bar chart of test accuracy after one prompt update starting from a prompt at 74.1%: feedback from a correctly answered question lowers accuracy to 38.5%, feedback from a wrongly answered question raises it to 88.9%" style="max-width:100%"/>
+                <figcaption class="figure-caption">One prompt update, two sources of feedback (data: Figure 1(a) of arXiv:2609.23716).</figcaption>
+            </figure>
+
+            <!-- Answer-first summary. -->
+            <div class="intro-box">
+                <h2 style="margin-top:0">Key findings</h2>
+                <ul>
+                    <li>In the STEVE paper (Xu et al., Findings of AACL-IJCNLP 2026), rewriting a prompt from feedback on
+                        a question the model had answered correctly dropped test accuracy from 74.1% to 38.5%, while
+                        rewriting it from feedback on a failed question raised accuracy to 88.9%.</li>
+                    <li>Optimizing a prompt only on hard, failed examples without any check first raised accuracy to
+                        88.9%, then produced a prompt of more than 1,000 tokens whose accuracy fell to 73.2% after 12
+                        steps; with STEVE's verification gate, the optimized prompt in the paper's example stayed at
+                        about 300 tokens with 95.1% accuracy.</li>
+                    <li>Across 10 reasoning benchmarks and 3 evaluator/optimizer models (gpt-4o, gemini-2.5-flash,
+                        gpt-5) with gpt-3.5-turbo as the model being prompted, STEVE averaged 82.1% accuracy, against
+                        66.4% for the zero-shot chain-of-thought starting prompt, 74.7% for TextGrad and 78.7% for
+                        REVOLVE (averages of the paper's Table 1).</li>
+                    <li>TextGrad ended below its own zero-shot starting prompt in 5 of the 30 benchmark-model settings
+                        in the STEVE paper's Table 1; STEVE ended below it in none.</li>
+                </ul>
+            </div>
+
+            <section>
+                <h2>What goes wrong in textual-gradient prompt optimization?</h2>
+                <p>Textual-gradient methods borrow the vocabulary of neural network training. An <em>executor</em> model
+                    answers training questions with the current prompt. An <em>evaluator</em> model compares the answers
+                    with the ground truth and writes a critique, the &ldquo;textual gradient&rdquo;. An <em>optimizer</em>
+                    model then rewrites the prompt to follow that critique. ProTeGi and TextGrad made this loop popular,
+                    and our lab's earlier method REVOLVE extended it by tracking how responses evolve across steps.</p>
+                <p>The loop has no built-in notion of step size or regularization, and each stage is a language model
+                    call whose small variations can be amplified by the next. The STEVE paper identifies two specific ways
+                    the loop goes wrong:</p>
+                <ul>
+                    <li><strong>Noisy feedback from correct answers.</strong> When the evaluator is asked to critique an
+                        answer that is already right, it has no real error to explain, so it tends to produce stylistic or
+                        arbitrary advice. The optimizer follows it anyway, and the prompt gets worse.</li>
+                    <li><strong>Over-specialization on hard cases.</strong> Learning only from failures fixes that, at
+                        first. But each hard case pushes the optimizer to add another specific rule or multi-step
+                        procedure. After a few rounds the prompt is a long checklist written for the hardest examples,
+                        and it confuses the model on simple ones.</li>
+                </ul>
+                <p>Appendix F of the paper shows what the second failure looks like in practice: a StrategyQA prompt
+                    optimized for 12 steps on hard cases alone, without any check, ends up telling the model to
+                    cross-reference external sources, use &ldquo;a secondary model or external knowledge base&rdquo;,
+                    attach confidence scores and &ldquo;reflect on training data&rdquo;, none of which a yes/no question
+                    from a single model call can actually do.</p>
+
+                <h2>Key terms</h2>
+                <dl>
+                    <dt><strong>Automatic prompt optimization (APO)</strong></dt>
+                    <dd>Improving a language model's prompt by an automated search or rewriting procedure that uses a
+                        small labeled training set, instead of by hand.</dd>
+                    <dt><strong>Textual gradient</strong></dt>
+                    <dd>A natural-language critique, written by an evaluator model, that explains why an output was wrong
+                        and how the prompt should change, used in place of a numerical gradient.</dd>
+                    <dt><strong>Executor, evaluator and optimizer</strong></dt>
+                    <dd>The three model roles in the loop: the executor answers questions with the prompt, the evaluator
+                        writes the critique, and the optimizer rewrites the prompt.</dd>
+                    <dt><strong>Over-specialization (prompt overfitting)</strong></dt>
+                    <dd>A prompt that accumulates rules tailored to the training examples it was fixed on, so that it
+                        scores well on them and worse on other inputs.</dd>
+                    <dt><strong>Preservation set</strong></dt>
+                    <dd>In STEVE, a pool of training examples that the starting prompt already answers correctly, used
+                        only to check that a candidate rewrite does not break them.</dd>
+                </dl>
+
+                <h2>Should prompt feedback come from correct or wrong answers?</h2>
+                <p>From wrong answers, according to the paper's experiments. The cover figure shows a single update in
+                    one example: feedback from a failed question took the prompt from 74.1% to 88.9%, while feedback
+                    from a correctly handled question took it to 38.5%. The paper reports the same direction for
+                    single-step updates on Object Counting, Navigate and GSM8k (its Figure 3), and confirms it in a
+                    full 12-step ablation. When feedback came only from correct examples, the prompt ended close to, or
+                    below, where it started:</p>
+                <table class="comparison-table">
+                    <thead>
+                    <tr><th>Variant (gpt-4o as evaluator/optimizer)</th><th>GSM8k</th><th>StrategyQA</th><th>Object Counting</th></tr>
+                    </thead>
+                    <tbody>
+                    <tr><td>Starting zero-shot CoT prompt</td><td>76.3</td><td>88.7</td><td>77.9</td></tr>
+                    <tr><td>Feedback from correct examples only</td><td>76.5</td><td>86.8</td><td>76.1</td></tr>
+                    <tr><td>Feedback from all examples</td><td>82.5</td><td>90.1</td><td>87.1</td></tr>
+                    <tr><td>Feedback from failures only, no verification</td><td>84.1</td><td>91.5</td><td>92.2</td></tr>
+                    <tr><td><strong>STEVE (failures only + verification)</strong></td><td><strong>86.2</strong></td><td><strong>93.2</strong></td><td><strong>95.7</strong></td></tr>
+                    </tbody>
+                </table>
+                <p class="figure-caption">Accuracy (%) from Table 3 of arXiv:2609.23716; the executor is gpt-3.5-turbo-0125.</p>
+                <p>The first row of the ablation and the starting prompt are almost the same, which is the point:
+                    critiques of correct answers carried very little useful signal. The authors connect this to older
+                    ideas in machine learning that also concentrate on hard examples, such as boosting, online hard
+                    example mining and prioritized experience replay.</p>
+
+                <h2>Why do optimized prompts get longer and overfit?</h2>
+                <p>Because the optimizer solves each hard case by adding instructions, and nothing in the basic loop ever
+                    asks whether those instructions still help the easy cases. In the paper's Figure 1(b), repeated
+                    refinement on hard cases without verification first raised accuracy to 88.9%, then kept growing the
+                    prompt to more than 1,000 tokens, and after 12 steps accuracy had fallen to 73.2%. The authors
+                    compare this to catastrophic forgetting in continual learning: the prompt keeps learning new special
+                    cases and forgets the general behavior it started with.</p>
+
+                <h2>How does STEVE stabilize prompt optimization?</h2>
+                <p>STEVE keeps the TextGrad loop and changes two decisions in it: which examples are allowed to produce
+                    feedback, and which rewrites are allowed to stay.</p>
+                <figure>
+                    <img src="imgs/why_prompt_optimization_makes_prompts_worse/figure1.png" alt="Diagram of one STEVE optimization step: the current prompt is run on the training set; error-driven refinement takes feedback only from four examples the prompt gets wrong; an evaluator and optimizer critique the failures and write three candidate prompts; regularized verification scores each candidate as its gain on the failed batch minus a growing penalty times its drop on twenty preservation examples; the best candidate is kept only if its score is above zero, otherwise the current prompt stays" style="max-width:100%"/>
+                    <figcaption class="figure-caption">One STEVE step (based on Algorithm 1 of arXiv:2609.23716).</figcaption>
+                </figure>
+                <ol>
+                    <li><strong>Error-driven refinement.</strong> At each step, STEVE re-runs the current prompt on the
+                        training set and samples a batch of 4 examples only from the ones it currently gets wrong. The
+                        evaluator writes one critique summarizing the common failure, and the optimizer writes 3
+                        candidate prompts from it. If fewer failures remain than the batch size, optimization stops.</li>
+                    <li><strong>Regularized verification.</strong> Before the run, STEVE builds a preservation pool from
+                        training examples the starting prompt already answers correctly. Each step draws a fresh sample
+                        of 20 from it. Every candidate gets a score: its improvement on the failed batch minus
+                        &lambda;<sub>t</sub> times its regression on the preservation sample, where &lambda;<sub>t</sub>
+                        = 1.5 + 0.1t grows each step so the gate becomes stricter over time. The best candidate replaces
+                        the prompt only if its score is positive; otherwise the old prompt stays.</li>
+                </ol>
+                <p>After 12 steps, the final prompt is the checkpoint with the best accuracy on a separate validation
+                    set, and the test set is used once for the reported number. The design is independent of how the
+                    critique is written, so the authors describe it as applicable on top of other textual-gradient
+                    methods, not only TextGrad.</p>
+                <p>The prompts STEVE keeps tend to be structured but general. The paper's Appendix G shows an Object
+                    Counting prompt that tells the model to define what counts as an item, list every number before
+                    adding, and show intermediate sums, rather than rules tied to particular training questions.</p>
+
+                <h2>How much better are the prompts?</h2>
+                <p>The main experiment uses gpt-3.5-turbo-0125 as the executor on 10 benchmarks: GSM8k and MultiArith
+                    (math), StrategyQA and BBH Navigate (commonsense), BBH Object Counting, Penguins in a Table,
+                    Geometric Shapes and Date Understanding (symbolic and procedural), and MMLU College Physics and
+                    Machine Learning (expert knowledge). Each is run with three evaluator/optimizer models, for 30
+                    settings, averaged over three runs.</p>
+                <figure>
+                    <img src="imgs/why_prompt_optimization_makes_prompts_worse/figure2.png" alt="Bar chart of average accuracy over 30 benchmark and model settings: zero-shot chain-of-thought 66.4%, three-shot chain-of-thought 70.2%, TextGrad 74.7%, REVOLVE 78.7%, STEVE 82.1%" style="max-width:100%"/>
+                    <figcaption class="figure-caption">Our averages of the 30 settings in Table 1 of arXiv:2609.23716.</figcaption>
+                </figure>
+                <table class="comparison-table">
+                    <thead>
+                    <tr><th>Benchmark (mean of 3 evaluator/optimizer models)</th><th>Zero-shot CoT</th><th>TextGrad</th><th>REVOLVE</th><th>STEVE</th></tr>
+                    </thead>
+                    <tbody>
+                    <tr><td>GSM8k</td><td>74.4</td><td>80.7</td><td>82.8</td><td><strong>84.5</strong></td></tr>
+                    <tr><td>MultiArith</td><td>83.8</td><td>95.6</td><td>98.9</td><td><strong>99.2</strong></td></tr>
+                    <tr><td>StrategyQA</td><td>87.3</td><td>90.2</td><td>91.1</td><td><strong>93.6</strong></td></tr>
+                    <tr><td>BBH Navigate</td><td>63.8</td><td>77.9</td><td>90.2</td><td><strong>91.9</strong></td></tr>
+                    <tr><td>BBH Object Counting</td><td>77.4</td><td>80.1</td><td>84.6</td><td><strong>90.2</strong></td></tr>
+                    <tr><td>BBH Penguins in a Table</td><td>70.2</td><td>92.5</td><td>91.0</td><td><strong>96.5</strong></td></tr>
+                    <tr><td>BBH Geometric Shapes</td><td>39.0</td><td>39.6</td><td>54.4</td><td><strong>57.7</strong></td></tr>
+                    <tr><td>BBH Date Understanding</td><td>69.4</td><td>74.6</td><td>76.3</td><td><strong>80.4</strong></td></tr>
+                    <tr><td>MMLU College Physics</td><td>57.0</td><td>58.7</td><td>63.4</td><td><strong>68.0</strong></td></tr>
+                    <tr><td>MMLU Machine Learning</td><td>41.8</td><td>56.5</td><td>54.7</td><td><strong>59.3</strong></td></tr>
+                    <tr><td><strong>Average of 30 settings</strong></td><td>66.4</td><td>74.7</td><td>78.7</td><td><strong>82.1</strong></td></tr>
+                    </tbody>
+                </table>
+                <p class="figure-caption">Accuracy (%), our per-benchmark means of Table 1 of arXiv:2609.23716 (executor gpt-3.5-turbo-0125, 12 steps). The paper reports the per-model numbers; three-shot CoT is omitted here for width.</p>
+                <p>STEVE had the best or tied-best result among the iterative methods in 27 of the 30 settings; the
+                    exceptions were GSM8k and MMLU Machine Learning with gemini-2.5-flash and Navigate with gpt-5, where
+                    REVOLVE was ahead. The largest gains over the starting prompt came on procedural tasks, for example
+                    +27.5 points on Navigate and +30.2 on Penguins in a Table with gemini-2.5-flash. The stability
+                    point shows up directly: TextGrad finished below the zero-shot prompt it started from in 5 settings
+                    (for example 66.9% vs 68.7% on Navigate with gemini-2.5-flash, and 33.9% vs 41.1% on Geometric
+                    Shapes with gpt-5), and STEVE in none.</p>
+                <p>A second experiment checks newer models and larger test sets, with gpt-5.4-mini as executor and
+                    gpt-5.4 as evaluator/optimizer, and adds ProTeGi as a baseline:</p>
+                <table class="comparison-table">
+                    <thead>
+                    <tr><th>Task</th><th>Zero-shot</th><th>ProTeGi</th><th>TextGrad</th><th>STEVE</th></tr>
+                    </thead>
+                    <tbody>
+                    <tr><td>BBEH Object Counting</td><td>18.0</td><td>20.0</td><td>44.0</td><td><strong>52.0</strong></td></tr>
+                    <tr><td>BBEH Geometric Shapes</td><td>24.0</td><td>32.0</td><td>34.0</td><td><strong>44.0</strong></td></tr>
+                    <tr><td>GSM8K-Platinum (1,009 problems)</td><td>98.0</td><td>98.2</td><td>98.2</td><td><strong>98.3</strong></td></tr>
+                    <tr><td>DS-1000 (800 coding problems)</td><td>27.5</td><td>32.1</td><td>32.0</td><td><strong>32.5</strong></td></tr>
+                    </tbody>
+                </table>
+                <p class="figure-caption">Accuracy (%) from Table 2 of arXiv:2609.23716.</p>
+                <p>The gains are large on the hard symbolic tasks from BIG-Bench Extra Hard and close to zero on the
+                    nearly saturated GSM8K-Platinum and on DS-1000. In the appendix, STEVE also beats the evolutionary
+                    optimizer EvoPrompt on four BBH tasks with gpt-4o (for example 96.5% vs 84.3% on Penguins in a
+                    Table), and works with open models as evaluator and optimizer: with DeepSeek-V3.2 it reached 94.0%
+                    on StrategyQA and 82.0% on GSM8k.</p>
+
+                <h2>How does this compare with other work on unstable prompt optimization?</h2>
+                <ul>
+                    <li><strong>The methods STEVE builds on.</strong> <a href="https://arxiv.org/abs/2305.03495">Automatic
+                        Prompt Optimization with &ldquo;Gradient Descent&rdquo; and Beam Search</a> (ProTeGi) by Reid
+                        Pryzant, Dan Iter, Jerry Li, Yin Tat Lee, Chenguang Zhu and Michael Zeng (EMNLP 2023) introduced
+                        natural-language &ldquo;gradients&rdquo; computed on minibatches and used beam search and bandit
+                        selection to choose among edits, improving an initial prompt by up to 31%.
+                        <a href="https://arxiv.org/abs/2406.07496">TextGrad</a> by Mert Yuksekgonul, Federico Bianchi,
+                        Joseph Boen, Sheng Liu, Zhi Huang, Carlos Guestrin and James Zou (published in
+                        <a href="https://doi.org/10.1038/s41586-025-08661-4">Nature in 2025</a>) turned the idea into a
+                        general framework for optimizing any text component of a compound AI system. STEVE uses TextGrad
+                        as its base optimizer and leaves how critiques are written untouched; it controls which examples
+                        produce critiques and which rewrites are accepted.</li>
+                    <li><strong>The opposite bet on correct predictions.</strong>
+                        <a href="https://arxiv.org/abs/2507.09839">Stabilizing Black-Box Prompt Optimization with Textual
+                        Regularization and Signal Aggregation</a> (TRAS) by MohammadReza Davari, Utkarsh Garg, Weixin Cai
+                        and Eugene Belilovsky (Canadian Conference on Artificial Intelligence 2026, PMLR) tackles the same
+                        instability and also argues that optimizing only from failures causes drift. Its answer is to
+                        turn successful predictions into a second textual signal, a regularizer that tells the optimizer
+                        what to keep, and to average several sampled critiques. STEVE agrees that correct examples matter
+                        but uses them differently: never as a source of critique, only as a test that a candidate must
+                        pass. The two papers have not been compared head to head, so which use of correct examples works
+                        better is an open question.</li>
+                    <li><strong>Is &ldquo;gradient&rdquo; even the right word?</strong>
+                        <a href="https://arxiv.org/abs/2512.13598">Textual Gradients are a Flawed Metaphor for Automatic
+                        Prompt Optimization</a> by Daniel Melcer, Qi Chen, Wen-Hao Chiang, Shweta Garg, Pranav Garg and
+                        Christian Bock (arXiv, 2025) studies these methods through experiments and case studies and
+                        concludes that, although they often improve performance, the gradient analogy does not
+                        accurately explain how they behave. That fits STEVE's approach: instead of borrowing more
+                        machinery from gradient descent, it adds an explicit accept-or-reject test.</li>
+                    <li><strong>Which edits hurt.</strong> <a href="https://arxiv.org/abs/2605.26655">Why Prompt
+                        Optimization Works, and Why It Sometimes Doesn't: A Causal-Inspired Edit-Level Analysis</a> by
+                        Shuzhi Gong and Hechuan Wen (arXiv, 2026) analyzes prompts produced by several optimizers and finds
+                        that complexity-increasing and meta-instructional edits are associated with worse mathematical and
+                        multi-hop reasoning, while step-by-step edits help logical and sequential tasks. This is an
+                        independent, observational view of the over-specialization that STEVE's verification gate is
+                        designed to block.</li>
+                    <li><strong>Overfitting as a representation problem.</strong> Our lab's
+                        <a href="../preprints.html#tagML_FuL-2605.21318">TextReg: Mitigating Prompt Distributional
+                        Overfitting via Regularized Text-Space Optimization</a> (Fu et al., arXiv 2026) studies the same
+                        symptom, prompts that grow longer and collect narrow rules, with a focus on out-of-distribution
+                        generalization, and regularizes the textual gradients themselves. STEVE leaves the gradients alone
+                        and regularizes through example selection and a verification gate.</li>
+                </ul>
+
+                <h2>What this does not show</h2>
+                <ul>
+                    <li><strong>Small training and test sets.</strong> In the main experiment, most tasks use 50 training
+                        and 100 test examples (Penguins in a Table has 30 test examples and MMLU Machine Learning 23), so
+                        single-setting differences of a few points are within the range that noise could produce. The
+                        averages over 30 settings and three runs per setting are more reliable than any one cell.</li>
+                    <li><strong>The headline example is one example.</strong> The 74.1% &rarr; 38.5% vs 88.9% comparison
+                        and the 1,000-token prompt come from illustrative runs in Figure 1; the systematic evidence is the
+                        ablation in Table 3, on three datasets with one evaluator/optimizer model.</li>
+                    <li><strong>Higher cost per step.</strong> Scoring three candidates on the failed batch and the
+                        preservation sample adds executor calls. The paper estimates about 2,300 executor calls and about
+                        $4.05 for one run on BBH Object Counting at September 2025 prices.</li>
+                    <li><strong>Model dependence.</strong> Results depend on the evaluator and optimizer models and their
+                        API versions; the authors recommend a short faithfulness check, a one-step sanity test and a
+                        multi-seed check before full runs.</li>
+                    <li><strong>Hyperparameters were tuned on one task.</strong> The schedule &lambda;<sub>t</sub> = 1.5 +
+                        0.1t and the preservation sample of 20 were chosen from sensitivity runs on BBH Object Counting
+                        (a sample of 40 scored lower, 91.0%, than 20, 95.7%), so other tasks may prefer other values.</li>
+                    <li><strong>Small margins on easy or saturated tasks.</strong> On GSM8K-Platinum and DS-1000 the gain
+                        over TextGrad is 0.1 and 0.5 points.</li>
+                    <li><strong>Code.</strong> The authors state they will release code and evaluation data with the
+                        paper; at the time of writing we have no public link to add here.</li>
+                </ul>
+
+                <h2>Frequently asked questions</h2>
+                <h3>Why does TextGrad sometimes make my prompt worse?</h3>
+                <p>Usually for one of two reasons identified in the STEVE paper: feedback written about examples the
+                    model already answered correctly is mostly noise, and repeated fixes for hard examples pile narrow
+                    rules into the prompt until simple questions suffer. In the paper's Table 1, TextGrad ended below
+                    the starting zero-shot prompt in 5 of 30 benchmark-model settings.</p>
+                <h3>Should prompt optimization use feedback from correct or incorrect examples?</h3>
+                <p>Use incorrect examples to generate the feedback, and correct examples to check that nothing broke. In
+                    the STEVE ablation, generating feedback only from correct examples left GSM8k at 76.5% and Object
+                    Counting at 76.1% against starting scores of 76.3% and 77.9%, while failure-only feedback with
+                    verification reached 86.2% and 95.7%.</p>
+                <h3>How do I stop prompt optimization from overfitting?</h3>
+                <p>Treat every rewrite as provisional and test it on examples the original prompt already solved before
+                    accepting it. STEVE does this with 20 resampled preservation examples per step and a penalty that
+                    grows each step; removing this check lowered Object Counting accuracy from 95.7% to 92.2%. Selecting
+                    the final prompt on a separate validation set also helps.</p>
+                <h3>How much does STEVE cost to run?</h3>
+                <p>More than plain TextGrad, because each step writes three candidate prompts and scores each on the
+                    failed batch and the preservation sample. The paper estimates about 2,300 executor calls and about
+                    4.05 US dollars for one run on BBH Object Counting with gpt-4o as evaluator and optimizer and
+                    gpt-3.5-turbo as executor, at September 2025 prices.</p>
+
+                <h2>Citation</h2>
+<pre><code>@inproceedings{xu2026steve,
+  title     = {STEVE: Stabilizing Textual Gradient-Based Prompt Optimization via Error-Driven Refinement and Regularized Verification},
+  author    = {Xu, Yifan and Li, Yixuan and Li, Xinzhuo and Gu, Yixin and Shen, Yifan and Yu, Lijun and Wang, Haohan},
+  booktitle = {Findings of the Association for Computational Linguistics: AACL-IJCNLP 2026},
+  year      = {2026},
+  note      = {arXiv:2609.23716}
+}</code></pre>
+
+                <h2>Related from our lab</h2>
+                <ul>
+                    <li><a href="../publications.html#tagML_Zhang-ICML25">REVOLVE (ICML 2025): prompt optimization that tracks how responses evolve across steps, a baseline in this paper</a></li>
+                    <li><a href="../preprints.html#tagML_FuL-2605.21318">TextReg: regularized textual gradients against prompt distributional overfitting</a></li>
+                    <li><a href="../publications.html#tagML_Yu-ICLR26">SIPDO (ICLR 2026): closed-loop prompt optimization with synthetic data feedback</a></li>
+                    <li><a href="evolution_of_prompt_optimization.html">How prompt optimization evolved from genetic search to textual gradients, and what may come next</a></li>
+                    <li><a href="recursive_self_improvement_agents_forget.html">Do self-evolving LLM agents forget what they could do? Capability loss during lifelong adaptation</a></li>
+                </ul>
+            </section>
+            </article>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer id="footer">
+        <ul class="icons">
+            <li><a href="https://x.com/HaohanWang" class="icon brands alt fa-twitter"><span class="label">X</span></a></li>
+            <li><a href="https://www.linkedin.com/in/haohanwang/" class="icon brands alt fa-linkedin-in"><span class="label">LinkedIn</span></a></li>
+            <li><a href="https://github.com/DreamLabUIUC" class="icon brands alt fa-github"><span class="label">GitHub</span></a></li>
+            <li><a href="../feed.xml" class="icon solid alt fa-rss"><span class="label">RSS</span></a></li>
+        </ul>
+        <ul class="copyright">
+            <li>&copy; DREAM Lab, University of Illinois Urbana-Champaign</li>
+            <li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
+        </ul>
+    </footer>
+
+</div>
+
+<!-- Scripts -->
+<script src="../assets2/js/jquery.min.js"></script>
+<script src="../assets2/js/jquery.scrolly.min.js"></script>
+<script src="../assets2/js/jquery.dropotron.min.js"></script>
+<script src="../assets2/js/jquery.scrollex.min.js"></script>
+<script src="../assets2/js/browser.min.js"></script>
+<script src="../assets2/js/breakpoints.min.js"></script>
+<script src="../assets2/js/util.js"></script>
+<script src="../assets2/js/main.js"></script>
+
+</body>
+</html>
