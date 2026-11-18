@@ -340,6 +340,18 @@
       "primary_query": "why does automatic prompt optimization make prompts worse",
       "published": false,
       "publish_date": "2026-11-17"
+    },
+    {
+      "title": "Do GEO Gains Survive the Live Web? Evaluating In-the-Wild Visibility Gains of Generative Engine Optimization via LIVE-GEO",
+      "arxiv": "2611.01126",
+      "year": 2026,
+      "status": "published",
+      "slug": "does_geo_work_live_web",
+      "draft_date": "2026-11-18",
+      "kind": "new",
+      "primary_query": "does GEO actually work",
+      "published": false,
+      "publish_date": "2026-11-18"
     }
   ]
 }

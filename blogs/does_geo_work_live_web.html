@@ -1,0 +1,338 @@
+<!DOCTYPE HTML>
+<html lang="en">
+<head>
+    <title>Does GEO Actually Work? A Live Test on ChatGPT, Gemini, Grok | DREAM Lab, UIUC</title>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <meta name="description" content="Does GEO actually work on live AI search? In LIVE-GEO, ChatGPT, Gemini and Grok picked the same top product for only 48.8%-66.3% of 80 brands.">
+    <link rel="canonical" href="https://dream.ischool.illinois.edu/blogs/does_geo_work_live_web.html">
+    <meta property="og:type" content="article">
+    <meta property="og:site_name" content="DREAM Lab, UIUC">
+    <meta property="og:title" content="Does GEO Actually Work? A Live Test on ChatGPT, Gemini, Grok">
+    <meta property="og:description" content="Does GEO actually work on live AI search? In LIVE-GEO, ChatGPT, Gemini and Grok picked the same top product for only 48.8%-66.3% of 80 brands.">
+    <meta property="og:url" content="https://dream.ischool.illinois.edu/blogs/does_geo_work_live_web.html">
+    <meta property="og:image" content="https://dream.ischool.illinois.edu/blogs/imgs/does_geo_work_live_web/cover.png">
+    <meta property="article:published_time" content="2026-11-18">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@HaohanWang">
+    <meta name="twitter:title" content="Does GEO Actually Work? A Live Test on ChatGPT, Gemini, Grok">
+    <meta name="twitter:description" content="Does GEO actually work on live AI search? In LIVE-GEO, ChatGPT, Gemini and Grok picked the same top product for only 48.8%-66.3% of 80 brands.">
+    <meta name="twitter:image" content="https://dream.ischool.illinois.edu/blogs/imgs/does_geo_work_live_web/cover.png">
+    <meta name="citation_title" content="Do GEO Gains Survive the Live Web? Evaluating In-the-Wild Visibility Gains of Generative Engine Optimization via LIVE-GEO">
+    <meta name="citation_author" content="Kong, Runze">
+    <meta name="citation_author" content="Jin, Haibo">
+    <meta name="citation_author" content="Yu, Xucheng">
+    <meta name="citation_author" content="Wang, Xiaoqi">
+    <meta name="citation_author" content="Zeng, Huimin">
+    <meta name="citation_author" content="Wang, Haohan">
+    <meta name="citation_publication_date" content="2026">
+    <meta name="citation_conference_title" content="arXiv preprint arXiv:2611.01126">
+    <meta name="citation_pdf_url" content="https://arxiv.org/pdf/2611.01126">
+    <link rel="alternate" type="application/rss+xml" title="DREAM Lab blog" href="https://dream.ischool.illinois.edu/feed.xml">
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "BlogPosting",
+          "headline": "Does GEO Actually Work? A Live Test on ChatGPT, Gemini, Grok",
+          "description": "Does GEO actually work on live AI search? In LIVE-GEO, ChatGPT, Gemini and Grok picked the same top product for only 48.8%-66.3% of 80 brands.",
+          "datePublished": "2026-11-18",
+          "dateModified": "2026-11-18",
+          "url": "https://dream.ischool.illinois.edu/blogs/does_geo_work_live_web.html",
+          "mainEntityOfPage": "https://dream.ischool.illinois.edu/blogs/does_geo_work_live_web.html",
+          "image": "https://dream.ischool.illinois.edu/blogs/imgs/does_geo_work_live_web/cover.png",
+          "inLanguage": "en",
+          "keywords": ["generative engine optimization", "GEO", "AI search visibility", "LLM-based search", "benchmark", "ChatGPT", "Gemini", "Grok"],
+          "author": [
+            {"@type": "Person", "name": "Runze Kong", "affiliation": "University of Michigan, Ann Arbor"},
+            {"@type": "Person", "name": "Haibo Jin", "url": "https://dream.ischool.illinois.edu/people/haibo-jin/"},
+            {"@type": "Person", "@id": "https://haohanwang.ischool.illinois.edu/#person", "name": "Haohan Wang", "url": "https://haohanwang.ischool.illinois.edu/"}
+          ],
+          "publisher": {"@type": "ResearchOrganization", "@id": "https://dream.ischool.illinois.edu/#lab", "name": "DREAM Lab, UIUC", "url": "https://dream.ischool.illinois.edu/"},
+          "about": {
+            "@type": "ScholarlyArticle",
+            "name": "Do GEO Gains Survive the Live Web? Evaluating In-the-Wild Visibility Gains of Generative Engine Optimization via LIVE-GEO",
+            "url": "https://arxiv.org/abs/2611.01126",
+            "datePublished": "2026",
+            "publisher": "arXiv"
+          }
+        },
+        {
+          "@type": "BreadcrumbList",
+          "itemListElement": [
+            {"@type": "ListItem", "position": 1, "name": "DREAM Lab", "item": "https://dream.ischool.illinois.edu/"},
+            {"@type": "ListItem", "position": 2, "name": "Blog", "item": "https://dream.ischool.illinois.edu/blogs.html"},
+            {"@type": "ListItem", "position": 3, "name": "Does GEO Actually Work? A Live Test on ChatGPT, Gemini, Grok", "item": "https://dream.ischool.illinois.edu/blogs/does_geo_work_live_web.html"}
+          ]
+        },
+        {
+          "@type": "FAQPage",
+          "mainEntity": [
+            {"@type": "Question", "name": "Does generative engine optimization actually work?", "acceptedAnswer": {"@type": "Answer", "text": "Partly. In the LIVE-GEO study, rewriting a product page changed how ChatGPT, Gemini and Grok ranked it, and one strategy had the highest Top-1 rate on all three engines (66.3% to 76.3%). But the engines picked the same top product for only 48.8% to 66.3% of the 80 brands, so a gain measured on one engine or one product is not a reliable prediction for another."}},
+            {"@type": "Question", "name": "Do offline GEO benchmarks predict what ChatGPT, Gemini and Grok will rank first?", "acceptedAnswer": {"@type": "Answer", "text": "Only in part, and it depends on the model used as the offline judge. In LIVE-GEO, rankings from the DeepSeek API agreed with ChatGPT about as well as the live engines agreed with each other (mean rank correlation 0.50), GPT-4o and Kimi were lower (0.25 to 0.41), a small local Qwen model was weak (0.20 or below), and the Claude API correlated negatively with all three engines (-0.22 to -0.31)."}},
+            {"@type": "Question", "name": "Does the order of pages change how AI search ranks them?", "acceptedAnswer": {"@type": "Answer", "text": "Yes. Giving ChatGPT the same six product URLs in two opposite fixed orders moved one strategy's Top-1 rate from 73.8% to 93.8%, a 20-point difference with no change to any page. Repeating the request with the same order was stable (82.5% and 83.8%), which is why LIVE-GEO shuffles the candidate order once per brand and keeps it across repeats."}},
+            {"@type": "Question", "name": "Does adding statistics to a page help it rank in AI search?", "acceptedAnswer": {"@type": "Answer", "text": "In LIVE-GEO, Statistics Addition won the top position for 5.0% to 11.3% of brands on the three live engines, far below the leading strategy. A verifier also flagged all 80 of its rewritten descriptions for numbers the product specifications did not support, because the original prompt permits hypothetical data. When flagged products were moved below unflagged ones, its Top-1 rate fell to zero in every condition."}}
+          ]
+        }
+      ]
+    }
+    </script>
+    <link rel="stylesheet" href="../assets2/css/main.css"/>
+    <link rel="stylesheet" href="blog.css"/>
+    <link rel="apple-touch-icon" sizes="180x180" href="../favicon/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="../favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="../favicon/favicon-16x16.png">
+    <link rel="manifest" href="../favicon/site.webmanifest">
+    <noscript>
+        <link rel="stylesheet" href="../assets2/css/noscript.css"/>
+    </noscript>
+</head>
+<body class="is-preload">
+<div id="page-wrapper">
+
+    <!-- Header -->
+    <header id="header">
+        <nav id="nav">
+            <ul>
+                <li><a href="../index.html">Home</a></li>
+                <li><a href="../overview.html">Overview</a></li>
+                <li><a href="../people.html">People</a></li>
+                <li><a href="../publications.html">Publications</a></li>
+                <li><a href="../blogs.html">Blogs</a></li>
+                <li><a href="../software.html">Software</a></li>
+                <li><a href="../contact.html">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Main -->
+    <div id="main" class="wrapper style1">
+        <div class="container">
+            <article>
+            <header class="major">
+                <h1>Does GEO Actually Work? A Live Test on ChatGPT, Gemini, Grok</h1>
+                <p>We published GEO-rewritten product pages on the live web and let three AI search products rank them. The broad pattern held up. The winner for any single product often did not.</p>
+                <p style="font-size:0.9em">
+                    By Runze Kong, <a href="https://dream.ischool.illinois.edu/people/haibo-jin/">Haibo Jin</a>,
+                    <a href="https://haohanwang.ischool.illinois.edu/">Haohan Wang</a>, and others &middot;
+                    <time datetime="2026-11-18">November 18, 2026</time> &middot;
+                    About our arXiv preprint
+                </p>
+                <ul class="actions">
+                    <li><a href="https://arxiv.org/abs/2611.01126" class="button">Paper</a></li>
+                    <li><a href="../preprints.html" class="button alt">More preprints</a></li>
+                </ul>
+            </header>
+
+            <div class="intro-box">
+                <h2 style="margin-top:0">Key findings</h2>
+                <ul>
+                    <li>Given the same live product pages for 80 fictional brands, ChatGPT (GPT-6), Gemini 3.6 Thinking and Grok (Expert mode) picked the same top product for only 48.8% to 66.3% of brands, depending on the pair of engines &mdash; the central brand-level result of <em>Do GEO Gains Survive the Live Web? Evaluating In-the-Wild Visibility Gains of Generative Engine Optimization via LIVE-GEO</em> (Runze Kong, Haibo Jin, Xucheng Yu, Xiaoqi Wang, Huimin Zeng and Haohan Wang; University of Michigan and University of Illinois Urbana-Champaign; arXiv:2611.01126, 2026).</li>
+                    <li>Offline tests that paste page text into a model predicted the live engines unevenly in LIVE-GEO: the DeepSeek-V4-Pro API agreed with ChatGPT at a mean within-brand Spearman correlation of 0.50, while the Claude Sonnet 5.5 API correlated negatively with all three engines (&minus;0.22 to &minus;0.31) and ranked the unrewritten Original page first.</li>
+                    <li>The order of the candidate URLs alone moved results in LIVE-GEO: with no change to any page, the CORE strategy's Top-1 rate on ChatGPT was 73.8% under one fixed order and 93.8% under the reverse order, while a plain repeat with the same order was stable (82.5% and 83.8%).</li>
+                    <li>The aggregate picture did survive the live web in LIVE-GEO: seven of eight evaluators gave the same strategy, CORE, the highest Top-1 rate (66.3% to 76.3% on the three engines), and a numerical-faithfulness check flagged 86 of 400 rewritten descriptions, including all 80 produced by Statistics Addition.</li>
+                </ul>
+            </div>
+
+            <section>
+                <h2>Does GEO actually work once the pages are on the live web?</h2>
+                <p>Generative engine optimization (GEO) rewrites web content so that LLM-based search systems rank it higher in their answers and recommendations. Whether GEO actually works is usually answered in a lab: researchers paste the rewritten text into a model, next to a fixed set of competitors, and see where it lands. That is a clean test, but it is not what happens when ChatGPT, Gemini or Grok open a real web page. Our new preprint, <a href="https://arxiv.org/abs/2611.01126">Do GEO Gains Survive the Live Web?</a>, by Runze Kong (University of Michigan), <a href="https://dream.ischool.illinois.edu/people/haibo-jin/">Haibo Jin</a>, Xucheng Yu, Xiaoqi Wang, Huimin Zeng and <a href="https://haohanwang.ischool.illinois.edu/">Haohan Wang</a> (University of Illinois Urbana-Champaign), runs the test where the engines read: on published pages. The short answer is that part of the gain survives. Across 80 brands the same strategy came out on top on all three engines, but the engines agreed on the winning product for only about half to two thirds of individual brands.</p>
+                <p>That gap between the average and the individual case is the point of the paper. A marketer cares about one product on one engine. A benchmark reports an average over many products on one model. The study measures how far apart those two things are, and how much of the difference comes from factors nobody intended to test, such as the order in which pages are listed.</p>
+
+                <h2>Key terms</h2>
+                <dl>
+                    <dt><strong>Generative engine (GE)</strong></dt>
+                    <dd>An LLM-based search system that retrieves web content and writes an answer or recommendation from it, instead of returning a list of links.</dd>
+                    <dt><strong>Generative engine optimization (GEO)</strong></dt>
+                    <dd>Rewriting web content so that generative engines rank or cite it more prominently; the term comes from Aggarwal et al. (KDD 2024).</dd>
+                    <dt><strong>Direct-text evaluation</strong></dt>
+                    <dd>Testing a GEO rewrite by giving the text itself to a model through an API, with no web access; the common setup in GEO benchmarks.</dd>
+                    <dt><strong>Live evaluation</strong></dt>
+                    <dd>Testing a GEO rewrite by publishing it as a web page and asking a deployed AI product to open the page and rank it.</dd>
+                    <dt><strong>Top-1 rate</strong></dt>
+                    <dd>The share of brands for which a strategy's product is ranked first among the six candidates.</dd>
+                    <dt><strong>Mean rank</strong></dt>
+                    <dd>The average position (1 to 6) of a strategy's product across brands; lower is better.</dd>
+                    <dt><strong>Within-brand Spearman &rho;</strong></dt>
+                    <dd>The rank correlation between two evaluators' orderings of the same six products, averaged over brands; 1 means identical rankings, 0 means unrelated, negative means reversed.</dd>
+                    <dt><strong>Frozen snapshot</strong></dt>
+                    <dd>A fixed version of the benchmark's pages, names and prices, so that a ranking can be traced to the exact text it was measured on.</dd>
+                    <dt><strong>Numerical faithfulness</strong></dt>
+                    <dd>The requirement that concrete numbers in a product description are consistent with, and supported by, the product's specifications.</dd>
+                </dl>
+
+                <h2>How does LIVE-GEO test GEO on live AI search engines?</h2>
+                <p>LIVE-GEO (Live, In-the-wild Visibility Evaluation for GEO) is a public product site with 80 fictional brands in 80 uncommon product categories, spread over 18 product families such as kilns, cold-chain storage and archival equipment. The brands are invented and the categories are obscure on purpose, so that existing brands and existing web pages do not interfere. The site runs as the public product site of a startup partner, so the engines reach it the way they reach any commercial site.</p>
+                <figure>
+                    <img src="imgs/does_geo_work_live_web/figure_method.png" alt="Diagram of the five stages of LIVE-GEO. Stage 1: download a brand's product record (specifications, a description and seven reviews). Stage 2: rewrite the description and reviews with a GEO strategy. Stage 3: screening, where unsafe submissions are rejected and unsupported numbers are flagged but not removed. Stage 4: publish each rewrite as a live product page in a frozen snapshot, six products per brand with the same specifications. Stage 5: ChatGPT, Gemini and Grok open the pages and return a ranking." style="max-width:100%"/>
+                    <figcaption class="figure-caption">Every brand has six products with identical specifications. Only the description, the reviews and a price offset within &plusmn;0.2% differ, so a difference in rank comes from the rewritten text.</figcaption>
+                </figure>
+                <p>Each brand has an <strong>Original</strong> product, generated from templates with a description and seven reviews grounded in six specification attributes. Each GEO strategy then rewrites the description and the review titles and text, and the result is published as a separate product of the same brand with the same specifications. The study evaluates five existing strategies, implemented from their released prompts or code: <strong>Statistics Addition</strong> (from the original GEO paper), <strong>C-SEO</strong> (the Content Improvement strategy of C-SEO Bench), <strong>E-GEO</strong>, <strong>AgenticGEO</strong> and <strong>CORE</strong>. That gives six candidates per brand and 400 rewritten descriptions in total.</p>
+                <p>Before publication, each submission passes a format check and a safety screen, and its numbers are checked against the specifications by JEV, a classification model that returns a fixed choice with a probability instead of generating text. Flags are advisory: nothing is deleted and no ranking changes because of them. The accepted pages are then frozen in a snapshot.</p>
+                <p>The evaluation asks each engine for the &ldquo;best&rdquo; product in the category, supplies either the six product URLs or one brand-page URL, tells it to open each page and read the description and reviews, and asks for a full ranking plus a log of what it actually read. Eight evaluators are compared: three deployed products used through their web interfaces (ChatGPT with GPT-6, Gemini 3.6 Thinking, Grok in Expert mode) and five direct-text evaluators that receive the same frozen text with no web access (the GPT-4o, DeepSeek-V4-Pro, Kimi K2.6 and Claude Sonnet 5.5 APIs, and a local Qwen2.5-3B-Instruct). All three live engines returned complete rankings for all 80 brands.</p>
+
+                <h2>Do ChatGPT, Gemini and Grok agree on which page wins?</h2>
+                <p>In aggregate, yes. For individual products, much less.</p>
+                <table class="comparison-table">
+                    <thead>
+                        <tr><th>Evaluator (prices within &plusmn;0.2%)</th><th>Original</th><th>CORE</th><th>C-SEO</th><th>E-GEO</th><th>AgenticGEO</th><th>Statistics Addition</th></tr>
+                    </thead>
+                    <tbody>
+                        <tr><td>ChatGPT, live pages</td><td>2.5%</td><td>76.3%</td><td>2.5%</td><td>5.0%</td><td>3.8%</td><td>10.0%</td></tr>
+                        <tr><td>Grok, live pages</td><td>0.0%</td><td>67.5%</td><td>8.8%</td><td>7.5%</td><td>5.0%</td><td>11.3%</td></tr>
+                        <tr><td>Gemini, live pages</td><td>10.0%</td><td>66.3%</td><td>2.5%</td><td>7.5%</td><td>8.8%</td><td>5.0%</td></tr>
+                        <tr><td>GPT-4o API, direct text</td><td>1.3%</td><td>57.5%</td><td>11.3%</td><td>8.8%</td><td>6.3%</td><td>15.0%</td></tr>
+                        <tr><td>DeepSeek API, direct text</td><td>2.5%</td><td>82.5%</td><td>5.0%</td><td>2.5%</td><td>3.8%</td><td>3.8%</td></tr>
+                        <tr><td>Kimi API, direct text</td><td>3.8%</td><td>56.3%</td><td>5.0%</td><td>8.8%</td><td>2.5%</td><td>23.8%</td></tr>
+                        <tr><td>Claude API, direct text (78 brands)</td><td>44.9%</td><td>2.6%</td><td>7.7%</td><td>41.0%</td><td>2.6%</td><td>1.3%</td></tr>
+                        <tr><td>Qwen2.5-3B, local, direct text</td><td>7.5%</td><td>23.8%</td><td>20.0%</td><td>22.5%</td><td>13.8%</td><td>12.5%</td></tr>
+                    </tbody>
+                </table>
+                <p style="font-size:0.9em">Top-1 rate of each strategy, from Table 1 of the paper. Live engines received the six product URLs. The Claude API refused two of the 80 requests, so its row uses 78 brands.</p>
+                <p>Seven of the eight evaluators give CORE the highest Top-1 rate, with margins of 56 to 66 percentage points over the second-best strategy on the three live engines. The exception is the Claude API, which ranks the Original page first for 44.9% of brands and E-GEO first for 41.0%, and puts CORE last with a mean rank of 5.56. The small local Qwen model also has CORE on top, but at 23.8% it barely separates the strategies.</p>
+                <p>A note on reading this table, because CORE is <a href="controlling_output_rankings_core.html">our own lab's method</a>. The comparison is not a neutral leaderboard, and the paper says why. CORE optimizes against ranking feedback by design, and in this study it also received a final phase in which rankings observed from ChatGPT for its non-winning products were fed back to its optimizer before the text was frozen (those feedback rankings are not counted as results). The other four strategies were generated from their released prompts or code with GPT-4.1, and the paper describes no live-feedback phase for them. The ranking prompt is also adapted from the CORE paper. So the fair reading is that a feedback-driven strategy tuned on one engine kept its lead on two engines it was not tuned on, and on four of five offline evaluators. It is not evidence that the other strategies cannot be tuned the same way.</p>
+                <p>The more general result is what happens below the aggregate.</p>
+                <figure>
+                    <img src="imgs/does_geo_work_live_web/cover.png" alt="Bar chart of how often two live AI search engines picked the same top product out of six candidates, across 80 brands. ChatGPT and Grok: 66.3%. ChatGPT and Gemini: 57.5%. Grok and Gemini: 48.8%." style="max-width:100%"/>
+                    <figcaption class="figure-caption">Same pages, same question, same frozen snapshot: two engines name the same winner for roughly half to two thirds of brands.</figcaption>
+                </figure>
+                <table class="comparison-table">
+                    <thead>
+                        <tr><th>Pair of live engines</th><th>Mean within-brand &rho; [95% interval]</th><th>Same top product</th><th>Same last product</th></tr>
+                    </thead>
+                    <tbody>
+                        <tr><td>ChatGPT and Grok</td><td>0.48 [0.39, 0.58]</td><td>66.3%</td><td>60.0%</td></tr>
+                        <tr><td>ChatGPT and Gemini</td><td>0.37 [0.26, 0.48]</td><td>57.5%</td><td>38.8%</td></tr>
+                        <tr><td>Grok and Gemini</td><td>0.32 [0.21, 0.43]</td><td>48.8%</td><td>47.5%</td></tr>
+                    </tbody>
+                </table>
+                <p>For one of the 80 categories, for example, Grok put the Statistics Addition page first and Gemini put the CORE page first. The paper's summary is that the engines pick different winners for a third to a half of the brands. If you optimized one page and checked it on one engine, there is a one-in-three to one-in-two chance that the next engine names a different winner.</p>
+
+                <h2>Do offline GEO benchmarks predict live AI search rankings?</h2>
+                <p>It depends heavily on which model plays the judge.</p>
+                <figure>
+                    <img src="imgs/does_geo_work_live_web/figure_agreement.png" alt="Horizontal bar chart of mean within-brand Spearman correlation between each direct-text evaluator and ChatGPT reading live pages. DeepSeek API 0.50, Kimi API 0.38, GPT-4o API 0.36, local Qwen2.5-3B 0.13, Claude API minus 0.22. Reference lines show ChatGPT's agreement with the other live engines: Grok 0.48 and Gemini 0.37." style="max-width:100%"/>
+                    <figcaption class="figure-caption">Agreement with ChatGPT reading the live pages. One offline judge matches the level seen between live engines; one runs the other way.</figcaption>
+                </figure>
+                <table class="comparison-table">
+                    <thead>
+                        <tr><th>Direct-text evaluator</th><th>&rho; with ChatGPT</th><th>&rho; with Grok</th><th>&rho; with Gemini</th><th>Same top product as ChatGPT</th></tr>
+                    </thead>
+                    <tbody>
+                        <tr><td>DeepSeek API</td><td>0.50</td><td>0.44</td><td>0.32</td><td>66.3%</td></tr>
+                        <tr><td>Kimi API</td><td>0.38</td><td>0.41</td><td>0.25</td><td>53.8%</td></tr>
+                        <tr><td>GPT-4o API</td><td>0.36</td><td>0.32</td><td>0.28</td><td>55.0%</td></tr>
+                        <tr><td>Qwen2.5-3B (local)</td><td>0.13</td><td>0.20</td><td>0.17</td><td>12.5%</td></tr>
+                        <tr><td>Claude API (78 brands)</td><td>&minus;0.22</td><td>&minus;0.31</td><td>&minus;0.26</td><td>9.0%</td></tr>
+                    </tbody>
+                </table>
+                <p>DeepSeek's agreement with ChatGPT (&rho; = 0.50, same top product for 66.3% of brands) matches the agreement among the live engines themselves. GPT-4o and Kimi sit in the middle. A 3-billion-parameter local model is close to uninformative. And the Claude API orders the strategies in nearly the opposite way from all three live engines. The highest agreement in the whole study is between two offline judges, GPT-4o and DeepSeek (&rho; = 0.62), which is higher than any pair that includes a live engine. Offline judges can agree with each other more than any of them agrees with the product people actually use.</p>
+                <p>None of this says direct-text benchmarks are wrong. They are reproducible and cheap, and here four of five reached the same aggregate conclusion as the live engines. It says the choice of judge model is itself an experimental variable, and that an offline result is a statement about that judge.</p>
+
+                <h2>Does the order of candidate pages change the ranking?</h2>
+                <p>Yes, and by more than most differences between strategies.</p>
+                <figure>
+                    <img src="imgs/does_geo_work_live_web/figure_order.png" alt="Grouped bar chart of the CORE strategy's Top-1 rate on three live engines under equal prices and three orders of the six product URLs. ChatGPT: Original-first order 73.8%, randomized order 82.5%, reverse order 93.8%. Grok: 37.5%, 65.0%, 50.0%. Gemini: 23.8%, 82.5%, 28.8%." style="max-width:100%"/>
+                    <figcaption class="figure-caption">The pages are identical in all three conditions. Only the order of the six links in the prompt changes.</figcaption>
+                </figure>
+                <p>The study tests two fixed sequences of the six product URLs under equal prices: one that lists the Original first and CORE last, and its exact reverse. On ChatGPT, CORE's Top-1 rate is 73.8% in the first and 93.8% in the second, and its mean rank improves by 0.79 positions, with a bootstrap interval that excludes zero. The randomized order that LIVE-GEO uses by default gives 82.5%, between the two. On Grok the same two sequences give 37.5% and 50.0%. On Gemini the leader itself changes: E-GEO has the highest Top-1 rate under one order (30.0%) and CORE under the other (28.8%).</p>
+                <p>Repetition is not the problem. Asking ChatGPT again with the same text, prompt and URL order gives the same top product for 80.0% of brands and the same last product for 90.0%, with &rho; = 0.85. The direct-text APIs are order-sensitive too: after reversing the saved order, &rho; between the two runs is 0.33 to 0.37 for DeepSeek, 0.39 to 0.49 for Kimi and 0.76 to 0.85 for Claude.</p>
+                <p>Names matter a little as well. When all six strategy labels in product names, URLs and page text were replaced with neutral aliases, CORE's Top-1 rate on ChatGPT was 76.3% against 83.8% in the unmasked repeat, and Statistics Addition's rose from 12.5% to 21.3%.</p>
+
+                <h2>Do small price differences or the entry page change the result?</h2>
+                <p>They change the numbers but not the leader. Moving from equal prices to prices frozen within &plusmn;0.2% of the base price shifts CORE's Top-1 rate from 82.5% to 76.3% on ChatGPT, from 65.0% to 67.5% on Grok and from 82.5% to 66.3% on Gemini. Giving the engine one brand-page URL and letting it find the products, instead of supplying the six product URLs, moves CORE's Top-1 rate on ChatGPT from 76.3% to 46.3%, while on Grok it stays close (67.5% and 71.3%). CORE keeps the highest Top-1 rate throughout, although E-GEO has the better mean rank in one ChatGPT brand-page condition.</p>
+
+                <h2>Does adding statistics to a page help, and are the numbers true?</h2>
+                <p>Adding statistics is one of the best-known GEO tactics. In this study it is also the one that most often invents its numbers. The JEV verifier flagged 86 of the 400 rewritten descriptions for numerical claims the specifications do not support: all 80 from Statistics Addition, 3 from AgenticGEO, 2 from E-GEO, 1 from CORE and none from C-SEO. The Statistics Addition prompt asks for compelling statistics and permits hypothetical data, so a description may claim, say, an &ldquo;18% improvement in heat retention&rdquo; that appears nowhere in the product's specifications. The flagged CORE description claimed &ldquo;30% energy savings&rdquo;.</p>
+                <p>The verifier itself was checked two ways. On 194 numerical test cases drawn from SciTab, TabFact and FEVEROUS it agreed with the reference labels on 176 (90.7%). And three researchers who did not see its output reviewed 50 sampled descriptions; JEV agreed with their two-of-three majority on all 50 (Fleiss' &kappa; = 0.96).</p>
+                <p>When flagged products are moved below unflagged ones, Statistics Addition's Top-1 rate falls to zero in every condition, and CORE's on ChatGPT rises from 82.5% to 86.3%. Without that adjustment, Statistics Addition was already far from the lead on the live engines (5.0% to 11.3%).</p>
+
+                <h2>How does this compare with other GEO benchmarks?</h2>
+                <p>LIVE-GEO builds on a line of benchmarks that made GEO measurable in the first place, and it evaluates their strategies rather than replacing them.</p>
+                <ul>
+                    <li><a href="https://arxiv.org/abs/2311.09735">GEO: Generative Engine Optimization</a> (Pranjal Aggarwal, Vishvak Murahari, Tanmay Rajpurohit, Ashwin Kalyan, Karthik Narasimhan and Ameet Deshpande, KDD 2024) defined the problem, introduced GEO-bench, and reported that GEO can boost visibility in generative engine responses by up to 40%, with effects that vary across domains. Statistics Addition comes from this paper. Its evaluation supplies sources to the model directly; LIVE-GEO asks what happens to one of its strategies on fictional product pages read by deployed engines.</li>
+                    <li><a href="https://arxiv.org/abs/2506.11097">C-SEO Bench: Does Conversational SEO Work?</a> (Haritz Puerto, Martin Gubri, Tommaso Green, Seong Joon Oh and Sangdoo Yun, NeurIPS Datasets and Benchmarks 2025) is the closest in spirit: a skeptical benchmark across question answering and product recommendation that also varies how many competitors adopt a method. It found most conversational-SEO methods largely ineffective, traditional SEO that improves a source's position in the model's context significantly more effective, and gains that shrink as more actors adopt a method. Its position finding and our order-sensitivity result point the same way: where a page sits in the input matters a great deal.</li>
+                    <li><a href="https://arxiv.org/abs/2511.20867">E-GEO: A Testbed for Generative Engine Optimization in E-Commerce</a> (Puneet S. Bagga, Vivek F. Farias, Tamar Korkotashvili, Tianyi Peng and Yuhang Wu, 2025) offers 13,746 realistic multi-sentence shopping queries, each paired with 10 retrieved Amazon listings, and a prompt meta-optimization method; it reports that independently optimized prompts converge to a stable pattern. It uses real listings at a scale LIVE-GEO does not attempt. LIVE-GEO includes E-GEO as one of its five strategies.</li>
+                    <li><a href="https://arxiv.org/abs/2602.12187">SAGEO Arena: A Realistic Environment for Evaluating Search-Augmented Generative Engine Optimization</a> (Sunghwan Kim, Wooseok Jeong, Serin Kim, Sangam Lee and Dongha Lee, KDD 2026) runs a full retrieval, reranking and generation pipeline over a large corpus of web documents and finds that existing approaches often degrade performance in retrieval and reranking, and that structural information such as schema markup helps. It controls the retrieval stage that LIVE-GEO leaves to each engine's black box; the two designs trade reproducibility against realism in opposite directions.</li>
+                    <li><a href="https://arxiv.org/abs/2603.20213">AgenticGEO: A Self-Evolving Agentic System for Generative Engine Optimization</a> (Jiaqi Yuan, Jialu Wang, Zihan Wang, Qingyun Sun, Ruijie Wang and Jianxin Li, 2026) evolves a diverse archive of rewriting strategies with a surrogate critic in place of costly engine feedback, and reports outperforming 14 baselines across 3 datasets on two engines. In LIVE-GEO it was applied from its released prompts or code with GPT-4.1, with no feedback from the live engines.</li>
+                </ul>
+                <p>Earlier work on deployed engines exists too, including one-off demonstrations that injected page content can change the rankings an engine returns (Pfrommer et al., EMNLP 2024; Nestaas et al., ICLR 2025). What LIVE-GEO adds is a standing setup: frozen snapshots, a recorded candidate order, recorded naming and price settings, so that measurements taken by different people are comparable. For the numerical check it relies on JEV, described in <a href="https://arxiv.org/abs/2609.37647">Evaluating and Benchmarking the System One Model Jev</a> (Tobias Deu&szlig;er, Rajkumar Ramamurthy, Lorenz Sparrenberg and Rafet Sifa, 2026).</p>
+
+                <h2>What should you take from this if you measure AI search visibility?</h2>
+                <ul>
+                    <li><strong>Measure on the engine you care about.</strong> Two live engines agreed on the winner for 48.8% to 66.3% of brands. A result on one is weak evidence about another.</li>
+                    <li><strong>Treat the offline judge as a variable.</strong> In this study the answer to &ldquo;which rewrite is best&rdquo; flipped between the DeepSeek and Claude APIs on identical text.</li>
+                    <li><strong>Randomize and record the order.</strong> A fixed order moved a Top-1 rate by 20 points on ChatGPT. If two tests list candidates differently, their numbers are not comparable.</li>
+                    <li><strong>Report averages over many items.</strong> The aggregate ranking of strategies was fairly stable; the winner for a single brand was not.</li>
+                    <li><strong>Do not invent numbers.</strong> Unsupported statistics were easy to detect and, once penalized, won nothing.</li>
+                </ul>
+
+                <h2>What this does not show</h2>
+                <p>This is an arXiv preprint and has not been peer reviewed.</p>
+                <p>&ldquo;Live&rdquo; here means the engines fetch and read real published pages. It does not mean they discovered those pages through open web search. The engines were handed the product URLs or a brand-page URL, so the study does not measure crawling, indexing, or whether a rewritten page would be retrieved for a query in competition with the rest of the web.</p>
+                <p>The six candidates per brand are versions of the same product from the same fictional brand, in deliberately uncommon categories. That isolates the effect of the text, but it is not the situation of a real brand competing with other brands that have reputations, reviews elsewhere and prior exposure in training data.</p>
+                <p>The strategy comparison is uneven, as described above: CORE is our lab's method, it received live ranking feedback from ChatGPT before the text was frozen, and the ranking prompt is adapted from the CORE paper. The other strategies were generated from released prompts or code with GPT-4.1 and might improve with similar feedback; the study does not test that.</p>
+                <p>Results are a snapshot of three products at specific model settings (GPT-6, Gemini 3.6 Thinking, Grok Expert mode), used through web interfaces whose internals can change without notice. Each condition uses one prompt template and one category query form (&ldquo;best X&rdquo;). The paired intervals are reported without adjustment for multiple comparisons. The Claude API refused two requests, so its results cover 78 brands, and the paper does not establish why its ordering differs from the others.</p>
+                <p>The faithfulness check covers numerical claims in descriptions only; non-numerical claims and reviews are outside it. The benchmark runs on a startup partner's public site, and the paper text does not give a URL for the platform or a code repository.</p>
+
+                <h2>Frequently asked questions</h2>
+                <h3>Does generative engine optimization actually work?</h3>
+                <p>Partly. In the LIVE-GEO study, rewriting a product page changed how ChatGPT, Gemini and Grok ranked it, and one strategy had the highest Top-1 rate on all three engines (66.3% to 76.3%). But the engines picked the same top product for only 48.8% to 66.3% of the 80 brands, so a gain measured on one engine or one product is not a reliable prediction for another.</p>
+                <h3>Do offline GEO benchmarks predict what ChatGPT, Gemini and Grok will rank first?</h3>
+                <p>Only in part, and it depends on the model used as the offline judge. In LIVE-GEO, rankings from the DeepSeek API agreed with ChatGPT about as well as the live engines agreed with each other (mean rank correlation 0.50), GPT-4o and Kimi were lower (0.25 to 0.41), a small local Qwen model was weak (0.20 or below), and the Claude API correlated negatively with all three engines (-0.22 to -0.31).</p>
+                <h3>Does the order of pages change how AI search ranks them?</h3>
+                <p>Yes. Giving ChatGPT the same six product URLs in two opposite fixed orders moved one strategy's Top-1 rate from 73.8% to 93.8%, a 20-point difference with no change to any page. Repeating the request with the same order was stable (82.5% and 83.8%), which is why LIVE-GEO shuffles the candidate order once per brand and keeps it across repeats.</p>
+                <h3>Does adding statistics to a page help it rank in AI search?</h3>
+                <p>In LIVE-GEO, Statistics Addition won the top position for 5.0% to 11.3% of brands on the three live engines, far below the leading strategy. A verifier also flagged all 80 of its rewritten descriptions for numbers the product specifications did not support, because the original prompt permits hypothetical data. When flagged products were moved below unflagged ones, its Top-1 rate fell to zero in every condition.</p>
+
+                <h2>Citation</h2>
+<pre><code>@article{kong2026livegeo,
+  title     = { Do GEO Gains Survive the Live Web? Evaluating In-the-Wild Visibility Gains of Generative Engine Optimization via LIVE-GEO },
+  author    = { Kong, Runze and Jin, Haibo and Yu, Xucheng and Wang, Xiaoqi and Zeng, Huimin and Wang, Haohan },
+  journal   = { arXiv preprint arXiv:2611.01126 },
+  year      = { 2026 }
+}</code></pre>
+
+                <h2>Related from our lab</h2>
+                <ul>
+                    <li><a href="controlling_output_rankings_core.html">CORE: controlling which products a generative engine recommends, without model access</a></li>
+                    <li><a href="test_product_descriptions_ai_recommendations.html">A step-by-step protocol for testing whether product descriptions change AI shopping recommendations</a></li>
+                    <li><a href="single_brand_mention_ai_search.html">Can one brand mention steer AI search answers? Implicit brand injection, measured</a></li>
+                    <li><a href="comparing_llm_search_visibility.html">SEO, GEO and CORE compared: what each technique actually changes</a></li>
+                    <li><a href="https://haohanwang.ischool.illinois.edu/research/llm-search-visibility.html">Visibility in LLM-based search: research overview by Haohan Wang</a></li>
+                    <li><a href="../preprints.html">All DREAM Lab preprints, including SCI-Defense on detecting GEO manipulation</a></li>
+                </ul>
+            </section>
+            </article>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer id="footer">
+        <ul class="icons">
+            <li><a href="https://x.com/HaohanWang" class="icon brands alt fa-twitter"><span class="label">X</span></a></li>
+            <li><a href="https://www.linkedin.com/in/haohanwang/" class="icon brands alt fa-linkedin-in"><span class="label">LinkedIn</span></a></li>
+            <li><a href="https://github.com/DreamLabUIUC" class="icon brands alt fa-github"><span class="label">GitHub</span></a></li>
+            <li><a href="../feed.xml" class="icon solid alt fa-rss"><span class="label">RSS</span></a></li>
+        </ul>
+        <ul class="copyright">
+            <li>&copy; DREAM Lab, University of Illinois Urbana-Champaign</li>
+            <li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
+        </ul>
+    </footer>
+
+</div>
+
+<!-- Scripts -->
+<script src="../assets2/js/jquery.min.js"></script>
+<script src="../assets2/js/jquery.scrolly.min.js"></script>
+<script src="../assets2/js/jquery.dropotron.min.js"></script>
+<script src="../assets2/js/jquery.scrollex.min.js"></script>
+<script src="../assets2/js/browser.min.js"></script>
+<script src="../assets2/js/breakpoints.min.js"></script>
+<script src="../assets2/js/util.js"></script>
+<script src="../assets2/js/main.js"></script>
+
+</body>
+</html>

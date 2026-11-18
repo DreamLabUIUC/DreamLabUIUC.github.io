@@ -1,5 +1,13 @@
 [
   {
+    "path": "blogs/does_geo_work_live_web.html",
+    "title": "Does GEO Actually Work? A Live Test on ChatGPT, Gemini, Grok",
+    "date": "2026-11-18",
+    "description": "Does GEO actually work on live AI search? In LIVE-GEO, ChatGPT, Gemini and Grok picked the same top product for only 48.8%-66.3% of 80 brands.",
+    "topic": "LLM search visibility",
+    "paper": "https://arxiv.org/abs/2611.01126"
+  },
+  {
     "path": "blogs/why_prompt_optimization_makes_prompts_worse.html",
     "title": "Why Does Automatic Prompt Optimization Make Prompts Worse?",
     "date": "2026-11-17",

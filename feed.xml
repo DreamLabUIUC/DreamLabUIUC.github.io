@@ -6,7 +6,15 @@
   <atom:link href="https://dream.ischool.illinois.edu/feed.xml" rel="self" type="application/rss+xml"/>
   <description>Plain-language explainers of research from the DREAM Lab at the University of Illinois Urbana-Champaign.</description>
   <language>en</language>
-  <lastBuildDate>Tue, 17 Nov 2026 12:00:00 +0000</lastBuildDate>
+  <lastBuildDate>Wed, 18 Nov 2026 12:00:00 +0000</lastBuildDate>
+  <item>
+    <title>Does GEO Actually Work? A Live Test on ChatGPT, Gemini, Grok</title>
+    <link>https://dream.ischool.illinois.edu/blogs/does_geo_work_live_web.html</link>
+    <guid>https://dream.ischool.illinois.edu/blogs/does_geo_work_live_web.html</guid>
+    <pubDate>Wed, 18 Nov 2026 12:00:00 +0000</pubDate>
+    <category>LLM search visibility</category>
+    <description>Does GEO actually work on live AI search? In LIVE-GEO, ChatGPT, Gemini and Grok picked the same top product for only 48.8%-66.3% of 80 brands.</description>
+  </item>
   <item>
     <title>Why Does Automatic Prompt Optimization Make Prompts Worse?</title>
     <link>https://dream.ischool.illinois.edu/blogs/why_prompt_optimization_makes_prompts_worse.html</link>
