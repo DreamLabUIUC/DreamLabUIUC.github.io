@@ -1,5 +1,13 @@
 [
   {
+    "path": "blogs/rephrasing_bypass_llm_guardrails.html",
+    "title": "Can Rephrasing a Request Bypass LLM Safety Guardrails?",
+    "date": "2026-11-20",
+    "description": "Often, yes. In our EMNLP 2025 Findings paper, declarative rewrites bypass LLM safety guardrails on GPT-4o 97.12% of the time, even with intent analysis on.",
+    "topic": "LLM security",
+    "paper": "https://arxiv.org/abs/2505.18556"
+  },
+  {
     "path": "blogs/does_geo_work_live_web.html",
     "title": "Does GEO Actually Work? A Live Test on ChatGPT, Gemini, Grok",
     "date": "2026-11-18",

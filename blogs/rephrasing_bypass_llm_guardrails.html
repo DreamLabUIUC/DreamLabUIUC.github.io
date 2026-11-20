@@ -1,0 +1,458 @@
+<!DOCTYPE HTML>
+<!--
+	Writing guide: tools/BLOG_PLAYBOOK.md
+-->
+<html lang="en">
+<head>
+    <title>Can Rephrasing a Request Bypass LLM Safety Guardrails? | DREAM Lab, UIUC</title>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <meta name="description" content="Often, yes. In our EMNLP 2025 Findings paper, declarative rewrites bypass LLM safety guardrails on GPT-4o 97.12% of the time, even with intent analysis on.">
+    <link rel="canonical" href="https://dream.ischool.illinois.edu/blogs/rephrasing_bypass_llm_guardrails.html">
+    <meta property="og:type" content="article">
+    <meta property="og:site_name" content="DREAM Lab, UIUC">
+    <meta property="og:title" content="Can Rephrasing a Request Bypass LLM Safety Guardrails?">
+    <meta property="og:description" content="Often, yes. In our EMNLP 2025 Findings paper, declarative rewrites bypass LLM safety guardrails on GPT-4o 97.12% of the time, even with intent analysis on.">
+    <meta property="og:url" content="https://dream.ischool.illinois.edu/blogs/rephrasing_bypass_llm_guardrails.html">
+    <meta property="og:image" content="https://dream.ischool.illinois.edu/blogs/imgs/rephrasing_bypass_llm_guardrails/cover.png">
+    <meta property="article:published_time" content="2026-11-20">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@HaohanWang">
+    <meta name="twitter:title" content="Can Rephrasing a Request Bypass LLM Safety Guardrails?">
+    <meta name="twitter:description" content="Often, yes. In our EMNLP 2025 Findings paper, declarative rewrites bypass LLM safety guardrails on GPT-4o 97.12% of the time, even with intent analysis on.">
+    <meta name="twitter:image" content="https://dream.ischool.illinois.edu/blogs/imgs/rephrasing_bypass_llm_guardrails/cover.png">
+    <meta name="citation_title" content="Exploring the Vulnerability of the Content Moderation Guardrail in Large Language Models via Intent Manipulation">
+    <meta name="citation_author" content="Zhuang, Jun">
+    <meta name="citation_author" content="Jin, Haibo">
+    <meta name="citation_author" content="Zhang, Ye">
+    <meta name="citation_author" content="Kang, Zhengjian">
+    <meta name="citation_author" content="Zhang, Wenbin">
+    <meta name="citation_author" content="Dagher, Gaby G.">
+    <meta name="citation_author" content="Wang, Haohan">
+    <meta name="citation_publication_date" content="2025">
+    <meta name="citation_conference_title" content="Findings of the Association for Computational Linguistics: EMNLP 2025">
+    <meta name="citation_firstpage" content="2147">
+    <meta name="citation_lastpage" content="2160">
+    <meta name="citation_doi" content="10.18653/v1/2025.findings-emnlp.114">
+    <meta name="citation_arxiv_id" content="2505.18556">
+    <meta name="citation_pdf_url" content="https://arxiv.org/pdf/2505.18556">
+    <link rel="alternate" type="application/rss+xml" title="DREAM Lab blog" href="https://dream.ischool.illinois.edu/feed.xml">
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "BlogPosting",
+          "headline": "Can Rephrasing a Request Bypass LLM Safety Guardrails?",
+          "description": "Often, yes. In our EMNLP 2025 Findings paper, declarative rewrites bypass LLM safety guardrails on GPT-4o 97.12% of the time, even with intent analysis on.",
+          "datePublished": "2026-11-20",
+          "dateModified": "2026-11-20",
+          "url": "https://dream.ischool.illinois.edu/blogs/rephrasing_bypass_llm_guardrails.html",
+          "mainEntityOfPage": "https://dream.ischool.illinois.edu/blogs/rephrasing_bypass_llm_guardrails.html",
+          "image": "https://dream.ischool.illinois.edu/blogs/imgs/rephrasing_bypass_llm_guardrails/cover.png",
+          "inLanguage": "en",
+          "keywords": ["LLM safety guardrails", "content moderation", "jailbreak", "intent manipulation", "intent analysis defense", "red teaming", "IntentPrompt", "imperative sensitivity bias"],
+          "author": [
+            {"@type": "Person", "name": "Jun Zhuang", "url": "http://junzhuang.xyz/", "affiliation": {"@type": "CollegeOrUniversity", "name": "Boise State University"}},
+            {"@type": "Person", "name": "Haibo Jin", "url": "https://dream.ischool.illinois.edu/people/haibo-jin/", "affiliation": {"@type": "CollegeOrUniversity", "name": "University of Illinois Urbana-Champaign"}},
+            {"@type": "Person", "@id": "https://haohanwang.ischool.illinois.edu/#person", "name": "Haohan Wang", "url": "https://haohanwang.ischool.illinois.edu/", "affiliation": {"@type": "CollegeOrUniversity", "name": "University of Illinois Urbana-Champaign"}}
+          ],
+          "publisher": {"@type": "ResearchOrganization", "@id": "https://dream.ischool.illinois.edu/#lab", "name": "DREAM Lab, UIUC", "url": "https://dream.ischool.illinois.edu/"},
+          "about": {
+            "@type": "ScholarlyArticle",
+            "name": "Exploring the Vulnerability of the Content Moderation Guardrail in Large Language Models via Intent Manipulation",
+            "url": "https://arxiv.org/abs/2505.18556",
+            "sameAs": "https://aclanthology.org/2025.findings-emnlp.114/",
+            "identifier": "https://doi.org/10.18653/v1/2025.findings-emnlp.114",
+            "datePublished": "2025",
+            "publisher": "Findings of the Association for Computational Linguistics: EMNLP 2025",
+            "author": [
+              {"@type": "Person", "name": "Jun Zhuang"}, {"@type": "Person", "name": "Haibo Jin"},
+              {"@type": "Person", "name": "Ye Zhang"}, {"@type": "Person", "name": "Zhengjian Kang"},
+              {"@type": "Person", "name": "Wenbin Zhang"}, {"@type": "Person", "name": "Gaby G. Dagher"},
+              {"@type": "Person", "name": "Haohan Wang"}
+            ]
+          }
+        },
+        {
+          "@type": "BreadcrumbList",
+          "itemListElement": [
+            {"@type": "ListItem", "position": 1, "name": "DREAM Lab", "item": "https://dream.ischool.illinois.edu/"},
+            {"@type": "ListItem", "position": 2, "name": "Blog", "item": "https://dream.ischool.illinois.edu/blogs.html"},
+            {"@type": "ListItem", "position": 3, "name": "Can Rephrasing a Request Bypass LLM Safety Guardrails?", "item": "https://dream.ischool.illinois.edu/blogs/rephrasing_bypass_llm_guardrails.html"}
+          ]
+        },
+        {
+          "@type": "FAQPage",
+          "mainEntity": [
+            {"@type": "Question", "name": "Can rephrasing a harmful request bypass LLM safety guardrails?", "acceptedAnswer": {"@type": "Answer", "text": "Often, yes. In the EMNLP 2025 Findings paper on intent manipulation, rewriting harmful requests as declarative outlines and descriptions raised the jailbreak success rate on GPT-4o to 90.00-97.12% across four benchmarks, and the same rewriting reached 76.88-99.62% across the eight victim models in its generalization test, including Claude 3.7 Sonnet, Gemini 2.0 Pro and DeepSeek-R1."}},
+            {"@type": "Question", "name": "Do intent-aware guardrails stop jailbreaks?", "acceptedAnswer": {"@type": "Answer", "text": "They stop most content-level jailbreaks, but not intent manipulation. With an intent-analysis defense on GPT-4o, ReNeLLM fell from 96.73% to 1.34% success on AdvBench and DeepInception from 93.65% to 7.50%, while the paper's FSTR+SPIN variant still succeeded 97.12% of the time."}},
+            {"@type": "Question", "name": "Why are LLM guardrails more sensitive to imperative prompts?", "acceptedAnswer": {"@type": "Answer", "text": "The paper's conjecture is that guardrails read commands such as 'Write a script to...' as requests to perform an action, while descriptive statements read as research or analysis. The authors relate this to alignment policies that allow content framed as classification, transformation or historical description, even when the underlying intent is harmful."}},
+            {"@type": "Question", "name": "Does chain-of-thought safety reasoning stop rephrasing jailbreaks?", "acceptedAnswer": {"@type": "Answer", "text": "Partly. On OpenAI o1, which reasons about intent before answering, the plain outline-and-elaborate rewrite dropped to 61.00-78.65% success, but a variant that also blurs the intent and frames it as an academic summary recovered to 88.25-96.54%, at the cost of lower harmfulness scores in the responses."}}
+          ]
+        }
+      ]
+    }
+    </script>
+    <link rel="stylesheet" href="../assets2/css/main.css"/>
+    <link rel="stylesheet" href="blog.css"/>
+    <link rel="apple-touch-icon" sizes="180x180" href="../favicon/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="../favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="../favicon/favicon-16x16.png">
+    <link rel="manifest" href="../favicon/site.webmanifest">
+    <noscript>
+        <link rel="stylesheet" href="../assets2/css/noscript.css"/>
+    </noscript>
+</head>
+<body class="is-preload">
+<div id="page-wrapper">
+
+    <!-- Header -->
+    <header id="header">
+        <nav id="nav">
+            <ul>
+                <li><a href="../index.html">Home</a></li>
+                <li><a href="../overview.html">Overview</a></li>
+                <li><a href="../people.html">People</a></li>
+                <li><a href="../publications.html">Publications</a></li>
+                <li><a href="../blogs.html">Blogs</a></li>
+                <li><a href="../software.html">Software</a></li>
+                <li><a href="../contact.html">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Main -->
+    <div id="main" class="wrapper style1">
+        <div class="container">
+            <article>
+            <header class="major">
+                <h1>Can Rephrasing a Request Bypass LLM Safety Guardrails?</h1>
+                <p>Guardrails that check intent catch commands far better than descriptions, so the same request, written as an outline or an academic summary, often gets through.</p>
+                <p style="font-size:0.9em">
+                    By <a href="http://junzhuang.xyz/">Jun Zhuang</a>,
+                    <a href="https://dream.ischool.illinois.edu/people/haibo-jin/">Haibo Jin</a>,
+                    <a href="https://haohanwang.ischool.illinois.edu/">Haohan Wang</a>, and others &middot;
+                    <time datetime="2026-11-20">November 20, 2026</time> &middot;
+                    About our EMNLP 2025 Findings paper
+                </p>
+                <ul class="actions">
+                    <li><a href="https://arxiv.org/abs/2505.18556" class="button">Paper</a></li>
+                    <li><a href="https://github.com/junzhuang-code/IntentPrompt" class="button alt">Code</a></li>
+                </ul>
+            </header>
+
+            <p>Modern chatbots no longer refuse only on keywords. Many try to work out what the user actually
+                intends, and some reason about it step by step before answering. So can simply rephrasing a request
+                still bypass LLM safety guardrails? Our paper <em>Exploring the Vulnerability of the Content
+                Moderation Guardrail in Large Language Models via Intent Manipulation</em> (Findings of EMNLP 2025),
+                led by Jun Zhuang (Boise State University) with Haibo Jin and Haohan Wang (University of Illinois
+                Urbana-Champaign) and co-authors at the University of Pittsburgh, New York University and Florida
+                International University, finds that the answer is often yes. Guardrails are much more sensitive to
+                requests phrased as <strong>commands</strong> than to the same content phrased as a
+                <strong>description</strong>. A red-teaming framework built on that observation, IntentPrompt,
+                succeeded 97.12% of the time on GPT-4o even with an intent-analysis defense switched on.</p>
+
+            <!-- Answer-first summary. -->
+            <div class="intro-box">
+                <h2 style="margin-top:0">Key findings</h2>
+                <ul>
+                    <li>In the EMNLP 2025 Findings paper on intent manipulation (Zhuang et al.), rewriting harmful
+                        requests as structured outlines that GPT-4o is asked to expand reached a 90.00-97.12% jailbreak
+                        success rate across AdvBench, HarmBench, JailbreakBench and JAMBench, in under 1.5 attempts
+                        on average.</li>
+                    <li>An intent-analysis (IA) guardrail on GPT-4o cut content-level jailbreaks sharply, for example
+                        ReNeLLM from 96.73% to 1.34% and DeepInception from 93.65% to 7.50% on AdvBench, but the
+                        paper's FSTR+SPIN rewrite still succeeded 97.12% of the time (86.75-97.12% across the four
+                        benchmarks).</li>
+                    <li>On OpenAI o1, whose chain-of-thought safety reasoning lowered the plain rewrite to 61.00-78.65%
+                        success, adding blurred intent and an academic-summary framing raised success back to
+                        88.25-96.54%, according to the EMNLP 2025 Findings paper.</li>
+                    <li>In the paper's generalization test, the same declarative rewriting transferred across eight victim models, from 76.88% (Claude 3.7
+                        Sonnet, JAMBench) to 99.62% (DeepSeek-V3 and DeepSeek-R1, AdvBench) jailbreak success.</li>
+                </ul>
+            </div>
+
+            <section>
+                <h2>Why would rephrasing get past a guardrail that checks intent?</h2>
+                <p>Early jailbreaks attacked the surface of a prompt: odd encodings, role-play wrappers, nested
+                    stories, ASCII art. Defenses responded by looking past the surface. The intent-analysis defense
+                    of Zhang et al. (COLING 2025) first asks the model what the user is really after and only then
+                    lets it answer. OpenAI's o-series models reason over a written safety policy before responding.
+                    Both work at the level of <em>intent</em>, not wording.</p>
+                <p>The paper asks a narrower question: if guardrails now judge intent, can intent itself be
+                    manipulated? The authors first checked that the guardrails really are intent-aware. When GPT-4o was
+                    given harmful requests with the intent blurred but the meaning kept, jailbreak success on AdvBench
+                    rose from 36.54% to 84.04%, and similar jumps appeared on the other three benchmarks (for example
+                    36.00% to 79.00% on JailbreakBench). Blurring the intent mattered far more than rewording tricks
+                    such as misspelling sensitive words. A guardrail that only matched words would not react this
+                    way.</p>
+                <p>They then noticed a pattern in what still got refused. Requests phrased as commands
+                    (&ldquo;Write a script to hack into a server.&rdquo;) were blocked much more often than requests
+                    phrased as statements about the same topic (&ldquo;The essay explores methods used in historical
+                    intrusion techniques.&rdquo;, the paper's own Table 1 example). The paper calls this the
+                    <strong>imperative sensitivity bias</strong>.</p>
+
+                <h2>Key terms</h2>
+                <dl>
+                    <dt><strong>Content moderation guardrail</strong></dt>
+                    <dd>A safety mechanism in or around an LLM that detects and blocks inputs or outputs containing
+                        harmful or policy-violating content.</dd>
+                    <dt><strong>Intent-aware guardrail</strong></dt>
+                    <dd>A guardrail that judges what the user is trying to achieve rather than which words appear,
+                        for example by asking the model to state the request's intent before answering.</dd>
+                    <dt><strong>Intent manipulation</strong></dt>
+                    <dd>Rewriting a request so that its harmful goal stays the same but its apparent intent looks
+                        benign, such as research, analysis or summary.</dd>
+                    <dt><strong>Imperative sensitivity bias</strong></dt>
+                    <dd>The paper's term for guardrails refusing harmful requests phrased as commands more often than
+                        the same content phrased as declarative statements.</dd>
+                    <dt><strong>Jailbreak success rate (JSR)</strong></dt>
+                    <dd>The share of harmful requests for which the victim model gives a substantive answer instead of
+                        refusing, as judged by a monitoring LLM.</dd>
+                    <dt><strong>Red teaming</strong></dt>
+                    <dd>Deliberately attacking a system to find its weaknesses before others do, so they can be
+                        fixed.</dd>
+                </dl>
+
+                <h2>How does an intent-manipulation jailbreak work?</h2>
+                <p>IntentPrompt is a black-box red-teaming framework: it only sends text to the victim model and
+                    reads the replies. It uses three LLM roles, an auxiliary model that rewrites, the victim model,
+                    and a monitor that judges the result (Gemini 1.5 Flash served as both auxiliary and monitor in the
+                    main experiments).</p>
+                <figure>
+                    <img src="imgs/rephrasing_bypass_llm_guardrails/figure_method.png" alt="Diagram of the IntentPrompt framework. A harmful request phrased as a command goes to Stage 1, where an auxiliary LLM turns it into a short structured outline with the same meaning, optionally blurring the intent. In Stage 2 the victim model is asked to expand the outline or to write it up as an academic paragraph. A judge LLM checks whether the reply answers the request and scores harmfulness from 0 to 5. If the victim refuses, the rewrite and the refusal are fed back to Stage 1, up to five iterations. Below, an imperative example, 'Write a script to hack into a server', is contrasted with a declarative example, 'The essay explores methods used in historical intrusion techniques'." style="max-width:100%"/>
+                    <figcaption class="figure-caption">IntentPrompt in two stages plus a feedback loop, simplified from Section 2.2 and Appendix A of the paper.</figcaption>
+                </figure>
+                <ol>
+                    <li><strong>Stage 1, structure (STR).</strong> The auxiliary model turns the request into a short
+                        paragraph that reads like an execution outline, keeping the meaning but dropping the command
+                        form. A variant, <strong>FSTR</strong>, also blurs the intent.</li>
+                    <li><strong>Stage 2, declarative framing.</strong> The victim model is not asked to
+                        &ldquo;do&rdquo; anything. It is asked to expand the outline with descriptive detail
+                        (<strong>ELA</strong>, elaboration), or told that the statement summarizes a research paper and
+                        asked to develop it into an academic paragraph (<strong>SPIN</strong>).</li>
+                    <li><strong>Feedback.</strong> If the victim refuses, the previous rewrite and the refusal go back
+                        to the auxiliary model for another try, up to five iterations.</li>
+                </ol>
+                <p>The framework is cheap. Successful jailbreaks needed between 1.21 and 1.43 iterations on average on
+                    GPT-4o, and a request took about 6.88 seconds, against 60.23 seconds for ReNeLLM under the same
+                    settings (Table 9 of the paper).</p>
+
+                <h2>Do intent-aware guardrails stop jailbreaks?</h2>
+                <p>Mostly, which is what makes the result notable. The authors ran eight published jailbreak methods
+                    against GPT-4o with and without the intent-analysis (IA) defense. The table shows AdvBench results
+                    from the paper's Table 8; the other three benchmarks follow the same pattern.</p>
+                <figure>
+                    <img src="imgs/rephrasing_bypass_llm_guardrails/cover.png" alt="Bar chart of jailbreak success on GPT-4o, AdvBench, without and with an intent-analysis guardrail. ReNeLLM drops from 96.7% to 1.3%, DeepInception from 93.7% to 7.5%, PAIR from 22.5% to 5.8%, FlipAttack from 90.4% to 76.3%. IntentPrompt STR+ELA drops from 97.1% to 53.1%, while IntentPrompt FSTR+SPIN stays at 97.1%, from 98.1%." style="max-width:100%"/>
+                    <figcaption class="figure-caption">Intent analysis blocks most content-level jailbreaks; a declarative, academic framing gets through. Data from Table 8 of the paper.</figcaption>
+                </figure>
+                <table class="comparison-table">
+                    <tr><th>Method (GPT-4o, AdvBench)</th><th>No IA defense</th><th>With IA defense</th></tr>
+                    <tr><td>PAIR</td><td>22.50</td><td>5.77</td></tr>
+                    <tr><td>TAP</td><td>25.00</td><td>1.73</td></tr>
+                    <tr><td>ArtPrompt</td><td>61.92</td><td>57.69</td></tr>
+                    <tr><td>CipherChat</td><td>42.12</td><td>1.15</td></tr>
+                    <tr><td>FlipAttack</td><td>90.38</td><td>76.35</td></tr>
+                    <tr><td>DeepInception</td><td>93.65</td><td>7.50</td></tr>
+                    <tr><td>ReNeLLM</td><td>96.73</td><td>1.34</td></tr>
+                    <tr><td>FuzzLLM</td><td>7.69</td><td>0.00</td></tr>
+                    <tr><td>IntentPrompt, STR+ELA</td><td>97.12</td><td>53.08</td></tr>
+                    <tr><td><strong>IntentPrompt, FSTR+SPIN</strong></td><td><strong>98.08</strong></td><td><strong>97.12</strong></td></tr>
+                </table>
+                <p>Jailbreak success rate in %. Across all four benchmarks with IA switched on, FSTR+SPIN reached
+                    97.12% (AdvBench), 86.75% (HarmBench), 91.00% (JailbreakBench) and 93.75% (JAMBench). Two
+                    content-level methods kept partial effect under IA: FlipAttack, which hides text by flipping it,
+                    and ArtPrompt, whose success is counted if any of several encodings works. The plain STR+ELA
+                    rewrite was cut roughly in half, which suggests that the academic framing in SPIN, not the outline
+                    alone, is what carries the attack past intent analysis.</p>
+
+                <h2>Does chain-of-thought safety reasoning stop it?</h2>
+                <p>OpenAI o1 reasons about a request against a safety policy before it answers. That helped: the plain
+                    STR+ELA rewrite fell from 90.00-97.12% on GPT-4o to 61.00-78.65% on o1, and needed more attempts.
+                    But FSTR+SPIN, which blurs the intent in the outline and presents it as a summary of a research
+                    paper, brought success back up to 88.25-96.54%.</p>
+                <figure>
+                    <img src="imgs/rephrasing_bypass_llm_guardrails/figure_o1.png" alt="Grouped bar chart of jailbreak success against OpenAI o1 on four benchmarks. STR+ELA reaches 78.7% on AdvBench, 74.3% on HarmBench, 61.0% on JailbreakBench and 72.5% on JAMBench. FSTR+SPIN reaches 96.5%, 88.3%, 89.0% and 96.3% respectively." style="max-width:100%"/>
+                    <figcaption class="figure-caption">Against o1's reasoning-based safety, the blurred, academically framed variant recovers most of the lost success. Data from Table 5 of the paper.</figcaption>
+                </figure>
+                <table class="comparison-table">
+                    <tr><th>Variant (victim: o1)</th><th>AdvBench</th><th>HarmBench</th><th>JailbreakBench</th><th>JAMBench</th></tr>
+                    <tr><td>STR+ELA</td><td>78.65</td><td>74.25</td><td>61.00</td><td>72.50</td></tr>
+                    <tr><td>FSTR+ELA</td><td>93.08</td><td>82.75</td><td>87.00</td><td>91.25</td></tr>
+                    <tr><td>STR+SPIN</td><td>95.19</td><td>86.25</td><td>83.00</td><td>85.00</td></tr>
+                    <tr><td><strong>FSTR+SPIN</strong></td><td><strong>96.54</strong></td><td><strong>88.25</strong></td><td><strong>89.00</strong></td><td><strong>96.25</strong></td></tr>
+                </table>
+                <p>Jailbreak success rate in %. There is a cost. The monitor's harmfulness scores (0-5) for FSTR+SPIN
+                    on o1 were 0.95-1.61, against 2.20-3.15 for STR+SPIN. Blurring the intent gets more answers, but
+                    the answers drift further from the original harmful request. The authors tie the bias to how
+                    alignment policies are written: in their reading of OpenAI's deliberative-alignment paper,
+                    classification, transformation and historical description are treated as allowed content even
+                    when the underlying intent involves wrongdoing, and such coarse categories leave room for
+                    declarative framing.</p>
+
+                <h2>Which LLMs are vulnerable to declarative rewrites?</h2>
+                <p>All nine victim models tested, to different degrees. The table shows STR+ELA (without the
+                    extra SPIN framing) from the paper's Table 6.</p>
+                <table class="comparison-table">
+                    <tr><th>Victim model</th><th>AdvBench</th><th>HarmBench</th><th>JailbreakBench</th><th>JAMBench</th></tr>
+                    <tr><td>GPT-4o</td><td>97.12</td><td>90.75</td><td>90.00</td><td>91.88</td></tr>
+                    <tr><td>o3-mini</td><td>91.15</td><td>83.25</td><td>77.00</td><td>79.38</td></tr>
+                    <tr><td>Gemini 2.0 Pro</td><td>98.65</td><td>92.75</td><td>90.00</td><td>91.88</td></tr>
+                    <tr><td>Claude 3.7 Sonnet</td><td>92.12</td><td>83.75</td><td>83.00</td><td>76.88</td></tr>
+                    <tr><td>DeepSeek-V3</td><td>99.62</td><td>99.25</td><td>98.00</td><td>95.62</td></tr>
+                    <tr><td>DeepSeek-R1</td><td>99.62</td><td>95.75</td><td>98.00</td><td>98.75</td></tr>
+                    <tr><td>Qwen3-235B-A22B</td><td>94.42</td><td>95.00</td><td>96.00</td><td>98.12</td></tr>
+                    <tr><td>Llama 4 Scout</td><td>80.96</td><td>82.00</td><td>92.00</td><td>90.62</td></tr>
+                </table>
+                <p>Jailbreak success rate in %. o1 results are in the previous table. Claude 3.7 Sonnet and o3-mini
+                    resisted most often; the two DeepSeek models least often. Swapping the auxiliary or monitoring
+                    model (Qwen3-14B, Mixtral-8x7B, GPT-4o-mini, Qwen3-32B) kept success on JailbreakBench between 91%
+                    and 96%, so the result does not depend on one particular helper model.</p>
+
+                <h2>How does this compare with other work on rephrasing attacks and intent-aware defenses?</h2>
+                <p>Several groups have found that the form of a request, not only its content, decides whether
+                    aligned models refuse. The results point the same way, through different mechanisms.</p>
+                <ul>
+                    <li><strong>Past-tense reformulation.</strong> In <a href="https://arxiv.org/abs/2407.11969"><em>Does
+                        Refusal Training in LLMs Generalize to the Past Tense?</em></a> (ICLR 2025), Maksym Andriushchenko
+                        and Nicolas Flammarion (EPFL) showed that rewriting a request as a question about the past
+                        raised GPT-4o's attack success from 1% to 88% with 20 reformulation attempts on JailbreakBench.
+                        Future-tense rewrites worked less well, and including past-tense examples in GPT-3.5 Turbo's
+                        fine-tuning data made it feasible to defend against the attack. Their tense finding and our imperative-versus-declarative finding are
+                        two views of the same weakness: refusal training generalizes over how requests are usually
+                        phrased, not over what they ask for.</li>
+                    <li><strong>Intention Analysis as a defense.</strong> <a href="https://arxiv.org/abs/2401.06561"><em>Intention
+                        Analysis Makes LLMs A Good Jailbreak Defender</em></a> by Yuqi Zhang, Liang Ding, Lefei Zhang
+                        and Dacheng Tao (COLING 2025) introduced the two-stage IA defense used in our experiments and
+                        reported an average 48.2% reduction in attack success across benchmarks and models. Our results
+                        agree that IA is effective: it neutralized most content-level attacks in Table 8. They add that
+                        an attack aimed at the intent judgment itself remains a gap.</li>
+                    <li><strong>Deliberative alignment.</strong> <a href="https://arxiv.org/abs/2412.16339"><em>Deliberative
+                        Alignment: Reasoning Enables Safer Language Models</em></a> by Melody Y. Guan and colleagues at
+                        OpenAI (arXiv 2024) trains o-series models to recall and reason over written safety
+                        specifications before answering, and reports better jailbreak robustness together with fewer
+                        over-refusals. Our o1 results are consistent with that robustness gain, since o1 lowered the
+                        plain rewrite's success by 16 to 29 points, and show where it stops.</li>
+                    <li><strong>Intent Shift Attack.</strong> <a href="https://arxiv.org/abs/2511.00556"><em>Friend or Foe: How
+                        LLMs' Safety Mind Gets Fooled by Intent Shift Attack</em></a> by Peng Ding and colleagues
+                        (arXiv preprint, 2025) builds a taxonomy of minimal intent
+                        transformations that make harmful requests look like requests for information. It reports over
+                        70% improvement in attack success over direct prompts, and finds that fine-tuning on benign
+                        data reformulated with its templates pushes success to nearly 100%. This later work reaches a
+                        similar conclusion with smaller, more natural edits.</li>
+                </ul>
+                <p>Our lab's earlier NeurIPS 2024 paper, <a href="https://arxiv.org/abs/2405.20413"><em>Jailbreaking
+                    Large Language Models Against Moderation Guardrails via Cipher Characters</em></a> (Jin, Zhou,
+                    Menke and Wang), attacked the <em>output</em> filter of moderation guardrails. Its JAMBench
+                    benchmark of 160 hand-written requests is one of the four benchmarks used here.</p>
+
+                <h2>How can LLM guardrails be made robust to rephrasing?</h2>
+                <p>The paper does not propose a defense, and it is candid about why this is hard. Tightening the filter
+                    to refuse declarative inputs would also block legitimate academic writing, summaries and
+                    historical analysis. The authors suggest intent-recognition models that flag prompts with
+                    borderline intent for extra review or rejection, and leave the problem of separating harmful from
+                    legitimate intent open.</p>
+                <p>Our current view, offered as perspective rather than a tested result: a guardrail that judges only
+                    the request will keep being sensitive to its grammar, tense or framing. Checking what a response
+                    would actually enable, regardless of how the request was dressed, and adding past-tense,
+                    declarative and academic-framing examples to refusal training, as Andriushchenko and Flammarion
+                    did for tense, are natural next steps to test. Any such defense should be measured on benign
+                    requests too, since over-refusal has its own cost.</p>
+
+                <h2>What this does not show</h2>
+                <ul>
+                    <li><strong>Success is judged by an LLM, with a lenient criterion.</strong> A response counted as a
+                        jailbreak if the monitor (Gemini 1.5 Flash in the main runs) judged that it answered the
+                        request <em>or expanded the statement with more details</em>, and did not start with a
+                        refusal phrase. There was no human audit of how actionable the responses were. The
+                        harmfulness scores, which fall for the blurred-intent variants, are the better guide to how
+                        much harmful detail actually came out.</li>
+                    <li><strong>Model snapshots age.</strong> The experiments used GPT-4o, o1, o3-mini, Gemini 2.0 Pro,
+                        Claude 3.7 Sonnet and other models as available in the first half of 2025. Providers update guardrails
+                        often; the numbers describe those versions, not today's.</li>
+                    <li><strong>The imperative bias is a conjecture with supporting evidence.</strong> The paper
+                        supports it by comparing blurred commands with structured, declarative rewrites. The rewrites
+                        also change length, structure and framing, so the experiments do not isolate grammatical mood
+                        alone.</li>
+                    <li><strong>The IA defense was implemented by the authors.</strong> It follows Zhang et al.'s
+                        design on GPT-4o; commercial providers' internal intent checks may behave differently.</li>
+                    <li><strong>English only.</strong> All four benchmarks are English. The paper notes that the
+                        DeepSeek models may moderate English prompts less strictly, which it does not test
+                        directly.</li>
+                </ul>
+
+                <h2>Frequently asked questions</h2>
+                <h3>Can rephrasing a harmful request bypass LLM safety guardrails?</h3>
+                <p>Often, yes. In the EMNLP 2025 Findings paper on intent manipulation, rewriting harmful requests as
+                    declarative outlines and descriptions raised the jailbreak success rate on GPT-4o to 90.00-97.12%
+                    across four benchmarks, and the same rewriting reached 76.88-99.62% across the eight victim models in its
+                    generalization test, including Claude 3.7 Sonnet, Gemini 2.0 Pro and DeepSeek-R1.</p>
+                <h3>Do intent-aware guardrails stop jailbreaks?</h3>
+                <p>They stop most content-level jailbreaks, but not intent manipulation. With an intent-analysis
+                    defense on GPT-4o, ReNeLLM fell from 96.73% to 1.34% success on AdvBench and DeepInception from
+                    93.65% to 7.50%, while the paper's FSTR+SPIN variant still succeeded 97.12% of the time.</p>
+                <h3>Why are LLM guardrails more sensitive to imperative prompts?</h3>
+                <p>The paper's conjecture is that guardrails read commands such as &ldquo;Write a script to...&rdquo;
+                    as requests to perform an action, while descriptive statements read as research or analysis. The
+                    authors relate this to alignment policies that allow content framed as classification,
+                    transformation or historical description, even when the underlying intent is harmful.</p>
+                <h3>Does chain-of-thought safety reasoning stop rephrasing jailbreaks?</h3>
+                <p>Partly. On OpenAI o1, which reasons about intent before answering, the plain outline-and-elaborate
+                    rewrite dropped to 61.00-78.65% success, but a variant that also blurs the intent and frames it as
+                    an academic summary recovered to 88.25-96.54%, at the cost of lower harmfulness scores in the
+                    responses.</p>
+
+                <h2>Citation</h2>
+<pre><code>@inproceedings{zhuang-etal-2025-exploring,
+  title     = {Exploring the Vulnerability of the Content Moderation Guardrail
+               in Large Language Models via Intent Manipulation},
+  author    = {Zhuang, Jun and Jin, Haibo and Zhang, Ye and Kang, Zhengjian and
+               Zhang, Wenbin and Dagher, Gaby G. and Wang, Haohan},
+  booktitle = {Findings of the Association for Computational Linguistics: EMNLP 2025},
+  pages     = {2147--2160},
+  year      = {2025},
+  doi       = {10.18653/v1/2025.findings-emnlp.114}
+}</code></pre>
+
+                <h2>Related from our lab</h2>
+                <ul>
+                    <li><a href="aligned_llms_jailbreak_themselves.html">Can aligned LLMs jailbreak themselves? Multi-turn self-jailbreaks that per-turn safety filters miss (SLIP, COLM 2026)</a></li>
+                    <li><a href="security_fidelity_tradeoff.html">The hidden cost of prompt injection defense: why blocking attacks can delete benign content</a></li>
+                    <li><a href="thousand_ideas_trustworthy_ML.html">Three frameworks for trustworthy machine learning research, including adversarial robustness</a></li>
+                    <li><a href="https://haohanwang.ischool.illinois.edu/research/llm-security.html">LLM security research overview by Haohan Wang, covering jailbreaks, moderation guardrails and prompt injection</a></li>
+                    <li><a href="../publications.html">Full list of DREAM Lab publications</a></li>
+                </ul>
+            </section>
+            </article>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer id="footer">
+        <ul class="icons">
+            <li><a href="https://x.com/HaohanWang" class="icon brands alt fa-twitter"><span class="label">X</span></a></li>
+            <li><a href="https://www.linkedin.com/in/haohanwang/" class="icon brands alt fa-linkedin-in"><span class="label">LinkedIn</span></a></li>
+            <li><a href="https://github.com/DreamLabUIUC" class="icon brands alt fa-github"><span class="label">GitHub</span></a></li>
+            <li><a href="../feed.xml" class="icon solid alt fa-rss"><span class="label">RSS</span></a></li>
+        </ul>
+        <ul class="copyright">
+            <li>&copy; DREAM Lab, University of Illinois Urbana-Champaign</li>
+            <li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
+        </ul>
+    </footer>
+
+</div>
+
+<!-- Scripts -->
+<script src="../assets2/js/jquery.min.js"></script>
+<script src="../assets2/js/jquery.scrolly.min.js"></script>
+<script src="../assets2/js/jquery.dropotron.min.js"></script>
+<script src="../assets2/js/jquery.scrollex.min.js"></script>
+<script src="../assets2/js/browser.min.js"></script>
+<script src="../assets2/js/breakpoints.min.js"></script>
+<script src="../assets2/js/util.js"></script>
+<script src="../assets2/js/main.js"></script>
+
+</body>
+</html>

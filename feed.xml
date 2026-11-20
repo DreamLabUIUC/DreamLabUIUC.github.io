@@ -6,7 +6,15 @@
   <atom:link href="https://dream.ischool.illinois.edu/feed.xml" rel="self" type="application/rss+xml"/>
   <description>Plain-language explainers of research from the DREAM Lab at the University of Illinois Urbana-Champaign.</description>
   <language>en</language>
-  <lastBuildDate>Wed, 18 Nov 2026 12:00:00 +0000</lastBuildDate>
+  <lastBuildDate>Fri, 20 Nov 2026 12:00:00 +0000</lastBuildDate>
+  <item>
+    <title>Can Rephrasing a Request Bypass LLM Safety Guardrails?</title>
+    <link>https://dream.ischool.illinois.edu/blogs/rephrasing_bypass_llm_guardrails.html</link>
+    <guid>https://dream.ischool.illinois.edu/blogs/rephrasing_bypass_llm_guardrails.html</guid>
+    <pubDate>Fri, 20 Nov 2026 12:00:00 +0000</pubDate>
+    <category>LLM security</category>
+    <description>Often, yes. In our EMNLP 2025 Findings paper, declarative rewrites bypass LLM safety guardrails on GPT-4o 97.12% of the time, even with intent analysis on.</description>
+  </item>
   <item>
     <title>Does GEO Actually Work? A Live Test on ChatGPT, Gemini, Grok</title>
     <link>https://dream.ischool.illinois.edu/blogs/does_geo_work_live_web.html</link>
